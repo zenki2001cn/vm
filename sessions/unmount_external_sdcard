@@ -1,0 +1,667 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <silent> <S-Tab> =BackwardsSnippet()
+inoremap <C-Tab> 	
+imap <F9> :InsPrevHita
+imap <F8> :InsNextHita
+imap <F5> :PreviewClassa
+inoremap <silent> <Plug>SnippetComplete =SnippetComplete#PreSnippetCompleteExpr()=SnippetComplete#SnippetComplete()
+inoremap <silent> <Plug>NERDCommenterInInsert  <BS>:call NERDComment(0, "insert")
+inoremap <expr> <BS> pumvisible() ? "\\" : "\"
+nnoremap  
+snoremap <silent> 	 i<Right>=TriggerSnippet()
+smap  <Plug>(neocomplcache_snippets_expand)
+nmap  :ts 
+xmap  :ts 
+omap  :ts 
+map  :tn 
+map  :tp 
+snoremap  b<BS>
+nmap d :cs find d =expand("<cword>")
+nmap i :cs find i =expand("<cfile>")
+nmap f :cs find f =expand("<cfile>")
+nmap e :cs find e =expand("<cword>")
+nmap t :cs find t =expand("<cword>")
+nmap c :cs find c =expand("<cword>")
+nmap s :cs find s =expand("<cword>")
+snoremap % b<BS>%
+snoremap ' b<BS>'
+nmap ,g :call GotoOpenSearchBuffer()
+nmap ,f :call Gather(@/, 0):echo
+nmap ,F :call Gather(input("Filter on term: "), 0)
+nmap ,ca <Plug>NERDCommenterAltDelims
+vmap ,cA <Plug>NERDCommenterAppend
+nmap ,cA <Plug>NERDCommenterAppend
+vmap ,c$ <Plug>NERDCommenterToEOL
+nmap ,c$ <Plug>NERDCommenterToEOL
+vmap ,cu <Plug>NERDCommenterUncomment
+nmap ,cu <Plug>NERDCommenterUncomment
+vmap ,cn <Plug>NERDCommenterNest
+nmap ,cn <Plug>NERDCommenterNest
+vmap ,cb <Plug>NERDCommenterAlignBoth
+nmap ,cb <Plug>NERDCommenterAlignBoth
+vmap ,cl <Plug>NERDCommenterAlignLeft
+nmap ,cl <Plug>NERDCommenterAlignLeft
+vmap ,cy <Plug>NERDCommenterYank
+nmap ,cy <Plug>NERDCommenterYank
+vmap ,ci <Plug>NERDCommenterInvert
+nmap ,ci <Plug>NERDCommenterInvert
+vmap ,cs <Plug>NERDCommenterSexy
+nmap ,cs <Plug>NERDCommenterSexy
+vmap ,cm <Plug>NERDCommenterMinimal
+nmap ,cm <Plug>NERDCommenterMinimal
+vmap ,c  <Plug>NERDCommenterToggle
+nmap ,c  <Plug>NERDCommenterToggle
+vmap ,cc <Plug>NERDCommenterComment
+nmap ,cc <Plug>NERDCommenterComment
+nnoremap ,cf :Dox
+map ,bs :Bs 
+noremap / :call SearchCompleteStart()/
+vnoremap < <gv
+vnoremap > >gv
+map B 00
+map E <S-$>
+vmap <silent> K <Plug>(ref-keyword)
+nmap K <Plug>ManPageView
+nnoremap M :MRU
+snoremap U b<BS>U
+snoremap \ b<BS>\
+nmap <silent> \w\t <Plug>VimwikiTabMakeDiaryNote
+nmap <silent> \w\w <Plug>VimwikiMakeDiaryNote
+nmap <silent> \w\i <Plug>VimwikiDiaryGenerateLinks
+nmap <silent> \ws <Plug>VimwikiUISelect
+nmap <silent> \wt <Plug>VimwikiTabIndex
+nmap <silent> \ww <Plug>VimwikiIndex
+map \tl <Plug>TaskList
+map \we <Plug>PotwikiEdit
+map \wf <Plug>PotwikiFollow
+map \wi <Plug>PotwikiIndex
+map \wh <Plug>PotwikiHome
+nmap <silent> \lg :LustyBufferGrep
+nmap <silent> \lr :LustyFilesystemExplorerFromHere
+map \Find :call FindSelected()
+map \rwp <Plug>RestoreWinPosn
+map \swp <Plug>SaveWinPosn
+nmap \caL <Plug>CalendarH
+nmap \cal <Plug>CalendarV
+nmap \ihn :IHN
+nmap \is :IHS:A
+nmap \ih :IHS
+map \ds <Plug>StopDrawIt
+map \di <Plug>StartDrawIt
+map \dk <Plug>DirDiffPrev
+map \dj <Plug>DirDiffNext
+map \dp <Plug>DirDiffPut
+map \dg <Plug>DirDiffGet
+nnoremap <silent> \ll :LUCurWord
+nmap <silent> \lb :LustyBufferExplorer
+nmap <silent> \lf :LustyFilesystemExplorer
+nmap <silent> \wdi <Plug>VimwikiDiaryIndex
+map \w :w! 
+map \sv :SessionSave 
+map \sl :SessionList 
+map \xr :%!xxd -r 
+map \xx :%!xxd 
+map \tc :tabclose 
+map \te :tabedit  
+map \\ \be
+snoremap ^ b<BS>^
+snoremap ` b<BS>`
+nmap gx <Plug>NetrwBrowseX
+map gk 40k
+map gj 40j
+map <silent> wg :VimwikiGenerateLinks
+map <silent> wt :VimwikiTable
+snoremap <Left> bi
+snoremap <Right> a
+snoremap <BS> b<BS>
+snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+vnoremap <silent> <Plug>(ref-keyword) :call ref#K('visual')
+nnoremap <silent> <Plug>(ref-keyword) :call ref#K('normal')
+map <S-F8> :NextInBlock
+map <S-F9> :PrevInBlock
+nmap <silent> <Plug>RestoreWinPosn :call RestoreWinPosn()
+nmap <silent> <Plug>SaveWinPosn :call SaveWinPosn()
+nnoremap <silent> <Plug>CalendarH :cal Calendar(1)
+nnoremap <silent> <Plug>CalendarV :cal Calendar(0)
+nmap <silent> <Plug>NERDCommenterAppend :call NERDComment(0, "append")
+nnoremap <silent> <Plug>NERDCommenterToEOL :call NERDComment(0, "toEOL")
+vnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment(1, "uncomment")
+nnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment(0, "uncomment")
+vnoremap <silent> <Plug>NERDCommenterNest :call NERDComment(1, "nested")
+nnoremap <silent> <Plug>NERDCommenterNest :call NERDComment(0, "nested")
+vnoremap <silent> <Plug>NERDCommenterAlignBoth :call NERDComment(1, "alignBoth")
+nnoremap <silent> <Plug>NERDCommenterAlignBoth :call NERDComment(0, "alignBoth")
+vnoremap <silent> <Plug>NERDCommenterAlignLeft :call NERDComment(1, "alignLeft")
+nnoremap <silent> <Plug>NERDCommenterAlignLeft :call NERDComment(0, "alignLeft")
+vmap <silent> <Plug>NERDCommenterYank :call NERDComment(1, "yank")
+nmap <silent> <Plug>NERDCommenterYank :call NERDComment(0, "yank")
+vnoremap <silent> <Plug>NERDCommenterInvert :call NERDComment(1, "invert")
+nnoremap <silent> <Plug>NERDCommenterInvert :call NERDComment(0, "invert")
+vnoremap <silent> <Plug>NERDCommenterSexy :call NERDComment(1, "sexy")
+nnoremap <silent> <Plug>NERDCommenterSexy :call NERDComment(0, "sexy")
+vnoremap <silent> <Plug>NERDCommenterMinimal :call NERDComment(1, "minimal")
+nnoremap <silent> <Plug>NERDCommenterMinimal :call NERDComment(0, "minimal")
+vnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment(1, "toggle")
+nnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment(0, "toggle")
+vnoremap <silent> <Plug>NERDCommenterComment :call NERDComment(1, "norm")
+nnoremap <silent> <Plug>NERDCommenterComment :call NERDComment(0, "norm")
+map <silent> <Plug>StopDrawIt :set lz:call DrawIt#StopDrawIt():set nolz
+map <silent> <Plug>StartDrawIt :set lz:call DrawIt#StartDrawIt():set nolz
+nmap <silent> <C-S-F8> :call clearmatches()|:delmarks a-z
+nmap <silent> <F8> :call DelHLMark("Marks")
+nmap <silent> <F7> :call AddHLMark("Marks")
+nmap <silent> <C-F6> :call clearmatches()
+nmap <silent> <C-F5> :call HLMarks("Marks")
+nnoremap <silent> <F5> [`
+nnoremap <silent> <F6> ]`
+nnoremap <silent> <F4> :TagbarToggle
+nnoremap <F3> :TlistToggle
+nnoremap <F2> :NERDTreeFind
+nnoremap <F1> :NERDTreeToggle
+inoremap <expr>  neocomplcache#undo_completion()
+inoremap <expr>  pumvisible() ? "\\" : "\"
+inoremap <silent> 	 =TriggerSnippet()
+inoremap <expr>  neocomplcache#complete_common_string()
+imap  <Plug>SuperTabForward
+imap  <Plug>SuperTabBackward
+inoremap <silent> 	 =ShowAvailableSnips()
+imap 	 <Plug>SnippetComplete
+nnoremap Ã‰ :LUTags
+imap \ihn :IHN
+imap \is :IHS:A
+imap \ih :IHS
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set autoread
+set backspace=2
+set cindent
+set completeopt=menuone
+set cpoptions=aABceFsd
+set diffexpr=MyDiff()
+set diffopt=filler,context:9999
+set display=lastline
+set expandtab
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+set grepformat=%f:%l:%m
+set grepprg=lid\ -Rgrep\ -s
+set guitablabel=%{tabpagenr()}.%t\ %m
+set helplang=cn
+set hidden
+set history=1000
+set hlsearch
+set ignorecase
+set incsearch
+set langmenu=none
+set laststatus=2
+set lazyredraw
+set matchtime=0
+set mouse=a
+set mousemodel=popup
+set operatorfunc=FigOper
+set printoptions=paper:a4
+set ruler
+set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+set scrolloff=10
+set shellredir=>%s\ 2>&1
+set shiftwidth=4
+set showfulltag
+set showmatch
+set smartcase
+set smartindent
+set smarttab
+set softtabstop=4
+set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b][HEX=%02.2B][è¡Œ=%04l,åˆ—=%04v][%p%%][æ€»è¡Œ=%L]
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class
+set switchbuf=useopen
+set tabstop=4
+set termencoding=utf-8
+set updatetime=2000
+set virtualedit=block
+set wildignore=*.bak,*.o,*.pyc,*~,*.bk
+set wildmenu
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /host/linux_part/ics_51/android/packages/apps/Settings
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +110 src/com/android/settings/DeviceAdminSettings.java
+badd +179 src/com/android/settings/DeviceInfoSettings.java
+badd +127 src/com/android/settings/SettingsSafetyLegalActivity.java
+badd +127 src/com/android/settings/deviceinfo/Status.java
+badd +82 src/com/android/settings/deviceinfo/StorageVolumePreferenceCategory.java
+badd +23 src/com/android/settings/ProgressCategoryBase.java
+badd +549 src/com/android/settings/deviceinfo/StorageMeasurement.java
+badd +32 src/com/android/settings/deviceinfo/UsageBarPreference.java
+badd +17 src/com/android/settings/deviceinfo/FileItemInfoLayout.java
+badd +14 src/com/android/settings/DataUsageSummary.java
+badd +46 src/com/android/settings/MediaFormat.java
+badd +53 src/com/android/settings/UserDictionarySettings.java
+badd +209 src/com/android/settings/UsageStats.java
+badd +471 src/com/android/settings/Settings.java
+badd +34 src/com/android/settings/AccountPreference.java
+badd +28 src/com/android/settings/IconPreferenceScreen.java
+badd +31 src/com/android/settings/accounts/ProviderPreference.java
+badd +34 src/com/android/settings/fuelgauge/BatteryHistoryPreference.java
+badd +32 src/com/android/settings/fuelgauge/PowerGaugePreference.java
+badd +37 src/com/android/settings/inputmethod/SingleSpellCheckerPreference.java
+badd +34 src/com/android/settings/tts/TtsEnginePreference.java
+badd +460 src/com/android/settings/vpn2/VpnSettings.java
+badd +34 src/com/android/settings/wifi/AccessPoint.java
+badd +32 src/com/android/settings/wifi/p2p/WifiP2pPeer.java
+badd +1807 /host/linux_part/ics_51/android/packages/apps/Settings/res/values/strings.xml
+badd +0 /host/linux_part/ics_51/android/packages/apps/Settings/src/com/android/settings/deviceinfo/Memory.java
+silent! argdel *
+edit /host/linux_part/ics_51/android/packages/apps/Settings/src/com/android/settings/deviceinfo/Memory.java
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 31 + 88) / 177)
+exe 'vert 2resize ' . ((&columns * 104 + 88) / 177)
+exe 'vert 3resize ' . ((&columns * 40 + 88) / 177)
+argglobal
+enew
+file NERD_tree_1
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=hide
+setlocal nobuflisted
+setlocal buftype=nofile
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'nerdtree'
+setlocal filetype=nerdtree
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+set foldlevel=9999
+setlocal foldlevel=9999
+set foldmarker={,}
+setlocal foldmarker={,}
+set foldmethod=marker
+setlocal foldmethod=marker
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal nomodifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal smartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{exists('b:NERDTreeRoot')?b:NERDTreeRoot.path.str():''}
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'nerdtree'
+setlocal syntax=nerdtree
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal nowinfixheight
+setlocal winfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+wincmd w
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'java'
+setlocal filetype=java
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+set foldlevel=9999
+setlocal foldlevel=9999
+set foldmarker={,}
+setlocal foldmarker={,}
+set foldmethod=marker
+setlocal foldmethod=marker
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal smartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.java
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'java'
+setlocal syntax=java
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+49
+normal zo
+130
+normal zo
+132
+normal zo
+135
+normal zo
+137
+normal zo
+140
+normal zo
+137
+normal zo
+135
+normal zo
+132
+normal zo
+130
+normal zo
+207
+normal zo
+208
+normal zo
+216
+normal zo
+222
+normal zo
+223
+normal zo
+222
+normal zo
+216
+normal zo
+208
+normal zo
+207
+normal zo
+270
+normal zo
+274
+normal zo
+280
+normal zo
+274
+normal zo
+270
+normal zo
+311
+normal zo
+313
+normal zo
+314
+normal zo
+314
+normal zo
+313
+normal zo
+311
+normal zo
+49
+normal zo
+let s:l = 283 - ((30 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+283
+normal! 08l
+wincmd w
+argglobal
+enew
+file __Tagbar__
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=TagbarBalloonExpr()
+setlocal nobinary
+setlocal bufhidden=hide
+setlocal nobuflisted
+setlocal buftype=nofile
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal nocursorcolumn
+set cursorline
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'tagbar'
+setlocal filetype=tagbar
+endif
+setlocal foldcolumn=0
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+set foldlevel=9999
+setlocal foldlevel=9999
+set foldmarker={,}
+setlocal foldmarker={,}
+set foldmethod=marker
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal nomodifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal smartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!TagbarGenerateStatusline()
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'tagbar'
+setlocal syntax=tagbar
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal nowinfixheight
+setlocal winfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 31 + 88) / 177)
+exe 'vert 2resize ' . ((&columns * 104 + 88) / 177)
+exe 'vert 3resize ' . ((&columns * 40 + 88) / 177)
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

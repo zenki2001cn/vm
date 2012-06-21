@@ -1,0 +1,45 @@
+package // FIXME;
+
+import android.os.AsyncTask;
+
+import android.util.Log;
+import java.lang.Thread;
+
+public class // FIXME extends AsyncTask<Object, Object, Object> {
+    private static final String TAG = "";
+
+    @Override
+    protected void onPreExecute() {
+        /*code here*/
+
+        super.onPreExecute();
+    }
+
+    @Override
+    protected Object doInBackground(Object...Object) {
+        /*code here*/
+
+        return Object;
+    }
+
+    @Override
+    protected void onProgressUpdate(Object...values) {
+        /*code here*/
+
+        super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onPostExecute(Object result) {
+        /*code here*/
+
+        super.onPostExecute(result);
+    }
+
+    @Override
+    protected void onCancelled() {
+        /*code here*/
+
+        super.onCancelled();
+    }
+}

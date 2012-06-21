@@ -1,0 +1,42 @@
+package // FIXME;
+
+import android.app.Activity;
+import android.app.TabActivity;
+
+import android.os.Bundle;
+
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabHost.TabContentFactory;
+
+import android.view.LayoutInflater;
+
+import android.util.Log;
+
+//public class MyTab extends TabActivity implements OnTabChangeListener { // FIXME
+
+    private static final String TAG = "";
+    private TabHost mTabHost;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mTabHost = this.getTabHost();
+
+        LayoutInflater factory = LayoutInflater.from(this);
+        //factory.inflate(R.layout.main, mTabHost.getTabContentView(), true); // FIXME
+
+        //mTabHost.addTab(mTabHost.newTabSpec("Tab1") //FIXME
+                        //.setIndicator("A", null)
+                        //.setContent(R.id.tabhost));
+
+        mTabHost.setOnTabChangedListener(this);
+    }
+
+    public void onTabChanged(String tag) {
+        // 标签切换动作
+        //if ( tag.equals("") ) { //FIXME
+        //}
+    }
+}

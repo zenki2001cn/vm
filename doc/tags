@@ -1,0 +1,15 @@
+F	zenki_plugin_doc.txt.html	/^    ,F                              手动输入搜索关键字$/;"	v	language:C++
+ca	zenki_plugin_doc.txt.html	/^    ,ca                             切换单行注释的类型$/;"	v	language:C++
+cc	zenki_plugin_doc.txt.html	/^    ,cc                             注释单行格式比较好看$/;"	v	language:C++
+cs	zenki_plugin_doc.txt.html	/^    ,cs                             注释多行格式比较好看$/;"	v	language:C++
+cscopeprg	zenki_plugin_doc.txt.html	/^<span class="Comment">    set cscopeprg=gtags-cscope<\/span>$/;"	v	language:C++
+cu	zenki_plugin_doc.txt.html	/^    ,cu                             取消注释$/;"	v	language:C++
+f	zenki_plugin_doc.txt.html	/^    ,f                              显示当前搜索的结果列表$/;"	v	language:C++
+g0	zenki_plugin_doc.txt.html	/^<span class="Comment">    set cscopequickfix=c-,d-,e-,f-,g0,i-,s-,t-<\/span>$/;"	v	language:C++
+gt	zenki_plugin_doc.txt.html	/^    :ConqueTermSplit <span class="Special">&lt;command&gt;<\/span>      水平分割窗口执行命令$/;"	v	language:C++
+gt	zenki_plugin_doc.txt.html	/^    :ConqueTermTab <span class="Special">&lt;command&gt;<\/span>        Tab窗口执行命令$/;"	v	language:C++
+gt	zenki_plugin_doc.txt.html	/^    :ConqueTermVSplit <span class="Special">&lt;command&gt;<\/span>     垂直分割窗口执行命令$/;"	v	language:C++
+gt	zenki_plugin_doc.txt.html	/^    :Gtags <span class="Special">&lt;func_name&gt;<\/span>              显示函数定义$/;"	v	language:C++
+gt	zenki_plugin_doc.txt.html	/^    <span class="Special">&lt;Shift&gt;<\/span>s                        在历史记录界面，选中某次<span class="Type">'commit'<\/span>后显示更新列表$/;"	v	language:C++
+lt	zenki_plugin_doc.txt.html	/^    :ConqueTermTab <span class="Special">&lt;command&gt;<\/span>        Tab窗口执行命令$/;"	v	language:C++
+lt	zenki_plugin_doc.txt.html	/^    :ConqueTermVSplit <span class="Special">&lt;command&gt;<\/span>     垂直分割窗口执行命令$/;"	v	language:C++
