@@ -918,8 +918,8 @@ if (has("gui_running"))
     set guioptions-=r
     set guioptions-=L
     "字体配置
-    set guifont=monospace\ 10
-    set guifontwide=Consolas\ 10
+    set guifont=monospace\ 12
+    set guifontwide=Consolas\ 12
 
     "colorscheme ekinivim
     " colorscheme CodeFactoryv3

@@ -1,5 +1,9 @@
 # Most recently edited files in Vim (version 3.0)
 /media/Data/Ubuntu_10_04/home/config/vim/.gitignore
+/home/zenki/Wiki/git工具箱
+/media/Data/Ubuntu_10_04/home/config/vim/.git/HEAD
+/media/Data/Ubuntu_10_04/home/config/vim/vimrc
+/media/Data/Ubuntu_10_04/home/config/vim/.vim_mru_files
 /home/zenki/下载/temp/recorder-v2.0a_20091222/procotol.cpp
 /home/zenki/下载/temp/recorder-v2.0a_20091222/detector.cpp
 /home/zenki/下载/temp/recorder-v2.0a_20091222/module_interface.c
@@ -7,7 +11,6 @@
 /home/zenki/下载/temp/recorder-v2.0a_20091222/recorder.cpp
 /home/zenki/下载/temp/recorder-v2.0a_20091222/card.cpp
 /media/Data/Ubuntu_10_04/home/config/vim/.git/info/exclude
-/media/Data/Ubuntu_10_04/home/config/vim/.git/HEAD
 /media/Data/Ubuntu_10_04/home/sourcecode/Wiki/.git/HEAD
 /var/log/syslog.1
 /home/zenki/.vimrc
@@ -69,7 +72,6 @@
 /host/linux_part/ics_51/android/frameworks/base/policy/src/com/android/internal/policy/impl/SimPukUnlockScreen.java
 /host/linux_part/ics_51/android/frameworks/base/core/java/android/app/ProgressDialog.java
 /host/linux_part/ics_51/android/frameworks/base/policy/src/com/android/internal/policy/impl/AccountUnlockScreen.java
-/home/zenki/Wiki/git工具箱
 /host/linux_part/ics_51/android/.git/info/exclude
 /host/linux_part/ics_51/android/bionic/libc/kernel/tools/update_all.py
 /host/linux_part/ics_51/android/frameworks/base/core/java/android/view/View.java
@@ -397,5 +399,3 @@
 /media/DATA/data/vim/autoload/vimwiki/html.vim
 /media/DATA/data/vim/autoload/vimwiki/default.tpl
 /media/DATA/data/vim/autoload/vimwiki/default.tpl.bk
-/media/DATA/data/vim/vimwiki-template/vimwiki_2_0.tpl
-/media/DATA/data/vim/vimwiki-template/header.tpl

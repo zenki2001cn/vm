@@ -2,6 +2,5 @@ ftplugin/c
 !ftplugin/c/hints_man2.vim
 !ftplugin/c/hints_man3.vim
 *.swp
-.*.swp
 sessions/*
 .vim_mru_files
