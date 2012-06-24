@@ -835,7 +835,8 @@ set laststatus=2
 " 状态栏
 "set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
 "set statusline=%F%m%r,%Y,%{&fileformat}\ \ \ ASCII=\%b,HEX=\%B\ \ \ [位置=%l,%c%V] [\%p%%\ ] [总行数=%L]
-set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b]\[HEX=%02.2B]\[行=%04l,列=%04v]\[%p%%]\[总行=%L]
+" set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b]\[HEX=%02.2B]\[行=%04l,列=%04v]\[%p%%]\[总行=%L]
+set statusline=%F\ \ \ %{&fileformat},%{&fileencoding},%Y\ \ \ A=%03.3b,H=%02.2B\ R=%03l/%L(%p%%),C=%02v
 
 set hidden
 "光标离上下边界10行时自动滚动
