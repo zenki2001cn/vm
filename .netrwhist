@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/zenki/.vim'
-let g:netrw_dirhist_2='/media/DATA/下载'
-let g:netrw_dirhist_3='/home/zenki/.VirtualBox'
-let g:netrw_dirhist_4='/media/DATA/data/Wiki/vimwiki/学习笔记/Android'
-let g:netrw_dirhist_5='/home/zenki/workspace/adobe_demo_src/ErengineDemo/src/com/easyview/ebook'
-let g:netrw_dirhist_6='/home/zenki/workspace/adobe_demo_src/ErengineDemo/src/com/easyview/ebook/jni'
-let g:netrw_dirhist_7='/home/zenki/workspace/adobe_demo_src/ErengineDemo/src/com/easyview/ebook'
-let g:netrw_dirhist_8='/home/zenki/下载/temp/djserver/alarm_update'
-let g:netrw_dirhist_9='/home/zenki/.vim'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/host/linux_part/ics_51/android/vendor'
+let g:netrw_dirhist_2='/media/DATA/data/vim/fontpatcher'
+let g:netrw_dirhist_3='/media/DATA/data/vim/.git'
+let g:netrw_dirhist_4='/host/linux_part/ics_51/android/hardware/ti/omap3/ion'

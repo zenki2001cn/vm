@@ -1,5 +1,17 @@
 ChangLog
-=======
+========
+7. v1.07
+Update: 2012-06-26 15:39:45
+7.1 更新vimrc
+7.2 添加viewdoc插件（查看帮助文档）     ---> viewdoc v1.3
+7.3 移除filtering2，还原旧版本          ---> filtering v1.07
+7.4 添加Powerline插件（status栏）       ---> Powerline 2012-02-29
+7.5 添加PreciseJump（任意位置跳转）     ---> PreciseJump v0.49
+7.6 添加一些配色                        ---> werks
+7.7 移除backup目录
+7.8 更新c.vim                           ---> c.vim v5.19
+7.9 添加html.vim(显示html的TAG)         ---> html.vim v1.2
+
 6. v1.06
 Update: 2012-06-20 09:34:34
 6.1 更新Drawit插件                      ---> DrawItPlugin

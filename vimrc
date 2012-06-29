@@ -1,5 +1,34 @@
 runtime! debian.vim
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" filtering setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ,F :call Gather(input("Filter on term: "), 0)<CR>
+nnoremap ,f :call Gather(@/, 0)<CR>:echo<CR>
+nnoremap ,G :call GotoOpenSearchBuffer()<CR>
+nnoremap ,d :call CloseAllSearchWindows()<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" filtering setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PreciseJump setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap ,, _f
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PreciseJump setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set laststatus=2
+" set -g default-terminal "screen-256color"
+" set fillchars+=stl:\ ,stlnc:\
+" let g:Powerline_symbols = 'fancy'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitv setting start {
@@ -7,7 +36,7 @@ runtime! debian.vim
 " 水平分割窗口
 let g:Gitv_CommitStep = 10
 let g:Gitv_OpenHorizontal = 1
-nmap <Leader>gv :Gitv --no-merges
+nmap <Leader>gv :Gitv --no-merges<CR>
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gt :Gtabedit<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -26,7 +55,7 @@ let g:AutoClosePairs = {'{': '}', '[': ']', '"': '"', "'": "'"}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffers_search_and_replace setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map ,bs :Bs 
+nmap ,bs :Bs 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffers_search_and_replace setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,8 +86,8 @@ let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.svn,.git"
 
 " 如果是diff模式，映射]c和[c
 if (&diff)
-    nnoremap ]] ]c
-    nnoremap [[ [c
+    nmap ]] ]c
+    nmap [[ [c
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dirdiff setting end }
@@ -127,7 +156,7 @@ let g:C_GuiTemplateBrowser = 'explorer'
 "let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'  " For Unix
 "let MRU_Include_Files = '\.c$\|\.h$' 
 "let MRU_Add_Menu = 0 
-let MRU_File = '/home/zenki/.vim/.vim_mru_files' 
+let MRU_File = $HOME.'/.vim/.vim_mru_files' 
 let MRU_Window_Height = 15
 let MRU_Use_Current_Window = 0
 let MRU_Auto_Close = 1 
@@ -172,11 +201,11 @@ nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
 nnoremap <unique> <silent> <F6> ]`
 nnoremap <unique> <silent> <F5> [`
 " 标记管理
-nmap <silent> <C-F5> :call HLMarks("Marks")<CR>
-nmap <silent> <C-F6> :call clearmatches()<CR>
-nmap <silent> <F7> :call AddHLMark("Marks")<CR>
-nmap <silent> <F8> :call DelHLMark("Marks")<CR>
-nmap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
+nnoremap <silent> <C-F5> :call HLMarks("Marks")<CR>
+nnoremap <silent> <C-F6> :call clearmatches()<CR>
+nnoremap <silent> <F7> :call AddHLMark("Marks")<CR>
+nnoremap <silent> <F8> :call DelHLMark("Marks")<CR>
+nnoremap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
 
 "加入书签
 " nnoremap <F3> :Bookmark<CR>
@@ -188,9 +217,9 @@ nmap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
 
 "运行ctags,
 "map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map <C-n> :tn <CR>
-map <C-p> :tp <CR>
-map <C-l> :ts <CR>
+nmap <C-n> :tn <CR>
+nmap <C-p> :tp <CR>
+nmap <C-l> :ts <CR>
 
 " 当前打开文件列表
 map <leader><leader> \be
@@ -328,7 +357,7 @@ let showmarks_hlline_upper = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python 补全文件路径
 "autocmd Filetype python setlocal omnifunc=pythoncomplete#Complete
-let g:pydiction_location = '/home/zenki/.vim/ftplugin/complete-dict'
+let g:pydiction_location = $HOME.'/.vim/ftplugin/complete-dict'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python补全 setting }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -748,7 +777,6 @@ au FileType python set tabstop=4 shiftwidth=4 expandtab
 " Desc: LookupFile start {
 " ------------------------------------------------------------------ 
 
-nnoremap <unique> <A-S-i> :LUTags<CR>
 nnoremap <unique> <leader>lf :LUTags<CR>
 nnoremap <unique> <leader>lb :LUBufs<CR>
 nnoremap <unique> <silent> <Leader>ll :LUCurWord<CR>
@@ -824,8 +852,8 @@ set lbr
 set bs=2
 set wmnu
 set wildignore=*.bak,*.o,*.pyc,*~,*.bk
-map gj 40j
-map gk 40k
+nmap gj 40j
+nmap gk 40k
 " Visual Mode连续缩进
 vnoremap < <gv
 vnoremap > >gv
@@ -860,7 +888,7 @@ set fileencodings=utf-8,gbk,ucs-bom,cp936
 syntax on
 
 "模板装载路径
-let g:template_path = '/home/zenki/.vim/template/*/'
+let g:template_path = $HOME.'/.vim/template/*/'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用 setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -918,8 +946,8 @@ if (has("gui_running"))
     set guioptions-=r
     set guioptions-=L
     "字体配置
-    set guifont=monospace\ 12
-    set guifontwide=Consolas\ 12
+    set guifont=monospace\ 10
+    set guifontwide=Consolas\ 10
 
     "colorscheme ekinivim
     " colorscheme CodeFactoryv3

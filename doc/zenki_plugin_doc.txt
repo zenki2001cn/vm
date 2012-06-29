@@ -5,7 +5,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
 功能列表
    1. 文件夹管理                    |NERDtree_zenki|
    2. 最近访问列表                  |MRU_zenki|
-   3. 搜索结果过滤                  |filtering2_zenki|
+   3. 搜索结果过滤                  |filtering_zenki|
    4. TODO标识查询                  |tasklist_zenki|
    5. 标签管理                      |markHL_zenki|
    6. 快速注释                      |NERDCommener_zenki|
@@ -18,6 +18,9 @@ Zenki's vim plugin Document                                        *zenki_doc*
    13. 执行Shell命令                |ConqueTerm_zenki|
    14. Gtags                        |Gtags_zenki|
    15. 转换HTML                     |TOhtml_zenki|
+   16. 查看帮助文档                 |viewdoc_zenki|
+   17. 彩色状态栏                   |powerline_zenki|
+   18. 任意跳转                     |PreciseJump_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -40,13 +43,14 @@ MRU                                                                *MRU_zenki*
     <Shift-m>                       打开MRU列表
 
 ==============================================================================
-FILTERING2                                                  *filtering2_zenki*
+FILTERING2                                                  *filtering_zenki*
 1. 快捷键使用说明
     KEY                             说明~
 
     ,f                              显示当前搜索的结果列表
     ,F                              手动输入搜索关键字
-    ,g                              跳转到其他搜索列表
+    ,G                              跳转到其他搜索列表
+    ,d                              关闭打开的搜索窗口
 
 ==============================================================================
 TASKLIST                                                      *tasklist_zenki*
@@ -99,6 +103,8 @@ DIRDIFF                                                        *Dirdiff_zenki*
     ]c                              跳到后一个不同点
     dp                              diff push
     do                              diff get
+
+2. 有修改记录
 
 ==============================================================================
 TAB                                                                *Tab_zenki*
@@ -172,5 +178,30 @@ TOHTML                                                          *TOhtml_zenki*
     KEY                             说明~
 
     :TOhtml                         将当前文档转换成HTML格式
+
+==============================================================================
+VIEWDOC                                                        *viewdoc_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    <C-h>                           查看当前光标所在位置的帮助文档
+
+==============================================================================
+POWERLINE                                                    *powerline_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    :PowerlineClearCache            清除缓存，重启生效
+    :PowerlineReloadColorscheme     重新加载配置文件
+
+2. 有修改记录
+
+==============================================================================
+                                                           *PreciseJump_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    ,,                              进入任意跳转模式，需要输入目标字符
+
 
 vim:tw=78:ts=8:ft=help:norl:
