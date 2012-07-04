@@ -16,6 +16,7 @@ Update: 2012-07-02 09:01:30
 8.12 修改vimrc的若干配置
 8.13 移除ftplugin/python_fold_compact.vim
 8.14 添加xmledit（编辑html、css、xml）      ---> xmledit v1.9.1
+8.15 更新neocomplcache                      ---> neocomplcache v7.0
 
 7. v1.07
 Update: 2012-06-26 15:39:45

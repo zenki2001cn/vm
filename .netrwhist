@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/host/linux_part/ics_51/android/vendor'
 let g:netrw_dirhist_2='/media/DATA/data/vim/fontpatcher'
 let g:netrw_dirhist_3='/media/DATA/data/vim/.git'
 let g:netrw_dirhist_4='/host/linux_part/ics_51/android/hardware/ti/omap3/ion'
 let g:netrw_dirhist_5='/home/zenki/temp/dir1'
+let g:netrw_dirhist_6='/media/DATA/data/vim/autoload/neocomplcache/sources/snippets_complete'
