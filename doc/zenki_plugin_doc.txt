@@ -21,6 +21,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    16. 查看帮助文档                 |viewdoc_zenki|
    17. 彩色状态栏                   |powerline_zenki|
    18. 任意跳转                     |PreciseJump_zenki|
+   19. 浏览gprof文件                |ft_gprof_zenki|
+   20. 浏览xterm配色表              |XtermColorTable_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -41,6 +43,8 @@ MRU                                                                *MRU_zenki*
     KEY                             说明~
 
     <Shift-m>                       打开MRU列表
+
+2. 有修改记录
 
 ==============================================================================
 FILTERING2                                                  *filtering_zenki*
@@ -197,11 +201,30 @@ POWERLINE                                                    *powerline_zenki*
 2. 有修改记录
 
 ==============================================================================
-                                                           *PreciseJump_zenki*
+PRECISEJUMP                                                *PreciseJump_zenki*
 1. 快捷键使用说明
     KEY                             说明~
 
     ,,                              进入任意跳转模式，需要输入目标字符
 
+==============================================================================
+FTGPROF                                                         *ft_gprof_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    $ gprof a.out gmon.out | vim - -c 'setfiletype gprof'
+    $ gprof a.out gmon.out > a.gprof
+    <C-]>                           在方法定义处跳转到方法调用的地方
+    <C-o>                           返回到原光标处
+
+==============================================================================
+XTERMCOLORTABLE                                        *XtermColorTable_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    :XtermColorTable                显示配色表
+    #                               to copy current color (yiw)
+    t                               to toggle RGB visibility
+    f                               to set RGB foreground color
 
 vim:tw=78:ts=8:ft=help:norl:

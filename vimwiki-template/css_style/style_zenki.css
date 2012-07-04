@@ -116,7 +116,7 @@ div.toc{border:1px solid #ccc; background:#f8f8f8; float:right; padding:3px; pos
     div.toc ul{margin:0; padding:0 0 0 1em; *padding:0;}
     div.toc>ul{padding:0;}
     div.toc ul ul{*padding:0 0 0 8px;}
-    div.toc li{list-style-type: none; margin:0; padding:0 0 0 18px; background:transparent url(bg/icons.png) no-repeat scroll 0 -48px; font-size:.9em; line-height:18px; overflow:hidden;}
+    div.toc li{list-style-type: none; margin:0; padding:0 0 0 18px; background:transparent url(bg/icons.png) no-repeat scroll 0 -48px; font-size:15px; line-height:18px; overflow:hidden;}
         div.toc a{-moz-opacity:1; opacity:1; -ms-filter:"alpha(opacity=100)"; filter:alpha(opacity=100);}
 
 .todo {font-weight: bold; background-color: #f0ece8; color: #a03020;}

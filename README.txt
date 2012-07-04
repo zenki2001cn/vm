@@ -1,5 +1,22 @@
 ChangLog
 ========
+8. v1.08
+Update: 2012-07-02 09:01:30
+8.1 添加xterm-color-table插件（显示颜色表） ---> xterm-color-table v1.6
+8.2 修改sessionman.vim，将缓存目录设置为~/.vim_sessions     ---> 修改sessionman.vim
+8.3 修改MRU插件的配置，将缓存目录设置为~/.vim_mru_files     ---> 修改vimrc
+8.4 添加recover插件（打开swp文件时比较）    ---> recover v0.14
+8.5 更新vim-ref                             ---> vim-ref v0.4.3
+8.6 移除diff模式的快捷键映射                ---> 修改vimrc
+8.7 修正一些配色方案的文件格式为unix
+8.8 添加gprof.vim插件（浏览gprof）          ---> ft_gprof v0.4
+8.9 更新gui2term.py（转换配色文件）         ---> gui2term.py v3.03 (需要Python 3支持)
+8.10 修改vimwiki-template（增加toc字体大小）
+8.11 修改PreciseJump的色彩配置
+8.12 修改vimrc的若干配置
+8.13 移除ftplugin/python_fold_compact.vim
+8.14 添加xmledit（编辑html、css、xml）      ---> xmledit v1.9.1
+
 7. v1.07
 Update: 2012-06-26 15:39:45
 7.1 更新vimrc
@@ -26,7 +43,7 @@ Update: 2012-06-20 09:34:34
 
 5. v1.05
 Update: 2012-06-17 20:48:21
-5.1 添加一些配色方案: oh_la_la
+5.1 添加一些配色方案                    ---> oh_la_la
 5.2 更新tagbar插件                      ---> tagbar v2.4
 5.3 更新filtering插件                   ---> filtering2.0 beta1
 

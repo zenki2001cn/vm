@@ -1,4 +1,3 @@
-" 本配色方案由 gui2term.py 程序增加彩色终端支持。
 " Vim color file -- candycode
 " Maintainer:   Justin Constantino <goflyapig-at-gmail-com>
 " Last Change:  2006 Aug 12
@@ -14,71 +13,71 @@ set cpo&vim
 
 " text {{{
 
-hi Normal       guifg=#ffffff       guibg=#050505       gui=NONE ctermfg=231 ctermbg=232 cterm=none
+highlight Normal guifg=#ffffff guibg=#050505 gui=NONE ctermfg=231 ctermbg=232 cterm=NONE
             \   ctermfg=white       ctermbg=black       cterm=NONE
 
-hi Folded       guifg=#c2bfa5       guibg=#050505       gui=underline ctermfg=187 ctermbg=232 cterm=underline
+highlight Folded guifg=#c2bfa5 guibg=#050505 gui=underline ctermfg=144 ctermbg=232 cterm=underline
             \   ctermfg=lightgray   ctermbg=black       cterm=underline
 
-hi LineNr       guifg=#928c75       guibg=NONE          gui=NONE ctermfg=101 ctermbg=232 cterm=none
+highlight LineNr guifg=#928c75 guibg=NONE gui=NONE ctermfg=101 cterm=NONE
             \   ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
-hi Directory    guifg=#00bbdd       guibg=NONE          gui=NONE ctermfg=38 ctermbg=232 cterm=none
+highlight Directory guifg=#00bbdd guibg=NONE gui=NONE ctermfg=38 cterm=NONE
             \   ctermfg=cyan        ctermbg=NONE        cterm=NONE
-hi NonText      guifg=#77ff22       guibg=NONE          gui=bold ctermfg=82 ctermbg=232 cterm=bold
+highlight NonText guifg=#77ff22 guibg=NONE gui=bold ctermfg=82 cterm=bold
             \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
-hi SpecialKey   guifg=#559933       guibg=NONE          gui=NONE ctermfg=107 ctermbg=232 cterm=none
+highlight SpecialKey guifg=#559933 guibg=NONE gui=NONE ctermfg=64 cterm=NONE
             \   ctermfg=green       ctermbg=NONE        cterm=NONE
 
-hi SpellBad     guifg=NONE          guibg=NONE          gui=undercurl ctermfg=231 ctermbg=232 cterm=undercurl
+highlight SpellBad guifg=NONE guibg=NONE gui=undercurl cterm=undercurl
             \   ctermfg=white       ctermbg=darkred     guisp=#ff0011
-hi SpellCap     guifg=NONE          guibg=NONE          gui=undercurl ctermfg=231 ctermbg=232 cterm=undercurl
+highlight SpellCap guifg=NONE guibg=NONE gui=undercurl cterm=undercurl
             \   ctermfg=white       ctermbg=darkblue    guisp=#0044ff
-hi SpellLocal   guifg=NONE          guibg=NONE          gui=undercurl ctermfg=231 ctermbg=232 cterm=undercurl
+highlight SpellLocal guifg=NONE guibg=NONE gui=undercurl cterm=undercurl
             \   ctermfg=black       ctermbg=cyan        guisp=#00dd99   
-hi SpellRare    guifg=NONE          guibg=NONE          gui=undercurl ctermfg=231 ctermbg=232 cterm=undercurl
+highlight SpellRare guifg=NONE guibg=NONE gui=undercurl cterm=undercurl
             \   ctermfg=white       ctermbg=darkmagenta guisp=#ff22ee   
 
-hi DiffAdd      guifg=#ffffff       guibg=#126493       gui=NONE ctermfg=231 ctermbg=24 cterm=none
+highlight DiffAdd guifg=#ffffff guibg=#126493 gui=NONE ctermfg=231 ctermbg=24 cterm=NONE
             \   ctermfg=white       ctermbg=darkblue    cterm=NONE
-hi DiffChange   guifg=#000000       guibg=#976398       gui=NONE ctermfg=16 ctermbg=96 cterm=none
+highlight DiffChange guifg=#000000 guibg=#976398 gui=NONE ctermfg=16 ctermbg=96 cterm=NONE
             \   ctermfg=black       ctermbg=darkmagenta cterm=NONE
-hi DiffDelete   guifg=#000000       guibg=#be1923       gui=bold ctermfg=16 ctermbg=125 cterm=bold
+highlight DiffDelete guifg=#000000 guibg=#be1923 gui=bold ctermfg=16 ctermbg=124 cterm=bold
             \   ctermfg=black       ctermbg=red         cterm=bold
-hi DiffText     guifg=#ffffff       guibg=#976398       gui=bold ctermfg=231 ctermbg=96 cterm=bold
+highlight DiffText guifg=#ffffff guibg=#976398 gui=bold ctermfg=231 ctermbg=96 cterm=bold
             \   ctermfg=white       ctermbg=green       cterm=bold
 
 " }}}
 " borders / separators / menus {{{
 
-hi FoldColumn   guifg=#c8bcb9       guibg=#786d65       gui=bold             ctermfg=251 ctermbg=95 cterm=bold
+highlight FoldColumn guifg=#c8bcb9 guibg=#786d65 gui=bold ctermfg=250 ctermbg=242 cterm=bold
             \   ctermfg=lightgray   ctermbg=darkgray    cterm=NONE
-hi SignColumn   guifg=#c8bcb9       guibg=#786d65       gui=bold ctermfg=251 ctermbg=95 cterm=bold
+highlight SignColumn guifg=#c8bcb9 guibg=#786d65 gui=bold ctermfg=250 ctermbg=242 cterm=bold
             \   ctermfg=lightgray   ctermbg=darkgray    cterm=NONE
 
-hi Pmenu        guifg=#000000       guibg=#a6a190       gui=NONE ctermfg=16 ctermbg=144 cterm=none
+highlight Pmenu guifg=#000000 guibg=#a6a190 gui=NONE ctermfg=16 ctermbg=247 cterm=NONE
             \   ctermfg=white       ctermbg=darkgray    cterm=NONE
-hi PmenuSel     guifg=#ffffff       guibg=#133293       gui=NONE ctermfg=231 ctermbg=18 cterm=none
+highlight PmenuSel guifg=#ffffff guibg=#133293 gui=NONE ctermfg=231 ctermbg=19 cterm=NONE
             \   ctermfg=white       ctermbg=lightblue   cterm=NONE
-hi PmenuSbar    guifg=NONE          guibg=#555555       gui=NONE ctermfg=231 ctermbg=240 cterm=none
+highlight PmenuSbar guifg=NONE guibg=#555555 gui=NONE ctermbg=240 cterm=NONE
             \   ctermfg=black       ctermbg=black       cterm=NONE
-hi PmenuThumb   guifg=NONE          guibg=#cccccc       gui=NONE ctermfg=231 ctermbg=252 cterm=none
+highlight PmenuThumb guifg=NONE guibg=#cccccc gui=NONE ctermbg=252 cterm=NONE
             \   ctermfg=gray        ctermbg=gray        cterm=NONE
 
-hi StatusLine   guifg=#000000       guibg=#c2bfa5       gui=bold     ctermfg=16 ctermbg=187 cterm=bold
+highlight StatusLine guifg=#000000 guibg=#c2bfa5 gui=bold ctermfg=16 ctermbg=144 cterm=bold
             \   ctermfg=black       ctermbg=white       cterm=bold
-hi StatusLineNC guifg=#444444       guibg=#c2bfa5       gui=NONE     ctermfg=238 ctermbg=187 cterm=none
+highlight StatusLineNC guifg=#444444 guibg=#c2bfa5 gui=NONE ctermfg=238 ctermbg=144 cterm=NONE
             \   ctermfg=darkgray    ctermbg=white       cterm=NONE
-hi WildMenu     guifg=#ffffff       guibg=#133293       gui=bold ctermfg=231 ctermbg=18 cterm=bold
+highlight WildMenu guifg=#ffffff guibg=#133293 gui=bold ctermfg=231 ctermbg=19 cterm=bold
             \   ctermfg=white       ctermbg=darkblue    cterm=bold
-hi VertSplit    guifg=#c2bfa5       guibg=#c2bfa5       gui=NONE ctermfg=187 ctermbg=187 cterm=none
+highlight VertSplit guifg=#c2bfa5 guibg=#c2bfa5 gui=NONE ctermfg=144 ctermbg=144 cterm=NONE
             \   ctermfg=white       ctermbg=white       cterm=NONE
 
-hi TabLine      guifg=#000000       guibg=#c2bfa5       gui=NONE ctermfg=16 ctermbg=187 cterm=none
+highlight TabLine guifg=#000000 guibg=#c2bfa5 gui=NONE ctermfg=16 ctermbg=144 cterm=NONE
             \   ctermfg=black       ctermbg=white       cterm=NONE
-hi TabLineFill  guifg=#000000       guibg=#c2bfa5       gui=NONE ctermfg=16 ctermbg=187 cterm=none
+highlight TabLineFill guifg=#000000 guibg=#c2bfa5 gui=NONE ctermfg=16 ctermbg=144 cterm=NONE
             \   ctermfg=black       ctermbg=white       cterm=NONE
-hi TabLineSel   guifg=#ffffff       guibg=#133293       gui=NONE ctermfg=231 ctermbg=18 cterm=none
+highlight TabLineSel guifg=#ffffff guibg=#133293 gui=NONE ctermfg=231 ctermbg=19 cterm=NONE
             \   ctermfg=white       ctermbg=black       cterm=NONE
 
 "hi Menu
@@ -88,24 +87,24 @@ hi TabLineSel   guifg=#ffffff       guibg=#133293       gui=NONE ctermfg=231 cte
 " }}}
 " cursor / dynamic / other {{{
 
-hi Cursor       guifg=#000000       guibg=#ffff99       gui=NONE ctermfg=16 ctermbg=228 cterm=none
+highlight Cursor guifg=#000000 guibg=#ffff99 gui=NONE ctermfg=16 ctermbg=228 cterm=NONE
             \   ctermfg=black       ctermbg=white       cterm=NONE
-hi CursorIM     guifg=#000000       guibg=#aaccff       gui=NONE ctermfg=16 ctermbg=153 cterm=none
+highlight CursorIM guifg=#000000 guibg=#aaccff gui=NONE ctermfg=16 ctermbg=153 cterm=NONE
             \   ctermfg=black       ctermbg=white       cterm=reverse
-hi CursorLine   guifg=NONE          guibg=#1b1b1b       gui=NONE ctermfg=231 ctermbg=234 cterm=none
+highlight CursorLine guifg=NONE guibg=#1b1b1b gui=NONE ctermbg=234 cterm=NONE
             \   ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi CursorColumn guifg=NONE          guibg=#1b1b1b       gui=NONE ctermfg=231 ctermbg=234 cterm=none
+highlight CursorColumn guifg=NONE guibg=#1b1b1b gui=NONE ctermbg=234 cterm=NONE
             \   ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
-hi Visual       guifg=#ffffff       guibg=#606070       gui=NONE ctermfg=231 ctermbg=60 cterm=none
+highlight Visual guifg=#ffffff guibg=#606070 gui=NONE ctermfg=231 ctermbg=241 cterm=NONE
             \   ctermfg=white       ctermbg=lightblue   cterm=NONE
 
-hi IncSearch    guifg=#000000       guibg=#eedd33       gui=bold  ctermfg=16 ctermbg=227 cterm=bold
+highlight IncSearch guifg=#000000 guibg=#eedd33 gui=bold ctermfg=16 ctermbg=184 cterm=bold
             \   ctermfg=white       ctermbg=yellow      cterm=NONE
-hi Search       guifg=#efefd0       guibg=#937340       gui=NONE ctermfg=230 ctermbg=137 cterm=none
+highlight Search guifg=#efefd0 guibg=#937340 gui=NONE ctermfg=230 ctermbg=137 cterm=NONE
             \   ctermfg=white       ctermbg=darkgreen   cterm=NONE
 
-hi MatchParen   guifg=NONE          guibg=#3377aa       gui=NONE ctermfg=231 ctermbg=74 cterm=none
+highlight MatchParen guifg=NONE guibg=#3377aa gui=NONE ctermbg=32 cterm=NONE
             \   ctermfg=white       ctermbg=blue        cterm=NONE
 
 "hi VisualNOS
@@ -113,18 +112,18 @@ hi MatchParen   guifg=NONE          guibg=#3377aa       gui=NONE ctermfg=231 cte
 " }}}
 " listings / messages {{{
 
-hi ModeMsg      guifg=#eecc18       guibg=NONE          gui=NONE ctermfg=220 ctermbg=232 cterm=none
+highlight ModeMsg guifg=#eecc18 guibg=NONE gui=NONE ctermfg=220 cterm=NONE
             \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
-hi Title        guifg=#dd4452       guibg=NONE          gui=bold ctermfg=168 ctermbg=232 cterm=bold
+highlight Title guifg=#dd4452 guibg=NONE gui=bold ctermfg=167 cterm=bold
             \   ctermfg=red         ctermbg=NONE        cterm=bold
-hi Question     guifg=#66d077       guibg=NONE          gui=NONE ctermfg=77 ctermbg=232 cterm=none
+highlight Question guifg=#66d077 guibg=NONE gui=NONE ctermfg=78 cterm=NONE
             \   ctermfg=green       ctermbg=NONE        cterm=NONE
-hi MoreMsg      guifg=#39d049       guibg=NONE          gui=NONE ctermfg=77 ctermbg=232 cterm=none
+highlight MoreMsg guifg=#39d049 guibg=NONE gui=NONE ctermfg=77 cterm=NONE
             \   ctermfg=green       ctermbg=NONE        cterm=NONE
 
-hi ErrorMsg     guifg=#ffffff       guibg=#ff0000       gui=bold ctermfg=231 ctermbg=196 cterm=bold
+highlight ErrorMsg guifg=#ffffff guibg=#ff0000 gui=bold ctermfg=231 ctermbg=196 cterm=bold
             \   ctermfg=white       ctermbg=red         cterm=bold
-hi WarningMsg   guifg=#ccae22       guibg=NONE          gui=bold     ctermfg=178 ctermbg=232 cterm=bold
+highlight WarningMsg guifg=#ccae22 guibg=NONE gui=bold ctermfg=178 cterm=bold
             \   ctermfg=yellow      ctermbg=NONE        cterm=bold
 
 " }}}
@@ -132,40 +131,40 @@ hi WarningMsg   guifg=#ccae22       guibg=NONE          gui=bold     ctermfg=178
 " }}}
 " syntax highlighting groups (:help group-name) {{{
 
-hi Comment      guifg=#ff9922       guibg=NONE          gui=NONE ctermfg=208 ctermbg=232 cterm=none
+highlight Comment guifg=#ff9922 guibg=NONE gui=NONE ctermfg=208 cterm=NONE
             \   ctermfg=brown       ctermbg=NONE        cterm=NONE
 
-hi Constant     guifg=#ff6050       guibg=NONE          gui=NONE ctermfg=203 ctermbg=232 cterm=none
+highlight Constant guifg=#ff6050 guibg=NONE gui=NONE ctermfg=203 cterm=NONE
             \   ctermfg=red         ctermbg=NONE        cterm=NONE
-hi Boolean      guifg=#ff6050       guibg=NONE          gui=bold   ctermfg=203 ctermbg=232 cterm=bold
+highlight Boolean guifg=#ff6050 guibg=NONE gui=bold ctermfg=203 cterm=bold
             \   ctermfg=red         ctermbg=NONE        cterm=bold
 
-hi Identifier   guifg=#eecc44       guibg=NONE          gui=NONE ctermfg=221 ctermbg=232 cterm=none
+highlight Identifier guifg=#eecc44 guibg=NONE gui=NONE ctermfg=221 cterm=NONE
             \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
 
-hi Statement    guifg=#66d077       guibg=NONE          gui=bold ctermfg=77 ctermbg=232 cterm=bold
+highlight Statement guifg=#66d077 guibg=NONE gui=bold ctermfg=78 cterm=bold
             \   ctermfg=green       ctermbg=NONE        cterm=bold
 
-hi PreProc      guifg=#bb88dd       guibg=NONE          gui=NONE ctermfg=140 ctermbg=232 cterm=none
+highlight PreProc guifg=#bb88dd guibg=NONE gui=NONE ctermfg=140 cterm=NONE
             \   ctermfg=darkmagenta ctermbg=NONE        cterm=NONE
 
-hi Type         guifg=#4093cc       guibg=NONE          gui=bold ctermfg=74 ctermbg=232 cterm=bold
+highlight Type guifg=#4093cc guibg=NONE gui=bold ctermfg=32 cterm=bold
             \   ctermfg=lightblue   ctermbg=NONE        cterm=bold
 
-hi Special      guifg=#9999aa       guibg=NONE          gui=bold   ctermfg=103 ctermbg=232 cterm=bold
+highlight Special guifg=#9999aa guibg=NONE gui=bold ctermfg=247 cterm=bold
             \   ctermfg=lightgray   ctermbg=NONE        cterm=bold
 
-hi Underlined   guifg=#80a0ff       guibg=NONE          gui=underline ctermfg=111 ctermbg=232 cterm=underline
+highlight Underlined guifg=#80a0ff guibg=NONE gui=underline ctermfg=111 cterm=underline
             \   ctermfg=NONE        ctermbg=NONE        cterm=underline
             \   term=underline 
 
-hi Ignore       guifg=#888888       guibg=NONE          gui=NONE ctermfg=102 ctermbg=232 cterm=none
+highlight Ignore guifg=#888888 guibg=NONE gui=NONE ctermfg=102 cterm=NONE
             \   ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
-hi Error        guifg=#ffffff       guibg=#ff0000       gui=NONE ctermfg=231 ctermbg=196 cterm=none
+highlight Error guifg=#ffffff guibg=#ff0000 gui=NONE ctermfg=231 ctermbg=196 cterm=NONE
             \   ctermfg=white       ctermbg=red         cterm=NONE
 
-hi Todo         guifg=#ffffff       guibg=#ee7700       gui=bold ctermfg=231 ctermbg=208 cterm=bold
+highlight Todo guifg=#ffffff guibg=#ee7700 gui=bold ctermfg=231 ctermbg=208 cterm=bold
             \   ctermfg=black       ctermbg=yellow      cterm=bold
 
 " }}}

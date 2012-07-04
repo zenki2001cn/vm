@@ -87,7 +87,9 @@ if has("win32") || has("dos32") || has("dos16") || has("os2")
 	let s:sessions_path = ($HOME != '') ? $HOME . '/vimfiles' : ($APPDATA != '') ? $APPDATA . '/Vim' : $VIM
 	let s:sessions_path = substitute(s:sessions_path, '\\', '/', 'g') . '/sessions'
 else
-	let s:sessions_path = $HOME . '/.vim/sessions'
+	" let s:sessions_path = $HOME . '/.vim/sessions'
+	" modify zenki. change the cache dir to /tmp/vim
+	let s:sessions_path = $HOME . '/.vim_sessions'
 endif
 
 let s:et_save = &et

@@ -23,8 +23,8 @@ if !exists('g:PreciseJump_target_keys')
     let g:PreciseJump_target_keys .= '!@#$%^&*()_+'
 endif
 
-
-hi PreciseJumpTarget   ctermfg=red ctermbg=white cterm=bold gui=bold guibg=white guifg=red
+" modify zenki, change color
+hi PreciseJumpTarget   ctermfg=red ctermbg=yellow cterm=bold gui=bold guibg=white guifg=red
 
 if !exists('g:PreciseJump_match_target_hi')
     let g:PreciseJump_match_target_hi = 'PreciseJumpTarget'

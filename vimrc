@@ -1,6 +1,14 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pyflake setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight SpellBad term=underline gui=undercurl guisp=Orange 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pyflake setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " filtering setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ,F :call Gather(input("Filter on term: "), 0)<CR>
@@ -85,7 +93,7 @@ let g:DirDiffTextOnlyInCenter = " 存在："
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.svn,.git"
 
 " 如果是diff模式，映射]c和[c
-if (&diff)
+if has("diff")
     nmap ]] ]c
     nmap [[ [c
 endif
@@ -99,8 +107,8 @@ endif
 let g:DoxygenToolkit_briefTag_pre="@Synopsis "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns "
-"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+"let g:DoxygenToolkit_blockHeader="---------------------------"
+"let g:DoxygenToolkit_blockFooter="----------------------------"
 let g:DoxygenToolkit_authorName="Zenki J.Zha"
 let g:DoxygenToolkit_licenseTag="Zenki J.Zha"
 
@@ -156,7 +164,7 @@ let g:C_GuiTemplateBrowser = 'explorer'
 "let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'  " For Unix
 "let MRU_Include_Files = '\.c$\|\.h$' 
 "let MRU_Add_Menu = 0 
-let MRU_File = $HOME.'/.vim/.vim_mru_files' 
+let MRU_File = $HOME.'/.vim_mru_files' 
 let MRU_Window_Height = 15
 let MRU_Use_Current_Window = 0
 let MRU_Auto_Close = 1 
@@ -256,8 +264,6 @@ map <leader>w :w! <CR>
 "nnoremap <Space> :Trans<CR>
 "vnoremap <Space> <ESC>:TransV<CR>
 
-imap <C-x><Tab> <Plug>SnippetComplete
-
 "退出分割窗口
 nnoremap <C-c><C-c> <C-w><C-q>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -270,13 +276,13 @@ nnoremap <C-c><C-c> <C-w><C-q>
 au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
 au BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full) 
 
-"au BufNewFile,BufRead,BufEnter *.c,*.h,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+" au BufNewFile,BufRead,BufEnter *.c,*.h,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 "cflow
 au BufNewFile,BufRead *.cflow set ft=cflow
 
 "conkyrc
-au BufNewFile,BufRead *conkyrc set filetype=conkyrc
+au BufNewFile,BufRead *.conkyrc set filetype=conkyrc
 
 "python
 au BufNewFile,BufRead *.py set filetype=python
@@ -330,6 +336,9 @@ au BufNewFile,BufRead *.wiki    setf vimwiki
 
 "logcat
 au BufRead,BufNewFile *.logcat set filetype=logcat
+
+" gprof
+au BufRead,BufNewFile *.gprof set filetype=gprof
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件类型 setting end }
@@ -456,55 +465,91 @@ let html_use_encoding = "utf8"
 " neocomplcache setting {1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 1
-"Use neocomplcache.
-"let g:NeoComplCache_EnableAtStartup = 1
+let g:acp_enableAtStartup = 0 
 " Use smartcase.
-let g:NeoComplCache_TagsAutoUpdate = 1
-let g:NeoComplCache_SmartCase = 1
+let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion.
-let g:NeoComplCache_EnableCamelCaseCompletion = 1
+let g:neocomplcache_enable_camel_case_completion = 1
 " Use underbar completion.
-let g:NeoComplCache_EnableUnderbarCompletion = 1
+let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:NeoComplCache_MinSyntaxLength = 2
-" 启用neocomplcache
-let g:neocomplcache_enable_at_startup = 0
-let g:NeoComplCache_SnippetsDir = $HOME.'/.vim/snippets'
+let g:neocomplcache_min_syntax_length = 3
+" 当输入关键字超过指定长度时，将该关键字记录在cache中
+let g:neocomplcache_min_keyword_length = 6
+" 自动补全的输入字符数
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" 是否在打开VIM时启用neocomplcache功能
+let g:neocomplcache_enable_at_startup = 1
+" snippets的目录设定
+let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
+" 是否自动选择补全选项
+let g:neocomplcache_enable_auto_select = 0
+" 禁用自动补全
+let g:neocomplcache_disable_auto_complete = 1
+
+" 已注释的设定
+" let g:neocomplcache_manual_completion_start_length = 10
 
 " Define dictionary.
-"let g:NeoComplCache_DictionaryFileTypeLists = {
-    "\ 'default' : '',
-    "\ 'vimshell' : $HOME.'/.vimshell_hist',
-    "\ 'scheme' : $HOME.'/.gosh_completions'
-"    \ }
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ }
 
 " Define keyword.
-"if !exists('g:NeoComplCache_KeywordPatterns')
-    "let g:NeoComplCache_KeywordPatterns = {}
-"endif
-"let g:NeoComplCache_KeywordPatterns['default'] = '\h\w*'
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" 加入该字典，防止crash
+if !exists('g:neocomplcache_plugin_rank')
+    let g:neocomplcache_plugin_rank = {}
+endif
 
 " Plugin key-mappings.
-" imap <C-l> <Plug>(neocomplcache_snippets_expand)
-" smap <C-l> <Plug>(neocomplcache_snippets_expand)
-" inoremap <expr><C-g> neocomplcache#undo_completion()
-" inoremap <expr><C-l> neocomplcache#complete_common_string()
+imap <C-k>  <Plug>(neocomplcache_snippets_expand)
+smap <C-k>  <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>    neocomplcache#undo_completion()
+inoremap <expr><C-l>    neocomplcache#complete_common_string() 
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-"inoremap <expr><CR>  (pumvisible() ? "\<C-y>":'') . "\<C-f>\<CR>X\<BS>"
+" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
-inoremap <expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplcache#close_popup()
+" inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" AutoComplPop like behavior.
-let g:NeoComplCache_EnableAutoSelect = 0
-"inoremap <expr><CR>  (pumvisible() ? "\<C-e>":'') . (&indentexpr != '' ? "\<C-f>\<CR>X\<BS>":"\<CR>")
-inoremap <expr><C-h> pumvisible() ? "\<C-e>\<C-h>" : "\<C-h>"
-inoremap <expr><BS> pumvisible() ? "\<C-e>\<C-h>" : "\<C-h>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" 禁用neocomplcache功能
+function ToggleNeocomcacheAutoComplete()
+    if g:neocomplcache_disable_auto_complete == 1
+        let g:neocomplcache_disable_auto_complete = 0
+        echon "Enable auto complete"
+    else
+        let g:neocomplcache_disable_auto_complete = 1
+        echon "Disable auto complete"
+    endif
+endfunction
+nmap <C-x><Tab> :call ToggleNeocomcacheAutoComplete()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplcache setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -861,10 +906,10 @@ vnoremap > >gv
 "nnoremap <S-k> <C-u>
 set laststatus=2
 " 状态栏
-"set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
-"set statusline=%F%m%r,%Y,%{&fileformat}\ \ \ ASCII=\%b,HEX=\%B\ \ \ [位置=%l,%c%V] [\%p%%\ ] [总行数=%L]
+" set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
+" set statusline=%F%m%r,%Y,%{&fileformat}\ \ \ ASCII=\%b,HEX=\%B\ \ \ [位置=%l,%c%V] [\%p%%\ ] [总行数=%L]
 " set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b]\[HEX=%02.2B]\[行=%04l,列=%04v]\[%p%%]\[总行=%L]
-set statusline=%F\ \ \ %{&fileformat},%{&fileencoding},%Y\ \ \ A=%03.3b,H=%02.2B\ R=%03l/%L(%p%%),C=%02v
+" set statusline=%F\ \ \ %{&fileformat},%{&fileencoding},%Y\ \ \ A=%03.3b,H=%02.2B\ R=%03l/%L(%p%%),C=%02v
 
 set hidden
 "光标离上下边界10行时自动滚动
@@ -920,10 +965,10 @@ let g:template_path = $HOME.'/.vim/template/*/'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " java 
 
-" if has("autocmd")
-    " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-    " autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
-" endif
+if has("autocmd")
+    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+    autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+endif
 
 "inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P>
 "inoremap <buffer> <C-S-Space> <C-X><C-U><C-P>
@@ -964,8 +1009,6 @@ if (has("gui_running"))
     " let moria_fontface = 'mixed'
     "colorscheme earendel
 
-    "pyflakes setting
-    highlight SpellBad term=underline gui=undercurl guisp=Orange 
 else
     set t_Co=256
     "colorscheme tangoshady
@@ -979,13 +1022,20 @@ else
     " colorscheme CodeFactoryv3
     "colorscheme colorzone
     "colorscheme mrkn256
-    colorscheme candycode_term
     " colorscheme oh_la_la
     "colorscheme candyman
     "colorscheme vibrantink 
     "colorscheme tabula
     "colorscheme maroloccio
     "colorscheme zenburn
+
+    " molokai配置
+    " let molokai_original=1
+    " colorscheme molokai
+ 
+    colorscheme candycode_term
+    "Python格式的配色
+    au BufNewFile,BufRead *.py colorscheme pychimp
 endif
 "colorscheme maroloccio
 "colorscheme hhspring

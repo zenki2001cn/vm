@@ -1,11 +1,22 @@
-#!/usr/bin/env python
-# coding=utf-8
-version = 1.0
+#!/usr/bin/env python3
+# vim:fileencoding=utf-8
 
-import os, sys, re
-import colorsys
+'''
+为Vim的图形界面配色方案生成256色终端版定义
+Generate 256-color definition for Vim's colorscheme
+http://www.vim.org/scripts/script.php?script_id=2778
+'''
 
-termcolor = { 16: '#000000',
+__version__ = 3.03
+
+import os, sys, re, io
+import math
+from math import *
+import warnings
+
+# Global variables {{{1
+termcolor = { #{{{2
+    16: '#000000',
     17: '#00005f',
     18: '#000087',
     19: '#0000af',
@@ -244,193 +255,309 @@ termcolor = { 16: '#000000',
     252: '#d0d0d0',
     253: '#dadada',
     254: '#e4e4e4',
-    255: '#eeeeee' }
+    255: '#eeeeee',
+}
 
-def _(str):
-  return str
-
-# 一些全局变量
-by = _('本配色方案由 gui2term.py 程序增加彩色终端支持。')
-cfg = '231'
-cbg = '16'
-wd = os.path.dirname(os.path.abspath(sys.argv[0]))
-if os.path.isfile('rgb.txt'):
-  rgbfile = 'rgb.txt'
-elif os.path.isfile(os.path.join(wd, 'rgb.txt')):
-  rgbfile = os.path.join(wd, 'rgb.txt')
-else:
-  rgbfile = '/usr/share/vim/vim72/rgb.txt'
-name2hex = {}
-groups = {}
+# regexes {{{2
+highlight_word = re.compile(r"(?P<quote>')?(?(quote)[\w ]|[\w,#])+(?(quote)'|)")
 re_hexcolor = re.compile('^#[0-9a-fA-F]{6}$')
-re_hiline = re.compile('^\s*hi\w*\s+[A-Z]\w+')
-re_name = re.compile('(?<=\s)[A-Z]\w+(?=\s+gui)')
-class color:
-  def __init__(self, r=0, g=0, b=0):
-    self.r = r
-    self.g = g
-    self.b = b
+re_hiline = re.compile('^\s*hi\w*\s+(?!link\b)[A-Z]\w+')
 
-  # 此计算比较耗时，因此不在 __init__ 里计算
-  def rgb2xterm(self):
+# others {{{2
+name2rgb = {}
+Normal = None
+
+# Functions {{{1
+def getRgbtxt(): # {{{2
+  scriptdir = os.path.dirname(os.path.abspath(sys.argv[0]))
+  if os.path.isfile('rgb.txt'):
+    rgbfile = 'rgb.txt'
+  elif os.path.isfile(os.path.join(scriptdir, 'rgb.txt')):
+    rgbfile = os.path.join(scriptdir, 'rgb.txt')
+  else:
+    try:
+      import subprocess
+      rgbfile = io.StringIO(subprocess.check_output(['locate', '-b', '--regex', '-e', '^rgb\.txt$']).decode()).readline().strip()
+    except:
+      warnings.warn("rgb.txt not found, color names will cause errors", Warning)
+      rgbfile = None
+  return rgbfile
+
+def color_norm(c): # {{{2
+  return tuple(int(x, 16)/255.0 for x in (c[1:3], c[3:5], c[5:7]))
+
+def loadRgb(): # {{{2
+  rgbfile = getRgbtxt()
+  if rgbfile is None:
+    return
+  rgbtxt = re.compile('^(\d+)\s+(\d+)\s+(\d+)\s+([\w\s]+)$')
+  try:
+    for l in open(rgbfile):
+      if not l.startswith('!'):
+        r, g, b, name = l.split(None, 3)
+        name = name.strip().lower()
+        if ' ' in name:
+          name = "'%s'" % name
+        name2rgb[name] = int(r), int(g), int(b)
+  except IOError:
+    print('Failed to open rgb file', rgbfile, file=sys.stderr)
+
+def convert(infile, outfile): # {{{2
+  global Normal
+
+  infile = open(infile)
+  for l in infile:
+    if l.lower().find('normal') != -1:
+      Normal = Group(l)
+      infile.seek(0)
+      break
+
+  outfile = open(outfile, 'w')
+  for l in infile:
+    if re_hiline.match(l):
+      outfile.write(str(Group(l)))
+    else:
+      outfile.write(l)
+
+def delta_e_cie2000(color1, color2): # {{{2
+  """
+  Calculates the Delta E (CIE2000) of two colors.
+
+  Stolen from colormath.color_objects
+  """
+  Kl = Kc = Kh = 1
+  L1, a1, b1 = color1.tolab()
+  L2, a2, b2 = color2.tolab()
+
+  avg_Lp = (L1 + L2) / 2.0
+  C1 = sqrt(pow(a1, 2) + pow(b1, 2))
+  C2 = sqrt(pow(a2, 2) + pow(b2, 2))
+  avg_C1_C2 = (C1 + C2) / 2.0
+
+  G = 0.5 * (1 - sqrt(pow(avg_C1_C2 , 7.0) / (pow(avg_C1_C2, 7.0) + pow(25.0, 7.0))))
+
+  a1p = (1.0 + G) * a1
+  a2p = (1.0 + G) * a2
+  C1p = sqrt(pow(a1p, 2) + pow(b1, 2))
+  C2p = sqrt(pow(a2p, 2) + pow(b2, 2))
+  avg_C1p_C2p =(C1p + C2p) / 2.0
+
+  if degrees(atan2(b1,a1p)) >= 0:
+    h1p = degrees(atan2(b1,a1p))
+  else:
+    h1p = degrees(atan2(b1,a1p)) + 360
+
+  if degrees(atan2(b2,a2p)) >= 0:
+    h2p = degrees(atan2(b2,a2p))
+  else:
+    h2p = degrees(atan2(b2,a2p)) + 360
+
+  if fabs(h1p - h2p) > 180:
+    avg_Hp = (h1p + h2p + 360) / 2.0
+  else:
+    avg_Hp = (h1p + h2p) / 2.0
+
+  T = 1 - 0.17 * cos(radians(avg_Hp - 30)) + 0.24 * cos(radians(2 * avg_Hp)) + 0.32 * cos(radians(3 * avg_Hp + 6)) - 0.2  * cos(radians(4 * avg_Hp - 63))
+
+  diff_h2p_h1p = h2p - h1p
+  if fabs(diff_h2p_h1p) <= 180:
+    delta_hp = diff_h2p_h1p
+  elif (fabs(diff_h2p_h1p) > 180) and (h2p <= h1p):
+    delta_hp = diff_h2p_h1p + 360
+  else:
+    delta_hp = diff_h2p_h1p - 360
+
+  delta_Lp = L2 - L1
+  delta_Cp = C2p - C1p
+  delta_Hp = 2 * sqrt(C2p * C1p) * sin(radians(delta_hp) / 2.0)
+
+  S_L = 1 + ((0.015 * pow(avg_Lp - 50, 2)) / sqrt(20 + pow(avg_Lp - 50, 2.0)))
+  S_C = 1 + 0.045 * avg_C1p_C2p
+  S_H = 1 + 0.015 * avg_C1p_C2p * T
+
+  delta_ro = 30 * exp(-(pow(((avg_Hp - 275) / 25), 2.0)))
+  R_C = sqrt((pow(avg_C1p_C2p, 7.0)) / (pow(avg_C1p_C2p, 7.0) + pow(25.0, 7.0)));
+  R_T = -2 * R_C * sin(2 * radians(delta_ro))
+
+  delta_E = sqrt(pow(delta_Lp /(S_L * Kl), 2) + pow(delta_Cp /(S_C * Kc), 2) + pow(delta_Hp /(S_H * Kh), 2) + R_T * (delta_Cp /(S_C * Kc)) * (delta_Hp / (S_H * Kh)))
+
+  return delta_E
+
+# Classes {{{1
+class color: # {{{2
+  def __init__(self, colorstring, g=None, b=None): # {{{3
+    '''argument should be either #rrggbb or three integers'''
+    if isinstance(colorstring, str):
+      if re_hexcolor.match(colorstring):
+        self.value = color_norm(colorstring)
+      else:
+        r, g, b = name2rgb[colorstring]
+        self.value = r / 255, g / 255, b / 255
+    else:
+      r = colorstring
+      self.value = r / 255, g / 255, b / 255
+
+  @property
+  def termcolor(self): # {{{3
     '''selects the nearest xterm color for a rgb value ('color' class)'''
-    # TODO 更好的计算法
-    best_match= 0
+    best_match = 0
     smallest_distance = 10000000
-    for c in range(16,255):
-      # d = (int(termcolor[c][1:3], 16) - self.r) ** 2 + (int(termcolor[c][3:5], 16) - self.g) ** 2 + (int(termcolor[c][5:], 16) - self.b) ** 2
-      a = colorsys.rgb_to_hsv(float(int(termcolor[c][1:3], 16)), float(int(termcolor[c][3:5], 16)), float(int(termcolor[c][5:], 16)))
-      b = colorsys.rgb_to_hsv(float(self.r), float(self.g), float(self.b))
-      d = (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + ((a[2] - b[2]) / 255.0) ** 2
+
+    for c in range(16, 256):
+      d = delta_e_cie2000(color(termcolor[c]), self)
+
       if d < smallest_distance:
         smallest_distance = d
         best_match = c
+
     return best_match
 
-class Agroup:
-  def __init__(self, attrib, guifg, guibg):
-    self.attrib = attrib.lower().split(',')
+  def tolab(self):
+    # RGB to XYZ
+    # http://www.easyrgb.com/index.php?X=MATH&H=02#text2
+    r = self.value[0]
+    g = self.value[1]
+    b = self.value[2]
 
-    guifg = guifg.lower()
-    guibg = guibg.lower()
-
-    if re_hexcolor.match(guifg):
-      self.fg = color(int(guifg[1:3], 16), int(guifg[3:5], 16), int(guifg[5:], 16))
-    elif guifg in ('fg', 'bg', 'none', 'nothing'):
-      self.fg = guifg
+    if r > 0.04045 :
+      r = ((r + 0.055) / 1.055) ** 2.4
     else:
-      try:
-        self.fg = name2hex[guifg]
-      except KeyError:
-        print rgbfile, _('中没有这种颜色名称：'), guifg
-        self.fg = color(255, 255, 255)
-
-    if re_hexcolor.match(guibg):
-      self.bg = color(int(guibg[1:3], 16), int(guibg[3:5], 16), int(guibg[5:], 16))
-    elif guibg in ('fg', 'bg', 'none'):
-      self.bg = guibg
+      r = r / 12.92
+    if g > 0.04045 :
+      g = ((g + 0.055) / 1.055) ** 2.4
     else:
-      try:
-        self.bg = name2hex[guibg]
-      except KeyError:
-        print rgbfile, _('中没有这种颜色名称：'), guibg
-        self.bg = color()
-
-  def termToString(self):
-    attrib = self.attrib
-    for i in attrib[:]:
-      if i == 'italic':
-        attrib.remove(i)
-    if len(attrib) == 0:
-      attrib = 'NONE'
+      g = g / 12.92
+    if b > 0.04045 :
+      b = ((b + 0.055) / 1.055) ** 2.4
     else:
-      attrib = ','.join(attrib)
+      b = b / 12.92
 
-    try:
-      return 'ctermfg=' + str(self.fg.rgb2xterm()) + ' ctermbg=' + str(self.bg.rgb2xterm()) + ' cterm=' + attrib
-    except AttributeError:
-      if self.fg != 'nothing':
-        if self.fg in ('fg', 'none'):
-          self.fg = groups['Normal'].fg
-        elif self.fg == 'bg':
-          self.fg = groups['Normal'].bg
-        if self.bg in ('bg', 'none'):
-          self.bg = groups['Normal'].bg
-        elif self.bg == 'fg':
-          self.bg = groups['Normal'].fg
-        return 'ctermfg=' + str(self.fg.rgb2xterm()) + ' ctermbg=' + str(self.bg.rgb2xterm()) + ' cterm=' + attrib
+    r = r * 100
+    g = g * 100
+    b = b * 100
+
+    X = r * 0.4124 + g * 0.3576 + b * 0.1805
+    Y = r * 0.2126 + g * 0.7152 + b * 0.0722
+    Z = r * 0.0193 + g * 0.1192 + b * 0.9505
+
+    # XYZ to Lab
+    # http://www.easyrgb.com/index.php?X=MATH&H=07#text7
+    X /=  95.047
+    Y /= 100.000
+    Z /= 108.883
+
+    if (X > 0.008856):
+      X = X ** (1/3)
+    else:
+      X = (7.787 * X) + (16 / 116)
+    if (Y > 0.008856):
+      Y = Y ** (1/3)
+    else:
+      Y = (7.787 * Y) + (16 / 116)
+    if (Z > 0.008856):
+      Z = Z ** (1/3)
+    else:
+      Z = (7.787 * Z) + (16 / 116)
+
+    L = (116 * Y) - 16
+    a = 500 * (X - Y)
+    b = 200 * (Y - Z)
+
+    return L, a, b
+
+class Group: # {{{2
+  def __init__(self, line): # {{{3
+    words = tuple(highlight_word.finditer(line))
+    self.name = words[1].group(0)
+    self.attr = {}
+    afterequals = False
+    for i in words[2:]:
+      if afterequals:
+        self.attr[key] = i.group(0).lower()
       else:
-        if self.bg in ('bg', 'none'):
-          self.bg = groups['Normal'].bg
-        elif self.bg == 'fg':
-          self.bg = groups['Normal'].fg
-        return 'ctermbg=' + str(self.bg.rgb2xterm()) + ' cterm=' + attrib
+        key = i.group(0).lower()
+      afterequals = not afterequals
 
-def read(file):
-  '''读取配色信息'''
-  f = open(file)
-  re_guifg = re.compile('(?<=guifg=)(#[0-9a-fA-F]{6}|\w+|\'[^\']+\')')
-  re_guibg = re.compile('(?<=guibg=)(#[0-9a-fA-F]{6}|\w+|\'[^\']+\')')
-  re_guiattrib = re.compile('(?<=gui=)[a-zA-Z,]+')
-  l = f.readline()
+    self.updateterm()
 
-  while l:
-    if l.strip().find('"') == 0: #注释
-      l = f.readline()
-      continue
-    if re_hiline.match(l):
+  def updateterm(self): # {{{3
+    gui = self.attr.get('gui')
+    if gui:
+      attrs = gui.split(',')
+      # italic is displayed as reversed in terminal
       try:
-        name = re_name.search(l).group(0)
-      except AttributeError:
-        l = f.readline()
-        continue
-      try:
-        attrib = re_guiattrib.search(l).group(0)
-      except AttributeError:
-        attrib = 'NONE'
-      try:
-        guifg = re_guifg.search(l).group(0)
-      except AttributeError:
-        guifg = 'nothing'
-      try:
-        guibg = re_guibg.search(l).group(0)
-      except AttributeError:
-        # 像 Ignore 组，没有前景和背景颜色，但是显示时却前景色竟然是白的
-        guibg = 'bg'
-      groups[name] = Agroup(attrib, guifg, guibg)
-
-    l = f.readline()
-
-  f.close()
-
-def write(file, src):
-  '''写新文件'''
-  f = open(file, 'w')
-  f.write('" ' + by + '\n')
-  for l in open(src):
-    if re_hiline.match(l):
-      try:
-        name = re_name.search(l).group(0)
-      except AttributeError:
-        f.write(l)
-        continue
-      a = l[:-1]
-      a += ' ' + groups[name].termToString() + '\n'
-      f.write(a)
-    else:
-      f.write(l)
-
-  f.close()
-
-def convert(src, tgt):
-  loadRgb(rgbfile)
-  read(src)
-  write(tgt, src)
-
-def loadRgb(rgbfile):
-  rgbtxt = re.compile('^(\d+)\s+(\d+)\s+(\d+)\s+([\w\s]+)$')
-  try:
-    f = open(rgbfile)
-    l = f.readline().strip()
-    while l:
-      a = rgbtxt.match(l)
-      try:
-        name2hex[a.group(4).lower()] = color(int(a.group(1)), int(a.group(2)), int(a.group(3)))
-      except AttributeError:
+        attrs.remove('italic')
+      except ValueError:
         pass
-      l = f.readline().strip()
-    f.close()
-  except IOError:
-    print _('抱歉，打开文件'), rgbfile, _('失败！')
+      if attrs:
+        self.attr['cterm'] = ','.join(attrs)
+    elif self.name.lower() == 'cursorline':
+      self.attr['cterm'] = 'none'
 
-if __name__ == '__main__':
+    guifg = self.attr.get('guifg')
+    if guifg:
+      if guifg in ('fg', 'foreground'):
+        guifg = Normal.attr['guifg']
+      elif guifg in ('bg', 'background'):
+        guifg = Normal.attr['guibg']
+      elif guifg == 'none':
+        try:
+          del self.attr['ctermfg']
+        except KeyError:
+          pass
+      else:
+        self.attr['ctermfg'] = color(guifg).termcolor
+    else:
+      try:
+        del self.attr['ctermfg']
+      except KeyError:
+        pass
+
+    guibg = self.attr.get('guibg')
+    if guibg:
+      if guibg in ('fg', 'foreground'):
+        guibg = Normal.attr['guifg']
+      elif guibg in ('bg', 'background'):
+        guibg = Normal.attr['guibg']
+      elif guibg == 'none':
+        try:
+          del self.attr['ctermbg']
+        except KeyError:
+          pass
+      else:
+        self.attr['ctermbg'] = color(guibg).termcolor
+    else:
+      try:
+        del self.attr['ctermbg']
+      except KeyError:
+        pass
+
+  def __str__(self): # {{{3
+    ret = ['highlight', self.name]
+    attr = self.attr
+    for k in sorted(attr.keys(), reverse=True):
+      # It's reported that 'none' with GVIM will cause E254
+      if attr[k] == 'none':
+        ret.append('%s=NONE' % k)
+      else:
+        ret.append('%s=%s' % (k, attr[k]))
+    return ' '.join(ret) + '\n'
+
+def test(): # {{{1
+  print(Group('highlight Title guifg=#ffc0cb gui=bold ctermbg=none cterm=bold'))
+
+if __name__ == '__main__': # {{{1
+  # test()
+  # sys.exit()
   if len(sys.argv) == 3:
+    loadRgb()
     try:
-      loadRgb(rgbfile)
       convert(sys.argv[1], sys.argv[2])
     except IOError:
-      print _('打开文件指定文件失败！')
+      print('Error opening file', file=sys.stderr)
+      sys.exit(2)
   else:
-    print _('用法：\n\tgui2term.py 原文件 新文件')
+    print('Usage: gui2term.py SRC_FILE DEST_FILE')
+    sys.exit(1)
 
-# vim:tw=78:expandtab:sts=2:fdm=expr:fde=getline(v\:lnum)=~'^\\S'?'>1'\:1
+# vim:se fdm=marker:
