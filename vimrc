@@ -273,8 +273,8 @@ nnoremap <C-c><C-c> <C-w><C-q>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件类型 setting {1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
 au BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full) 
+au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
 
 " au BufNewFile,BufRead,BufEnter *.c,*.h,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
@@ -291,6 +291,9 @@ au BufNewFile,BufRead *.py set filetype=python
 au BufRead,BufNewFile *.txt setlocal ft=txt
 au BufRead,BufNewFile *.txt runtime ftplugin/txtfmt.vim
 au BufRead,BufNewFile *.txt runtime syntax/txtfmt.vim 
+
+" markdown
+au BufRead,BufNewFile *.md setlocal ft=markdown
 
 "log
 au BufRead,BufNewFile *.log setlocal ft=txt
@@ -311,7 +314,7 @@ au BufNewFile,BufRead *.dox,*.doxygen setf cpp.doxygen
 au BufNewFile,BufRead *.geo setf gmsh
 
 " as (actionscript/flash) I use java analyasis it
-au BufNewFile,BufRead *.as setf javascript
+au BufNewFile,BufRead *.as,*.js setf javascript
 
 " nsis
 au BufNewFile,BufRead *.nsh setf nsis
@@ -324,9 +327,6 @@ au BufNewFile,BufRead *.tt setf cs
 
 " treat gitignore file as config file
 au BufNewFile,BufRead *.gitignore setf cfg 
-
-" Matlab or Objective C
-au BufNewFile,BufRead *.m call s:ex_FTm()
 
 " txtfmt
 au BufNewFile,BufRead *.txtfmt  setf txtfmt
@@ -992,7 +992,6 @@ if (has("gui_running"))
     set guioptions-=L
     "字体配置
     set guifont=monospace\ 10
-    set guifontwide=Consolas\ 10
 
     "colorscheme ekinivim
     " colorscheme CodeFactoryv3
@@ -1002,13 +1001,21 @@ if (has("gui_running"))
     "colorscheme ex_lightgray
     "colorscheme mrkn256
     " colorscheme ego
-    colorscheme candycode
     "colorscheme tangoshady
     " colorscheme moria
     " let moria_monochrome = 1
     " let moria_fontface = 'mixed'
     "colorscheme earendel
 
+    " let g:molokai_original=1
+    colorscheme molokai
+    " colorscheme candycode
+
+    " syntax enable
+    " set background=dark
+    " let g:solarized_contrast="normal"
+    " let g:solarized_visibility="normal"
+    " colorscheme solarized
 else
     set t_Co=256
     "colorscheme tangoshady
@@ -1029,30 +1036,18 @@ else
     "colorscheme maroloccio
     "colorscheme zenburn
 
-    " molokai配置
-    " let molokai_original=1
-    " colorscheme molokai
- 
-    colorscheme candycode_term
-    "Python格式的配色
-    au BufNewFile,BufRead *.py colorscheme pychimp
+    " colorscheme leo
+    " let g:molokai_original=1
+    colorscheme molokai
+    " colorscheme candycode_term
+
+    " syntax enable
+    " set background=dark
+    " let g:solarized_termcolors=256
+    " let g:solarized_contrast="normal"
+    " let g:solarized_visibility="normal"
+    " colorscheme solarized
 endif
-"colorscheme maroloccio
-"colorscheme hhspring
-"colorscheme darktango
-"colorscheme delek
-"淡色背景
-"colorscheme vibrantink 
-"黑色背景
-"colorscheme moria
-"绿色
-"colorscheme relaxedgreen
-"暗绿色
-"colorscheme wuye
-"浅绿色
-"colorscheme tabula
-"浅灰色
-"colorscheme zenburn
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "颜色配置 }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

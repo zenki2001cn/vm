@@ -1634,6 +1634,7 @@ neocomplcache-user-sources	neocomplcache.txt	/*neocomplcache-user-sources*
 neocomplcache-variables	neocomplcache.txt	/*neocomplcache-variables*
 neocomplcache-version5	neocomplcache.txt	/*neocomplcache-version5*
 neocomplcache.txt	neocomplcache.txt	/*neocomplcache.txt*
+neocomplcache_zenki	zenki_plugin_doc.txt	/*neocomplcache_zenki*
 o_ii	viki.txt	/*o_ii*
 o_sp	tlib.txt	/*o_sp*
 omni_complete	neocomplcache.txt	/*omni_complete*
