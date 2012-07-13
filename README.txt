@@ -1,5 +1,13 @@
 ChangLog
 ========
+9. v1.09
+Update: 2012-07-13 12:47:28
+9.1 修改molokai配色方案
+9.2 修改template模板
+9.3 删除markHL插件
+9.4 添加signature插件（标记管理）           ---> signature v1.2
+9.5 修改vimrc配置
+
 8. v1.08
 Update: 2012-07-02 09:01:30
 8.1 添加xterm-color-table插件（显示颜色表） ---> xterm-color-table v1.6

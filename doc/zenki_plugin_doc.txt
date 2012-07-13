@@ -7,7 +7,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    2. 最近访问列表                  |MRU_zenki|
    3. 搜索结果过滤                  |filtering_zenki|
    4. TODO标识查询                  |tasklist_zenki|
-   5. 标签管理                      |markHL_zenki|
+   5. 标签管理                      |signature_zenki|
    6. 快速注释                      |NERDCommener_zenki|
    7. 会话管理                      |sessionman_zenki|
    8. 文件夹比较                    |Dirdiff_zenki|
@@ -65,18 +65,15 @@ TASKLIST                                                      *tasklist_zenki*
     \tl                             显示TODO信息的列表
 
 ==============================================================================
-MARKHL                                                          *markHL_zenki*
+SIGNATURE                                                    *signature_zenki*
 1. 快捷键使用说明
     KEY                             说明~
 
     m[a-y]                          添加[a-y]的字母标记
-    F7                              添加标记
-    F8                              删除标记
+    m,                              自动添加下一个可用的标记
+    m<space>                        清除所有标记
     F5                              跳转到上一个标记
     F6                              跳转到下一个标记
-    <C-F5>                          显示标记
-    <C-F6>                          隐藏标记
-    <C-S-F8>                        清除所有标记
     :marks                          显示标记记录
 
 ==============================================================================

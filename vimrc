@@ -208,12 +208,12 @@ nnoremap <F3> :TlistToggle<CR>
 nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
 nnoremap <unique> <silent> <F6> ]`
 nnoremap <unique> <silent> <F5> [`
-" 标记管理
-nnoremap <silent> <C-F5> :call HLMarks("Marks")<CR>
-nnoremap <silent> <C-F6> :call clearmatches()<CR>
-nnoremap <silent> <F7> :call AddHLMark("Marks")<CR>
-nnoremap <silent> <F8> :call DelHLMark("Marks")<CR>
-nnoremap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
+" markHL 标记管理
+" nnoremap <silent> <C-F5> :call HLMarks("Marks")<CR>
+" nnoremap <silent> <C-F6> :call clearmatches()<CR>
+" nnoremap <silent> <F7> :call AddHLMark("Marks")<CR>
+" nnoremap <silent> <F8> :call DelHLMark("Marks")<CR>
+" nnoremap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
 
 "加入书签
 " nnoremap <F3> :Bookmark<CR>

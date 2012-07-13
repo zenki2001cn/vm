@@ -1,6 +1,6 @@
 CXX = gcc
-SRC_DIR= ./src/
-OBJ_DIR= ./src/
+SRC_DIR= ./
+OBJ_DIR= ./
 OBJ_EXT= .o
 CSRC_EXT= .c
 
