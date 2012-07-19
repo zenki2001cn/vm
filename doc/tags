@@ -1582,7 +1582,6 @@ manpageview-php	manpageview.txt	/*manpageview-php*
 manpageview-usage	manpageview.txt	/*manpageview-usage*
 manpageview.txt	manpageview.txt	/*manpageview.txt*
 manpageview_extend	manpageview.txt	/*manpageview_extend*
-markHL_zenki	zenki_plugin_doc.txt	/*markHL_zenki*
 member_complete	neocomplcache.txt	/*member_complete*
 multi_snip	snipMate.txt	/*multi_snip*
 neocomplcache	neocomplcache.txt	/*neocomplcache*
@@ -1872,6 +1871,7 @@ showmarks-contents	showmarks.txt	/*showmarks-contents*
 showmarks-highlighting	showmarks.txt	/*showmarks-highlighting*
 showmarks-mappings	showmarks.txt	/*showmarks-mappings*
 showmarks.txt	showmarks.txt	/*showmarks.txt*
+signature_zenki	zenki_plugin_doc.txt	/*signature_zenki*
 snipMate	snipMate.txt	/*snipMate*
 snipMate-$#	snipMate.txt	/*snipMate-$#*
 snipMate-${#:}	snipMate.txt	/*snipMate-${#:}*
@@ -2697,4 +2697,5 @@ xml-plugin-html	xml-plugin.txt	/*xml-plugin-html*
 xml-plugin-mappings	xml-plugin.txt	/*xml-plugin-mappings*
 xml-plugin-settings	xml-plugin.txt	/*xml-plugin-settings*
 xml-plugin.txt	xml-plugin.txt	/*xml-plugin.txt*
+yate_zenki	zenki_plugin_doc.txt	/*yate_zenki*
 zenki_doc	zenki_plugin_doc.txt	/*zenki_doc*

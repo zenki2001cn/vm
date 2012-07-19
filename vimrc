@@ -1,6 +1,31 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" yate setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <C-y> :YATE<CR><CR>
+" sets height of search buffer. Default = 15.
+" let g:YATE_window_height = 15
+
+" enables(1)/disables(0) cutting of long file paths. Default = 1.
+" let g:YATE_strip_long_paths  = 1
+
+" enables(1)/disables(0) as-you-type search. Default = 1.
+" let g:YATE_enable_real_time_search = 1
+
+" sets search string length threshold after which as-you-type search will start. Default = 4.
+" let g:YATE_min_symbols_to_search = 4 
+
+" sets the maximum number of matches to display. If it's negative than all lines will be shown. Default = -1.
+" let g:YATE_max_matches_to_show = -1
+
+" sets the maximum number of stored search queries in history. Default = 10.
+" let g:YATE_history_size = 10
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" yate setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pyflake setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight SpellBad term=underline gui=undercurl guisp=Orange 

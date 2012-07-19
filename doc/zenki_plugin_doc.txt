@@ -7,7 +7,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    2. 最近访问列表                  |MRU_zenki|
    3. 搜索结果过滤                  |filtering_zenki|
    4. TODO标识查询                  |tasklist_zenki|
-   5. 标签管理                      |signature_zenki|
+   5. 标记管理                      |signature_zenki|
    6. 快速注释                      |NERDCommener_zenki|
    7. 会话管理                      |sessionman_zenki|
    8. 文件夹比较                    |Dirdiff_zenki|
@@ -24,6 +24,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    19. 浏览gprof文件                |ft_gprof_zenki|
    20. 浏览xterm配色表              |XtermColorTable_zenki|
    21. 代码补全                     |neocomplcache_zenki|
+   22. tags搜索                     |yate_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -233,5 +234,14 @@ NEOCOMPLCACHE                                            *neocomplcache_zenki*
     <C-x><Tab>                      开启自动补全功能，启动时默认关闭自动补全
     <C-k>                           当选中snippets关键字时，<C-k>补全snippets代码
 
+==============================================================================
+YATE                                                              *yate_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+
+    <C-y>                           开启/关闭搜索输入界面
+    <C-h>                           在搜索模式补全搜索的历史记录
+
+2. 有修改记录
 
 vim:tw=78:ts=8:ft=help:norl:

@@ -40,5 +40,4 @@ clean:
 	-rm -f $(EXE_TARGET) $(OBJECTS) *~
 
 clean_all:
-	-rm -rf CodeGen *.vimentry .vimfiles.entry quick_gen_project*.sh types_*.vim tags $(EXE_TARGET) $(OBJECTS) *~
-
+	-rm -rf CodeGen *.vimentry .vimfiles.entry quick_gen_project*.sh types_*.vim tags GPATH GRTAGS GTAGS $(EXE_TARGET) $(OBJECTS) *~
