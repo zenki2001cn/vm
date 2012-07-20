@@ -1,10 +1,15 @@
 ChangLog
 ========
-9. v1.09
+10. v1.10 alpha
+10.1 更新yate插件                           ---> yate v1.3.0
+10.2 更新tagbar                             ---> tagbar v2.4.1
+10.3 修改vimrc配置
+
+9. v1.09 final
 Update: 2012-07-18 08:33:25
 9.1 添加一些配色方案
-9.2 添加toggle_width插件（NERDTree插件）   ---> toggle_width v1.0
-9.3 添加yate插件（在tags文件中搜索）       ---> yate v1.2.5
+9.2 添加toggle_width插件（NERDTree插件）    ---> toggle_width v1.0
+9.3 添加yate插件（在tags文件中搜索）        ---> yate v1.2.5
 
 9. v1.09 alpha
 Update: 2012-07-13 12:47:28

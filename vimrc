@@ -3,23 +3,21 @@ runtime! debian.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yate setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <C-y> :YATE<CR><CR>
-" sets height of search buffer. Default = 15.
+nmap <C-y> :YATE<CR>
+
+" 退出后不清除查询结果
+let g:YATE_clear_search_string = 0
+" 设置结果窗口的高度
 " let g:YATE_window_height = 15
-
-" enables(1)/disables(0) cutting of long file paths. Default = 1.
+" 截断长文件名
 " let g:YATE_strip_long_paths  = 1
-
-" enables(1)/disables(0) as-you-type search. Default = 1.
+" 实时查询结果
 " let g:YATE_enable_real_time_search = 1
-
-" sets search string length threshold after which as-you-type search will start. Default = 4.
+" 开启查询的最小字符个数
 " let g:YATE_min_symbols_to_search = 4 
-
-" sets the maximum number of matches to display. If it's negative than all lines will be shown. Default = -1.
+" 符合查询条件的最大个数
 " let g:YATE_max_matches_to_show = -1
-
-" sets the maximum number of stored search queries in history. Default = 10.
+" 历史记录的个数
 " let g:YATE_history_size = 10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yate setting end }

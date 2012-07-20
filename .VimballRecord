@@ -25,3 +25,4 @@ changes-0.12.vmb: call delete('/home/zenki/.vim/plugin/changesPlugin.vim')|call 
 Recover-0.14.vmb: call delete('/home/zenki/.vim/plugin/recover.vim')|call delete('/home/zenki/.vim/autoload/recover.vim')|call delete('/home/zenki/.vim/doc/recoverPlugin.txt')
 xmledit-1.9.1.vba: call delete('/home/zenki/.vim/ftplugin/xml.vim')|call delete('/home/zenki/.vim/doc/xml-plugin.txt')
 markdown-1.2.2.vba: call delete('/home/zenki/.vim/ftdetect/markdown.vim')|call delete('/home/zenki/.vim/snippets/markdown.snippets')|call delete('/home/zenki/.vim/syntax/markdown.vim')
+tagbar.vmb: call delete('/home/zenki/.vim/autoload/tagbar.vim')|call delete('/home/zenki/.vim/doc/tagbar.txt')|call delete('/home/zenki/.vim/plugin/tagbar.vim')|call delete('/home/zenki/.vim/syntax/tagbar.vim')
