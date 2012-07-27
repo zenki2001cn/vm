@@ -185,6 +185,7 @@ endfunction "}}}
 
 " FOLDING }}}
 
+" modify zenki, change "echo" to "echon"
 " COMMANDS {{{
 command! -buffer Vimwiki2HTML
       \ silent w <bar>
@@ -395,6 +396,7 @@ endif
 
 
 " Table mappings
+" modify zenki, resolve conflict with snippet plugin
 if g:vimwiki_table_mappings
   inoremap <expr> <buffer> <C-Tab> vimwiki#tbl#kbd_tab()
   inoremap <expr> <buffer> <S-Tab> vimwiki#tbl#kbd_shift_tab()

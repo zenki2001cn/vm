@@ -1,5 +1,12 @@
 ChangLog
 ========
+10. v1.10 final
+Update: 2012-07-23 09:37:40
+10.1 更新yate插件                           ---> yate v1.4.0
+10.2 修改NERDTree插件的菜单快捷键为“M”，避免和signature插件冲突  ---> NERDTree v4.2.0
+10.3 更新vimwiki插件                        ---> vimwiki v2.0.1.stu
+10.4 更新signature插件                      ---> signature v1.3
+
 10. v1.10 alpha
 10.1 更新yate插件                           ---> yate v1.3.0
 10.2 更新tagbar                             ---> tagbar v2.4.1
