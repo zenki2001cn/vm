@@ -36,8 +36,9 @@ from collections import defaultdict
 # TagsFile name of tags file to look for
 # Disabled Disable autotag (enable by setting to any non-blank value)
 # StopAt stop looking for a tags file (and make one) at this directory (defaults to $HOME)
+# modify zenki, change maxTagsFileSize to 10M
 vim_global_defaults = dict(maxTagsFileSize = 1024*1024*10,
-                           ExcludeSuffixes = "tml.xml.text.txt.swp.wiki",
+                           ExcludeSuffixes = "text.txt.swp.wiki",
                            VerbosityLevel = logging.WARNING,
                            CtagsCmd = "ctags",
                            TagsFile = "tags",
@@ -211,12 +212,13 @@ class AutoTag:
          except StandardError:
             pass
 
+   # modify zenki, change ctags map
    def updateTagsFile(self, tagsDir, tagsFile, sources):
       self.stripTags(tagsFile, sources)
       if self.tags_file:
-         cmd = "%s --sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q --language-force=C++ -f %s -a" % (self.ctags_cmd, self.tags_file)
+         cmd = "%s --sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q -f %s -a" % (self.ctags_cmd, self.tags_file)
       else:
-         cmd = "%s --sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q --language-force=C++ -a " % (self.ctags_cmd,)
+         cmd = "%s --sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q -a " % (self.ctags_cmd,)
       for source in sources:
          if os.path.isfile(os.path.join(tagsDir, source)):
             cmd += " '%s'" % source

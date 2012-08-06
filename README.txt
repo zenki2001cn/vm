@@ -1,5 +1,11 @@
 ChangLog
 ========
+11. v1.10.1
+Update: 2012-07-30 08:49:14
+10.1 更新signature插件                      ---> signature v1.32
+10.2 修改autotag插件                        ---> 修改映射ctags命令行参数
+10.3 添加gtags工具至toolsuit目录            ---> gtags v6.2.4
+
 10. v1.10 final
 Update: 2012-07-23 09:37:40
 10.1 更新yate插件                           ---> yate v1.4.0
