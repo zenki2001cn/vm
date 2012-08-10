@@ -27,10 +27,8 @@ update:
 	android update project -p . -t $(TARGET)
 project:
 	android create project -t $(TARGET) -k $(PACKAGE) -a $(ACTIVITY) -n $(PROJECT_NAME) -p $(PROJECT_PATH)
-	vim entry.vimentry
 test-project:
 	android create test-project -m ../ -n $(TEST_PROJECT_NAME) -p .
-	vim entry.vimentry
 
 #show help
 help:
@@ -42,5 +40,3 @@ help:
 	@echo "\tmake tools --- run emulator and ddms"
 	@echo "\tmake update --- update android project"
 	@echo "\tmake clean --- same as uninstall"
-
-
