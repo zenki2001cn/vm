@@ -1,5 +1,10 @@
 ChangLog
 ========
+12. v1.10.2
+Update: 2012-08-10 16:42:28
+10.1 更新signature插件                      ---> signature v1.32
+10.2 删除nextfile插件
+
 11. v1.10.1
 Update: 2012-07-30 08:49:14
 10.1 更新signature插件                      ---> signature v1.32
