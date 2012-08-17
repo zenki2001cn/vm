@@ -25,6 +25,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    20. 浏览xterm配色表              |XtermColorTable_zenki|
    21. 代码补全                     |neocomplcache_zenki|
    22. tags搜索                     |yate_zenki|
+   23. locator显示当前函数          |locator_zenki|
+   23. SnippetComplete插入模式补全  |snippetcomplete_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -247,5 +249,17 @@ YATE                                                              *yate_zenki*
     <C-h>                           在搜索模式补全搜索的历史记录
 
 2. 有修改记录
+
+==============================================================================
+LOCATOR                                                        *locator_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+    gl                              显示当前光标所在的函数名称，Tagbar打开时无效
+
+==============================================================================
+SNIPPETCOMPLETE                                        *snippetcomplete_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+    <C-l>(insert mode)              插入模式补全提示
 
 vim:tw=78:ts=8:ft=help:norl:

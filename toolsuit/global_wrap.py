@@ -5,7 +5,10 @@
 File: global_wrap.py
 Author: Zenki (Zenki.J.Zha), zenki2001cn@163.com
 Description: 使用gtags索引源码时，调用global更新修改后的源码，重新生成索引 
-Version: 0.1
+Version: 0.2
+ChangLog:
+Date: 2012-08-17 15:32:26
+    1. 添加gtags生成索引功能
 '''
 
 import getopt
@@ -14,6 +17,7 @@ import os
 
 #默认global的程序路径，该变量可在vimrc中定义，并由vim脚本传入
 DEFAULT_GLOBAL_APP = '/home/zenki/.vim/toolsuit/global'
+DEFAULT_GTAGS_APP = '/home/zenki/.vim/toolsuit/gtags'
 
 def exit2(error):
     """docstring for exit2"""
@@ -25,9 +29,10 @@ def getArg():
     """docstring for getArg"""
     GLOBAL_PATH = DEFAULT_GLOBAL_APP
     DIR = None
+    CREATE = False
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "e:d:")
+        opts, args = getopt.getopt(sys.argv[1:], "e:d:C")
     except Exception, e:
         print str(e)
         exit2('getopt error')
@@ -37,22 +42,32 @@ def getArg():
             GLOBAL_PATH = a  
         elif o == "-d":
             DIR = a
+        elif o == "-C":
+            CREATE = True 
 
     if (GLOBAL_PATH is None or DIR is None):
         exit2('GLOBAL_APP or DIR is None')
 
-    return GLOBAL_PATH, DIR
+    return GLOBAL_PATH, DIR, CREATE
 
 def usage():
     """docstring for usage"""
     print "Usage: global_wrap.py [OPTION]"
     print "    -e global path"
     print "    -d src dir path"
+    print "    -C create gtags"
     print ""
     print "Example:"
     print "    python global_wrap.py -e /usr/bin/global -d /home/zenki/src"
+    print "    python global_wrap.py -C -d /home/zenki/src"
+
+def do_gtags(gtags_path, dir):
+    """docstring for do_gtags"""
+    cmd = gtags_path + " " + dir
+    print cmd
+    os.system(cmd)
     
-def do_global(global_path, dir):
+def do_global_update(global_path, dir):
     """docstring for _flist"""
     os.chdir(dir)
     # print os.getcwd()
@@ -62,9 +77,12 @@ def do_global(global_path, dir):
 
 def main():
     """docstring for main"""
-    (GLOBAL_PATH, DIR) = getArg()
+    (GLOBAL_PATH, DIR, CREATE) = getArg()
 
-    do_global(GLOBAL_PATH, DIR)
+    if CREATE:
+        do_gtags(DEFAULT_GTAGS_APP, DIR)
+    else:
+        do_global_update(GLOBAL_PATH, DIR)
 
 if __name__ == '__main__':
     main()        

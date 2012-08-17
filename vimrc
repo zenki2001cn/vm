@@ -294,7 +294,7 @@ nnoremap <C-c><C-c> <C-w><C-q>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 文件类型 setting {1
+" 文件类型 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full) 
 au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
@@ -368,7 +368,7 @@ au BufRead,BufNewFile *.gprof set filetype=gprof
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" showmarks setting {1
+" showmarks setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configures for ShowMarks plugin
 let showmarks_include =  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -385,7 +385,7 @@ let showmarks_hlline_upper = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python补全 setting {1
+" python补全 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python 补全文件路径
 "autocmd Filetype python setlocal omnifunc=pythoncomplete#Complete
@@ -395,7 +395,7 @@ let g:pydiction_location = $HOME.'/.vim/ftplugin/complete-dict'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwiki setting {1
+" vimwiki setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vimwiki path setting
 " V2.0的新特性和修改 {
@@ -465,17 +465,17 @@ let g:vimwiki_list = [
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" viki setting {1
+" viki setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd! BufRead,BufNewFile *.viki set filetype=viki
 autocmd FileType let g:vikiNameSuffix = ".viki"
 autocmd FileType let g:vikiUseParentSuffix = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" viki setting end}
+" viki setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TOHtml setting {1
+" TOHtml setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let html_use_css = 1
 let use_xhtml = 1
@@ -485,7 +485,7 @@ let html_use_encoding = "utf8"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neocomplcache setting {1
+" neocomplcache setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0 
@@ -578,7 +578,15 @@ nmap <C-x><Tab> :call ToggleNeocomcacheAutoComplete()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope setting {1
+" SnippetComplete setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <C-l> <Plug>(SnippetComplete)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SnippetComplete setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if has("cscope")
 "set csprg=/usr/bin/cscope
@@ -627,7 +635,7 @@ nmap <C-\>c :GtagsCursor<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" xterm settings start {1
+" xterm settings start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if &term =~ "xterm"
     "set mouse=a
@@ -637,17 +645,17 @@ nmap <C-\>c :GtagsCursor<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ------------------------------------------------------------------ 
-" Desc: Visual start {1
+" Visual start {
 " ------------------------------------------------------------------ 
 set matchtime=0 " 0 second to show the matching paren ( much faster )
 set nu " Show LineNumber
 set nowrap " I don't like wrap, cause in split window mode, it feel strange
 " ------------------------------------------------------------------ 
-" Desc: Visual end }
+" Visual end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: Vim UI start {1
+" Vim UI start {
 " ------------------------------------------------------------------ 
 set wildmenu " turn on wild menu, try typing :h and press <Tab> 
 set showcmd	" display incomplete commands
@@ -658,11 +666,11 @@ set lazyredraw " do not redraw while executing macros (much faster)
 set display+=lastline " for easy browse last line with wrap text
 set showfulltag " show tag with function protype.
 " ------------------------------------------------------------------ 
-" Desc: Vim UI end }
+" Vim UI end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: Text edit start {1
+" Text edit start {
 " ------------------------------------------------------------------ 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -681,11 +689,11 @@ set ve=block
 set foldmethod=marker foldmarker={,} foldlevel=9999
 set diffopt=filler,context:9999
 " ------------------------------------------------------------------ 
-" Desc: Text edit end }
+" Text edit end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: Search start {1
+" Search start {
 " ------------------------------------------------------------------ 
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -697,40 +705,40 @@ set smartcase " Set smartcase mode on, If there is upper case character in the s
 set grepprg=lid\ -Rgrep\ -s
 set grepformat=%f:%l:%m
 " ------------------------------------------------------------------ 
-" Desc: Search end }
+" Search end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: Syntax start {1
+" Syntax start {
 " ------------------------------------------------------------------ 
 let c_gnu = 1
 let c_no_curly_error = 1
 " ------------------------------------------------------------------ 
-" Desc: Syntax end }
+" Syntax end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: file types start {1
+" file types start {
 " ------------------------------------------------------------------ 
 " Disable auto-comment for c/cpp and vim-script
 au FileType c,cpp set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f:// 
 au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
 " ------------------------------------------------------------------ 
-" Desc: file types end }
+" file types end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: syslog start {1
+" syslog start {
 " ------------------------------------------------------------------ 
 au! BufRead,BufNewFile /var/log/syslog* set filetype=syslog 
 au! BufRead,BufNewFile /var/log/syslog/* set filetype=syslog 
 au! BufRead,BufNewFile /var/log/* set filetype=syslog 
 " ------------------------------------------------------------------ 
-" Desc: syslog end }
+" syslog end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: TagList start {1
+" TagList start {
 " ------------------------------------------------------------------ 
 " F4:  Switch on/off TagList
 
@@ -756,11 +764,11 @@ let Tlist_Compact_Format = 1 " do not show help
 " let taglist support shader language as c-like language
 let tlist_hlsl_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;v:variable;f:function'
 " ------------------------------------------------------------------ 
-" Desc: TagList end }
+" TagList end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: MiniBufExpl start {1
+" MiniBufExpl start {
 " ------------------------------------------------------------------ 
 
 let g:miniBufExplTabWrap = 1 " make tabs show complete (no broken on two lines) 
@@ -778,11 +786,11 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 " ------------------------------------------------------------------ 
-" Desc: MiniBufExpl end }
+" MiniBufExpl end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: OmniCppComplete start {1
+" OmniCppComplete start {
 " ------------------------------------------------------------------ 
 
 " set completeopt as don't show menu and preview
@@ -826,11 +834,11 @@ let OmniCpp_MayCompleteScope = 1
 " When 'completeopt' does not contain "longest", Vim automatically select the first entry of the popup menu. You can change this behaviour with the OmniCpp_SelectFirstItem option.
 let OmniCpp_SelectFirstItem = 0
 " ------------------------------------------------------------------ 
-" Desc: OmniCppComplete end }
+" OmniCppComplete end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: pythoncomplete start {1
+" pythoncomplete start {
 " ------------------------------------------------------------------ 
 
 " DISABLE: au FileType python set completeopt=menuone,preview
@@ -838,11 +846,11 @@ let OmniCpp_SelectFirstItem = 0
 au FileType python set completeopt=menuone,menu,longest,preview
 au FileType python set tabstop=4 shiftwidth=4 expandtab
 " ------------------------------------------------------------------ 
-" Desc: pythoncomplete end }
+" pythoncomplete end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" Desc: LookupFile start {
+" LookupFile start {
 " ------------------------------------------------------------------ 
 
 nnoremap <unique> <leader>lf :LUTags<CR>
@@ -857,13 +865,12 @@ let g:LookupFile_AllowNewFiles = 0
 let g:LookupFile_smartcase = 1
 let g:LookupFile_EscCancelsPopup = 1
 " ------------------------------------------------------------------ 
-" Desc: LookupFile end }
+" LookupFile end }
 " ------------------------------------------------------------------ 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ctags setting
 " set tags+=~/.vim/tags/gl
 " set tags+=~/.vim/tags/sdl
 " set tags+=~/.vim/tags/qt4

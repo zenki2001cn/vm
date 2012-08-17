@@ -4,6 +4,9 @@
 " Maintainer:  Zenki.J.Zha
 " Last Change: 2012-05-01
 " License:     
+" ChangeLog:
+"   Date: 2012-08-17 15:39:55
+"       1. 添加flist子菜单
 " ============================================================================
 
 " don't load multiple times
@@ -21,15 +24,21 @@ endif
 let g:path_to_flist_app = g:path_to_flist_app
 
 " add the new menu item via NERD_Tree's API
-call NERDTreeAddMenuItem({
+let flistMenu = NERDTreeAddSubmenu({
     \ 'text': '(f)list C function hints',
+    \ 'shortcut': 'f' })
+
+call NERDTreeAddMenuItem({
+    \ 'text': '(f)list hints to ftplugin/c',
     \ 'shortcut': 'f',
-    \ 'callback': 'NERDTreeFlist' })
+    \ 'callback': 'NERDTreeFlist',
+    \ 'parent' : flistMenu})
 
 call NERDTreeAddMenuItem({
     \ 'text': '(w)ipe hints',
     \ 'shortcut': 'w',
-    \ 'callback': 'NERDTreeClear' })
+    \ 'callback': 'NERDTreeClear',
+    \ 'parent' : flistMenu})
 
 function! NERDTreeClear()
     " get the current dir from NERDTree

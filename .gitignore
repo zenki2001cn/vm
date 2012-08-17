@@ -1,6 +1,16 @@
+# cache for hints
 ftplugin/c
-*.swp
-sessions/*
 !ftplugin/c/hints_man2.vim
 !ftplugin/c/hints_man3.vim
+
+# cache for tags
+tags/*
+!tags/run.sh
+
+# cache for sessionman
+sessions/*
+
+# cache for MRU
 .vim_mru_files
+
+*.swp

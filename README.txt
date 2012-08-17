@@ -4,6 +4,13 @@ ChangLog
 Update: 2012-08-10 16:42:28
 10.1 更新signature插件                      ---> signature v1.32
 10.2 删除nextfile插件
+10.3 更新SnippetComplete                    ---> SnippetComplete v2.01
+10.4 添加locator插件(显示当前光标所在函数)  ---> locator v1.01
+10.5 修改vimrc（SnippetComplete按键映射）
+10.6 修改tags目录，并在vimrc中打开tags设置
+10.7 修改.gitignore文件
+10.8 将NERD*插件移动到nerdtree_plugin目录下，NERD_commenter插件不能移动
+10.9 为flist和global添加子菜单，更新global功能
 
 11. v1.10.1
 Update: 2012-07-30 08:49:14
