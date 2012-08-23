@@ -1,5 +1,19 @@
 ChangLog
 ========
+13. v1.10.3
+Update: 2012-08-20 08:59:33
+10.1 更新locator插件                        ---> locator v1.2
+10.2 添加VimExplorer插件（文件浏览）        ---> VimExplorer v0.99
+10.3 更新renamer插件                        ---> renamer v1.4
+10.4 删除c-support插件
+10.5 更新Recover插件                        ---> Recover v0.15
+10.6 更新SuperTab插件                       ---> SuperTab v2.0
+10.7 修改tab页管理的快捷键（vimrc）
+10.8 为NERD_tree_flist.vim插件添加显示hints列表选项
+10.9 添加从NERDTree进入vimExplorer的入口
+10.10 修正NERD_tree_global_vim中运行gtags异常的Bug
+10.11 调整vimrc中的多项映射
+
 12. v1.10.2
 Update: 2012-08-10 16:42:28
 10.1 更新signature插件                      ---> signature v1.32

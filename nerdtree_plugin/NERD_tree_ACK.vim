@@ -33,7 +33,13 @@ call NERDTreeAddMenuItem({
 
 function! NERDTreeAck()
     " get the current dir from NERDTree
-    let cd = g:NERDTreeDirNode.GetSelected().path.str()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let cd = curNode.path.str()
 
     " get the pattern
     let pattern = input("Enter the pattern: ")

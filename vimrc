@@ -1,6 +1,16 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimExplorer setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>ve :VE <CR><CR>
+" 设置删除文件的回收站位置
+let g:VEConf_recyclePath = $HOME.'/.local/share/Trash/files/'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimExplorer setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yate setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-y> :YATE<CR>
@@ -206,6 +216,8 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery =
           \ ["&completefunc:<c-x><c-n>", "&omnifunc:<c-x><c-p>"]
+" let g:SuperTabNoCompleteBefore = []
+" let g:SuperTabNoCompleteAfter = ['\s']
 
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
@@ -253,11 +265,14 @@ nmap <C-p> :tp <CR>
 nmap <C-l> :ts <CR>
 
 " 当前打开文件列表
-map <leader><leader> \be
+nmap <leader><leader> \be
 
 "TAB,标签页的映射
-map <leader>te :tabedit <CR> 
-map <leader>tc :tabclose <CR>
+nmap te :tabedit <CR> 
+nmap tc :tabclose <CR>
+nmap tn :tabnext <CR>
+nmap tp :tabprevious <CR>
+nmap tf :tabfirst <CR>
 "标签页自动编号
 set guitablabel=%{tabpagenr()}.%t\ %m
 
@@ -270,15 +285,15 @@ map <leader>xx :%!xxd <CR>
 map <leader>xr :%!xxd -r <CR>
 
 "列出session名称
-map <leader>sl :SessionList <CR>
-map <leader>sv :SessionSave <CR>
+nmap <leader>sl :SessionList <CR>
+nmap <leader>sv :SessionSave <CR>
 "map <leader>sc :SessionClose <CR>
 
 "自动最大化
 "au GUIEnter * simalt ~x
 "
 "快速保存
-map <leader>w :w! <CR>
+nmap <leader>w :w! <CR>
 
 "更新types文件
 "map <S-U> :UpdateTypesFile <CR>
@@ -288,7 +303,11 @@ map <leader>w :w! <CR>
 "vnoremap <Space> <ESC>:TransV<CR>
 
 "退出分割窗口
-nnoremap <C-c><C-c> <C-w><C-q>
+nnoremap <C-d> <C-w><C-q>
+nnoremap T <c-w><c-w>
+
+" 跳转到vimExplorer窗口
+" nnoremap <c-g> :VE /
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键 setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -429,8 +448,8 @@ let g:pydiction_location = $HOME.'/.vim/ftplugin/complete-dict'
 " | \/| d | > |
 " | \/| e | f |
 
-map <silent><unique> wt :VimwikiTable<CR>
-map <silent><unique> wg :VimwikiGenerateLinks<CR>
+nmap <silent><unique> wt :VimwikiTable<CR>
+nmap <silent><unique> wg :VimwikiGenerateLinks<CR>
 nmap <silent><unique> <Leader>wdi <Plug>VimwikiDiaryIndex
 
 " vimwiki file process

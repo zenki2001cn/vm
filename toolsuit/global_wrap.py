@@ -9,6 +9,8 @@ Version: 0.2
 ChangLog:
 Date: 2012-08-17 15:32:26
     1. 添加gtags生成索引功能
+Date: 2012-08-23 17:26:48
+    1. 修整gtags运行异常的问题
 '''
 
 import getopt
@@ -63,9 +65,14 @@ def usage():
 
 def do_gtags(gtags_path, dir):
     """docstring for do_gtags"""
-    cmd = gtags_path + " " + dir
-    print cmd
+    old_dir = os.getcwd()
+    os.chdir(dir)
+
+    cmd = gtags_path + " ."
+    # print cmd, " old_dir is ", old_dir
     os.system(cmd)
+
+    os.chdir(old_dir)
     
 def do_global_update(global_path, dir):
     """docstring for _flist"""

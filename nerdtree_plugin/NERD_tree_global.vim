@@ -47,7 +47,14 @@ call NERDTreeAddMenuItem({
 
 function! NERDTreeCtagsRun()
     " get the current dir from NERDTree
-    let dir = g:NERDTreeDirNode.GetSelected().path.str()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let dir = curNode.path.str()
+
     let ctags_cmd = 'ctags' . " -R " . dir
 
     wincmd w
@@ -59,20 +66,34 @@ endfunction
 
 function! NERDTreeGtagsRun()
     " get the current dir from NERDTree
-    let dir = g:NERDTreeDirNode.GetSelected().path.str()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let dir = curNode.path.str()
+
     let global_wrap = $HOME.'/.vim/toolsuit/global_wrap.py'
     let gtags_cmd = global_wrap . " -C " . " -d " . dir
 
     wincmd w
 
-    "echo gtags_cmd
+    echo gtags_cmd
     "exec 'silent!' . gtags_cmd
     exec '!' . gtags_cmd
 endfunction
 
 function! NERDTreeGlobalUpdate()
     " get the current dir from NERDTree
-    let dir = g:NERDTreeDirNode.GetSelected().path.str()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let dir = curNode.path.str()
+
     let global_wrap = $HOME.'/.vim/toolsuit/global_wrap.py'
     let global_cmd = global_wrap . " -e " . g:path_to_global_app . " -d " . dir
 

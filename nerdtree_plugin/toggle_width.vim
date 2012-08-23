@@ -1,3 +1,10 @@
+" don't load multiple times
+if exists("g:loaded_nerdtree_toggle_width")
+    finish
+endif
+
+let g:loaded_nerdtree_toggle_width = 1
+
 call NERDTreeAddKeyMap({
 	   \ 'key': 'w',
 	   \ 'callback': 'NERDTreeToggleWidth',

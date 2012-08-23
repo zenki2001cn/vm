@@ -112,8 +112,7 @@ call s:initVariable("g:NERDTreeMapChdir", "cd")
 call s:initVariable("g:NERDTreeMapCloseChildren", "X")
 call s:initVariable("g:NERDTreeMapCloseDir", "x")
 call s:initVariable("g:NERDTreeMapDeleteBookmark", "D")
-" modify zenki, avoid confit with signature
-call s:initVariable("g:NERDTreeMapMenu", "M")
+call s:initVariable("g:NERDTreeMapMenu", "M")   " modify zenki, avoid confit with signature
 call s:initVariable("g:NERDTreeMapHelp", "?")
 call s:initVariable("g:NERDTreeMapJumpFirstChild", "K")
 call s:initVariable("g:NERDTreeMapJumpLastChild", "J")
@@ -121,9 +120,9 @@ call s:initVariable("g:NERDTreeMapJumpNextSibling", "<C-j>")
 call s:initVariable("g:NERDTreeMapJumpParent", "p")
 call s:initVariable("g:NERDTreeMapJumpPrevSibling", "<C-k>")
 call s:initVariable("g:NERDTreeMapJumpRoot", "P")
-call s:initVariable("g:NERDTreeMapOpenExpl", "e")
+" call s:initVariable("g:NERDTreeMapOpenExpl", "e")   " modify zenki, remap 'e' to open with vimexplorer
 call s:initVariable("g:NERDTreeMapOpenInTab", "t")
-call s:initVariable("g:NERDTreeMapOpenInTabSilent", "T")
+" call s:initVariable("g:NERDTreeMapOpenInTabSilent", "T") " modify zenki, T is map to switch window 
 call s:initVariable("g:NERDTreeMapOpenRecursively", "O")
 call s:initVariable("g:NERDTreeMapOpenSplit", "i")
 call s:initVariable("g:NERDTreeMapOpenVSplit", "s")
@@ -2894,7 +2893,7 @@ function! s:dumpHelp()
             let @h=@h."\" ". g:NERDTreeMapPreview .": preview\n"
         endif
         let @h=@h."\" ". g:NERDTreeMapOpenInTab.": open in new tab\n"
-        let @h=@h."\" ". g:NERDTreeMapOpenInTabSilent .": open in new tab silently\n"
+        " let @h=@h."\" ". g:NERDTreeMapOpenInTabSilent .": open in new tab silently\n" " modify zenki, T is map to switch window 
         let @h=@h."\" middle-click,\n"
         let @h=@h."\" ". g:NERDTreeMapOpenSplit .": open split\n"
         let @h=@h."\" ". g:NERDTreeMapPreviewSplit .": preview split\n"
@@ -2910,14 +2909,14 @@ function! s:dumpHelp()
         let @h=@h."\" ". g:NERDTreeMapCloseChildren .": close all child nodes of\n"
         let @h=@h."\"    current node recursively\n"
         let @h=@h."\" middle-click,\n"
-        let @h=@h."\" ". g:NERDTreeMapOpenExpl.": explore selected dir\n"
+        " let @h=@h."\" ". g:NERDTreeMapOpenExpl.": explore selected dir\n"     " modify zenki, remap 'e' to open with vimexplorer
 
         let @h=@h."\"\n\" ----------------------------\n"
         let @h=@h."\" Bookmark table mappings~\n"
         let @h=@h."\" double-click,\n"
         let @h=@h."\" ". g:NERDTreeMapActivateNode .": open bookmark\n"
         let @h=@h."\" ". g:NERDTreeMapOpenInTab.": open in new tab\n"
-        let @h=@h."\" ". g:NERDTreeMapOpenInTabSilent .": open in new tab silently\n"
+        " let @h=@h."\" ". g:NERDTreeMapOpenInTabSilent .": open in new tab silently\n"   " modify zenki, T is map to switch window 
         let @h=@h."\" ". g:NERDTreeMapDeleteBookmark .": delete bookmark\n"
 
         let @h=@h."\"\n\" ----------------------------\n"
@@ -3527,9 +3526,9 @@ function! s:bindMappings()
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapJumpRoot ." :call <SID>jumpToRoot()<cr>"
 
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTab ." :call <SID>openInNewTab(0)<cr>"
-    exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTabSilent ." :call <SID>openInNewTab(1)<cr>"
+    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTabSilent ." :call <SID>openInNewTab(1)<cr>"   " modify zenki, T is map to switch window 
 
-    exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenExpl ." :call <SID>openExplorer()<cr>"
+    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenExpl ." :call <SID>openExplorer()<cr>"     " modify zenki, remap 'e' to open with vimexplorer
 
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapDeleteBookmark ." :call <SID>deleteBookmark()<cr>"
 

@@ -2,11 +2,14 @@
 " File:        NERD_Tree_flist.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-05-01
+" Last Change: 2012-08-22 17:35:58
 " License:     
 " ChangeLog:
 "   Date: 2012-08-17 15:39:55
 "       1. 添加flist子菜单
+"
+"   Date: 2012-08-22 16:59:07
+"       1. 添加显示hints文件列表选项
 " ============================================================================
 
 " don't load multiple times
@@ -20,8 +23,9 @@ if !exists("g:path_to_flist_app")
     let g:path_to_flist_app = "flist"
 endif
 
-"let g:path_to_flist_app = g:path_to_flist_app . "\\ -H\\ --nocolor\\ --nogroup"
 let g:path_to_flist_app = g:path_to_flist_app
+" the path of flist_wrap.py
+let g:FLIST_WRAP = $HOME.'/.vim/toolsuit/flist_wrap.py'
 
 " add the new menu item via NERD_Tree's API
 let flistMenu = NERDTreeAddSubmenu({
@@ -37,13 +41,18 @@ call NERDTreeAddMenuItem({
 call NERDTreeAddMenuItem({
     \ 'text': '(w)ipe hints',
     \ 'shortcut': 'w',
-    \ 'callback': 'NERDTreeClear',
+    \ 'callback': 'NERDTreeClearHints',
     \ 'parent' : flistMenu})
 
-function! NERDTreeClear()
+call NERDTreeAddMenuItem({
+    \ 'text': '(l)ist all hints',
+    \ 'shortcut': 'l',
+    \ 'callback': 'NERDTreeListHints',
+    \ 'parent' : flistMenu})
+
+function! NERDTreeClearHints()
     " get the current dir from NERDTree
-    let flist_wrap = $HOME.'/.vim/toolsuit/flist_wrap.py'
-    let flist_cmd = flist_wrap . " -c"
+    let flist_cmd = g:FLIST_WRAP . " -c"
 
     wincmd w
 
@@ -52,9 +61,15 @@ endfunction
 
 function! NERDTreeFlist()
     " get the current dir from NERDTree
-    let dir = g:NERDTreeDirNode.GetSelected().path.str()
-    let flist_wrap = $HOME.'/.vim/toolsuit/flist_wrap.py'
-    let flist_cmd = flist_wrap . " -e " . g:path_to_flist_app . " -d " . dir
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let dir = curNode.path.str()
+
+    let flist_cmd = g:FLIST_WRAP . " -e " . g:path_to_flist_app . " -d " . dir
 
     wincmd w
 
@@ -62,3 +77,17 @@ function! NERDTreeFlist()
     "exec 'silent!' . flist_cmd
     exec '!' . flist_cmd
 endfunction
+
+function! NERDTreeListHints()
+    " get the current dir from NERDTree
+    let dir = $HOME."/.vim/ftplugin/c/"
+    let fileList = split(globpath(dir,"*"))
+
+    redraw
+    echo "Hints list:"
+    echo "-----------"
+    for i in fileList
+        echo i
+    endfor
+endfunction
+
