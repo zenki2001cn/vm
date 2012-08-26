@@ -959,22 +959,39 @@ function! VEPlatform.delete(name,bforce)
     endif
 endfunction
 
+" modify zenki, select 0 to delete favorite file
 function! VEPlatform.select(list,title)
     let selectList = deepcopy(a:list)
     if len(selectList) == 0
         return
     endif
+    call insert(selectList,"*** Clean History ***",0)
     call insert(selectList,a:title,0)
     for i in range(1,len(selectList)-1)
         let selectList[i] = i . "  " . selectList[i]
     endfor
     let result = inputlist(selectList)
-    if result > len(a:list) || result <= 0
+    if result > len(a:list)+1 || result <= 0
+        return -1
+    elseif result == 1
+        if a:title == "Browse history:"
+            let winNr = bufwinnr('%')
+            let winName = matchstr(bufname("%"),'_[^_]*$')
+            if has_key(s:VEContainer,winName)
+                let s:VEContainer[winName].pathHistory = [g:VEPlatform.getcwd()]
+            endif
+        elseif a:title == "Favorite folder list:"
+            let fav_filename = g:VEPlatform.getHome() . g:VEConf.favorite
+            if delete(fav_filename)
+            endif
+        endif
+
         return -1
     else
-        return result-1
+        return result-2
     endif
 endfunction
+" modify zenki end
 
 " This is not a member of VEPlatform, because sort()
 " can not use dict function.
@@ -1368,7 +1385,7 @@ function! s:VETreePanel.pathChanged(path)
 endfunction
 
 function! s:VETreePanel.createActions()
-    exec "nnoremap <silent> <buffer> " . g:VEConf.treePanelHotkey.help .           " :tab h VimExplorer<cr>"
+    exec "nnoremap <silent> <buffer> " . g:VEConf.treePanelHotkey.help .           " :call VE_DisplayHelp()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.treePanelHotkey.toggleNode .     " :call VE_OnTreeNodeClick()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.treePanelHotkey.toggleNodeMouse. " :call VE_OnTreeNodeClick()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.treePanelHotkey.refresh .        " :call VE_TreeRefresh()<cr>"
@@ -1512,13 +1529,15 @@ function! s:VEFilePanel.updateDisplayList()
         call self.sortByName()
     elseif g:VEConf.filePanelSortType == 2
         call self.sortByTime()
+    elseif g:VEConf.filePanelSortType == 3
+        call self.sortBySize()
     else
         call self.sortByType()
     endif
 endfunction
 
 function! s:VEFilePanel.toggleModes()
-    if g:VEConf.filePanelSortType < 2
+    if g:VEConf.filePanelSortType < 3
         let g:VEConf.filePanelSortType = g:VEConf.filePanelSortType + 1
     else
         let g:VEConf.filePanelSortType = 0
@@ -1530,6 +1549,48 @@ endfunction
 function! s:VEFilePanel.getFileListFromCwd()
     let self.fileList = split(g:VEPlatform.globpath_file(self.path),"\n")
 endfunction
+
+" add zenki, add help info
+function! ShowMsg(msg)
+    echohl Special | echomsg a:msg | echohl None
+endfunction
+
+function! VE_DisplayHelp()
+    " call add(self.displayList,["-Node    OP: yy, dd, xx, sy, sd, sx, p, R",''])
+    " call add(self.displayList,["-Select  OP: <space>, Mr, Mc, yl",''])
+    " call add(self.displayList,["-Edit    OP: u, U, e, <cr>, =",''])
+    " call add(self.displayList,["-Buffer  OP: f, F | r, t, T, i | g斜杠, ;c, ;r, ;e",''])
+    " call add(self.displayList,["-History OP: b, <c-i>, <c-o> | <c-g>",''])
+    " call add(self.displayList,["-BUGS: sx",''])
+    " call add(self.displayList,[repeat("-",100),''])
+
+    call ShowMsg("快捷键列表")
+    call ShowMsg(repeat("-",80))
+    call ShowMsg("      复制: yy            删除: dd            剪切: xx")
+    call ShowMsg("      选择复制: sy        选择删除: sd        选择剪切: sx       选择打开: se")
+    call ShowMsg("      粘贴: p")
+    call ShowMsg("      重命名: R")
+    call ShowMsg("      新建文件: +f        新建目录: +d")
+    call ShowMsg(repeat("-",80))
+    call ShowMsg("      选择: <space>       匹配选择: Mr        目录选择: Md       清除选择: Mc")
+    call ShowMsg("      查看剪贴板: yl      查看选择项: sl")
+    call ShowMsg(repeat("-",80))
+    call ShowMsg("      比较模式: =")
+    call ShowMsg("      打开预览: u         关闭预览: U")
+    call ShowMsg("      外部程序打开: e     Vim打开: <cr>")
+    call ShowMsg("      打开Shell: ;c       Renamer模式: ;r     外部浏览器打开: ;e")
+    call ShowMsg(repeat("-",80))
+    call ShowMsg("      加入收藏: F         打开收藏: f")
+    call ShowMsg("      刷新: r             文件排序: i         显示隐藏文件: H")
+    call ShowMsg("      打开目录树: t       切换面板: T")
+    call ShowMsg(repeat("-",80))
+    call ShowMsg("      文件名查找: g/")
+    call ShowMsg("      切换目录: <c-g>     上一级目录: <bs>")
+    call ShowMsg("      查看历史: b         前进: <c-i>         后退: <c-o>")
+    call ShowMsg(repeat("-",80))
+
+endfunction
+" add zenki, add help info
 
 " 1
 function! s:VEFilePanel.sortByName()
@@ -1564,15 +1625,6 @@ function! s:VEFilePanel.sortByName()
         call reverse(keys)
     endif
     let self.displayList = []
-    " add zenki, show help tips
-    call add(self.displayList,["-Node    OP: yy, dd, xx, sy, sd, sx, p, R",''])
-    call add(self.displayList,["-Select  OP: <space>, Mr, Mc, yl",''])
-    call add(self.displayList,["-Edit    OP: u, U, e, <cr>, =",''])
-    call add(self.displayList,["-Buffer  OP: f, F | r, t, T, i | g斜杠, ;c, ;r, ;e",''])
-    call add(self.displayList,["-History OP: b, <c-i>, <c-o> | <c-g>",''])
-    call add(self.displayList,["-BUGS: sx",''])
-    call add(self.displayList,[repeat("-",100),''])
-    " add zenki end
     call add(self.displayList,["Path:  ".self.path,''])
     call add(self.displayList,[repeat("~",100),''])
     call add(self.displayList,['[ Sort by name ]',''])
@@ -1605,19 +1657,10 @@ function! s:VEFilePanel.sortByTime()
         let fileGroup[time] = i
     endfor
     let keys = sort(keys(fileGroup),"VEPlatform_sortCompare")
-    if !g:VEConf.fileGroupSortDirection
+    if g:VEConf.fileGroupSortDirection  " modify zenki, the last modified file show first
         call reverse(keys)
     endif
     let self.displayList = []
-    " add zenki, show help tips
-    call add(self.displayList,["-Node    OP: yy, dd, xx, sy, sd, sx, p, R",''])
-    call add(self.displayList,["-Select  OP: <space>, Mr, Mc, yl",''])
-    call add(self.displayList,["-Edit    OP: u, U, e, <cr>, =",''])
-    call add(self.displayList,["-Buffer  OP: f, F | r, t, T, i | g斜杠, ;c, ;r, ;e",''])
-    call add(self.displayList,["-History OP: b, <c-i>, <c-o> | <c-g>",''])
-    call add(self.displayList,["-BUGS: sx",''])
-    call add(self.displayList,[repeat("-",100),''])
-    " add zenki end
     call add(self.displayList,["Path:  ".self.path,''])
     call add(self.displayList,[repeat("~",100),''])
     call add(self.displayList,['[ Sort by time ]',''])
@@ -1626,38 +1669,66 @@ function! s:VEFilePanel.sortByTime()
     endfor
 endfunction
 
-" 3 not implemented yet
-"function! s:VEFilePanel.sortBySize()
-"    let fileGroup = {}
-"    " example
-"    " {
-"    "  "name" : "path"
-"    " }
-"    for i in self.fileList
-"        let time = strftime("%Y-%m-%d %H:%M:%S",getftime(i))
-"        let time = time . i "let the key of dict unique
-"        if isdirectory(i)
-"            " add # before directory to sort separately.
-"            " need??
-"            "let time = '#' . time
-"            if i[-1:] != "\\"
-"                let i = i . "\\"
-"            endif
-"        endif
-"        let fileGroup[time] = i
-"    endfor
-"    let keys = sort(keys(fileGroup))
-"    if !g:VEConf.fileGroupSortDirection
-"        call reverse(keys)
-"    endif
-"    let self.displayList = []
-"    call add(self.displayList,["Path:  ".self.path,''])
-"    call add(self.displayList,[repeat("~",100),''])
-"    call add(self.displayList,['[ Sort by time ]',''])
-"    for i in keys
-"        call add(self.displayList,["  " . g:VEPlatform.pathToName(fileGroup[i]),fileGroup[i]])
-"    endfor
-"endfunction
+" 3 add zenki, sort by size
+function! s:VEFilePanel.sortBySize()
+    let fileGroup = {}
+    let dirGroup = {}
+    " example
+    " {
+    "  "name" : "path"
+    " }
+    for i in self.fileList
+        let size = getfsize(i)
+        if isdirectory(i)
+            let size = size . i "let the key of dict unique
+
+            if g:VEPlatform.haswin32() && !&ssl
+                if i[-1:] != "\\"
+                    let i = i . "\\"
+                endif
+            else
+                if i[-1:] != "/"
+                    let i = i . "/"
+                endif
+            endif
+
+            let dirGroup[size] = i
+        else
+            if size > (1024 * 1024)
+                let ssize = size / 1024 / 1024
+                let size_count = len(ssize)
+                let size = repeat("z",size_count) . ssize
+            elseif size > 1024
+                let ssize = size / 1024
+                let size_count = len(ssize)
+                let size = repeat("y",size_count) . ssize
+            elseif size > 0
+                let ssize = size
+                let size_count = len(ssize)
+                let size = repeat("x",size_count) . ssize
+            endif
+
+            let fileGroup[size] = i
+        endif
+    endfor
+
+    let file_keys = sort(keys(fileGroup))
+    let dir_keys = sort(keys(dirGroup))
+    if g:VEConf.fileGroupSortDirection
+        call reverse(file_keys)
+    endif
+    let self.displayList = []
+    call add(self.displayList,["Path:  ".self.path,''])
+    call add(self.displayList,[repeat("~",100),''])
+    call add(self.displayList,['[ Sort by size ]',''])
+    for i in file_keys
+        call add(self.displayList,["  " . g:VEPlatform.pathToName(fileGroup[i]),fileGroup[i]])
+    endfor
+    for i in dir_keys
+        call add(self.displayList,["  " . g:VEPlatform.pathToName(dirGroup[i]),dirGroup[i]])
+    endfor
+endfunction
+" add zenki end
 
 " 0
 function! s:VEFilePanel.sortByType()
@@ -1726,15 +1797,6 @@ function! s:VEFilePanel.sortByType()
     endfor
     "update self.displayList
     let self.displayList = []
-    " add zenki, show help tips
-    call add(self.displayList,["-Node    OP: yy, dd, xx, sy, sd, sx, p, R",''])
-    call add(self.displayList,["-Select  OP: <space>, Mr, Mc, yl",''])
-    call add(self.displayList,["-Edit    OP: u, U, e, <cr>, =",''])
-    call add(self.displayList,["-Buffer  OP: f, F | r, t, T, i | g斜杠, ;c, ;r, ;e",''])
-    call add(self.displayList,["-History OP: b, <c-i>, <c-o> | <c-g>",''])
-    call add(self.displayList,["-BUGS: sx",''])
-    call add(self.displayList,[repeat("-",100),''])
-    " add zenki end
     call add(self.displayList,["Path:  ".self.path,''])
     call add(self.displayList,[repeat("~",100),''])
     let keys = sort(keys(fileGroup),"VEPlatform_sortCompare")
@@ -2093,7 +2155,7 @@ function! s:VEFilePanel.statusFileName()
 endfunction
 
 function! s:VEFilePanel.createActions()
-    exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.help .           " :tab h VimExplorer<cr>"
+    exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.help .           " :call VE_DisplayHelp()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.switchPanel .    " <c-w><c-w>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.itemClicked .    " :call VE_OnFileItemClick()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.itemClickMouse.  " :call VE_OnFileItemClick()<cr>"
@@ -2852,6 +2914,7 @@ function! VE_GotoFavorite()
     let fav = readfile(fav_filename)
     let result = g:VEPlatform.select(fav,"Favorite folder list:")
     if result == -1
+        redraw
         return
     endif
     call VE_GotoPath(fav[result])

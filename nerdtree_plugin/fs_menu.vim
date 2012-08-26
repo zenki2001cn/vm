@@ -15,9 +15,14 @@ if exists("g:loaded_nerdtree_fs_menu")
 endif
 let g:loaded_nerdtree_fs_menu = 1
 
-call NERDTreeAddMenuItem({'text': '(a)dd a childnode', 'shortcut': 'a', 'callback': 'NERDTreeAddNode'})
-call NERDTreeAddMenuItem({'text': '(m)ove the current node', 'shortcut': 'm', 'callback': 'NERDTreeMoveNode'})
-call NERDTreeAddMenuItem({'text': '(d)elete the current node', 'shortcut': 'd', 'callback': 'NERDTreeDeleteNode'})
+" add zenki, move node operation to sub Menu
+let fsMenu = NERDTreeAddSubmenu({
+    \ 'text': '(o)perate file node',
+    \ 'shortcut': 'o' })
+
+call NERDTreeAddMenuItem({'text': '(a)dd a childnode', 'shortcut': 'a', 'callback': 'NERDTreeAddNode', 'parent': fsMenu})
+call NERDTreeAddMenuItem({'text': '(m)ove the current node', 'shortcut': 'm', 'callback': 'NERDTreeMoveNode', 'parent': fsMenu})
+call NERDTreeAddMenuItem({'text': '(d)elete the current node', 'shortcut': 'd', 'callback': 'NERDTreeDeleteNode', 'parent': fsMenu})
 
 if has("gui_mac") || has("gui_macvim") 
     call NERDTreeAddMenuItem({'text': '(r)eveal in Finder the current node', 'shortcut': 'r', 'callback': 'NERDTreeRevealInFinder'})
@@ -26,8 +31,9 @@ if has("gui_mac") || has("gui_macvim")
 endif
 
 if g:NERDTreePath.CopyingSupported()
-    call NERDTreeAddMenuItem({'text': '(c)copy the current node', 'shortcut': 'c', 'callback': 'NERDTreeCopyNode'})
+    call NERDTreeAddMenuItem({'text': '(c)copy the current node', 'shortcut': 'c', 'callback': 'NERDTreeCopyNode', 'parent': fsMenu})
 endif
+" modify zenki end
 
 "FUNCTION: s:echo(msg){{{1
 function! s:echo(msg)
