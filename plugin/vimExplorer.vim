@@ -317,6 +317,7 @@ let VEConf.filePanelHotkey.yankSelected    = 'sy'
 let VEConf.filePanelHotkey.cutSelected     = 'sx'
 let VEConf.filePanelHotkey.tabViewMulti    = 'se'
 let VEConf.filePanelHotkey.listSelected    = 'sl'   " add zenki, show selected files
+let VEConf.filePanelHotkey.zipSelected     = 'sz'   " add zenki, zip selected files
 let VEConf.filePanelHotkey.paste           = 'p'
 let VEConf.filePanelHotkey.diff2files      = '='
 "visual mode hotkeys.
@@ -440,12 +441,14 @@ function! VEConf.filePanelSyntax()
     syntax clear
     syn match Type "\[ .* \]" "group
     syn match Comment '\t.\{10}' "file size
-    syn match Comment '\d\{4}-\d\{2}-\d\{2}\ \d\{2}:\d\{2}:\d\{2}' "time
+    syn match Comment '\d\{2}:\d\{2}:\d\{2}' "time
+    syn match Macro '\d\{4}-\d\{2}-\d\{2}' "time
     syn match Special '^Path: .*$' "path
     syn match WarningMsg '^\~*$' "line
     syn match Function '^.*[\\/]' "directory
     syn match Search '^\*.*$'  "selectedFiles
-    syn match LineNr '[rwx-]\{9}' "perm
+    syn match Function '[rw-]\{2}x[rw-]\{2}x[rw-]\{2}x' "perm, add zenki, colorize if mode is 666 
+    syn match SpecialChar 'rwxrwxrwx' "perm, modify zenki, colorize if mode is 777 
 endfunction
 
 "#######################################################################
@@ -817,6 +820,14 @@ endfunction
 
 function! VEPlatform.pathToName(path)
     let time = strftime("%Y-%m-%d %H:%M:%S",getftime(a:path))
+
+    " add zenki, show today message
+    let time_today = strftime("%Y-%m-%d",localtime())
+    if split(time,' ')[0] == time_today
+        let time = "今天"
+    endif
+    " add zenki end
+
     let size = getfsize(a:path)
     let perm = getfperm(a:path)
     if g:VEPlatform.haswin32() && !&ssl
@@ -1552,43 +1563,52 @@ endfunction
 
 " add zenki, add help info
 function! ShowMsg(msg)
-    echohl Special | echomsg a:msg | echohl None
+    echomsg a:msg
+endfunction
+
+function! ShowMsgMode(msg, mode)
+    if a:mode == 1
+        echohl Keyword | echomsg a:msg | echohl None
+    elseif a:mode == 2
+        echohl Function | echomsg a:msg | echohl None
+    else
+        echomsg a:msg
+    endif
 endfunction
 
 function! VE_DisplayHelp()
-    " call add(self.displayList,["-Node    OP: yy, dd, xx, sy, sd, sx, p, R",''])
-    " call add(self.displayList,["-Select  OP: <space>, Mr, Mc, yl",''])
-    " call add(self.displayList,["-Edit    OP: u, U, e, <cr>, =",''])
-    " call add(self.displayList,["-Buffer  OP: f, F | r, t, T, i | g斜杠, ;c, ;r, ;e",''])
-    " call add(self.displayList,["-History OP: b, <c-i>, <c-o> | <c-g>",''])
-    " call add(self.displayList,["-BUGS: sx",''])
-    " call add(self.displayList,[repeat("-",100),''])
-
-    call ShowMsg("快捷键列表")
+    call ShowMsgMode("== 快捷键列表 ==",1)
     call ShowMsg(repeat("-",80))
+    call ShowMsgMode("*文件操作*",2)
     call ShowMsg("      复制: yy            删除: dd            剪切: xx")
-    call ShowMsg("      选择复制: sy        选择删除: sd        选择剪切: sx       选择打开: se")
     call ShowMsg("      粘贴: p")
     call ShowMsg("      重命名: R")
     call ShowMsg("      新建文件: +f        新建目录: +d")
-    call ShowMsg(repeat("-",80))
-    call ShowMsg("      选择: <space>       匹配选择: Mr        目录选择: Md       清除选择: Mc")
+    call ShowMsg(" ")
+    call ShowMsgMode("*选择操作*",2)
+    call ShowMsg("      选择: <space>       目录选择: Md        清除选择: Mc")
+    call ShowMsg("      选择复制: sy        选择删除: sd        选择剪切: sx       选择打开: se")
+    call ShowMsg("      选择压缩: sz        ")
     call ShowMsg("      查看剪贴板: yl      查看选择项: sl")
-    call ShowMsg(repeat("-",80))
+    call ShowMsg(" ")
+    call ShowMsgMode("*编辑查看*",2)
     call ShowMsg("      比较模式: =")
     call ShowMsg("      打开预览: u         关闭预览: U")
     call ShowMsg("      外部程序打开: e     Vim打开: <cr>")
-    call ShowMsg("      打开Shell: ;c       Renamer模式: ;r     外部浏览器打开: ;e")
-    call ShowMsg(repeat("-",80))
+    call ShowMsg("      打开Shell: ;c       Renamer模式: ;r     打开GUI浏览器: ;e")
+    call ShowMsg(" ")
+    call ShowMsgMode("*目录管理*",2)
     call ShowMsg("      加入收藏: F         打开收藏: f")
     call ShowMsg("      刷新: r             文件排序: i         显示隐藏文件: H")
     call ShowMsg("      打开目录树: t       切换面板: T")
-    call ShowMsg(repeat("-",80))
-    call ShowMsg("      文件名查找: g/")
     call ShowMsg("      切换目录: <c-g>     上一级目录: <bs>")
     call ShowMsg("      查看历史: b         前进: <c-i>         后退: <c-o>")
+    call ShowMsg("      标记目录: m{a-z}    跳转目录: '{a-z}    查看标记: J")
+    call ShowMsg(" ")
+    call ShowMsgMode("*过滤匹配*",2)
+    call ShowMsg("      文件名查找: g/      正则匹配：.*, *.html, abc*.jpg")
+    call ShowMsg("      匹配选择: Mr        正则匹配：\\.*, .html, abc.*\\.jpg")
     call ShowMsg(repeat("-",80))
-
 endfunction
 " add zenki, add help info
 
@@ -2044,7 +2064,7 @@ endfunction!
 function! s:VEFilePanel.markViaRegexp(regexp)
     if a:regexp == ''
         echohl Special
-        let regexp = input("Mark files (regexp): ")
+        let regexp = input("Mark files (\\.*, .html, abc.*\\.jpg): ")
         echohl None
     else
         let regexp = a:regexp
@@ -2134,7 +2154,7 @@ endfunction
 
 function! s:VEFilePanel.search()
     echohl Special
-    let filename = input("Search : ")
+    let filename = input("Search (.*, *.html, abc*.jpg): ")
     echohl None
     if filename == ''
         echo " "
@@ -2183,6 +2203,7 @@ function! s:VEFilePanel.createActions()
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.showYankList .   " :call VE_ShowYankList()<cr>"
     " add zenki, show selected files
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.listSelected .   " :call VE_ShowSelectedList()<cr>"
+    exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.zipSelected .    " :call VE_ZipSelectedList()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.toggleModes .    " :call VE_ToggleModes()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.paste .          " :call VE_Paste()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.markViaRegexp .  " :call VE_MarkViaRegexp('')<cr>"
@@ -2342,6 +2363,8 @@ function! s:VEFrameWork.init(name,path)
     let self.treePanel = deepcopy(s:VETreePanel)
     "let self.previewPanel = deepcopy(s:VEPreviewPanel)
     call self.filePanel.init(a:name,a:path)
+
+    " FIXME: zenki, 连接smb目录时，如果网络断开，则需要等待超时后才能完成
     call self.treePanel.init(a:name,a:path)
     "call self.previewPanel.init(a:name)
     call add(self.pathHistory,a:path)
@@ -2352,7 +2375,7 @@ function! s:VEFrameWork.show()
     tabnew
     call self.filePanel.show()
     call self.filePanel.only() "so,here it means filePanel should be displayed first
-    " call self.treePanel.show()    " del zenki, treePanel can slow the init speed
+    call self.treePanel.show()
     call self.filePanel.setFocus()
     call self.filePanel.refresh()
     normal! M
@@ -2743,6 +2766,60 @@ function! VE_ShowSelectedList()
     endfor
 endfunction
 
+" add zenki, zip selected files list
+function! VE_ZipSelectedList()
+    let winNr = bufwinnr('%')
+    let winName = matchstr(bufname("%"),'_[^_]*$')
+    if has_key(s:VEContainer,winName)
+        let selFiles = s:VEContainer[winName].filePanel.selectedFiles
+        if selFiles == []
+            return
+        endif
+    endif
+
+    echohl Special
+    let curDir = g:VEPlatform.getcwd()
+    let zipName = input("Input Zip file name(tar,tgz,bz2): ",curDir,"file")
+    echohl None
+
+    let cmd = ''
+    if zipName == '' || isdirectory(zipName)
+        echohl SpecialChar | echo "Please input valid path" | echohl None
+        return
+    else
+        let fileList = ''
+        for i in selFiles
+            let fileList = fileList . ' ' . split(i, '/')[-1]
+        endfor
+
+        if matchstr(zipName,".tar$") != ''
+            let cmd = 'tar -C ' . curDir . ' -cf ' . zipName . ' ' . fileList
+        elseif matchstr(zipName,".tgz$") != '' 
+            let cmd = 'tar -C ' . curDir . ' -czf ' . zipName . ' ' . fileList
+        elseif matchstr(zipName,".bz2$") != '' 
+            let lindex = strridx(zipName,'.') + 1
+            let zipName = strpart(zipName,0,lindex) . 'tar.bz2'
+            let cmd = 'tar -C ' . curDir . ' -cjf ' . zipName . ' ' . fileList
+        else
+            echohl SpecialChar | echo "Zip type is invalid" | echohl None
+            return
+        endif
+
+        " echo cmd
+        echo "Zip handling, please wait..."
+        
+        if cmd != ''
+            call system(cmd)
+        endif
+
+        redraw
+        echo "Zip finished"
+
+        call s:VEContainer[winName].filePanel.refresh()
+    endif
+endfunction
+" add zenki end
+
 "Common command handlers
 "--------------------------
 "get file name for status line.
@@ -2875,7 +2952,7 @@ endfunction
 "Used in <c-g>
 function! VE_OpenPath()
     echohl Special
-    let workPath = input("Change path to (directory): ",'',"file")
+    let workPath = input("Change path to (directory): ",'~',"file")
     echohl None
     if workPath == ''
         return
@@ -3720,4 +3797,3 @@ http://www.vim.org/scripts/script.php?script_id=1721
 
 
 === END_DOC
-" vim: set et fdm=marker sts=4 sw=4 tw=78:

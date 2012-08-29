@@ -3,7 +3,21 @@ ChangLog
 
 ## TODO
 
-* 添加批量转换markdown->html的功能
+* 添加vimExplorer解压功能
+
+### 15. v1.10.5
+
+Update: 2012-08-27 10:50:56
+
+* 10.1 更新tlib                                 ---> tlib v0.45
+* 10.2 更新viki插件                             ---> viki v4.02
+* 10.3 更新signature插件                        ---> signature v1.34
+* 10.4 修改VimExplorer:
+
+> * 1 添加文件列表信息彩色显示功能
+> * 2 添加文件压缩功能
+
+* 10.5 NERDTree添加markdown转换至html的功能菜单
 
 ### 14. v1.10.4
 

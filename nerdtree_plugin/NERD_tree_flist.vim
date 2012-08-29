@@ -54,9 +54,11 @@ function! NERDTreeClearHints()
     " get the current dir from NERDTree
     let flist_cmd = g:FLIST_WRAP . " -c"
 
-    wincmd w
+    " exec '!' . flist_cmd
+    call system(flist_cmd)
 
-    exec '!' . flist_cmd
+    redraw
+    echomsg "flist clean up"
 endfunction
 
 function! NERDTreeFlist()
@@ -71,11 +73,15 @@ function! NERDTreeFlist()
 
     let flist_cmd = g:FLIST_WRAP . " -e " . g:path_to_flist_app . " -d " . dir
 
-    wincmd w
+    echomsg "flist running..."
 
     "echo flist_cmd
     "exec 'silent!' . flist_cmd
-    exec '!' . flist_cmd
+    " exec '!' . flist_cmd
+    call system(flist_cmd)
+
+    redraw
+    echomsg "flist run finished"
 endfunction
 
 function! NERDTreeListHints()
@@ -90,4 +96,3 @@ function! NERDTreeListHints()
         echo i
     endfor
 endfunction
-

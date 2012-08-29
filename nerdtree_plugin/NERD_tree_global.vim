@@ -57,11 +57,14 @@ function! NERDTreeCtagsRun()
 
     let ctags_cmd = 'ctags' . " -R " . dir
 
-    wincmd w
+    echomsg "ctags running..."
 
-    "echo ctags_cmd
     "exec 'silent!' . ctags_cmd
-    exec '!' . ctags_cmd
+    " exec '!' . ctags_cmd
+    call system(ctags_cmd)
+
+    redraw
+    echomsg "ctags run finished"
 endfunction
 
 function! NERDTreeGtagsRun()
@@ -77,11 +80,14 @@ function! NERDTreeGtagsRun()
     let global_wrap = $HOME.'/.vim/toolsuit/global_wrap.py'
     let gtags_cmd = global_wrap . " -C " . " -d " . dir
 
-    wincmd w
+    echomsg "gtags running..."
 
-    echo gtags_cmd
     "exec 'silent!' . gtags_cmd
-    exec '!' . gtags_cmd
+    " exec '!' . gtags_cmd
+    call system(gtags_cmd)
+
+    redraw
+    echomsg "gtags run finished"
 endfunction
 
 function! NERDTreeGlobalUpdate()
@@ -97,9 +103,11 @@ function! NERDTreeGlobalUpdate()
     let global_wrap = $HOME.'/.vim/toolsuit/global_wrap.py'
     let global_cmd = global_wrap . " -e " . g:path_to_global_app . " -d " . dir
 
-    wincmd w
+    echomsg "gtags updating..."
 
-    "echo global_cmd
-    "exec 'silent!' . global_cmd
-    exec '!' . global_cmd
+    " exec '!' . global_cmd
+    call system(global_cmd)
+
+    redraw
+    echomsg "gtags update finished"
 endfunction
