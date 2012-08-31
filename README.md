@@ -15,7 +15,7 @@ Update: 2012-08-30 16:25:42
 * 10.2 修改帮助文档
 * 10.3 更新signature                            ---> signature v1.34 new
 * 10.4 添加ZoomWin插件（缩放窗口）              ---> ZoomWin v24
-* 10.5 修改vimrc（定义wn、wp、wd快捷键）
+* 10.5 修改vimrc（定义wn、wp、wc、wv、ws快捷键）
 
 ### 15. v1.10.5
 

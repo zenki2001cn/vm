@@ -305,7 +305,9 @@ nmap <leader>w :w! <CR>
 "退出分割窗口
 nnoremap wn <c-w><c-w>
 nnoremap wp <c-w><S-w>
-nnoremap wd <C-w><C-q>
+nnoremap wc <C-w><C-q>
+nnoremap wv <C-w><C-v>
+nnoremap ws <C-w><C-s>
 
 " 跳转到vimExplorer窗口
 " nnoremap <c-g> :VE /
