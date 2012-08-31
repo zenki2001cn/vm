@@ -273,6 +273,7 @@ nmap tc :tabclose <CR>
 nmap tn :tabnext <CR>
 nmap tp :tabprevious <CR>
 nmap tf :tabfirst <CR>
+nmap tl :tablast <CR>
 "标签页自动编号
 set guitablabel=%{tabpagenr()}.%t\ %m
 
@@ -302,12 +303,20 @@ nmap <leader>w :w! <CR>
 "nnoremap <Space> :Trans<CR>
 "vnoremap <Space> <ESC>:TransV<CR>
 
-"退出分割窗口
-nnoremap wn <c-w><c-w>
-nnoremap wp <c-w><S-w>
-nnoremap wc <C-w><C-q>
-nnoremap wv <C-w><C-v>
-nnoremap ws <C-w><C-s>
+"窗口管理
+nnoremap ww <c-w>w      " 切换下一个窗口
+nnoremap WW <c-w><S-w>  " 切换上一个窗口
+nnoremap wJ <c-w><S-j>  " 与下边窗口交换位置
+nnoremap wK <c-w><S-k>  " 与上边窗口交换位置
+nnoremap wH <c-w><S-h>  " 与左边窗口交换位置
+nnoremap wL <c-w><S-l>  " 与右边窗口交换位置
+nnoremap wj <c-w>j      " 切换到下边窗口
+nnoremap wk <c-w>k      " 切换到上边窗口
+nnoremap wh <c-w>h      " 切换到左边窗口
+nnoremap wl <c-w>l      " 切换到右边窗口
+nnoremap wc <C-w><C-q>  " 关闭窗口
+nnoremap wv <C-w><C-v>  " 垂直分割窗口
+nnoremap ws <C-w><C-s>  " 水平分割窗口
 
 " 跳转到vimExplorer窗口
 " nnoremap <c-g> :VE /
