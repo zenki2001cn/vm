@@ -3,7 +3,19 @@ ChangLog
 
 ## TODO
 
-* 添加vimExplorer解压功能
+### 16. v1.10.6
+
+Update: 2012-08-30 16:25:42
+
+* 10.1 修改VimExplorer:
+
+> * 1 修整按照文件大小排序，无法显示大于2GB文件的BUG
+> * 2 添加显示文件总数、磁盘剩余空间大小信息
+
+* 10.2 修改帮助文档
+* 10.3 更新signature                            ---> signature v1.34 new
+* 10.4 添加ZoomWin插件（缩放窗口）              ---> ZoomWin v24
+* 10.5 修改vimrc（定义wn、wp、wd快捷键）
 
 ### 15. v1.10.5
 
@@ -15,7 +27,8 @@ Update: 2012-08-27 10:50:56
 * 10.4 修改VimExplorer:
 
 > * 1 添加文件列表信息彩色显示功能
-> * 2 添加文件压缩功能
+> * 2 添加文件压缩功能，支持tar，tgz，bz2
+> * 3 添加文件解压功能，支持tar，tgz，bz2，rar，zip，7z（需要7z支持）
 
 * 10.5 NERDTree添加markdown转换至html的功能菜单
 
@@ -60,7 +73,7 @@ Update: 2012-08-10 16:42:28
 * 10.5 修改vimrc（SnippetComplete按键映射）
 * 10.6 修改tags目录，并在vimrc中打开tags设置
 * 10.7 修改.gitignore文件
-* 10.8 将NERD*插件移动到nerdtree_plugin目录下，NERD_commenter插件不能移动
+* 10.8 将NERDTree插件移动到nerdtree_plugin目录下，NERD_commenter插件不能移动
 * 10.9 为flist和global添加子菜单，更新global功能
 
 ### 11. v1.10.1

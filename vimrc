@@ -10,7 +10,7 @@ let g:VEConf_recyclePath = $HOME.'/.local/share/Trash/files/'
 " VimExplorer setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yate setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-y> :YATE<CR>
@@ -303,8 +303,9 @@ nmap <leader>w :w! <CR>
 "vnoremap <Space> <ESC>:TransV<CR>
 
 "退出分割窗口
-nnoremap <C-d> <C-w><C-q>
-nnoremap T <c-w><c-w>
+nnoremap wn <c-w><c-w>
+nnoremap wp <c-w><S-w>
+nnoremap wd <C-w><C-q>
 
 " 跳转到vimExplorer窗口
 " nnoremap <c-g> :VE /

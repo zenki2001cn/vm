@@ -28,6 +28,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    23. locator显示当前函数          |locator_zenki|
    23. SnippetComplete插入模式补全  |snippetcomplete_zenki|
    24. VimExplorer                  |vimexplorer_zenki|
+   25. ZoomWin                      |ZoomWin_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -145,12 +146,22 @@ GITV                                                              *Gitv_zenki*
 1. 快捷键使用说明
     KEY                             说明~
 
+*Normal界面*
     \gv                             查看git历史
-    \gt                             进入git编辑模式
-    \gb                             查看责任人
-    <Shift>s                        在历史记录界面，选中某次'commit'后显示更新列表
+
+*Log界面*
+    <cr>                            进入Commit界面，查看Commit信息
+    <Shift>s                        在Log界面，选中某次'commit'后显示更新列表
+    u                               更新log信息
+
+*Commit界面*
+    <cr>                            直接打开比较窗口，Commit界面消失
     o                               在diff界面按o，打开分割窗口比较两个文件
     O                               在diff界面按O，打开TAB比较两个文件
+
+*Diff界面*
+    \ge                             进入git编辑模式
+    \gb                             查看责任人
 
 ==============================================================================
 CONQUETERM                                                  *ConqueTerm_zenki*
@@ -269,100 +280,20 @@ VIMEXPLORER                                                *vimexplorer_zenki*
     KEY                             说明~
     \ve                             进入VE模式
     \tc                             退出VE模式
+    e                               NERDTree模式，键入'e'，在当前目录进入VE模式 
+    ?                               显示帮助信息
 
-2. 默认快捷键操作
-2.1  Tree Panel Hotkeys
+2. 有修改记录
 
-Mapping                 Key             Description~
-help                    ?               Help.
-toggleNode              <cr>            Open/Close/Switch to current node.
-toggleNodeMouse         <2-LeftMouse>   Open/Close/Switch to current node.
-refresh                 r               Refresh the tree panel.
-favorite                f               View favorite folder list.
-addToFavorite           F               Add the folder under cursor to
-                                        favorite list. If no path under
-                                        cursor, use current working path.
-browseHistory           b               View browse history.
-toggleFilePanel         t               Toggle the file panel.
-toUpperDir              <bs>            Go to upper directory.
-switchPanel             <c-tab>         Switch to File Panel.
-gotoPath                <c-g>           Change to another path.
-quitVE                  Q               Quit VimExplorer.
+==============================================================================
+ZOOMWIN                                                        *ZoomWin_zenki*
+1. 快捷键使用说明
+    KEY                             说明~
+    wn                              切换下一个窗口
+    wp                              切换上一个窗口
+    wo                              全屏显示当前窗口 & 回复原来窗口布局
+    wd                              关闭当前窗口
 
-2.2  File Panel Hotkeys
-
-Mapping                 Default         Description~
-help                    ?               Help.
-itemClicked             <cr>            Enter the directory or open the file
-                                        by default association.
-itemClickMouse          <2-LeftMouse>   Enter the directory or open the file
-                                        by default association.
-refresh                 r               Refresh.
-toggleTreePanel         t               Toggle the Tree Panel.
-toggleModes             i               Toggle file sort mode (type/data/file
-                                        extension).
-newFile                 +f              Create a new file.
-newDirectory            +d              Create a new directory.
-switchPanel             <c-tab>         Switch to the Tree Panel.
-quitVE                  Q               Quit VimExplorer.
-toggleHidden            H               Toggle show hidden files.(files start
-                                        with '.')
-search                  g/              Search.
-markPlace               m{a-z}          Put current path to register(a-z).
-gotoPlace               '{a-z}          Jump to path in register(a-z).
-viewMarks               J               View path in register.
-contextMenuN            <rightmouse>    File panel context menu in normal mode.
-toUpperDir              <bs>            Go to upper directory.
-gotoForward             <c-i>           Forward.
-gotoBackward            <c-o>           Backward.
-favorite                f               View favorite folder list.
-addToFavorite           F               Add the folder under cursor to
-                                        favorite list. If no path under
-                                        cursor, use current working path.
-browseHistory           b               View browse history.
-gotoPath                <c-g>           Change to another path.
-rename                  R               Rename the file under cursor.
-yankSingle              yy              Copy file under cursor.
-cutSingle               xx              Cut file under cursor.
-showYankList            yl              Show clipboard.
-deleteSingle            dd              Delete file under cursor to recycle bin.
-deleteSingle            DD              Force delete file under cursor.
-openPreview             u               Preview.
-closePreview            U               Close the preview panel.
-toggleSelectUp          <s-space>       Move the cursor up and mark/unmark the
-                                        file under cursor.
-toggleSelectDown        <space>         Mark/unmark the file under cursor and
-                                        move the cursor down.
-toggleSelMouse          <c-leftmouse>   Mark/unmark the file under cursor.
-markViaRegexp           Mr              Mark via regular expression.
-markVimFiles            Mv              Mark all vim files.
-markDirectory           Md              Mark all directories.
-markExecutable          Me              Mark all executable files.
-clearSelect             Mc              Clear all marks.
-deleteSelected          sd              Delete marked files to recycle bin.
-deleteSelected          sD              Force delete marked files.
-yankSelected            sy              Copy marked files.
-cutSelected             sx              Cut marked files.
-tabViewMulti            se              Edit every marked file in separate
-                                        tabs.
-paste                   p               Paste.
-diff2files              =               Diff two files.
-tabView                 e               Edit file in new tab.
-openRenamer             ;r              Open Renamer (Note 1)
-startShell              ;c              Start a shell from current path.
-startExplorer           ;e              Start another file
-                                        manager(nautilus,konquer,explorer.exe).
-Visual Mode Hotkeys~
-visualSelect            <space>         Mark files.
-visualDelete            d               Delete files to recycle bin.
-visualDelete            D               Force delete files.
-visualYank              y               Copy files.
-visualCut               x               Cut files.
-tabView                 e               View files in new tabs.
-
-3. 有修改记录
-
-4. Bugs
-4.1 进行sx（剪切选择的文件或文件夹）操作后，再进行p（paste）操作，会造成文件丢失的情况。
+2. 有修改记录
 
 vim:tw=78:ts=8:ft=help:norl:

@@ -318,6 +318,7 @@ let VEConf.filePanelHotkey.cutSelected     = 'sx'
 let VEConf.filePanelHotkey.tabViewMulti    = 'se'
 let VEConf.filePanelHotkey.listSelected    = 'sl'   " add zenki, show selected files
 let VEConf.filePanelHotkey.zipSelected     = 'sz'   " add zenki, zip selected files
+let VEConf.filePanelHotkey.unzipSelected   = 'sZ'   " add zenki, unzip selected files
 let VEConf.filePanelHotkey.paste           = 'p'
 let VEConf.filePanelHotkey.diff2files      = '='
 "visual mode hotkeys.
@@ -449,6 +450,7 @@ function! VEConf.filePanelSyntax()
     syn match Search '^\*.*$'  "selectedFiles
     syn match Function '[rw-]\{2}x[rw-]\{2}x[rw-]\{2}x' "perm, add zenki, colorize if mode is 666 
     syn match SpecialChar 'rwxrwxrwx' "perm, modify zenki, colorize if mode is 777 
+    syn match Label "< .* >" "free, add zenki, show file item and disk free
 endfunction
 
 "#######################################################################
@@ -823,8 +825,9 @@ function! VEPlatform.pathToName(path)
 
     " add zenki, show today message
     let time_today = strftime("%Y-%m-%d",localtime())
+    let time_hour = strftime("%H:%M:%S",getftime(a:path))
     if split(time,' ')[0] == time_today
-        let time = "今天"
+        let time = "今天       " . time_hour
     endif
     " add zenki end
 
@@ -850,6 +853,8 @@ function! VEPlatform.pathToName(path)
             let size = (size / 1024) . ' K'
         elseif size > 0
             let size = size . ' B'
+        elseif size == -2       " add zenki, 文件太大则返回-2，使用python获取文件大小
+            let size = s:PythonGetFileSize(a:path)
         endif
     endif
     let tail = printf("%10.10s ".perm . ' ' .time,size==0?'':size)
@@ -1588,7 +1593,7 @@ function! VE_DisplayHelp()
     call ShowMsgMode("*选择操作*",2)
     call ShowMsg("      选择: <space>       目录选择: Md        清除选择: Mc")
     call ShowMsg("      选择复制: sy        选择删除: sd        选择剪切: sx       选择打开: se")
-    call ShowMsg("      选择压缩: sz        ")
+    call ShowMsg("      选择压缩: sz        选择解压: sZ")
     call ShowMsg("      查看剪贴板: yl      查看选择项: sl")
     call ShowMsg(" ")
     call ShowMsgMode("*编辑查看*",2)
@@ -1610,7 +1615,35 @@ function! VE_DisplayHelp()
     call ShowMsg("      匹配选择: Mr        正则匹配：\\.*, .html, abc.*\\.jpg")
     call ShowMsg(repeat("-",80))
 endfunction
-" add zenki, add help info
+
+" add zenki, show file number and left space
+function! s:VEFilePanel.getFileStat(fileNumber, path)
+    let freeSize = 0
+    let freePercent = 0
+
+python << EOF
+import os 
+import statvfs
+import vim  
+
+path_block = vim.eval('a:path')
+free_block = os.statvfs(path_block)[statvfs.F_BFREE]
+total_block = os.statvfs(path_block)[statvfs.F_BLOCKS]
+fr_size = os.statvfs(path_block)[statvfs.F_FRSIZE]
+free_size = free_block * fr_size / 1024 / 1024
+free_size = '%dM (%0.2fG)' % (free_size, (free_size * 1.0 / 1024))
+free_percent = '%d%%' % (free_block * 100 / total_block)
+
+vim.command("let freeSize = '%s'" % free_size)
+vim.command("let freePercent = '%s'" % free_percent)
+EOF
+
+    " call add(self.displayList,[repeat(" ",1),''])
+    " call add(self.displayList,[repeat("~",100),''])
+    " call add(self.displayList,['< -Total Item: ' . a:fileNumber . ',      -Free Space: ' . freeSize . ',      -Free Percent: ' . freePercent . ' >',''])
+    return '< -Total Item: ' . a:fileNumber . ',      -Free Space: ' . freeSize . ',      -Free Percent: ' . freePercent . ' >'
+endfunction
+" add zenki end
 
 " 1
 function! s:VEFilePanel.sortByName()
@@ -1645,7 +1678,8 @@ function! s:VEFilePanel.sortByName()
         call reverse(keys)
     endif
     let self.displayList = []
-    call add(self.displayList,["Path:  ".self.path,''])
+    call add(self.displayList,["< -Path:  ".self.path . ' >',''])
+    call add(self.displayList,[self.getFileStat(len(fileGroup), self.path),''])      " add zenki, show file system stat 
     call add(self.displayList,[repeat("~",100),''])
     call add(self.displayList,['[ Sort by name ]',''])
     for i in keys
@@ -1681,7 +1715,8 @@ function! s:VEFilePanel.sortByTime()
         call reverse(keys)
     endif
     let self.displayList = []
-    call add(self.displayList,["Path:  ".self.path,''])
+    call add(self.displayList,["< -Path:  ".self.path . ' >',''])
+    call add(self.displayList,[self.getFileStat(len(fileGroup), self.path),''])      " add zenki, show file system stat 
     call add(self.displayList,[repeat("~",100),''])
     call add(self.displayList,['[ Sort by time ]',''])
     for i in keys
@@ -1697,6 +1732,8 @@ function! s:VEFilePanel.sortBySize()
     " {
     "  "name" : "path"
     " }
+
+    let same_mark = 0
     for i in self.fileList
         let size = getfsize(i)
         if isdirectory(i)
@@ -1726,9 +1763,17 @@ function! s:VEFilePanel.sortBySize()
                 let ssize = size
                 let size_count = len(ssize)
                 let size = repeat("x",size_count) . ssize
+            elseif -2 == size       " add zenki, 文件太大则返回-2，python获取文件大小
+                let size = s:PythonGetFileSize(i)
             endif
 
-            let fileGroup[size] = i
+            if has_key(fileGroup, size)
+                let same_mark = same_mark + 1
+                let size = size . repeat("s",same_mark)
+                let fileGroup[size] = i
+            else
+                let fileGroup[size] = i
+            endif
         endif
     endfor
 
@@ -1738,7 +1783,8 @@ function! s:VEFilePanel.sortBySize()
         call reverse(file_keys)
     endif
     let self.displayList = []
-    call add(self.displayList,["Path:  ".self.path,''])
+    call add(self.displayList,["< -Path:  ".self.path . ' >',''])
+    call add(self.displayList,[self.getFileStat(len(fileGroup)+len(dirGroup), self.path),''])      " add zenki, show file system stat 
     call add(self.displayList,[repeat("~",100),''])
     call add(self.displayList,['[ Sort by size ]',''])
     for i in file_keys
@@ -1747,6 +1793,20 @@ function! s:VEFilePanel.sortBySize()
     for i in dir_keys
         call add(self.displayList,["  " . g:VEPlatform.pathToName(dirGroup[i]),dirGroup[i]])
     endfor
+endfunction
+
+" add zenki, 文件太大则返回-2，使用python获取文件大小
+function! s:PythonGetFileSize(path)
+python << EOF
+import os 
+import stat
+import vim  
+
+ssize = os.stat(vim.eval('a:path'))[stat.ST_SIZE]
+ssize = str(ssize / 1024 / 1024) + 'M'
+vim.command("let size = '%s'" % ssize)
+vim.command("return size")
+EOF
 endfunction
 " add zenki end
 
@@ -1764,7 +1824,11 @@ function! s:VEFilePanel.sortByType()
     "                 "c:\\nn.txt"
     "                 ]
     " }
+
+    let fileCount = 0   " add zenki, count file number
     for i in self.fileList
+        let fileCount = fileCount + 1
+
         " i ("c:\\ddd\\eee.fff")
         if isdirectory(i)
             "if the group dos not exist,create it first
@@ -1817,12 +1881,14 @@ function! s:VEFilePanel.sortByType()
     endfor
     "update self.displayList
     let self.displayList = []
-    call add(self.displayList,["Path:  ".self.path,''])
+    call add(self.displayList,["< -Path:  ".self.path . ' >',''])
+    call add(self.displayList,[self.getFileStat(fileCount, self.path),''])      " add zenki, show file system stat 
     call add(self.displayList,[repeat("~",100),''])
     let keys = sort(keys(fileGroup),"VEPlatform_sortCompare")
     if !g:VEConf.fileGroupSortDirection
         call reverse(keys)
     endif
+
     for i in keys
         call add(self.displayList,['[ '.i[1:].' ]',''])
         call sort(fileGroup[i],"VEPlatform_sortCompare")
@@ -1851,7 +1917,7 @@ function! s:VEFilePanel.pathChanged(path)
     let self.leavePosition[self.path] = [topPos,linePos]
     "
     call g:VEPlatform.cdToPath(a:path)
-    " let self.selectedFiles = [] "FIXME: modify zenki, do not clear the selectedFile list when change path
+    " let self.selectedFiles = []   "FIXME: comment zenki, do not clear the selectedFile list when change path
     let self.path = g:VEPlatform.getcwd()
     call self.refresh()
     "restore position
@@ -2204,6 +2270,7 @@ function! s:VEFilePanel.createActions()
     " add zenki, show selected files
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.listSelected .   " :call VE_ShowSelectedList()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.zipSelected .    " :call VE_ZipSelectedList()<cr>"
+    exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.unzipSelected .  " :call VE_UnzipSelectedList()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.toggleModes .    " :call VE_ToggleModes()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.paste .          " :call VE_Paste()<cr>"
     exec "nnoremap <silent> <buffer> " . g:VEConf.filePanelHotkey.markViaRegexp .  " :call VE_MarkViaRegexp('')<cr>"
@@ -2749,6 +2816,9 @@ function! VE_ShowYankList()
     for i in s:VEContainer.clipboard
         echo i
     endfor
+
+    echo " "
+    echo "Total: " . len(s:VEContainer.clipboard)
 endfunction
 
 " add zenki, show selected files list
@@ -2764,6 +2834,9 @@ function! VE_ShowSelectedList()
     for i in selFiles 
         echo i
     endfor
+
+    echo " "
+    echo "Total: " . len(selFiles)
 endfunction
 
 " add zenki, zip selected files list
@@ -2813,11 +2886,77 @@ function! VE_ZipSelectedList()
         endif
 
         redraw
-        echo "Zip finished"
+        echohl Function | echo "Zip finished!" | echohl None
 
         call s:VEContainer[winName].filePanel.refresh()
     endif
 endfunction
+
+" add zenki, unzip selected files list
+" Use tar handle .tar, .tgz, .bz2
+" Use 7z  handle .zip, .rar, .7z
+function! VE_UnzipSelectedList()
+    let winNr = bufwinnr('%')
+    let winName = matchstr(bufname("%"),'_[^_]*$')
+    if has_key(s:VEContainer,winName)
+        let selFiles = s:VEContainer[winName].filePanel.selectedFiles
+        if selFiles == []
+            return
+        endif
+    endif
+
+    echohl Special
+    let curDir = g:VEPlatform.getcwd()
+    let desDir = input("Input unzip directory: ",curDir,"file")
+    echohl None
+
+    if desDir == '' || !isdirectory(desDir)
+        echohl SpecialChar | echo "Please input valid path" | echohl None
+        return
+    else
+        for i in selFiles
+            let cmd_unzip = ''
+            let cmd_mkdir = ''
+
+            if matchstr(i,".tar$") != ''
+                let newDir = desDir . '/' . split(split(i,'/')[-1],'\.')[0]
+                let cmd_mkdir = 'mkdir -p ' . newDir
+                let cmd_unzip = 'tar xf ' . i . ' -C ' . newDir
+            elseif matchstr(i,".tgz$") != ''
+                let newDir = desDir . '/' . split(split(i,'/')[-1],'\.')[0]
+                let cmd_mkdir = 'mkdir -p ' . newDir
+                let cmd_unzip = 'tar xf ' . i . ' -C ' . newDir
+            elseif matchstr(i,".bz2$") != ''
+                let newDir = desDir . '/' . split(split(i,'/')[-1],'\.')[0]
+                let cmd_mkdir = 'mkdir -p ' . newDir
+                let cmd_unzip = 'tar xf ' . i . ' -C ' . newDir
+            elseif matchstr(i,".zip$") != '' || matchstr(i,".rar$") != '' || matchstr(i,".7z$") != ''
+                let newDir = desDir . '/' . split(split(i,'/')[-1],'\.')[0]
+                let cmd_unzip = '7z -y -o' . newDir . ' x ' . i
+            else
+                echohl SpecialChar | echo "Invalid file: " . i | echohl None
+                continue
+            endif
+
+            if cmd_mkdir != ''
+                call system(cmd_mkdir)
+            endif
+
+            if cmd_unzip != ''
+                echo "Unzip " . i . ", please wait..."
+                let result = system(cmd_unzip)
+                if result != '' && matchstr(result, 'OK') == ''     " FIXME: match 7z output information
+                    echohl SpecialChar | echo "Unzip " . i . " failed!" | echohl None
+                    continue
+                endif
+            endif
+        endfor
+            
+        echohl Function | echo "Unzip finished!" | echohl None
+        call s:VEContainer[winName].filePanel.refresh()
+    endif
+endfunction
+
 " add zenki end
 
 "Common command handlers

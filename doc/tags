@@ -268,6 +268,7 @@ AV	alternate.txt	/*AV*
 Bs_zenki	zenki_plugin_doc.txt	/*Bs_zenki*
 CSApprox.txt	CSApprox.txt	/*CSApprox.txt*
 Case_zenki	zenki_plugin_doc.txt	/*Case_zenki*
+Commit界面	zenki_plugin_doc.txt	/*Commit界面*
 ConqueTerm	conque_term.txt	/*ConqueTerm*
 ConqueTerm_CWInsert	conque_term.txt	/*ConqueTerm_CWInsert*
 ConqueTerm_CloseOnEnd	conque_term.txt	/*ConqueTerm_CloseOnEnd*
@@ -291,6 +292,7 @@ ConqueTerm_Syntax	conque_term.txt	/*ConqueTerm_Syntax*
 ConqueTerm_TERM	conque_term.txt	/*ConqueTerm_TERM*
 ConqueTerm_ToggleKey	conque_term.txt	/*ConqueTerm_ToggleKey*
 ConqueTerm_zenki	zenki_plugin_doc.txt	/*ConqueTerm_zenki*
+Diff界面	zenki_plugin_doc.txt	/*Diff界面*
 Dirdiff_zenki	zenki_plugin_doc.txt	/*Dirdiff_zenki*
 DrawIt.txt	DrawIt.txt	/*DrawIt.txt*
 EXtermColorTable	xterm-color-table.txt	/*EXtermColorTable*
@@ -338,6 +340,7 @@ IHS	alternate.txt	/*IHS*
 IHT	alternate.txt	/*IHT*
 IHV	alternate.txt	/*IHV*
 LoadFuncdict()	load.txt	/*LoadFuncdict()*
+Log界面	zenki_plugin_doc.txt	/*Log界面*
 MRU_zenki	zenki_plugin_doc.txt	/*MRU_zenki*
 MatchError	matchit.txt	/*MatchError*
 MultipleSearch	MultipleSearch.txt	/*MultipleSearch*
@@ -440,6 +443,7 @@ NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_commenter.txt	NERD_commenter.txt	/*NERD_commenter.txt*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
 NERDtree_zenki	zenki_plugin_doc.txt	/*NERDtree_zenki*
+Normal界面	zenki_plugin_doc.txt	/*Normal界面*
 OXtermColorTable	xterm-color-table.txt	/*OXtermColorTable*
 OmniCpp_DefaultNamespaces	omnicppcomplete.txt	/*OmniCpp_DefaultNamespaces*
 OmniCpp_DisplayMode	omnicppcomplete.txt	/*OmniCpp_DisplayMode*
@@ -626,6 +630,8 @@ XtermColorTable-f	xterm-color-table.txt	/*XtermColorTable-f*
 XtermColorTable-mappings	xterm-color-table.txt	/*XtermColorTable-mappings*
 XtermColorTable-t	xterm-color-table.txt	/*XtermColorTable-t*
 XtermColorTable_zenki	zenki_plugin_doc.txt	/*XtermColorTable_zenki*
+ZoomWin.txt	ZoomWin.txt	/*ZoomWin.txt*
+ZoomWin_zenki	zenki_plugin_doc.txt	/*ZoomWin_zenki*
 [%	matchit.txt	/*[%*
 [[	viki.txt	/*[[*
 []	viki.txt	/*[]*
@@ -1099,6 +1105,7 @@ g:SuperTabNoCompleteBefore	supertab.txt	/*g:SuperTabNoCompleteBefore*
 g:SuperTabRetainCompletionDuration	supertab.txt	/*g:SuperTabRetainCompletionDuration*
 g:VIKIBACKREFS	viki.txt	/*g:VIKIBACKREFS*
 g:XtermColorTableDefaultOpen	xterm-color-table.txt	/*g:XtermColorTableDefaultOpen*
+g:ZoomWin_funcref	ZoomWin.txt	/*g:ZoomWin_funcref*
 g:bufExplorerChgWin	bufexplorer.txt	/*g:bufExplorerChgWin*
 g:bufExplorerDefaultHelp	bufexplorer.txt	/*g:bufExplorerDefaultHelp*
 g:bufExplorerDetailedHelp	bufexplorer.txt	/*g:bufExplorerDetailedHelp*
@@ -1434,6 +1441,8 @@ g:vimwiki_user_htmls	vimwiki.txt	/*g:vimwiki_user_htmls*
 g:vimwiki_valid_html_tags	vimwiki.txt	/*g:vimwiki_valid_html_tags*
 g:vimwiki_w32_dir_enc	vimwiki.txt	/*g:vimwiki_w32_dir_enc*
 g:vjde_taglib_uri	vjde.txt	/*g:vjde_taglib_uri*
+g:zoomwin_preserve_taglist	ZoomWin.txt	/*g:zoomwin_preserve_taglist*
+g:zoomwin_preserve_winmanager	ZoomWin.txt	/*g:zoomwin_preserve_winmanager*
 gitv	gitv.txt	/*gitv*
 gitv-author	gitv.txt	/*gitv-author*
 gitv-changelog	gitv.txt	/*gitv-changelog*
@@ -2707,3 +2716,9 @@ xml-plugin-settings	xml-plugin.txt	/*xml-plugin-settings*
 xml-plugin.txt	xml-plugin.txt	/*xml-plugin.txt*
 yate_zenki	zenki_plugin_doc.txt	/*yate_zenki*
 zenki_doc	zenki_plugin_doc.txt	/*zenki_doc*
+zoomwin	ZoomWin.txt	/*zoomwin*
+zoomwin-copyright	ZoomWin.txt	/*zoomwin-copyright*
+zoomwin-history	ZoomWin.txt	/*zoomwin-history*
+zoomwin-options	ZoomWin.txt	/*zoomwin-options*
+zoomwin-setup	ZoomWin.txt	/*zoomwin-setup*
+zoomwin-usage	ZoomWin.txt	/*zoomwin-usage*
