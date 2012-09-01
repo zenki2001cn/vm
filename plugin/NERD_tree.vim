@@ -112,7 +112,7 @@ call s:initVariable("g:NERDTreeMapChdir", "cd")
 call s:initVariable("g:NERDTreeMapCloseChildren", "X")
 call s:initVariable("g:NERDTreeMapCloseDir", "x")
 call s:initVariable("g:NERDTreeMapDeleteBookmark", "D")
-call s:initVariable("g:NERDTreeMapMenu", "M")   " modify zenki, avoid confit with signature
+call s:initVariable("g:NERDTreeMapMenu", "M")                   " modify zenki, avoid confit with signature
 call s:initVariable("g:NERDTreeMapHelp", "?")
 call s:initVariable("g:NERDTreeMapJumpFirstChild", "K")
 call s:initVariable("g:NERDTreeMapJumpLastChild", "J")
@@ -120,9 +120,10 @@ call s:initVariable("g:NERDTreeMapJumpNextSibling", "<C-j>")
 call s:initVariable("g:NERDTreeMapJumpParent", "p")
 call s:initVariable("g:NERDTreeMapJumpPrevSibling", "<C-k>")
 call s:initVariable("g:NERDTreeMapJumpRoot", "P")
-" call s:initVariable("g:NERDTreeMapOpenExpl", "e")   " modify zenki, remap 'e' to open with vimexplorer
+" call s:initVariable("g:NERDTreeMapOpenExpl", "e")             " modify zenki, remap 'e' to open with vimexplorer
+call s:initVariable("g:NERDTreeMapOpenVeWithPath", "<c-g>")     " add zenki, open vimexplorer with path
 call s:initVariable("g:NERDTreeMapOpenInTab", "t")
-" call s:initVariable("g:NERDTreeMapOpenInTabSilent", "T") " modify zenki, T is map to switch window 
+" call s:initVariable("g:NERDTreeMapOpenInTabSilent", "T")      " modify zenki, T is map to switch window 
 call s:initVariable("g:NERDTreeMapOpenRecursively", "O")
 call s:initVariable("g:NERDTreeMapOpenSplit", "i")
 call s:initVariable("g:NERDTreeMapOpenVSplit", "s")
@@ -3526,9 +3527,12 @@ function! s:bindMappings()
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapJumpRoot ." :call <SID>jumpToRoot()<cr>"
 
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTab ." :call <SID>openInNewTab(0)<cr>"
-    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTabSilent ." :call <SID>openInNewTab(1)<cr>"   " modify zenki, T is map to switch window 
+    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTabSilent ." :call <SID>openInNewTab(1)<cr>"       " modify zenki, T is map to switch window 
 
-    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenExpl ." :call <SID>openExplorer()<cr>"     " modify zenki, remap 'e' to open with vimexplorer
+    " exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenExpl ." :call <SID>openExplorer()<cr>"               " modify zenki, remap 'e' to open with vimexplorer
+
+    " add zenki, open vimexplorer with path
+    exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenVeWithPath ." :call <SID>openVeWithPath()<cr>"       
 
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapDeleteBookmark ." :call <SID>deleteBookmark()<cr>"
 
@@ -4008,6 +4012,18 @@ function! s:upDir(keepState)
         call s:renderView()
         call oldRoot.putCursorHere(0, 0)
     endif
+endfunction
+
+" add zenki, open VE with path
+function! s:openVeWithPath()
+    echohl Special
+    let workPath = input("Change path to (directory): ",'~',"file")
+    echohl None
+    if workPath == ''
+        return
+    endif
+
+    exec ":VE " . workPath
 endfunction
 
 

@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO
 
+### 17 v1.10.7 alpha
+
+Update: 2012-09-01 19:46:12
+
+* 10.1 NERDTree添加打开VimExplorer插件入口（<c-g>）
+
 ### 16. v1.10.6 final
 
 Update: 2012-08-30 16:25:42
