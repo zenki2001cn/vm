@@ -3,11 +3,17 @@ ChangLog
 
 ## TODO
 
-### 17 v1.10.7 alpha
+### 17 v1.10.7 beta
 
-Update: 2012-09-01 19:46:12
+Update: 2012-09-04 15:53:05
 
 * 10.1 NERDTree添加打开VimExplorer插件入口（<c-g>）
+* 10.2 添加indexer插件（自动tags管理，需要dfrank和vimprj）  ---> indexer v4.15 
+* 10.3 添加dfrank插件（工具库）                             ---> dfrank v1.02
+* 10.4 添加vimprj插件（工具库）                             ---> dfrank v1.08
+* 10.5 NERDTree添加indexer插件（快捷加入project到indexer）
+* 10.6 NERDTree添加indexer清除缓存功能
+* 10.7 移除不必要的.svn目录
 
 ### 16. v1.10.6 final
 

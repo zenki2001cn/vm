@@ -710,11 +710,19 @@ function! VEPlatform.executable(filename)
     endif
 endfunction
 
+" modify zenki, return ignore '.' and '..'
 function! VEPlatform.search(filename,path)
     if a:filename == '.' || a:filename == '..'
         return []
     else
-        return split(globpath(a:path,"**/" . a:filename),"\n")
+        let paths = split(globpath(a:path,"**/" . a:filename),"\n")
+        let new_paths = []
+        for i in paths
+            if matchstr(i,'.*\.$','','g') == ''
+                call add(new_paths, i)
+            endif
+        endfor
+        return new_paths
     endif
 endfunction
 
@@ -979,7 +987,7 @@ endfunction
 function! VEPlatform.select(list,title)
     let selectList = deepcopy(a:list)
     if len(selectList) == 0
-        return
+        return -1
     endif
     call insert(selectList,"*** Clean History ***",0)
     call insert(selectList,a:title,0)

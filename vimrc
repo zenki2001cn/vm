@@ -1,6 +1,16 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indexer setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indexer_ctagsCommandLineOptions = '--sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q'
+" let g:indexer_indexerListFilename = $HOME.'/.indexer_files'
+" let g:indexer_projectsSettingsFilename = $HOME.'/.vimprojects'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indexer setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimExplorer setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ve :VE <CR><CR>
@@ -211,6 +221,7 @@ nnoremap <S-M> :MRU<CR>
 " SuperTab setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SuperTab 补全设置
+" let g:SuperTabDefaultCompletionType = "<c-x><c-u><c-p>"
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
@@ -930,11 +941,9 @@ set maxmempattern=1000
 
 set nocompatible
 set nonu
-"set nu
 filetype on 
 filetype plugin on
 set history=1000 
-"set background=light
 set autoindent
 set cindent
 set smartindent
@@ -957,14 +966,12 @@ set incsearch               " 输入搜索内容时，显示匹配的文本
 set lbr
 set bs=2
 set wmnu
-set wildignore=*.bak,*.o,*.pyc,*~,*.bk
+set wildignore=*.o,*.pyc,*~
 nmap gj 40j
 nmap gk 40k
 " Visual Mode连续缩进
 vnoremap < <gv
 vnoremap > >gv
-"nnoremap <S-j> <C-d>
-"nnoremap <S-k> <C-u>
 set laststatus=2
 " 状态栏
 " set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
