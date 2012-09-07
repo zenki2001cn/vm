@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: neocomplcache.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 21 May 2012.
+" Last Modified: 24 Aug 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -33,8 +33,9 @@ elseif v:version < 702
   finish
 elseif $SUDO_USER != '' && $USER !=# $SUDO_USER
       \ && $HOME !=# expand('~'.$USER)
-  echoerr '"sudo vim" and $HOME is not same to /root are detected.'
-        \.'Please use sudo.vim plugin instead of sudo command or set always_set_home in sudoers.'
+  " modify zenki, sudo no error
+  " echoerr '"sudo vim" and $HOME is not same to /root are detected.'
+  "       \.'Please use sudo.vim plugin instead of sudo command or set always_set_home in sudoers.'
   finish
 endif
 
@@ -55,6 +56,13 @@ command! -nargs=1 -bar NeoComplCacheLockSource
       \ call neocomplcache#lock_source(<q-args>)
 command! -nargs=1 -bar NeoComplCacheUnlockSource
       \ call neocomplcache#unlock_source(<q-args>)
+if v:version >= 703
+  command! -nargs=1 -bar -complete=filetype NeoComplCacheSetFileType
+        \ call neocomplcache#set_file_type(<q-args>)
+else
+  command! -nargs=1 -bar NeoComplCacheSetFileType
+        \ call neocomplcache#set_file_type(<q-args>)
+endif
 
 " Warning if using obsolute mappings."{{{
 silent! inoremap <unique> <Plug>(neocomplcache_snippets_expand)
@@ -133,9 +141,10 @@ let g:neocomplcache_ctags_program =
 let g:neocomplcache_force_overwrite_completefunc =
       \ get(g:, 'neocomplcache_force_overwrite_completefunc', 0)
 let g:neocomplcache_enable_prefetch =
-      \ get(g:, 'g:neocomplcache_enable_prefetch',
-      \  !(v:version > 703 || v:version == 703 && has('patch519')
-      \ ))
+      \ get(g:, 'neocomplcache_enable_prefetch',
+      \  !(v:version > 703 || v:version == 703 && has('patch519'))
+      \ || (has('gui_running') && has('xim'))
+      \ )
 let g:neocomplcache_lock_iminsert =
       \ get(g:, 'neocomplcache_lock_iminsert', 0)
 let g:neocomplcache_release_cache_time =

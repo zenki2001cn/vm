@@ -30,7 +30,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    24. VimExplorer                  |vimexplorer_zenki|
    25. ZoomWin                      |ZoomWin_zenki|
    26. Undotree                     |Undotree_zenki|
-   26. pymode                       |pymode_zenki|
+   27. pymode                       |pymode_zenki|
+   28. CSApprox                     |CSApprox_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -327,5 +328,11 @@ PYMODE                                                          *pymode_zenki*
     :PyLintAuto                             代码格式调整
     ]]                                      代码块跳转
     [[                                      代码块跳转
+
+==============================================================================
+CSApprox                                                      *CSApprox_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    :CSApproxSnapshot                       生成当前配色方案的配置文件（GUI支持）
 
 vim:tw=78:ts=8:ft=help:norl:

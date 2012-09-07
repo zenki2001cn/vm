@@ -61,9 +61,10 @@ if !has('gui') || exists('g:CSApprox_loaded')
     let s:verbose  = g:CSApprox_verbose_level
   endif
 
+  " modify zenki, disable echomsg when has not gui
   if ! has('gui') && s:verbose > 0
-    echomsg "CSApprox needs gui support - not loading."
-    echomsg "  See :help |csapprox-+gui| for possible workarounds."
+    " echomsg "CSApprox needs gui support - not loading."
+    " echomsg "  See :help |csapprox-+gui| for possible workarounds."
   endif
 
   unlet s:verbose

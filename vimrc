@@ -35,7 +35,7 @@ let g:pymode_lint_config = "$HOME/.pylintrc"
 " Check code every save
 let g:pymode_lint_write = 0
 " Auto open cwindow if errors be finded
-let g:pymode_lint_cwindow = 0
+let g:pymode_lint_cwindow = 1
 " Show error message if cursor placed at the error line
 let g:pymode_lint_message = 1
 " Auto jump on first error
@@ -102,7 +102,8 @@ let g:pymode_options = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indexer setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indexer_ctagsCommandLineOptions = '--sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q'
+let g:indexer_ctagsCommandLineOptions = '--sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,c, --langmap=c:+.C,c++:+.H,c++:+.inl,c++:+.ipp,python:+.pyw,c:+.hlsl,c:+.vsh,c:+.psh,c:+.fx,c:+.fxh,c:+.cg,c:+.shd,c:+.glsl'
+" let g:indexer_ctagsCommandLineOptions = '--sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q'
 " let g:indexer_indexerListFilename = $HOME.'/.indexer_files'
 " let g:indexer_projectsSettingsFilename = $HOME.'/.vimprojects'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

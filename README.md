@@ -3,11 +3,15 @@ ChangLog
 
 ## TODO
 
-### 18 v1.10.8 alpha
+### 18 v1.10.8 beta
 
 Update: 2012-09-07 17:26:34
 
 * 10.1 添加pymode插件（集成python开发环境）                 ---> pymode v0.6.8
+* 10.2 更新neocomplcache插件                                ---> neocomplcache v7.1
+* 10.3 修改ctags参数（vimrc、autotag.vim）
+* 10.4 移除多处vim7.3引起的警告信息
+* 10.4 更新ZoomWin插件（缩放窗口）                          ---> ZoomWin v25b
 
 ### 17 v1.10.7 final
 
