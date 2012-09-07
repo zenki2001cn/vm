@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO
 
+### 18 v1.10.8 alpha
+
+Update: 2012-09-07 17:26:34
+
+* 10.1 添加pymode插件（集成python开发环境）                 ---> pymode v0.6.8
+
 ### 17 v1.10.7 final
 
 Update: 2012-09-07 11:39:58

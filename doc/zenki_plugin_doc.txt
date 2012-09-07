@@ -30,6 +30,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    24. VimExplorer                  |vimexplorer_zenki|
    25. ZoomWin                      |ZoomWin_zenki|
    26. Undotree                     |Undotree_zenki|
+   26. pymode                       |pymode_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -316,5 +317,15 @@ UNDOTREE                                                      *Undotree_zenki*
 1. 快捷键使用说明
     KEY                             说明~
     <F8>                            开关撤销历史窗口
+
+==============================================================================
+PYMODE                                                          *pymode_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    :call pymode#troubleshooting#Test()     检查pymode变量环境
+    :PyLint                                 代码错误检查
+    :PyLintAuto                             代码格式调整
+    ]]                                      代码块跳转
+    [[                                      代码块跳转
 
 vim:tw=78:ts=8:ft=help:norl:
