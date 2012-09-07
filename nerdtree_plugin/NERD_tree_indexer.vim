@@ -2,9 +2,10 @@
 " File:        NERD_Tree_indexer.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-09-03 14:21:02
+" Last Change: 2012-09-05 14:20:08
 " License:     
 " ChangeLog:
+"   1. Fix Indexer clean bugs.
 " ============================================================================
 
 " don't load multiple times
@@ -151,16 +152,17 @@ function! SelectIndexer(list)
     endif
 
     call insert(selectList,"*** Clean History ***",0)
-    for i in range(0,len(selectList)-1)
+    call insert(selectList,"Indexer history:",0)
+    for i in range(1,len(selectList)-1)
         let selectList[i] = i . "  " . selectList[i]
     endfor
 
     let result = inputlist(selectList)
-    if result > len(a:list) || result < 0
+    if result > len(a:list)+1 || result <= 0
         return -1
-    elseif result == 0
+    elseif result == 1
         return -2
     else
-        return result-1
+        return result-2
     endif
 endfunction

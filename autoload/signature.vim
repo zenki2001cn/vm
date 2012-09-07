@@ -84,6 +84,7 @@
   endfunction
 
 
+  " add zenki, add try-catch to resolve bugs in vim7.3
   function! signature#MapKey(rhs, mode) "             {{{2
     " Description: Inverse of maparg()
     "   Pass in a key sequence and the first letter of a vim mode.
@@ -92,7 +93,12 @@
     "     :nnoremap <Tab> :bn<CR>
     "     :call Mapkey(':bn<CR>', 'n')
     "   returns <Tab>
-    execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
+    try
+      execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
+    catch
+      " pass
+    endtry
+
     let l:rhs = tolower(a:rhs)
     for l:map in split(l:mappings, '\n')
       let l:lhs = split(l:map, '\s\+')[1]

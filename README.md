@@ -3,9 +3,9 @@ ChangLog
 
 ## TODO
 
-### 17 v1.10.7 beta
+### 17 v1.10.7 final
 
-Update: 2012-09-04 15:53:05
+Update: 2012-09-07 11:39:58
 
 * 10.1 NERDTree添加打开VimExplorer插件入口（<c-g>）
 * 10.2 添加indexer插件（自动tags管理，需要dfrank和vimprj）  ---> indexer v4.15 
@@ -14,6 +14,11 @@ Update: 2012-09-04 15:53:05
 * 10.5 NERDTree添加indexer插件（快捷加入project到indexer）
 * 10.6 NERDTree添加indexer清除缓存功能
 * 10.7 移除不必要的.svn目录
+* 10.8 添加ConflictMotions插件（冲突文件内容跳转，需要CountJump） ---> ConflictMotions v1.10.003
+* 10.9 添加CountJump插件（工具库）                          ---> CountJump v1.70.013
+* 10.10 添加undotree（查看撤销历史）                        ---> undotree v4.1
+* 10.11 添加try-catch解决signature插件在vim7.3下的bug
+* 10.12 修改若干snippet文件
 
 ### 16. v1.10.6 final
 

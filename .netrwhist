@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/media/DATA/data/vim/ftplugin/clojure'
-let g:netrw_dirhist_2='/media/DATA/project/EK1/android_eclair_smdk6410/build'
-let g:netrw_dirhist_3='/host/linux_part/OH6/bw-fw/sdk'
-let g:netrw_dirhist_4='/media/DATA/project/software/android-sdk-linux_x86_later/tools/ant'
-let g:netrw_dirhist_5='/host/linux_part/OH6/bw-fw/sdk'
-let g:netrw_dirhist_6='/home/zenki/temp'
-let g:netrw_dirhist_7='/host/linux_part/OH6/bw-fw/build/tools'
-let g:netrw_dirhist_8='/home/zenki/.indexer_files_tags'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/zenki/.oh-my-zsh/.git'

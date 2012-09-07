@@ -246,28 +246,31 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" F1~F12映射---------------------------------------------------
 " 目录管理插件
 nnoremap <F1> :NERDTreeToggle<CR>
+
 " 文件与NERDTree关联
 nnoremap <F2> :NERDTreeFind<CR>
+
+" 开关TaskList
 nnoremap <F3> :TlistToggle<CR>
+
+" 开关Tagbar
 nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
+
+" 标记跳转
 nnoremap <unique> <silent> <F6> ]`
 nnoremap <unique> <silent> <F5> [`
-" markHL 标记管理
-" nnoremap <silent> <C-F5> :call HLMarks("Marks")<CR>
-" nnoremap <silent> <C-F6> :call clearmatches()<CR>
-" nnoremap <silent> <F7> :call AddHLMark("Marks")<CR>
-" nnoremap <silent> <F8> :call DelHLMark("Marks")<CR>
-" nnoremap <silent> <C-S-F8> :call clearmatches()\|:delmarks a-z<CR>
+
+" 开关UndoTree
+nmap <F8> :UndotreeToggle <CR>
 
 "加入书签
 " nnoremap <F3> :Bookmark<CR>
 "清除书签
 "nnoremap <F3> :ClearBookmarks<CR>
-" 显示Taglist
-"au FileType c,cpp,java,python,sh,perl,ruby nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
-"au FileType txt nnoremap <unique> <silent> <F4> :TlistToggle<CR>
+" ---------------------------------------------------------------
 
 "运行ctags,
 "map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -307,13 +310,6 @@ nmap <leader>sv :SessionSave <CR>
 "快速保存
 nmap <leader>w :w! <CR>
 
-"更新types文件
-"map <S-U> :UpdateTypesFile <CR>
-
-"单词翻译
-"nnoremap <Space> :Trans<CR>
-"vnoremap <Space> <ESC>:TransV<CR>
-
 "窗口管理
 nnoremap ww <c-w>w      " 切换下一个窗口
 nnoremap WW <c-w><S-w>  " 切换上一个窗口
@@ -328,9 +324,6 @@ nnoremap wl <c-w>l      " 切换到右边窗口
 nnoremap wc <C-w><C-q>  " 关闭窗口
 nnoremap wv <C-w><C-v>  " 垂直分割窗口
 nnoremap ws <C-w><C-s>  " 水平分割窗口
-
-" 跳转到vimExplorer窗口
-" nnoremap <c-g> :VE /
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键 setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -966,7 +959,7 @@ set incsearch               " 输入搜索内容时，显示匹配的文本
 set lbr
 set bs=2
 set wmnu
-set wildignore=*.o,*.pyc,*~
+" set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
 nmap gj 40j
 nmap gk 40k
 " Visual Mode连续缩进
@@ -1108,6 +1101,9 @@ else
     " let g:molokai_original=1
     colorscheme molokai
     " colorscheme candycode_term
+    
+    " colorscheme lucius
+    " LuciusBlack
 
     " syntax enable
     " set background=dark

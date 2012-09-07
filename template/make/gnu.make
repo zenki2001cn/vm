@@ -10,14 +10,14 @@ WARNINGS := -Wall -Wno-unused -Wno-format
 DEFS     := -DMYDEF=1 -UMYDEF2
 EXTRA_CFLAGS := 
 
-# 输出目录
+# 输出目录，会自动创建
 OUT_DIR 	= out
 OBJ_DIR   	= $(OUT_DIR)/obj
 
 # 头文件目录
-INC_DIR   		= include
+INC_DIR   		= include/???
 # 源文件目录
-SRC_DIR   		= 
+SRC_DIR   		= src/???
 # 额外包含的源文件列表
 EXTRA_SRC 		= 
 # 排除的文件列表
@@ -25,7 +25,8 @@ EXCLUDE_FILES 	=
 # 源文件后缀
 SUFFIX 			= c cpp cc cxx
 
-# 目标名称和类型
+# 目标名称和类型，不需要考虑后缀名，定义多个名称实际上多个拷贝
+# 如：$(OUT_DIR)/main 
 TARGET       := $(OUT_DIR)/???
 TARGET_TYPE  := app
 #TARGET_TYPE  := ar
