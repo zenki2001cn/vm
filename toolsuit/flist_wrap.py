@@ -22,11 +22,13 @@ CLEAR_HINTS_FLAG = False
 #清除hints目录时，排除在外的缓存文件名
 EXCLUDE_HINTS = ['hints_man2.vim', 'hints_man3.vim']
 
+
 def exit2(error):
     """docstring for exit2"""
     print error
     usage()
     sys.exit(2)
+
 
 def getArg():
     """docstring for getArg"""
@@ -41,7 +43,7 @@ def getArg():
 
     for o, a in opts:
         if o == "-e":
-            FLIST = a  
+            FLIST = a
         elif o == "-d":
             DIR = a
         elif o == "-c":
@@ -53,6 +55,7 @@ def getArg():
 
     return FLIST, DIR
 
+
 def usage():
     """docstring for usage"""
     print "Usage: flist_wrap.py [OPTION]"
@@ -63,18 +66,21 @@ def usage():
     print "Example:"
     print "    python flist_wrap.py -e /usr/bin/flist -d /home/zenki/src"
     print "    python flist_wrap.py -c"
-    
+
+
 def get_hints_name(src_path):
     """docstring for get_hints_path"""
     if not os.path.exists(src_path):
         exit2('get hints path error')
-    
+
     return src_path.replace('/', '_').replace('.', '') + '.vim'
+
 
 def _flist(fd, flist_path, dir):
     """docstring for _flist"""
     os.chdir(dir)
-    cmd = flist_path + " -h " + os.path.join(dir, '*.c') + " " + os.path.join(dir, '*.cpp') + " 2>/dev/null"
+    cmd = flist_path + " -h " + os.path.join(
+        dir, '*.c') + " " + os.path.join(dir, '*.cpp') + " 2>/dev/null"
     #print cmd
     os.system(cmd)
 
@@ -93,7 +99,8 @@ def _flist(fd, flist_path, dir):
             cmd_rm_hint = "rm -f " + hint_in_path
             #print cmd_rm_hint
             os.system(cmd_rm_hint)
-        
+
+
 def flist(flist_path, src_path):
     """docstring for flist"""
     hints = get_hints_name(src_path)
@@ -104,7 +111,7 @@ def flist(flist_path, src_path):
             for file in files:
                 if file.endswith('.c') or file.endswith('.cpp'):
                     _flist(hints_fd, flist_path, root)
-                    break;
+                    break
     except Exception, e:
         print "flist error: flist_path=", flist_path, "src_path=", src_path
         raise e
@@ -113,10 +120,11 @@ def flist(flist_path, src_path):
         hints_fd.close()
         print "flist done!"
 
+
 def clear_cache():
     """docstring for clear_cache"""
     global EXCLUDE_HINTS
-    
+
     for root, dirs, files in os.walk(HINTS_DIR):
         for file in files:
             if file in EXCLUDE_HINTS:
@@ -126,15 +134,16 @@ def clear_cache():
                 #print cmd_clear
                 os.system(cmd_clear)
     print "clear done!"
-                
+
+
 def main():
     """docstring for main"""
     (FLIST, DIR) = getArg()
 
     if CLEAR_HINTS_FLAG:
-        clear_cache() 
+        clear_cache()
     else:
         flist(FLIST, DIR)
 
 if __name__ == '__main__':
-    main()        
+    main()

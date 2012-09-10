@@ -102,7 +102,8 @@ let g:pymode_options = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indexer setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indexer_ctagsCommandLineOptions = '--sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,c, --langmap=c:+.C,c++:+.H,c++:+.inl,c++:+.ipp,python:+.pyw,c:+.hlsl,c:+.vsh,c:+.psh,c:+.fx,c:+.fxh,c:+.cg,c:+.shd,c:+.glsl'
+let g:indexer_ctagsCommandLineOptions = '--sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl'
+let g:indexer_disableCtagsWarning = 1
 " let g:indexer_ctagsCommandLineOptions = '--sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q'
 " let g:indexer_indexerListFilename = $HOME.'/.indexer_files'
 " let g:indexer_projectsSettingsFilename = $HOME.'/.vimprojects'
@@ -373,7 +374,6 @@ nmap <F8> :UndotreeToggle <CR>
 " ---------------------------------------------------------------
 
 "运行ctags,
-"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <C-n> :tn <CR>
 nmap <C-p> :tp <CR>
 nmap <C-l> :ts <CR>
@@ -891,7 +891,6 @@ let Tlist_BackToEditBuffer = 0 " If no close on select, let the user choose back
 let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 50
 let Tlist_Compact_Format = 1 " do not show help
-" let Tlist_Ctags_Cmd = 'ctags --c++-kinds=+p --fields=+iaS --extra=+q --languages=c++'
 " very slow, so I disable this
 " let Tlist_Process_File_Always = 1 " To use the :TlistShowTag and the :TlistShowPrototype commands without the taglist window and the taglist menu, you should set this variable to 1.
 ":TlistShowPrototype [filename] [linenumber]

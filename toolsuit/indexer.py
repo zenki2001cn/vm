@@ -5,7 +5,7 @@
 File: indexer.py
 Author: Zenki (Zenki.J.Zha), zenki2001cn@163.com
 Date: 2012-09-03 14:28:58
-Description: 
+Description:
 Version: 0.1
 '''
 
@@ -21,12 +21,14 @@ LIST_MODE = False
 CLEAN_MODE = False
 QUERY_MODE = False
 
+
 def exit2(error):
     """docstring for exit2"""
     print error
     print '\n'
     usage()
     sys.exit(2)
+
 
 def getArg():
     """docstring for getArg"""
@@ -72,6 +74,7 @@ def getArg():
 
     return INDEX_FILE, PROJECT_NAME, PROJECT_DIRS
 
+
 def _read_indexer_file():
     """docstring for list_projects"""
     global INDEX_FILE
@@ -81,9 +84,9 @@ def _read_indexer_file():
     try:
         f = open(INDEX_FILE, "r")
         for line in f.readlines():
-            m = re.match(r"\[(.*)\]", line) 
+            m = re.match(r"\[(.*)\]", line)
 
-            if m != None:
+            if m is not None:
                 project_name = m.groups()[0]
                 project_info[project_name] = []
             else:
@@ -97,6 +100,7 @@ def _read_indexer_file():
 
     return project_info
 
+
 def _query_project_dirs():
     """docstring for _query_project"""
     global INDEX_FILE
@@ -109,9 +113,9 @@ def _query_project_dirs():
     try:
         f = open(INDEX_FILE, "r")
         for line in f.readlines():
-            m = re.match(r"\[(.*)\]", line) 
+            m = re.match(r"\[(.*)\]", line)
 
-            if m != None:
+            if m is not None:
                 project_name = m.groups()[0]
                 project_info[project_name] = []
             else:
@@ -126,6 +130,7 @@ def _query_project_dirs():
 
     return project_dirs
 
+
 def _update_indexer_file():
     """docstring for update_indexer_file"""
     global INDEX_FILE
@@ -138,9 +143,9 @@ def _update_indexer_file():
     try:
         f = open(INDEX_FILE, "r+")
         for line in f.readlines():
-            m = re.match(r'\[(.*)\]', line) 
+            m = re.match(r'\[(.*)\]', line)
 
-            if m != None:
+            if m is not None:
                 project_name = m.groups()[0]
                 project_info[project_name] = []
             else:
@@ -164,6 +169,7 @@ def _update_indexer_file():
 
     return project_info
 
+
 def _clean_project():
     """docstring for clean"""
     global INDEX_FILE
@@ -176,9 +182,9 @@ def _clean_project():
     try:
         f = open(INDEX_FILE, "r+")
         for line in f.readlines():
-            m = re.match(r'\[(.*)\]', line) 
+            m = re.match(r'\[(.*)\]', line)
 
-            if m != None:
+            if m is not None:
                 project_name = m.groups()[0]
                 project_info[project_name] = []
             else:
@@ -186,9 +192,9 @@ def _clean_project():
                     project_info[project_name].append(line.strip('\n'))
 
         if PROJECT_NAME == '*':
-            project_info.clear() 
-        elif project_info.has_key(PROJECT_NAME):
-            del project_info[PROJECT_NAME] 
+            project_info.clear()
+        elif PROJECT_NAME in project_info:
+            del project_info[PROJECT_NAME]
 
         f.seek(0, os.SEEK_SET)
         f.truncate(0)
@@ -207,7 +213,7 @@ def _clean_project():
                     file_path = os.path.join(root, name)
                     if os.path.exists(file_path):
                         os.remove(file_path)
-        else: 
+        else:
             tags_file_path = tags_dir_path + os.path.sep + PROJECT_NAME
             if os.path.exists(tags_file_path):
                 os.remove(tags_file_path)
@@ -217,12 +223,14 @@ def _clean_project():
         f.close()
 
     return project_info
-    
+
+
 def clean_project():
     """docstring for clean_project"""
     project_info = _clean_project()
 
     print ';'.join(project_info.keys())
+
 
 def get_project_list():
     """docstring for get_project_list"""
@@ -230,15 +238,18 @@ def get_project_list():
 
     print ';'.join(project_info.keys())
 
+
 def update_indexer_file():
     project_info = _update_indexer_file()
 
     print ';'.join(project_info.keys())
 
+
 def query_project_dirs():
     project_dirs = _query_project_dirs()
 
     print ';'.join(project_dirs)
+
 
 def usage():
     """docstring for usage"""
@@ -265,7 +276,7 @@ def main():
     elif QUERY_MODE:
         query_project_dirs()
     else:
-        update_indexer_file()        
+        update_indexer_file()
 
 if __name__ == '__main__':
     main()

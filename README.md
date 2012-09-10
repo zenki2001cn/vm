@@ -3,6 +3,14 @@ ChangLog
 
 ## TODO
 
+### 18 v1.10.8 beta2
+
+Update: 2012-09-10 11:35:11
+
+* 10.1 更新pymode插件                                       ---> pymode v0.6.9
+* 10.2 修改ctags参数（vimrc、autotag.vim）
+* 10.3 添加配色文件harlequin.vim
+
 ### 18 v1.10.8 beta
 
 Update: 2012-09-07 17:26:34
