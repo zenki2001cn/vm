@@ -107,7 +107,6 @@
 'pymode_run'	pymode.txt	/*'pymode_run'*
 'pymode_run_key'	pymode.txt	/*'pymode_run_key'*
 'pymode_syntax'	pymode.txt	/*'pymode_syntax'*
-'pymode_utils'	pymode.txt	/*'pymode_utils'*
 'pymode_utils_whitespaces'	pymode.txt	/*'pymode_utils_whitespaces'*
 'pymode_virtualenv'	pymode.txt	/*'pymode_virtualenv'*
 'short'/'long'-formats	txtfmt.txt	/*'short'\/'long'-formats*

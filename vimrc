@@ -94,6 +94,9 @@ let g:pymode_utils_whitespaces = 1
 let g:pymode_indent = 1
 " Set default pymode python options
 let g:pymode_options = 1
+
+au FileType python nmap == :PyLintAuto <CR>
+au FileType python nmap -- :PyLint <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pymode setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1059,8 +1062,8 @@ set lbr
 set bs=2
 set wmnu
 " set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
-nmap gj 40j
-nmap gk 40k
+nmap gj 30j
+nmap gk 30k
 " Visual Mode连续缩进
 vnoremap < <gv
 vnoremap > >gv
@@ -1199,6 +1202,7 @@ else
     " colorscheme leo
     " let g:molokai_original=1
     colorscheme molokai
+    " colorscheme badwolf
     " colorscheme candycode_term
     
     " colorscheme lucius

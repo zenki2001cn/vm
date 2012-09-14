@@ -3,7 +3,14 @@ ChangLog
 
 ## TODO
 
-### 18 v1.10.8 beta2
+### 20 v1.10.8 final
+
+Update: 2012-09-10 17:25:14
+
+* 10.1 更新gitv                                             ---> gitv (from github)
+* 10.2 更新tagbar                                           ---> tagbar (from github)
+
+### 19 v1.10.8 beta2
 
 Update: 2012-09-10 11:35:11
 

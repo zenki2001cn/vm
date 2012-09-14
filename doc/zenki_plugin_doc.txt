@@ -155,17 +155,20 @@ GITV                                                              *Gitv_zenki*
     \gv                             查看git历史
 
 *Log界面*
-    <cr>                            进入Commit界面，查看Commit信息
+    <cr>、i                         进入Commit界面，查看Commit信息
     <Shift>s                        在Log界面，选中某次'commit'后显示更新列表
+    <c-n>                           浏览下一个commit
+    <c-p>                           浏览前一个commit
     u                               更新log信息
 
 *Commit界面*
     <cr>                            直接打开比较窗口，Commit界面消失
-    o                               在diff界面按o，打开分割窗口比较两个文件
-    O                               在diff界面按O，打开TAB比较两个文件
+    o、<c-j>                        在diff界面按o，打开水平分割窗口比较两个文件
+    s、<c-k>                        在diff界面按o，打开垂直分割窗口比较两个文件
+    O、<c-l>                        在diff界面按O，打开TAB比较两个文件
 
 *Diff界面*
-    \ge                             进入git编辑模式
+    \gt                             进入git编辑模式
     \gb                             查看责任人
 
 ==============================================================================
@@ -324,8 +327,8 @@ PYMODE                                                          *pymode_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
     :call pymode#troubleshooting#Test()     检查pymode变量环境
-    :PyLint                                 代码错误检查
-    :PyLintAuto                             代码格式调整
+    --                                      代码错误检查
+    ==                                      代码格式调整
     ]]                                      代码块跳转
     [[                                      代码块跳转
 
