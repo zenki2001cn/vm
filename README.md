@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO
 
+### 21 v1.10.9 alpha
+
+Update: 2012-09-15 13:24:03
+
+* 10.1 更新CSApprox插件（修复vim7.3 no-gui bug）            ---> CSApprox v4.00
+
 ### 20 v1.10.8 final
 
 Update: 2012-09-10 17:25:14
