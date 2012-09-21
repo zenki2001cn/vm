@@ -3,11 +3,15 @@ ChangLog
 
 ## TODO
 
-### 21 v1.10.9 alpha
+### 21 v1.10.9 final
 
 Update: 2012-09-15 13:24:03
 
 * 10.1 更新CSApprox插件（修复vim7.3 no-gui bug）            ---> CSApprox v4.00
+* 10.2 更新fugitive插件                                     ---> fugitive (from github)
+* 10.3 更新tlib插件（工具库）                               ---> tlib v0.46
+* 10.4 更新NERD_tree_global.vim（添加ctags参数）            ---> NERD_tree_global_vim
+* 10.5 修改vital插件，添加try-catch机制防止错误             ---> autoload/vital/_9813ec6.vim
 
 ### 20 v1.10.8 final
 

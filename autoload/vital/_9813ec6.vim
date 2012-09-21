@@ -141,10 +141,14 @@ function! s:_build_module(sid, debug)
   return copy(module)
 endfunction
 
+" modify zenki, add try-catch
 function! s:_redir(cmd)
-  redir => res
-    silent! execute a:cmd
-  redir END
+    try
+    redir => res
+    catch
+    endtry
+      silent! execute a:cmd
+    redir END
   return res
 endfunction
 

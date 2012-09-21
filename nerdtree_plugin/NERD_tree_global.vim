@@ -2,11 +2,13 @@
 " File:        NERD_Tree_global.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-06-21
+" Last Change: 2012-09-20 10:12:10
 " License:     
 " ChangeLog:
 "   Date: 2012-08-17 15:39:09
 "       1. 添加global子菜单
+"   Date: 2012-09-20 10:11:52
+"       1. 添加ctags参数
 " ============================================================================
 
 " don't load multiple times
@@ -55,7 +57,7 @@ function! NERDTreeCtagsRun()
     endif
     let dir = curNode.path.str()
 
-    let ctags_cmd = 'ctags' . " -R " . dir
+    let ctags_cmd = 'ctags' . " -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl " . dir
 
     echomsg "ctags running..."
 
