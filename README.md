@@ -3,6 +3,16 @@ ChangLog
 
 ## TODO
 
+### 22 v1.11 alpha
+
+Update: 2012-09-24 15:04:08
+
+* 11.1 添加inccomplete插件（补全#include）                  ---> inccomplete v1.6.31
+* 11.2 更新css插件                                          ---> css3.vim 2012/5/29
+* 11.3 修改vimrc，移除diff模式的快捷键映射
+* 11.4 更新若干配色文件
+* 11.5 更新tagbar                                           ---> tagbar (from github)
+
 ### 21 v1.10.9 final
 
 Update: 2012-09-15 13:24:03

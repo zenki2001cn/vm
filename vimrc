@@ -1,6 +1,18 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" inccomplete setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:inccomplete_findcmd = '/usr/bin/find'
+" let g:inccomplete_addclosebracket = ''
+" let g:inccomplete_sort = ''
+" let g:inccomplete_showdirs = 0
+" let g:inccomplete_appendslash = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" inccomplete setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pymode setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pymode测试 ------------------
@@ -240,10 +252,10 @@ let g:DirDiffTextOnlyInCenter = " 存在："
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.svn,.git"
 
 " 如果是diff模式，映射]c和[c
-if has("diff")
-    nmap ]] ]c
-    nmap [[ [c
-endif
+" if &diff
+    " nmap ]] ]c
+    " nmap [[ [c
+" endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dirdiff setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
