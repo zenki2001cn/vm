@@ -209,6 +209,7 @@
 :TTimeCommand	tlib.txt	/*:TTimeCommand*
 :TVarArg	tlib.txt	/*:TVarArg*
 :TagbarClose	tagbar.txt	/*:TagbarClose*
+:TagbarCurrentTag	tagbar.txt	/*:TagbarCurrentTag*
 :TagbarDebug	tagbar.txt	/*:TagbarDebug*
 :TagbarDebugEnd	tagbar.txt	/*:TagbarDebugEnd*
 :TagbarGetTypeConfig	tagbar.txt	/*:TagbarGetTypeConfig*
@@ -691,8 +692,6 @@ VikiAnchor_line()	viki.txt	/*VikiAnchor_line()*
 VikiAnchor_rx()	viki.txt	/*VikiAnchor_rx()*
 VikiAnchor_vim()	viki.txt	/*VikiAnchor_vim()*
 VikiDefine()	viki.txt	/*VikiDefine()*
-VikiFoldLevel()	viki.txt	/*VikiFoldLevel()*
-VikiFoldText()	viki.txt	/*VikiFoldText()*
 VikiMakeName()	viki.txt	/*VikiMakeName()*
 VikiOpenAsWorkspace()	viki.txt	/*VikiOpenAsWorkspace()*
 VikiOpenFileUrl()	viki.txt	/*VikiOpenFileUrl()*
@@ -1316,6 +1315,11 @@ g:fuf_taggedfile_prompt	fuf.txt	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.txt	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
+g:inccomplete_addclosebracket	inccomplete.txt	/*g:inccomplete_addclosebracket*
+g:inccomplete_appendslash	inccomplete.txt	/*g:inccomplete_appendslash*
+g:inccomplete_findcmd	inccomplete.txt	/*g:inccomplete_findcmd*
+g:inccomplete_showdirs	inccomplete.txt	/*g:inccomplete_showdirs*
+g:inccomplete_sort	inccomplete.txt	/*g:inccomplete_sort*
 g:manpageview_K_EXT	manpageview.txt	/*g:manpageview_K_EXT*
 g:manpageview_iconv	manpageview.txt	/*g:manpageview_iconv*
 g:manpageview_init_EXT	manpageview.txt	/*g:manpageview_init_EXT*
@@ -1442,12 +1446,16 @@ g:tagbar_sort	tagbar.txt	/*g:tagbar_sort*
 g:tagbar_systemenc	tagbar.txt	/*g:tagbar_systemenc*
 g:tagbar_updateonsave_maxlines	tagbar.txt	/*g:tagbar_updateonsave_maxlines*
 g:tagbar_width	tagbar.txt	/*g:tagbar_width*
+g:tlib#Filter_cnfx#expander	tlib.txt	/*g:tlib#Filter_cnfx#expander*
 g:tlib#cache#dont_purge	tlib.txt	/*g:tlib#cache#dont_purge*
 g:tlib#cache#purge_days	tlib.txt	/*g:tlib#cache#purge_days*
 g:tlib#cache#purge_every_days	tlib.txt	/*g:tlib#cache#purge_every_days*
 g:tlib#cache#run_script	tlib.txt	/*g:tlib#cache#run_script*
 g:tlib#cache#script_encoding	tlib.txt	/*g:tlib#cache#script_encoding*
 g:tlib#cache#silent	tlib.txt	/*g:tlib#cache#silent*
+g:tlib#input#filename_padding_r	tlib.txt	/*g:tlib#input#filename_padding_r*
+g:tlib#input#format_filename	tlib.txt	/*g:tlib#input#format_filename*
+g:tlib#input#use_popup	tlib.txt	/*g:tlib#input#use_popup*
 g:tlib#vcs#check	tlib.txt	/*g:tlib#vcs#check*
 g:tlib#vcs#def	tlib.txt	/*g:tlib#vcs#def*
 g:tlib#vcs#executables	tlib.txt	/*g:tlib#vcs#executables*
@@ -1486,6 +1494,7 @@ g:viewdoc_only	viewdoc.txt	/*g:viewdoc_only*
 g:viewdoc_open	viewdoc.txt	/*g:viewdoc_open*
 g:viewdoc_openempty	viewdoc.txt	/*g:viewdoc_openempty*
 g:viewdoc_prevtabonclose	viewdoc.txt	/*g:viewdoc_prevtabonclose*
+g:viki#cmd_no_fnameescape	viki.txt	/*g:viki#cmd_no_fnameescape*
 g:viki#error_malformed_names	viki.txt	/*g:viki#error_malformed_names*
 g:viki#files_head_rx	viki.txt	/*g:viki#files_head_rx*
 g:viki#use_texmath	viki.txt	/*g:viki#use_texmath*
@@ -1594,6 +1603,17 @@ i=	ConflictMotions.txt	/*i=*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
 i_CTRL-X_]	SnippetComplete.txt	/*i_CTRL-X_]*
 ii	viki.txt	/*ii*
+inccomplete	inccomplete.txt	/*inccomplete*
+inccomplete-addclosebracket	inccomplete.txt	/*inccomplete-addclosebracket*
+inccomplete-appendslash	inccomplete.txt	/*inccomplete-appendslash*
+inccomplete-author	inccomplete.txt	/*inccomplete-author*
+inccomplete-configuration	inccomplete.txt	/*inccomplete-configuration*
+inccomplete-description	inccomplete.txt	/*inccomplete-description*
+inccomplete-findcmd	inccomplete.txt	/*inccomplete-findcmd*
+inccomplete-showdirs	inccomplete.txt	/*inccomplete-showdirs*
+inccomplete-sort	inccomplete.txt	/*inccomplete-sort*
+inccomplete-todo	inccomplete.txt	/*inccomplete-todo*
+inccomplete.txt	inccomplete.txt	/*inccomplete.txt*
 include_complete	neocomplcache.txt	/*include_complete*
 indent_patch.txt	txtfmt.txt	/*indent_patch.txt*
 indexer	indexer.txt	/*indexer*
@@ -2142,6 +2162,7 @@ tags_complete	neocomplcache.txt	/*tags_complete*
 tasklist_zenki	zenki_plugin_doc.txt	/*tasklist_zenki*
 tlib#Filter_cnf#New()	tlib.txt	/*tlib#Filter_cnf#New()*
 tlib#Filter_cnfd#New()	tlib.txt	/*tlib#Filter_cnfd#New()*
+tlib#Filter_cnfx#New()	tlib.txt	/*tlib#Filter_cnfx#New()*
 tlib#Filter_fuzzy#New()	tlib.txt	/*tlib#Filter_fuzzy#New()*
 tlib#Object#Methods()	tlib.txt	/*tlib#Object#Methods()*
 tlib#Object#New()	tlib.txt	/*tlib#Object#New()*
@@ -2166,6 +2187,7 @@ tlib#agent#GotoLine()	tlib.txt	/*tlib#agent#GotoLine()*
 tlib#agent#Help()	tlib.txt	/*tlib#agent#Help()*
 tlib#agent#Input()	tlib.txt	/*tlib#agent#Input()*
 tlib#agent#NewItem()	tlib.txt	/*tlib#agent#NewItem()*
+tlib#agent#Null()	tlib.txt	/*tlib#agent#Null()*
 tlib#agent#OR()	tlib.txt	/*tlib#agent#OR()*
 tlib#agent#PageDown()	tlib.txt	/*tlib#agent#PageDown()*
 tlib#agent#PageUp()	tlib.txt	/*tlib#agent#PageUp()*
@@ -2614,6 +2636,8 @@ viki#FindNextHeading()	viki.txt	/*viki#FindNextHeading()*
 viki#FindNextRegion()	viki.txt	/*viki#FindNextRegion()*
 viki#FindPrevHeading()	viki.txt	/*viki#FindPrevHeading()*
 viki#FindRx()	viki.txt	/*viki#FindRx()*
+viki#FoldLevel()	viki.txt	/*viki#FoldLevel()*
+viki#FoldText()	viki.txt	/*viki#FoldText()*
 viki#GetAnchorRx()	viki.txt	/*viki#GetAnchorRx()*
 viki#GetIndent()	viki.txt	/*viki#GetIndent()*
 viki#GetInterVikis()	viki.txt	/*viki#GetInterVikis()*
@@ -2669,6 +2693,7 @@ viki#SetWindow()	viki.txt	/*viki#SetWindow()*
 viki#ShiftListItem()	viki.txt	/*viki#ShiftListItem()*
 viki#SplitDef()	viki.txt	/*viki#SplitDef()*
 viki#SubstituteArgs()	viki.txt	/*viki#SubstituteArgs()*
+viki#UpdateHeadings()	viki.txt	/*viki#UpdateHeadings()*
 viki#WithSuffix()	viki.txt	/*viki#WithSuffix()*
 viki-anyword	viki.txt	/*viki-anyword*
 viki-backslash	viki.txt	/*viki-backslash*

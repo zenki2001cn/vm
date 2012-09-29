@@ -3,6 +3,13 @@ ChangLog
 
 ## TODO
 
+### 23 v1.11 final
+
+Update: 2012-09-29 08:59:13
+
+* 11.1 更新viki插件                                         ---> viki v4.04
+* 11.2 更新tlib插件                                         ---> tlib v1.00
+
 ### 22 v1.11 alpha
 
 Update: 2012-09-24 15:04:08
