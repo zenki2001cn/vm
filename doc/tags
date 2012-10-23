@@ -326,6 +326,18 @@ CSApprox.txt	CSApprox.txt	/*CSApprox.txt*
 CSApprox_zenki	zenki_plugin_doc.txt	/*CSApprox_zenki*
 Case_zenki	zenki_plugin_doc.txt	/*Case_zenki*
 Commit界面	zenki_plugin_doc.txt	/*Commit界面*
+CompleteHelper-dependencies	CompleteHelper.txt	/*CompleteHelper-dependencies*
+CompleteHelper-description	CompleteHelper.txt	/*CompleteHelper-description*
+CompleteHelper-example	CompleteHelper.txt	/*CompleteHelper-example*
+CompleteHelper-history	CompleteHelper.txt	/*CompleteHelper-history*
+CompleteHelper-ideas	CompleteHelper.txt	/*CompleteHelper-ideas*
+CompleteHelper-installation	CompleteHelper.txt	/*CompleteHelper-installation*
+CompleteHelper-known-problems	CompleteHelper.txt	/*CompleteHelper-known-problems*
+CompleteHelper-limitations	CompleteHelper.txt	/*CompleteHelper-limitations*
+CompleteHelper-todo	CompleteHelper.txt	/*CompleteHelper-todo*
+CompleteHelper-usage	CompleteHelper.txt	/*CompleteHelper-usage*
+CompleteHelper.txt	CompleteHelper.txt	/*CompleteHelper.txt*
+CompleteHelper.vim	CompleteHelper.txt	/*CompleteHelper.vim*
 ConflictMotions-configuration	ConflictMotions.txt	/*ConflictMotions-configuration*
 ConflictMotions-dependencies	ConflictMotions.txt	/*ConflictMotions-dependencies*
 ConflictMotions-description	ConflictMotions.txt	/*ConflictMotions-description*
@@ -665,6 +677,7 @@ SnippetComplete-installation	SnippetComplete.txt	/*SnippetComplete-installation*
 SnippetComplete-integration	SnippetComplete.txt	/*SnippetComplete-integration*
 SnippetComplete-known-problems	SnippetComplete.txt	/*SnippetComplete-known-problems*
 SnippetComplete-limitations	SnippetComplete.txt	/*SnippetComplete-limitations*
+SnippetComplete-remap	SnippetComplete.txt	/*SnippetComplete-remap*
 SnippetComplete-todo	SnippetComplete.txt	/*SnippetComplete-todo*
 SnippetComplete-usage	SnippetComplete.txt	/*SnippetComplete-usage*
 SnippetComplete.txt	SnippetComplete.txt	/*SnippetComplete.txt*
@@ -1317,6 +1330,7 @@ g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
 g:inccomplete_addclosebracket	inccomplete.txt	/*g:inccomplete_addclosebracket*
 g:inccomplete_appendslash	inccomplete.txt	/*g:inccomplete_appendslash*
+g:inccomplete_autoselect	inccomplete.txt	/*g:inccomplete_autoselect*
 g:inccomplete_findcmd	inccomplete.txt	/*g:inccomplete_findcmd*
 g:inccomplete_showdirs	inccomplete.txt	/*g:inccomplete_showdirs*
 g:inccomplete_sort	inccomplete.txt	/*g:inccomplete_sort*
@@ -1607,6 +1621,7 @@ inccomplete	inccomplete.txt	/*inccomplete*
 inccomplete-addclosebracket	inccomplete.txt	/*inccomplete-addclosebracket*
 inccomplete-appendslash	inccomplete.txt	/*inccomplete-appendslash*
 inccomplete-author	inccomplete.txt	/*inccomplete-author*
+inccomplete-autoselect	inccomplete.txt	/*inccomplete-autoselect*
 inccomplete-configuration	inccomplete.txt	/*inccomplete-configuration*
 inccomplete-description	inccomplete.txt	/*inccomplete-description*
 inccomplete-findcmd	inccomplete.txt	/*inccomplete-findcmd*

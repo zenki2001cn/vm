@@ -3,6 +3,13 @@ ChangLog
 
 ## TODO
 
+### 24 v1.11.1
+
+* 11.1 更新signature插件                                    ---> signature v1.35
+* 11.2 更新inccomplete插件（补全#include）                  ---> inccomplete v1.6.32
+* 11.3 更新SnippetComplete（新版本需要CompleteHelper库）    ---> SnippetComplete v2.10
+* 11.4 添加CompleteHelper插件（支持新版本的SnippetComplete）---> CompleteHelper v1.30
+
 ### 23 v1.11 final
 
 Update: 2012-09-29 08:59:13

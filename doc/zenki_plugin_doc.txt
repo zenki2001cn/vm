@@ -280,7 +280,7 @@ LOCATOR                                                        *locator_zenki*
 SNIPPETCOMPLETE                                        *snippetcomplete_zenki*
 1. 快捷键使用说明
     KEY                             说明~
-    <C-l>(insert mode)              插入模式补全提示
+    <C-l>(insert mode)              插入模式补全提示，该模式特别适合在有Hints提示的情况下适用
 
 ==============================================================================
 VIMEXPLORER                                                *vimexplorer_zenki*
