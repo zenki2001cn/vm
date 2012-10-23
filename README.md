@@ -3,6 +3,11 @@ ChangLog
 
 ## TODO
 
+### 25 v1.11.2
+
+* 11.1 更新pymode插件                                       ---> pymode v0.6.10
+* 11.2 添加clean_pyc.mk脚本                                 ---> clean_pyc v0.1
+
 ### 24 v1.11.1
 
 * 11.1 更新signature插件                                    ---> signature v1.35
