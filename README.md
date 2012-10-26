@@ -3,6 +3,15 @@ ChangLog
 
 ## TODO
 
+### 26 v1.11.3
+
+* 11.1 添加utags插件                                        ---> utags v1.1
+* 11.2 修改molokai配色
+* 11.3 添加utags支持到NERD_tree_global_vim
+* 11.4 修改vimrc中的快捷键映射，支持utags
+* 11.5 更新帮助文档
+* 11.6 添加SnippetCompleteSnipMate插件                      ---> SnippetCompleteSnipMate v1.0
+
 ### 25 v1.11.2
 
 * 11.1 更新pymode插件                                       ---> pymode v0.6.10

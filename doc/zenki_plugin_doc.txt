@@ -32,6 +32,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    26. Undotree                     |Undotree_zenki|
    27. pymode                       |pymode_zenki|
    28. CSApprox                     |CSApprox_zenki|
+   29. utags                        |utags_zenki|
+   30. SnippetCompleteSnipMate      snippetcompletesnipmate_zenki
 
 ------------------------------------------------------------------------------
 
@@ -280,7 +282,7 @@ LOCATOR                                                        *locator_zenki*
 SNIPPETCOMPLETE                                        *snippetcomplete_zenki*
 1. 快捷键使用说明
     KEY                             说明~
-    <C-l>(insert mode)              插入模式补全提示，该模式特别适合在有Hints提示的情况下适用
+    <C-x><C-l>(insert mode)              插入模式补全提示，该模式特别适合在有Hints提示的情况下适用
 
 ==============================================================================
 VIMEXPLORER                                                *vimexplorer_zenki*
@@ -333,9 +335,26 @@ PYMODE                                                          *pymode_zenki*
     [[                                      代码块跳转
 
 ==============================================================================
-CSApprox                                                      *CSApprox_zenki*
+CSAPPROX                                                      *CSApprox_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
     :CSApproxSnapshot                       生成当前配色方案的配置文件（GUI支持）
+
+==============================================================================
+UTAGS                                                            *utags_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    <C-\>u                                  查找光标所在的变量或函数被调用处
+    <C-\>d                                  查找光标所在的变量或函数的定义
+    <C-F5>                                  跳转到上一个结果
+    <C-F6>                                  跳转到下一个结果 
+
+2. 有修改记录
+
+==============================================================================
+SNIPPETCOMPLETESNIPMATE                        *snippetcompletesnipmate_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    <C-l>(insert mode)                      补全SnipMate的提示 
 
 vim:tw=78:ts=8:ft=help:norl:

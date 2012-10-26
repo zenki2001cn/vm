@@ -2,9 +2,12 @@
 " File:        NERD_Tree_global.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-09-20 10:12:10
+" Last Change: 2012-10-24 17:18:32
 " License:     
 " ChangeLog:
+"   Date: 2012-10-24 16:43:29
+"       1. 添加utags子菜单
+"       2. 更新若干菜单显示
 "   Date: 2012-08-17 15:39:09
 "       1. 添加global子菜单
 "   Date: 2012-09-20 10:11:52
@@ -26,11 +29,11 @@ let g:path_to_global_app = g:path_to_global_app
 
 " add the new menu item via NERD_Tree's API
 let globalMenu = NERDTreeAddSubmenu({
-    \ 'text': '(g)gtags and global tools',
+    \ 'text': '(g)tags and global tools',
     \ 'shortcut': 'g' })
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(u)update GTAGS',
+    \ 'text': '(u)pdate GTAGS',
     \ 'shortcut': 'u',
     \ 'callback': 'NERDTreeGlobalUpdate',
     \ 'parent': globalMenu})
@@ -46,6 +49,13 @@ call NERDTreeAddMenuItem({
     \ 'shortcut': 'c',
     \ 'callback': 'NERDTreeCtagsRun',
     \ 'parent': globalMenu})
+
+call NERDTreeAddMenuItem({
+    \ 'text': '(u)tags run',
+    \ 'shortcut': 'u',
+    \ 'callback': 'NERDTreeUtagsRun',
+    \ 'parent': globalMenu})
+
 
 function! NERDTreeCtagsRun()
     " get the current dir from NERDTree
@@ -90,6 +100,27 @@ function! NERDTreeGtagsRun()
 
     redraw
     echomsg "gtags run finished"
+endfunction
+
+function! NERDTreeUtagsRun()
+    " get the current dir from NERDTree
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+    let dir = curNode.path.str()
+
+    let global_wrap = $HOME.'/.vim/toolsuit/utags'
+    let utags_cmd = global_wrap . " -g " . dir . " > " . dir . "/.utags"
+
+    echomsg "utags running..."
+
+    call system(utags_cmd)
+
+    redraw
+    echomsg "utags run finished"
 endfunction
 
 function! NERDTreeGlobalUpdate()

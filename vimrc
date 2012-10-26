@@ -388,11 +388,6 @@ nmap <F8> :UndotreeToggle <CR>
 "nnoremap <F3> :ClearBookmarks<CR>
 " ---------------------------------------------------------------
 
-"运行ctags,
-nmap <C-n> :tn <CR>
-nmap <C-p> :tp <CR>
-nmap <C-l> :ts <CR>
-
 " 当前打开文件列表
 nmap <leader><leader> \be
 
@@ -728,11 +723,40 @@ nmap <C-x><Tab> :call ToggleNeocomcacheAutoComplete()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SnippetComplete setting start {
+" SnippetComplete & SnippetCompleteSnipMate setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap <C-l> <Plug>(SnippetComplete)
+imap <C-x><C-l> <Plug>(SnippetComplete)
+imap <C-l> <Plug>(SnippetCompleteSnipMate)
+
+" 与SnippetComplete共有一个快捷键
+" imap <Plug>Disable(SnippetCompleteSnipMate) <Plug>(SnippetCompleteSnipMate)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SnippetComplete setting end }
+" SnippetComplete & SnippetCompleteSnipMate setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctags setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set tags+=~/.vim/tags/gl
+" set tags+=~/.vim/tags/sdl
+" set tags+=~/.vim/tags/qt4
+
+nmap <C-n> :tn <CR>
+nmap <C-p> :tp <CR>
+nmap <C-l> :ts <CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctags setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" utags setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <C-\>u :call FindTagUsage( expand("<cword>"), "", 0 )<CR>
+nmap <C-\>d :call FindTagUsage( expand("<cword>"), "\.h$", 0 )<CR>
+nmap <C-F5> :cprevious <CR>
+nmap <C-F6> :cnext <CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" utags setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1016,16 +1040,6 @@ let g:LookupFile_EscCancelsPopup = 1
 " ------------------------------------------------------------------ 
 " LookupFile end }
 " ------------------------------------------------------------------ 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ctags setting start {
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set tags+=~/.vim/tags/gl
-" set tags+=~/.vim/tags/sdl
-" set tags+=~/.vim/tags/qt4
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ctags setting end }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用 setting {

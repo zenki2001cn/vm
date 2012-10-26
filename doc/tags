@@ -682,6 +682,19 @@ SnippetComplete-todo	SnippetComplete.txt	/*SnippetComplete-todo*
 SnippetComplete-usage	SnippetComplete.txt	/*SnippetComplete-usage*
 SnippetComplete.txt	SnippetComplete.txt	/*SnippetComplete.txt*
 SnippetComplete.vim	SnippetComplete.txt	/*SnippetComplete.vim*
+SnippetCompleteSnipMate-configuration	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-configuration*
+SnippetCompleteSnipMate-dependencies	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-dependencies*
+SnippetCompleteSnipMate-description	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-description*
+SnippetCompleteSnipMate-history	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-history*
+SnippetCompleteSnipMate-ideas	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-ideas*
+SnippetCompleteSnipMate-installation	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-installation*
+SnippetCompleteSnipMate-known-problems	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-known-problems*
+SnippetCompleteSnipMate-limitations	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-limitations*
+SnippetCompleteSnipMate-remap	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-remap*
+SnippetCompleteSnipMate-todo	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-todo*
+SnippetCompleteSnipMate-usage	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate-usage*
+SnippetCompleteSnipMate.txt	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate.txt*
+SnippetCompleteSnipMate.vim	SnippetCompleteSnipMate.txt	/*SnippetCompleteSnipMate.vim*
 TOhtml_zenki	zenki_plugin_doc.txt	/*TOhtml_zenki*
 TXtermColorTable	xterm-color-table.txt	/*TXtermColorTable*
 Tab_zenki	zenki_plugin_doc.txt	/*Tab_zenki*
@@ -1615,6 +1628,7 @@ gprof-toc	ft_gprof.txt	/*gprof-toc*
 gprof-usage	ft_gprof.txt	/*gprof-usage*
 i=	ConflictMotions.txt	/*i=*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
+i_CTRL-X_%	SnippetCompleteSnipMate.txt	/*i_CTRL-X_%*
 i_CTRL-X_]	SnippetComplete.txt	/*i_CTRL-X_]*
 ii	viki.txt	/*ii*
 inccomplete	inccomplete.txt	/*inccomplete*
@@ -2589,6 +2603,7 @@ unite-ref-for-ref-sources	unite-ref.txt	/*unite-ref-for-ref-sources*
 unite-ref-introduction	unite-ref.txt	/*unite-ref-introduction*
 unite-ref-sources	unite-ref.txt	/*unite-ref-sources*
 unite-ref.txt	unite-ref.txt	/*unite-ref.txt*
+utags_zenki	zenki_plugin_doc.txt	/*utags_zenki*
 v_:B	vis.txt	/*v_:B*
 v_<expr>	viki.txt	/*v_<expr>*
 v_[%	matchit.txt	/*v_[%*
