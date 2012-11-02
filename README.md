@@ -3,6 +3,11 @@ ChangLog
 
 ## TODO
 
+### 27 v1.11.4
+
+* 11.1 更新NERD_commenter插件                               ---> NERD_commenter (from github)
+* 11.2 更新yate插件                                         ---> yate v1.4.1
+
 ### 26 v1.11.3
 
 * 11.1 添加utags插件                                        ---> utags v1.1

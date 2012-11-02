@@ -279,8 +279,8 @@ nnoremap ,cf :Dox<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERD_commenter setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims=1       " 让注释符与语句之间留一个空格
-let NERDCompactSexyComs=1   " 多行注释时样子更好看
+let g:NERDSpaceDelims=1         " 让注释符与语句之间留一个空格
+let g:NERDCompactSexyComs=1     " 多行注释时样子更好看
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERD_commenter setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -967,7 +967,7 @@ let g:miniBufExplModSelTarget = 1
 " ------------------------------------------------------------------ 
 
 " set completeopt as don't show menu and preview
-au FileType java,c,cpp,hlsl set completeopt=menuone
+au FileType java,c,cpp,hlsl set completeopt=menuone,menu,longest
 
 " use global scope search
 let OmniCpp_GlobalScopeSearch = 1

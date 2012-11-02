@@ -33,7 +33,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    27. pymode                       |pymode_zenki|
    28. CSApprox                     |CSApprox_zenki|
    29. utags                        |utags_zenki|
-   30. SnippetCompleteSnipMate      snippetcompletesnipmate_zenki
+   30. SnippetCompleteSnipMate      |snippetcompletesnipmate_zenki|
 
 ------------------------------------------------------------------------------
 
