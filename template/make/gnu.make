@@ -4,34 +4,42 @@
 #   $ make clean     Clean the objectives and target.
 ###############################################################################
 
-CROSS_COMPILE =
-OPTIMIZE := -O
-WARNINGS := -Wall -Wno-unused -Wno-format
-DEFS     := -DMYDEF=1 -UMYDEF2
-EXTRA_CFLAGS := 
+CROSS_COMPILE   =
+OPTIMIZE        := -O
+WARNINGS        := -Wall -Wno-unused -Wno-format
+DEFS            := 
+EXTRA_CFLAGS    := 
+LDFLAGS         := 
 
 # 输出目录，会自动创建
-OUT_DIR 	= out
-OBJ_DIR   	= $(OUT_DIR)/obj
+OUT_DIR 	    = out
+OBJ_DIR   	    = $(OUT_DIR)/obj
 
 # 头文件目录
-INC_DIR   		= include/???
+INC_DIR   		= ???
 # 源文件目录
-SRC_DIR   		= src/???
+SRC_DIR   		= ???
 # 额外包含的源文件列表
 EXTRA_SRC 		= 
 # 排除的文件列表
 EXCLUDE_FILES 	= 
 # 源文件后缀
 SUFFIX 			= c cpp cc cxx
+# 额外的目标文件
+EXTRA_OBJS      = 
 
 # 目标名称和类型，不需要考虑后缀名，定义多个名称实际上多个拷贝
 # 如：$(OUT_DIR)/main 
-TARGET       := $(OUT_DIR)/???
-TARGET_TYPE  := app
-#TARGET_TYPE  := ar
-#TARGET_TYPE  := so
+TARGET          := ???
+TARGET_TYPE     := app
+# TARGET_TYPE     := ar
+# TARGET_TYPE     := so
 
+# 其他的任务
+.other_task:
+
+# 其他任务的清除工作
+.other_clean:
 
 #####################################################################################
 #  Do not change any part of them unless you have understood this script very well  #
@@ -90,7 +98,7 @@ endif
 
 PHONY = all .mkdir clean
 
-all: .mkdir $(TARGET)
+all: .mkdir .other_task $(TARGET)
 
 define cmd_o
 $$(obj-$1): $2%.o: %.$1  $(MAKEFILE_LIST)
@@ -107,16 +115,15 @@ $(TARGET): $(all_objs)
 else
 $(TARGET): LD = $(if $(strip $(src-cpp) $(src-cc) $(src-cxx)),$(G++),$(GCC))
 $(TARGET): $(all_objs)
-	$(LD) $(LDFLAGS) $(all_objs) -o $@
+	$(LD) $(LDFLAGS) $(all_objs) $(EXTRA_OBJS) -o $@
 endif
 
 .mkdir:
 	@if [ ! -d $(OBJ_DIR) ]; then mkdir -p $(OBJ_DIR); fi
 
-clean:
+clean: .other_clean
 	rm -f $(prefix_objdir)*.o $(TARGET)
 
 -include $(patsubst %.o,%.o.d,$(all_objs))
 
 .PHONY: $(PHONY)
-

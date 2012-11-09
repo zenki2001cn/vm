@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO
 
+### 28 v1.11.5
+
+* 11.1 添加stl插件（C++ STL语法高亮）                       ---> stl v0.2
+* 11.2 添加latex-suite（Latex插件）                         ---> latex-suite v1.8.23-20120125
+* 11.3 修改vimrc若干配置
+
 ### 27 v1.11.4
 
 * 11.1 更新NERD_commenter插件                               ---> NERD_commenter (from github)

@@ -1,6 +1,118 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AutomaticLaTeXPlugin setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " let g:atp_tab_map   = 1
+" " let g:atp_Compiler  = 'python'
+" " let g:atp_local_completion = 1
+
+" nmap  <silent> <buffer> <F12>s	        <Plug>ToggleStar
+" nmap  <silent> <buffer> <F12><F12>s	    <Plug>TogglesilentMode
+" nmap  <silent> <buffer> <F12><F12>d	    <Plug>ToggledebugMode
+" nmap  <silent> <buffer> <F12><F12>D	    <Plug>ToggleDebugMode
+
+" vmap  <silent> <buffer> <S-F12>			<Plug>WrapEnvironment
+" nmap  <silent> <buffer> <S-F12>			<Plug>ChangeEnv
+" imap  <silent> <buffer> <S-F12>			<C-O><Plug>ChangeEnv
+" nmap  <silent> <buffer> <S-F12>T		<Plug>ToggleEnvForward
+
+" nmap  <silent> <buffer> <C-F12>v        <Plug>ATP_ViewOutput_sync
+" nmap  <silent> <buffer> <C-F12>n		<Plug>ATP_ViewOutput_nosync
+" nmap  <silent> <buffer> <C-F11>V        <Plug>ATP_ViewLocalOutput_sync
+" nmap  <silent> <buffer> <C-F11>N		<Plug>ATP_ViewLocalOutput_nosync
+" imap  <silent> <buffer> <S-F12>v 		<C-O><Plug>ATP_ViewOutput_sync
+" imap  <silent> <buffer> <S-F12>V 		<C-O><Plug>ATP_ViewLocalOutput_sync
+
+" nmap  <silent> <buffer> <F12>g 		    <Plug>Getpid
+" nmap  <silent> <buffer> <F12>t		    <Plug>ATP_TOC
+" nmap  <silent> <buffer> <F12>L		    <Plug>ATP_Labels
+" nmap  <silent> <buffer> <F12>l 		    <Plug>ATP_TeXCurrent
+" nmap <silent> <buffer>  <F12><F12>l     <Plug>ATP_TeXLocal
+" nmap  <silent> <buffer> <C-F12>d 		<Plug>ATP_TeXdebug
+" nmap  <silent> <buffer> <C-F12>D 		<Plug>ATP_TeXDebug
+" nmap  <silent> <buffer> <S-F12>D 		<Plug>ATP_TeXVerbose
+
+" nmap  <silent> <buffer> <S-F11> 		<Plug>ToggleAuTeX
+" imap  <silent> <buffer> <S-F11> 		<C-O><Plug>ToggleAuTeX
+" nmap  <silent> <buffer> `<Tab>			<Plug>ToggleTab
+" imap  <silent> <buffer> `<Tab>			<Plug>ToggleTab
+" nmap  <silent> <buffer> '<Tab>			<Plug>ToggleIMaps
+" imap  <silent> <buffer> '<Tab>			<Plug>ToggleIMaps
+" nmap  <silent> <buffer> <F12>B		    <Plug>SimpleBibtex
+" nmap  <silent> <buffer> <F12>b		    <Plug>BibtexDefault
+
+" nmap  <silent> <buffer> <F11>d 			<Plug>Delete
+" imap  <silent> <buffer> <F11>d			<C-O><Plug>Delete
+" nmap  <silent> <buffer> <F11>l 			<Plug>OpenLog
+" imap  <silent> <buffer> <F11>l 			<C-O><Plug>OpenLog
+" nmap  <silent> <buffer> <F11>e 			:ShowErrors e<CR>
+" imap  <silent> <buffer> <F11>e 			:ShowErrors e<CR>
+" nmap  <silent> <buffer> <F11>E		    :ShowErrors<CR>
+" nmap  <silent> <buffer> <F11>w 			:ShowErrors w<CR>
+" imap  <silent> <buffer> <F11>w 			:ShowErrors w<CR>
+" nmap  <silent> <buffer> <F11>r 			:ShowErrors rc<CR>
+" imap  <silent> <buffer> <F11>r 			:ShowErrors rc<CR>
+" nmap  <silent> <buffer> <F11>f 			:ShowErrors f<CR>
+" imap  <silent> <buffer> <F11>f 			:ShowErrors f<CR>
+" nmap  <silent> <buffer> <F11>g 			<Plug>PdfFonts
+
+" nmap           <buffer> <C-F11>			<Plug>TexDoc
+" imap           <buffer> <C-F11> 		<Plug>iTexDoc
+
+" nmap <buffer> <silent> <F12>f		<Plug>SyncTexKeyStroke
+" nmap <buffer> <silent> <F12><F12>f	<Plug>SyncTexLKeyStroke
+" nmap <buffer> <silent> <F12>F		<Plug>SyncTexLKeyStroke
+
+" au FileType tex     imap <buffer> <C-n> <Plug>TexJMotionForward
+" au FileType tex     nmap <buffer> <C-n> <Plug>TexJMotionForward
+" au FileType tex     imap <buffer> <C-p> <Plug>TexJMotionBackward
+" au FileType tex     nmap <buffer> <C-p> <Plug>TexJMotionBackward
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AutomaticLaTeXPlugin setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Latex-suite setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tex_flavor = 'latex'
+let g:Tex_HotKeyMappings = ''
+" let g:Tex_UseMakefile = 0 
+
+au FileType tex imap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+au FileType tex nmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+au FileType tex vmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+au FileType tex imap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
+au FileType tex nmap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
+
+au FileType tex imap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
+au FileType tex nmap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
+au FileType tex vmap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
+au FileType tex imap <silent> <buffer> <S-F10> <Plug>Tex_FastCommandChange
+au FileType tex nmap <silent> <buffer> <S-F10> <Plug>Tex_FastCommandChange
+
+if has('gui_running')
+    au FileType tex imap <buffer> <silent> <F11> <Plug>Tex_Completion
+else
+	au FileType tex	imap <buffer> <F11> <Plug>Tex_Completion
+endif
+
+au FileType tex nmap <buffer>   <F12>   <ESC>:w<CR>\ll<ESC>\lv   
+au FIleType tex vmap <buffer>   <F12>   <ESC>:w<CR>\ll<ESC>\lv
+au FIleType tex nmap <buffer>   <leader>tt  :TTemplate <CR>
+au FIleType tex nmap <buffer>   <leader>tm  :TMacro <CR>
+" au FileType tex nmap    <C-Tab>   <C-j>
+" au FileType tex imap    <C-Tab>   <C-j>
+" au FileType tex vmap    <C-Tab>   <C-j>
+" au FileType tex set keywordprg=:help
+au FileType tex set grepprg=grep\ -nH\ $*
+au FileType tex set sw=2
+au FileType tex set iskeyword+=:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Latex-suite setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " inccomplete setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:inccomplete_findcmd = '/usr/bin/find'
@@ -917,19 +1029,20 @@ au! BufRead,BufNewFile /var/log/* set filetype=syslog
 " F4:  Switch on/off TagList
 
 "let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool 
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself 
-let Tlist_Use_Right_Window = 1 " split to the right side of the screen 
-let Tlist_Sort_Type = "order" " sort by order or name
-let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
-let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
-let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
-let Tlist_BackToEditBuffer = 0 " If no close on select, let the user choose back to edit buffer or not
-let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
+let Tlist_Show_One_File = 1             " Displaying tags for only one file~
+let Tlist_Exist_OnlyWindow = 1          " if you are the last, kill yourself 
+let Tlist_Use_Right_Window = 1          " split to the right side of the screen 
+let Tlist_Sort_Type = "order"           " sort by order or name
+let Tlist_Display_Prototype = 0         " do not show prototypes and not tags in the taglist window.
+let Tlist_Compart_Format = 1            " Remove extra information and blank lines from the taglist window.
+let Tlist_GainFocus_On_ToggleOpen = 1   " Jump to taglist window on open.
+let Tlist_Display_Tag_Scope = 1     " Show tag scope next to the tag name.
+let Tlist_Close_On_Select = 0       " Close the taglist window when a file or tag is selected.
+let Tlist_BackToEditBuffer = 0      " If no close on select, let the user choose back to edit buffer or not
+let Tlist_Enable_Fold_Column = 0    " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 50
-let Tlist_Compact_Format = 1 " do not show help
+let Tlist_Compact_Format = 1        " do not show help
+let Tlist_File_Fold_Auto_Close=1    "Auto fold file that not edited
 " very slow, so I disable this
 " let Tlist_Process_File_Always = 1 " To use the :TlistShowTag and the :TlistShowPrototype commands without the taglist window and the taglist menu, you should set this variable to 1.
 ":TlistShowPrototype [filename] [linenumber]
@@ -967,7 +1080,7 @@ let g:miniBufExplModSelTarget = 1
 " ------------------------------------------------------------------ 
 
 " set completeopt as don't show menu and preview
-au FileType java,c,cpp,hlsl set completeopt=menuone,menu,longest
+au FileType java,c,cpp,hlsl,tex set completeopt=menuone,menu,longest
 
 " use global scope search
 let OmniCpp_GlobalScopeSearch = 1
@@ -1016,7 +1129,7 @@ let OmniCpp_SelectFirstItem = 0
 
 " DISABLE: au FileType python set completeopt=menuone,preview
 " NOTE: the preview can show the internal document in a preview window, but I don't think it have too much help
-au FileType python set completeopt=menuone,menu,longest,preview
+au FileType python set completeopt=menuone,menu,longest
 au FileType python set tabstop=4 shiftwidth=4 expandtab
 " ------------------------------------------------------------------ 
 " pythoncomplete end }
@@ -1173,9 +1286,9 @@ if (has("gui_running"))
     "GUI配置
     "set guioptions+=b "添加水平滚动条
     "去除工具栏
-    set guioptions-=T
+    " set guioptions-=T
     "去除菜单栏
-    set guioptions-=m
+    " set guioptions-=m
     "去除右边滚动条
     set guioptions-=r
     set guioptions-=L

@@ -34,6 +34,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    28. CSApprox                     |CSApprox_zenki|
    29. utags                        |utags_zenki|
    30. SnippetCompleteSnipMate      |snippetcompletesnipmate_zenki|
+   31. Latex-suite                  |latex-suite_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -356,5 +357,28 @@ SNIPPETCOMPLETESNIPMATE                        *snippetcompletesnipmate_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
     <C-l>(insert mode)                      补全SnipMate的提示 
+
+==============================================================================
+LATEXSUITE                                                 *latex-suite_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    :TTemplate                              加载模板
+    :TMacro                                 加载宏
+    <F9>                                    环境选择模式
+    <S-F9>                                  环境变更模式
+    <F10>                                   命令选择模式
+    <S-F10>                                 命令变更模式
+    <F11>                                   搜索\开头的环境定义，如\begin、\cite
+    <F12>                                   自动编译并打开pdf文档
+    `[a-Z]                                  显示相应的希腊字母
+    `/                                      \frac分数模式
+    `|                                      积分号
+    [[                                      left & right补全
+    {{                                      left & right补全
+    <C-x><C-k>                              关键字补全
+    帮助文档1                               doc/latex-suite-quickstart/index.html
+    帮助文档2                               doc/latex-suite/index.html
+
+2. 有修改记录
 
 vim:tw=78:ts=8:ft=help:norl:
