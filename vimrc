@@ -1,5 +1,7 @@
 runtime! debian.vim
 
+" let g:sztool_home = '/home/zenki/.vim/sztools'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutomaticLaTeXPlugin setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,6 +79,8 @@ runtime! debian.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_flavor = 'latex'
 let g:Tex_HotKeyMappings = ''
+let g:Tex_TaglistSupport = 0
+let g:Tex_InternalTagsDefinitions = 0
 " let g:Tex_UseMakefile = 0 
 
 au FileType tex imap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
@@ -1265,13 +1269,11 @@ let g:template_path = $HOME.'/.vim/template/*/'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " java补全 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" java 
-
+" 补全需要将相关的jar加入到环境变量$CLASSPATH中
 if has("autocmd")
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
     autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 endif
-
 "inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P>
 "inoremap <buffer> <C-S-Space> <C-X><C-U><C-P>
 
@@ -1294,6 +1296,10 @@ if (has("gui_running"))
     set guioptions-=L
     "字体配置
     set guifont=monospace\ 10
+
+    " 解决gvim下无法显示中文的问题
+    " 在/usr/share/vim/vim72/lang/下创建链接：
+    " menu_zh_cn.utf8.vim -> menu_zh_cn.utf-8.vim
 
     "colorscheme ekinivim
     " colorscheme CodeFactoryv3

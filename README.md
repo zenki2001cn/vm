@@ -3,7 +3,7 @@ ChangLog
 
 ## TODO
 
-### 28 v1.11.5
+### 28 v1.11.5 final
 
 * 11.1 添加stl插件（C++ STL语法高亮）                       ---> stl v0.2
 * 11.2 添加latex-suite（Latex插件）                         ---> latex-suite v1.8.23-20120125
