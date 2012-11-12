@@ -2152,6 +2152,7 @@ tabular-scripting	Tabular.txt	/*tabular-scripting*
 tabular-toc	Tabular.txt	/*tabular-toc*
 tabular-walkthrough	Tabular.txt	/*tabular-walkthrough*
 tabular.vim	Tabular.txt	/*tabular.vim*
+tabular_zenki	zenki_plugin_doc.txt	/*tabular_zenki*
 tagbar	tagbar.txt	/*tagbar*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-commands	tagbar.txt	/*tagbar-commands*

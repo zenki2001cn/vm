@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO
 
+### 29 v1.11.6
+
+* 11.1 添加Tabularize插件（文本对齐）                       ---> Tabularize (from github)
+* 11.2 加入自定义库mylibs                                   ---> mylibs v0.1
+* 11.3 修改vimrc若干配置
+
 ### 28 v1.11.5 final
 
 * 11.1 添加stl插件（C++ STL语法高亮）                       ---> stl v0.2

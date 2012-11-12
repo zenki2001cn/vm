@@ -1,6 +1,30 @@
 runtime! debian.vim
 
-" let g:sztool_home = '/home/zenki/.vim/sztools'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabularize setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 根据指定的字符，对齐文本行
+au FileType c,cpp,java nmap == :Tabularize /= <CR>
+au FileType vim nmap == :Tabularize /" <CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabularize setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mylibs setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 自定义库的路径
+let g:my_python_home = $HOME.'/.vim/mylibs'
+
+function RunMyPyfile(filename)
+    exec "pyfile ".g:my_python_home."/python/".a:filename
+endfunction
+
+" 加载NERDTree文件操作功能的扩展库
+call RunMyPyfile("FileUtil.py")
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mylibs setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutomaticLaTeXPlugin setting start {
@@ -79,8 +103,8 @@ runtime! debian.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_flavor = 'latex'
 let g:Tex_HotKeyMappings = ''
-let g:Tex_TaglistSupport = 0
-let g:Tex_InternalTagsDefinitions = 0
+" let g:Tex_TaglistSupport = 0
+" let g:Tex_InternalTagsDefinitions = 0
 " let g:Tex_UseMakefile = 0 
 
 au FileType tex imap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
@@ -1030,9 +1054,7 @@ au! BufRead,BufNewFile /var/log/* set filetype=syslog
 " ------------------------------------------------------------------ 
 " TagList start {
 " ------------------------------------------------------------------ 
-" F4:  Switch on/off TagList
-
-"let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool 
+" F3:  Switch on/off TagList
 let Tlist_Show_One_File = 1             " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1          " if you are the last, kill yourself 
 let Tlist_Use_Right_Window = 1          " split to the right side of the screen 
@@ -1069,12 +1091,9 @@ let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mea
 " let g:miniBufExplorerMoreThanOne = 0 " Setting this to 0 will cause the MBE window to be loaded even
 
 "let g:miniBufExplForceSyntaxEnable = 1 " There is a VIM bug that can cause buffers to show up without their highlighting. The following setting will cause MBE to
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-"let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
 " ------------------------------------------------------------------ 
 " MiniBufExpl end }
 " ------------------------------------------------------------------ 
@@ -1084,7 +1103,7 @@ let g:miniBufExplModSelTarget = 1
 " ------------------------------------------------------------------ 
 
 " set completeopt as don't show menu and preview
-au FileType java,c,cpp,hlsl,tex set completeopt=menuone,menu,longest
+au FileType java,c,cpp,hlsl,tex,vim set completeopt=menuone,menu,longest
 
 " use global scope search
 let OmniCpp_GlobalScopeSearch = 1
@@ -1173,8 +1192,8 @@ behave xterm        " set mouse behavior as xterm
 set mouse=a
 set viminfo+=!      " make sure it can save viminfo 
 set shellredir=>%s\ 2>&1
-set updatetime=2000 " default = 4000
-set autoread        " auto read same-file change ( better for vc/vim change )
+set updatetime=10000 "  default = 4000, 改为10秒同步磁盘
+set autoread         "  auto read same-file change ( better for vc/vim change )
 set maxmempattern=1000
 
 set nocompatible
