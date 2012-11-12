@@ -3,6 +3,10 @@ ChangLog
 
 ## TODO
 
+### 30 v1.11.7
+
+* 11.1 更新tlib                                             ---> tlib v1.02
+
 ### 29 v1.11.6
 
 * 11.1 添加Tabularize插件（文本对齐）                       ---> Tabularize (from github)

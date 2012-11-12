@@ -1481,6 +1481,7 @@ g:tlib#cache#purge_every_days	tlib.txt	/*g:tlib#cache#purge_every_days*
 g:tlib#cache#run_script	tlib.txt	/*g:tlib#cache#run_script*
 g:tlib#cache#script_encoding	tlib.txt	/*g:tlib#cache#script_encoding*
 g:tlib#cache#silent	tlib.txt	/*g:tlib#cache#silent*
+g:tlib#input#filename_max_width	tlib.txt	/*g:tlib#input#filename_max_width*
 g:tlib#input#filename_padding_r	tlib.txt	/*g:tlib#input#filename_padding_r*
 g:tlib#input#format_filename	tlib.txt	/*g:tlib#input#format_filename*
 g:tlib#input#use_popup	tlib.txt	/*g:tlib#input#use_popup*
@@ -2201,6 +2202,7 @@ tlib#Object#Methods()	tlib.txt	/*tlib#Object#Methods()*
 tlib#Object#New()	tlib.txt	/*tlib#Object#New()*
 tlib#World#New()	tlib.txt	/*tlib#World#New()*
 tlib#agent#AND()	tlib.txt	/*tlib#agent#AND()*
+tlib#agent#CompleteAgentNames()	tlib.txt	/*tlib#agent#CompleteAgentNames()*
 tlib#agent#Copy()	tlib.txt	/*tlib#agent#Copy()*
 tlib#agent#CopyItems()	tlib.txt	/*tlib#agent#CopyItems()*
 tlib#agent#Cut()	tlib.txt	/*tlib#agent#Cut()*
@@ -2215,6 +2217,7 @@ tlib#agent#EditFileInTab()	tlib.txt	/*tlib#agent#EditFileInTab()*
 tlib#agent#EditFileInVSplit()	tlib.txt	/*tlib#agent#EditFileInVSplit()*
 tlib#agent#EditItem()	tlib.txt	/*tlib#agent#EditItem()*
 tlib#agent#EditReturnValue()	tlib.txt	/*tlib#agent#EditReturnValue()*
+tlib#agent#ExecAgentByName()	tlib.txt	/*tlib#agent#ExecAgentByName()*
 tlib#agent#Exit()	tlib.txt	/*tlib#agent#Exit()*
 tlib#agent#GotoLine()	tlib.txt	/*tlib#agent#GotoLine()*
 tlib#agent#Help()	tlib.txt	/*tlib#agent#Help()*
