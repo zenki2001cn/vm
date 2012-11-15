@@ -238,7 +238,8 @@ endif
 syntax cluster  htmlJavaScript contains=@javaScriptAll,javaScriptBracket,javaScriptParen,javaScriptBlock,javaScriptParenError
 syntax cluster  javaScriptExpression contains=@javaScriptAll,javaScriptBracket,javaScriptParen,javaScriptBlock,javaScriptParenError,@htmlPreproc
 
-let b:current_syntax = "javascript"
+" modify zenki, enable syntax/jquery.vim
+" let b:current_syntax = "javascript"
 if main_syntax == 'javascript'
   unlet main_syntax
 endif

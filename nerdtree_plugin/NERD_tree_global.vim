@@ -67,7 +67,7 @@ function! NERDTreeCtagsRun()
     endif
     let dir = curNode.path.str()
 
-    let ctags_cmd = 'ctags' . " -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl " . dir
+    let ctags_cmd = 'ctags' . " -o " . dir . "/tags " . " -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl,html,javascript,php,tex,lisp,lua, --langmap=c++:+.inl " . dir
 
     echomsg "ctags running..."
 

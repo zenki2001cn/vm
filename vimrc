@@ -1,6 +1,128 @@
 runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 通用 setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"让vim记忆上次编辑的位置
+autocmd BufReadPost * 
+    \ if line("'\"")>0&&line("'\"")<=line("$") |
+    \ exe "normal g'\"" |
+    \ endif
+""让vim记忆上次编辑的位置
+
+set langmenu=none       " always use English menu
+behave xterm            " set mouse behavior as xterm
+set mouse=a
+set viminfo+=!          " make sure it can save viminfo 
+set shellredir=>%s\ 2>&1
+set updatetime=10000    "  default = 4000, 改为10秒同步磁盘
+set autoread            "  auto read same-file change ( better for vc/vim change )
+set maxmempattern=1000
+
+set nocompatible
+filetype on 
+filetype plugin on
+set history=1000 
+set autoindent
+set cindent
+set smartindent
+set smarttab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab               " TAB键扩展
+set showmatch
+set t_vb=
+"set vb
+set ruler
+set hlsearch                " 搜索时高亮显示匹配的文本
+set incsearch               " 输入搜索内容时，显示匹配的文本
+"set autochdir              " 自动切换到当前文件所在目录，开启后不能使用Java的tags文件
+"set foldenable             " 开启折叠
+"set foldmethod=syntax      " 设置语法折叠
+"set foldcolumn=0           " 设置折叠区域的宽度
+"set foldlevel=1            " 设置折叠层数
+set lbr
+set bs=2
+set wmnu
+" set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
+nmap gj 30j
+nmap gk 30k
+" Visual Mode连续缩进
+vnoremap < <gv
+vnoremap > >gv
+set laststatus=2
+
+set matchtime=0       "  0 second to show the matching paren ( much faster )
+set nonu                "  Show LineNumber
+set nowrap            "  I don't like wrap, cause in split window mode, it feel strange
+set wildmenu          "  turn on wild menu, try typing :h and press <Tab>
+set showcmd           "  display incomplete commands
+set cmdheight=1       "  1 screen lines to use for the command-line
+set hid               "  allow to change buffer without saving
+set shortmess=atI     "  shortens messages to avoid 'press a key' prompt
+set lazyredraw        "  do not redraw while executing macros (much faster)
+set display+=lastline "  for easy browse last line with wrap text
+set showfulltag       "  show tag with function protype.
+
+" 状态栏
+" set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
+" set statusline=%F%m%r,%Y,%{&fileformat}\ \ \ ASCII=\%b,HEX=\%B\ \ \ [位置=%l,%c%V] [\%p%%\ ] [总行数=%L]
+" set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b]\[HEX=%02.2B]\[行=%04l,列=%04v]\[%p%%]\[总行=%L]
+" set statusline=%F\ \ \ %{&fileformat},%{&fileencoding},%Y\ \ \ A=%03.3b,H=%02.2B\ R=%03l/%L(%p%%),C=%02v
+
+set hidden
+"光标离上下边界10行时自动滚动
+set scrolloff=10
+"设置默认系统剪贴板
+"set clipboard=unnamed
+
+"使得注释换行时自动加上空格和星号
+"set formatoptions=tcqro
+"高亮显示当前行
+set cursorline
+"显示中文帮助
+"set helplang=cn
+"当粘贴文本时,使用该属性
+" set paste
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+set ignorecase  " Set search/replace pattern to ignore case 
+set smartcase   " Set smartcase mode on, If there is upper case character in the search patern, the 'ignorecase' option will be override.
+
+let &termencoding=&encoding
+set encoding=utf-8  
+set termencoding=utf-8  
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+syntax on
+
+"模板装载路径
+let g:template_path = $HOME.'/.vim/template/*/'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 通用 setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CommandT setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>ct :CommandT<CR>
+nnoremap <silent> <Leader>cb :CommandTBuffer<CR>
+
+let g:CommandTMaxFiles = 100000
+let g:CommandTMaxDepth = 100
+let g:CommandTMaxCachedDirectories = 10
+let g:CommandTCancelMap = ['<C-c>', '<ESC>']
+" let g:CommandTSelectNextMap = 'j'
+" let g:CommandTSelectPrevMap = 'k'
+" let g:CommandTAcceptSelectionSplitMap = 's'
+" let g:CommandTAcceptSelectionVSplitMap = 'v'
+" let g:CommandTAcceptSelectionTabMap = 't'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CommandT setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabularize setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 根据指定的字符，对齐文本行
@@ -253,11 +375,10 @@ au FileType python nmap -- :PyLint <CR>
 " pymode setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indexer setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indexer_ctagsCommandLineOptions = '--sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl'
+let g:indexer_ctagsCommandLineOptions = '--sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl,html,javascript,php,tex,lisp,lua, --langmap=c++:+.inl'
 let g:indexer_disableCtagsWarning = 1
 " let g:indexer_ctagsCommandLineOptions = '--sort=yes --c++-kinds=+p --fields=+iaS --fields=+lS --extra=+q'
 " let g:indexer_indexerListFilename = $HOME.'/.indexer_files'
@@ -451,7 +572,6 @@ let g:path_to_flist_app = $HOME.'/.vim/toolsuit/flist'
 " if match( expand("<sfile>"), expand("$HOME") ) != 0
 
 let g:C_GuiTemplateBrowser = 'explorer'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " c-support setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -489,8 +609,6 @@ let g:SuperTabContextDiscoverDiscovery =
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
         \	if &omnifunc == "" |
-        \		setlocal omnifunc=omni#cpp#complete#Main |
-        \		setlocal omnifunc=pythoncomplete#Complete |
         \		setlocal omnifunc=syntaxcomplete#Complete |
         \	endif
 endif
@@ -518,6 +636,9 @@ nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
 " 标记跳转
 nnoremap <unique> <silent> <F6> ]`
 nnoremap <unique> <silent> <F5> [`
+
+" 加载CCTree数据库
+nnoremap <F7> :CCTreeLoadDB<CR>
 
 " 开关UndoTree
 nmap <F8> :UndotreeToggle <CR>
@@ -584,8 +705,6 @@ nnoremap ws <C-w><C-s>  " 水平分割窗口
 au BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full) 
 au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
 
-" au BufNewFile,BufRead,BufEnter *.c,*.h,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-
 "cflow
 au BufNewFile,BufRead *.cflow set ft=cflow
 
@@ -622,7 +741,7 @@ au BufNewFile,BufRead *.dox,*.doxygen setf cpp.doxygen
 au BufNewFile,BufRead *.geo setf gmsh
 
 " as (actionscript/flash) I use java analyasis it
-au BufNewFile,BufRead *.as,*.js setf javascript
+au BufNewFile,BufRead *.jquery,*.as,*.js set ft=javascript syntax=jquery
 
 " nsis
 au BufNewFile,BufRead *.nsh setf nsis
@@ -673,8 +792,10 @@ let showmarks_hlline_upper = 1
 " python补全 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python 补全文件路径
-"autocmd Filetype python setlocal omnifunc=pythoncomplete#Complete
 let g:pydiction_location = $HOME.'/.vim/ftplugin/complete-dict'
+autocmd FileType python setlocal complete+=k$HOME/.vim/ftplugin/complete-dict iskeyword+=.,(
+autocmd FileType python setlocal dict=$HOME/.vim/ftplugin/complete-dict
+au FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python补全 setting }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -774,6 +895,7 @@ let html_use_encoding = "utf8"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0 
+let g:neocomplcache_enable_ignore_case = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion.
@@ -795,6 +917,8 @@ let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 let g:neocomplcache_enable_auto_select = 0
 " 禁用自动补全
 let g:neocomplcache_disable_auto_complete = 1
+let g:neocomplcache_enable_cursor_hold_i = 0
+let g:neocomplcache_enable_insert_char_pre = 0
 
 " 已注释的设定
 " let g:neocomplcache_manual_completion_start_length = 10
@@ -818,8 +942,8 @@ endif
 " Plugin key-mappings.
 imap <C-k>  <Plug>(neocomplcache_snippets_expand)
 smap <C-k>  <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>    neocomplcache#undo_completion()
-inoremap <expr><C-l>    neocomplcache#complete_common_string() 
+" inoremap <expr><C-g>    neocomplcache#undo_completion()
+" inoremap <expr><C-l>    neocomplcache#complete_common_string() 
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -833,9 +957,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Enable omni completion.
+autocmd FileType c,cpp set omnifunc=omni#cpp#complete#Main
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
@@ -844,8 +970,12 @@ if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
 
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+" let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 " 禁用neocomplcache功能
 function ToggleNeocomcacheAutoComplete()
@@ -948,41 +1078,6 @@ nmap <C-\>c :GtagsCursor<CR>
 " cscope setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" xterm settings start {
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if &term =~ "xterm"
-    "set mouse=a
-"endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" xterm settings end }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" ------------------------------------------------------------------ 
-" Visual start {
-" ------------------------------------------------------------------ 
-set matchtime=0 " 0 second to show the matching paren ( much faster )
-set nu " Show LineNumber
-set nowrap " I don't like wrap, cause in split window mode, it feel strange
-" ------------------------------------------------------------------ 
-" Visual end }
-" ------------------------------------------------------------------ 
-
-" ------------------------------------------------------------------ 
-" Vim UI start {
-" ------------------------------------------------------------------ 
-set wildmenu " turn on wild menu, try typing :h and press <Tab> 
-set showcmd	" display incomplete commands
-set cmdheight=1 " 1 screen lines to use for the command-line 
-set hid " allow to change buffer without saving 
-set shortmess=atI " shortens messages to avoid 'press a key' prompt 
-set lazyredraw " do not redraw while executing macros (much faster) 
-set display+=lastline " for easy browse last line with wrap text
-set showfulltag " show tag with function protype.
-" ------------------------------------------------------------------ 
-" Vim UI end }
-" ------------------------------------------------------------------ 
-
 " ------------------------------------------------------------------ 
 " Text edit start {
 " ------------------------------------------------------------------ 
@@ -1004,22 +1099,6 @@ set foldmethod=marker foldmarker={,} foldlevel=9999
 set diffopt=filler,context:9999
 " ------------------------------------------------------------------ 
 " Text edit end }
-" ------------------------------------------------------------------ 
-
-" ------------------------------------------------------------------ 
-" Search start {
-" ------------------------------------------------------------------ 
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-set ignorecase " Set search/replace pattern to ignore case 
-set smartcase " Set smartcase mode on, If there is upper case character in the search patern, the 'ignorecase' option will be override.
-
-" set this to use id-utils for global search
-set grepprg=lid\ -Rgrep\ -s
-set grepformat=%f:%l:%m
-" ------------------------------------------------------------------ 
-" Search end }
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
@@ -1082,18 +1161,16 @@ let tlist_hlsl_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;v:variabl
 " ------------------------------------------------------------------ 
 " MiniBufExpl start {
 " ------------------------------------------------------------------ 
-
-let g:miniBufExplTabWrap = 1 " make tabs show complete (no broken on two lines) 
-let g:miniBufExplModSelTarget = 1 " If you use other explorers like TagList you can (As of 6.2.8) set it at 1:
-let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
-let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mean the window gets as big as needed to fit all your buffers. 
-" comment out this, when we open a single file by we, we don't need minibuf opened. Minibu always open in exDev mode, in EnvironmentUpdate 
-" let g:miniBufExplorerMoreThanOne = 0 " Setting this to 0 will cause the MBE window to be loaded even
-
-"let g:miniBufExplForceSyntaxEnable = 1 " There is a VIM bug that can cause buffers to show up without their highlighting. The following setting will cause MBE to
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
+" let g:miniBufExplTabWrap = 1 " make tabs show complete (no broken on two lines) 
+" let g:miniBufExplModSelTarget = 1 " If you use other explorers like TagList you can (As of 6.2.8) set it at 1:
+" let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
+" let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mean the window gets as big as needed to fit all your buffers. 
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplMapWindowNavArrows = 1
+" let g:miniBufExplMapCTabSwitchBufs = 1
+" " comment out this, when we open a single file by we, we don't need minibuf opened. Minibu always open in exDev mode, in EnvironmentUpdate 
+" " let g:miniBufExplorerMoreThanOne = 0 " Setting this to 0 will cause the MBE window to be loaded even
+" " let g:miniBufExplForceSyntaxEnable = 1 " There is a VIM bug that can cause buffers to show up without their highlighting. The following setting will cause MBE to
 " ------------------------------------------------------------------ 
 " MiniBufExpl end }
 " ------------------------------------------------------------------ 
@@ -1103,7 +1180,7 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " ------------------------------------------------------------------ 
 
 " set completeopt as don't show menu and preview
-au FileType java,c,cpp,hlsl,tex,vim set completeopt=menuone,menu,longest
+au FileType * set completeopt=menuone,menu,longest
 
 " use global scope search
 let OmniCpp_GlobalScopeSearch = 1
@@ -1147,121 +1224,22 @@ let OmniCpp_SelectFirstItem = 0
 " ------------------------------------------------------------------ 
 
 " ------------------------------------------------------------------ 
-" pythoncomplete start {
+" LustyExplorer start {
 " ------------------------------------------------------------------ 
+" nnoremap <unique> <leader>lf :LUTags<CR>
+" nnoremap <unique> <leader>lb :LUBufs<CR>
+" nnoremap <unique> <silent> <Leader>ll :LUCurWord<CR>
 
-" DISABLE: au FileType python set completeopt=menuone,preview
-" NOTE: the preview can show the internal document in a preview window, but I don't think it have too much help
-au FileType python set completeopt=menuone,menu,longest
-au FileType python set tabstop=4 shiftwidth=4 expandtab
+" let g:LookupFile_TagExpr = ''
+" let g:LookupFile_MinPatLength = 3
+" let g:LookupFile_PreservePatternHistory = 0
+" let g:LookupFile_PreserveLastPattern = 0
+" let g:LookupFile_AllowNewFiles = 0
+" let g:LookupFile_smartcase = 1
+" let g:LookupFile_EscCancelsPopup = 1
 " ------------------------------------------------------------------ 
-" pythoncomplete end }
+" LustyExplorer end }
 " ------------------------------------------------------------------ 
-
-" ------------------------------------------------------------------ 
-" LookupFile start {
-" ------------------------------------------------------------------ 
-
-nnoremap <unique> <leader>lf :LUTags<CR>
-nnoremap <unique> <leader>lb :LUBufs<CR>
-nnoremap <unique> <silent> <Leader>ll :LUCurWord<CR>
-
-let g:LookupFile_TagExpr = ''
-let g:LookupFile_MinPatLength = 3
-let g:LookupFile_PreservePatternHistory = 0
-let g:LookupFile_PreserveLastPattern = 0
-let g:LookupFile_AllowNewFiles = 0
-let g:LookupFile_smartcase = 1
-let g:LookupFile_EscCancelsPopup = 1
-" ------------------------------------------------------------------ 
-" LookupFile end }
-" ------------------------------------------------------------------ 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 通用 setting {
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"让vim记忆上次编辑的位置
-autocmd BufReadPost * 
-    \ if line("'\"")>0&&line("'\"")<=line("$") |
-    \ exe "normal g'\"" |
-    \ endif
-""让vim记忆上次编辑的位置
-
-set langmenu=none   " always use English menu
-behave xterm        " set mouse behavior as xterm
-set mouse=a
-set viminfo+=!      " make sure it can save viminfo 
-set shellredir=>%s\ 2>&1
-set updatetime=10000 "  default = 4000, 改为10秒同步磁盘
-set autoread         "  auto read same-file change ( better for vc/vim change )
-set maxmempattern=1000
-
-set nocompatible
-set nonu
-filetype on 
-filetype plugin on
-set history=1000 
-set autoindent
-set cindent
-set smartindent
-set smarttab
-set wrap
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set showmatch
-set t_vb=
-"set vb
-set ruler
-set hlsearch                " 搜索时高亮显示匹配的文本
-set incsearch               " 输入搜索内容时，显示匹配的文本
-"set autochdir              " 自动切换到当前文件所在目录，开启后不能使用Java的tags文件
-"set foldenable             " 开启折叠
-"set foldmethod=syntax      " 设置语法折叠
-"set foldcolumn=0           " 设置折叠区域的宽度
-"set foldlevel=1            " 设置折叠层数
-set lbr
-set bs=2
-set wmnu
-" set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
-nmap gj 30j
-nmap gk 30k
-" Visual Mode连续缩进
-vnoremap < <gv
-vnoremap > >gv
-set laststatus=2
-" 状态栏
-" set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
-" set statusline=%F%m%r,%Y,%{&fileformat}\ \ \ ASCII=\%b,HEX=\%B\ \ \ [位置=%l,%c%V] [\%p%%\ ] [总行数=%L]
-" set statusline=%F\ %{&fileformat},%{&fileencoding},%Y\ [ASCII=%03.3b]\[HEX=%02.2B]\[行=%04l,列=%04v]\[%p%%]\[总行=%L]
-" set statusline=%F\ \ \ %{&fileformat},%{&fileencoding},%Y\ \ \ A=%03.3b,H=%02.2B\ R=%03l/%L(%p%%),C=%02v
-
-set hidden
-"光标离上下边界10行时自动滚动
-set scrolloff=10
-"TAB键扩展
-set expandtab
-"设置默认系统剪贴板
-"set clipboard=unnamed
-
-"使得注释换行时自动加上空格和星号
-"set formatoptions=tcqro
-"高亮显示当前行
-set cursorline
-"显示中文帮助
-"set helplang=cn
-"当粘贴文本时,使用该属性
-" set paste
-
-let &termencoding=&encoding
-set fileencodings=utf-8,gbk,ucs-bom,cp936
-syntax on
-
-"模板装载路径
-let g:template_path = $HOME.'/.vim/template/*/'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 通用 setting end }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " flist setting start {
@@ -1286,18 +1264,65 @@ let g:template_path = $HOME.'/.vim/template/*/'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CCTree setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:CCTreeUseUTF8Symbols = 0              " 使用UTF8的符号显示折叠
+let g:CCTreeCscopeDb = "cscope.out"
+
+let g:CCTreeKeyTraceForwardTree = '<C-F8>'
+let g:CCTreeKeyTraceReverseTree = '<C-F7>'
+let g:CCTreeKeyHilightTree = '<F7>l'        " Static highlighting
+let g:CCTreeKeySaveWindow = '<F7>y'
+let g:CCTreeKeyToggleWindow = '<F7>w'
+let g:CCTreeKeyCompressTree = 'zs'          " Compress call-tree
+let g:CCTreeKeyDepthPlus = '<F7>='
+let g:CCTreeKeyDepthMinus = '<F7>-'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CCTree end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " java补全 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 补全需要将相关的jar加入到环境变量$CLASSPATH中
-if has("autocmd")
-    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-    autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
-endif
+autocmd BufNewFile,BufRead,BufReadPost Filetype java setlocal complete-=k 
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 "inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P>
 "inoremap <buffer> <C-S-Space> <C-X><C-U><C-P>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " java补全 end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript & jsl setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let b:javascript_fold = 1
+let javascript_enable_domhtmlcss = 1
+
+autocmd FileType javascript set makeprg=$HOME'/.vim/toolsuit/jsl'\ -nologo\ -nofilelisting\ -nosummary\ -nocontext\ -conf\ $HOME'/.vim/toolsuit/jsl.conf'\ -process\ %
+autocmd FileType javascript set errorformat=%f(%l):\ %m
+autocmd FileType javascript nmap <silent><buffer> -- :make<CR><CR> :cw<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript & jsl end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jad setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jad_bin_path = $HOME.'/.vim/toolsuit/jad'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jad end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quickfixsigns setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'vcsdiff', 'breakpoints']
+nnoremap <Leader>qs :QuickfixsignsToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quickfixsigns end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1382,3 +1407,4 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "颜色配置 }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+

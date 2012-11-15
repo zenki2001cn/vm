@@ -559,6 +559,21 @@ fun! s:MatchesVisual()
 endf
 en
 
+" add zenki, add make-element.vim
+function! Make_element()
+	if match(getline('.'),'^\s*>\s*$') == -1
+		"the deleted word was not alone on the line
+		 let @w = "i<pla</pa>F<i"
+	else
+		"the deleted word was on it's own on the line
+		 let @w = "i<po</pa>kA"
+	endif
+endfunction
+
+"include colon(58) for namespaces in xsl for instance
+setlocal iskeyword=@,48-57,_,192-255,58
+inoremap <buffer>  ,, ><Esc>db:call Make_element()<enter>@w
+
 " makeElement() makes the previous woord an tag and close                {{{1
 if !exists('*s:makeElement')
 function! s:makeElement()

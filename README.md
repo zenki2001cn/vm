@@ -3,6 +3,21 @@ ChangLog
 
 ## TODO
 
+### 31 v1.11.8
+
+* 11.1 添加CommandT插件（文件搜索）                         ---> CommandT v1.4
+* 11.2 修改NERDTree的快捷键（CommandT、VE）
+* 11.3 移除LustyExplorer插件
+* 11.4 添加jQuery插件（jQuery高亮显示）                     ---> jquery v0.5.2
+* 11.5 修改syntax/javascript插件（支持jquery.vim）
+* 11.6 添加toolsuit/jsl工具，vimrc中配置使用方法            ---> jsl v0.3.0
+* 11.7 添加jad插件（class反编译）                           ---> jad v1.3
+* 11.8 添加quickfixsigns插件（标记quickfix）                ---> quickfixsigns (from github)
+* 11.9 移除一些无用的exVim插件
+* 11.10 添加CCTree插件（查看调用树）                        ---> CCTree v1.61
+* 11.11 添加afterimage插件（转换ico,gif,png成xpm格式）      ---> afterimage (from github)
+* 11.12 添加indent/cpp.vim （google代码规范）
+
 ### 30 v1.11.7
 
 * 11.1 更新tlib                                             ---> tlib v1.02
@@ -10,7 +25,7 @@ ChangLog
 ### 29 v1.11.6
 
 * 11.1 添加Tabularize插件（文本对齐）                       ---> Tabularize (from github)
-* 11.2 加入自定义库mylibs                                   ---> mylibs v0.1
+* 11.2 添加自定义库mylibs                                   ---> mylibs v0.1
 * 11.3 修改vimrc若干配置
 
 ### 28 v1.11.5 final

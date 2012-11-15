@@ -16,7 +16,7 @@ let g:loaded_nerdtree_ve = 1
 
 " add the new key via NERD_Tree's API
 call NERDTreeAddKeyMap({
-	   \ 'key': 'e',
+	   \ 'key': 'E',
 	   \ 'callback': 'NERDTreeOpenVE',
 	   \ 'quickhelpText': 'Explorer dir with VE' })
 

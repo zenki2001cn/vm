@@ -27,12 +27,10 @@ snippet main
 # #include <...>
 snippet inc
 	#include ${1}
-snippet INC
-	#include <${1:stdio}.h>${2}
 
 # #include "..."
-# snippet INC
-#	#include "${1:`Filename("$1.h")`}"${2}
+snippet INC
+	#include "${1:`expand('%:t:r')`.h}"${2}
 
 # #ifndef ... #define ... #endif
 snippet ifndef
@@ -49,11 +47,9 @@ snippet #if
 	#if ${1:FOO}
 		${2}
 	#endif
-# Header Include-Guard
-# (the randomizer code is taken directly from TextMate; it could probably be
-# cleaner, I don't know how to do it in vim script)
+
 snippet once
-	#ifndef ${1:`toupper('_'.Filename('', 'UNTITLED').'_H_')`}
+	#ifndef ${1:_`expand('%:t:r')`_H_}
 	#define $1
 
 	${2}

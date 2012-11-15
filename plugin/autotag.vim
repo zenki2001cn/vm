@@ -216,9 +216,9 @@ class AutoTag:
    def updateTagsFile(self, tagsDir, tagsFile, sources):
       self.stripTags(tagsFile, sources)
       if self.tags_file:
-         cmd = "%s --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl -f %s -a" % (self.ctags_cmd, self.tags_file)
+         cmd = "%s --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl,html,javascript,php,tex,lisp,lua, --langmap=c++:+.inl -f %s -a" % (self.ctags_cmd, self.tags_file)
       else:
-         cmd = "%s --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl, --langmap=c++:+.inl -a " % (self.ctags_cmd,)
+         cmd = "%s --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl,html,javascript,php,tex,lisp,lua, --langmap=c++:+.inl -a " % (self.ctags_cmd,)
       for source in sources:
          if os.path.isfile(os.path.join(tagsDir, source)):
             cmd += " '%s'" % source

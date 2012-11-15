@@ -122,7 +122,7 @@ call s:initVariable("g:NERDTreeMapJumpPrevSibling", "<C-k>")
 call s:initVariable("g:NERDTreeMapJumpRoot", "P")
 " call s:initVariable("g:NERDTreeMapOpenExpl", "e")             " modify zenki, remap 'e' to open with vimexplorer
 call s:initVariable("g:NERDTreeMapOpenVeWithPath", "<c-g>")     " add zenki, open vimexplorer with path
-call s:initVariable("g:NERDTreeMapOpenInTab", "t")
+call s:initVariable("g:NERDTreeMapOpenInTab", "t")              " modify zenki, t is map to CommandT
 " call s:initVariable("g:NERDTreeMapOpenInTabSilent", "T")      " modify zenki, T is map to switch window 
 call s:initVariable("g:NERDTreeMapOpenRecursively", "O")
 call s:initVariable("g:NERDTreeMapOpenSplit", "i")

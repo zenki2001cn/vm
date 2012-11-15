@@ -36,6 +36,10 @@ Zenki's vim plugin Document                                        *zenki_doc*
    30. SnippetCompleteSnipMate      |snippetcompletesnipmate_zenki|
    31. Latex-suite                  |latex-suite_zenki|
    32. Tabular                      |tabular_zenki|
+   33. CommandT                     |commandt_zenki|
+   34. jsl工具                      |jsl_zenki|
+   35. CCTree                       |cctree_zenki|
+   36. XML                          |xml_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -388,5 +392,57 @@ TABULAR                                                        *tabular_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
     ==                                      根据指定字符对齐，已配置c,cpp,java,vim
+
+==============================================================================
+COMMANDT                                                      *commandt_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    T                                       在NERDTree目录树下按t进入CommandT模式
+    <Tab>                                   在输入模式和文件列表模式间切换
+    <C-j>                                   在文件列表模式中向下移动
+    <C-k>                                   在文件列表模式中向上移动
+    <CR>                                    在文件列表模式中打开文件
+    <C-v>                                   在文件列表模式中垂直分割打开文件
+    <C-t>                                   在文件列表模式中新建tab打开文件
+    <leader>ct                              打开CommandT
+    <leader>cb                              打开CommandT的buffer模式
+    <C-c>,<ESC>                             关闭CommandT
+
+==============================================================================
+JSL                                                                *jsl_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    --                                      检查javascript代码
+
+2. jsl下载地址
+http://www.javascriptlint.com/download.htm
+
+3. 编译方法说明
+$ cd jsl_src
+$ make -f Makefile.ref all
+$ cd Linux_All_DBG.OBJ/
+$ cp jsl jscpucfg ~/.vim/toolsuit/ && cd ~/.vim/toolsuit/
+$ jsl -help:conf > jsl.conf
+
+==============================================================================
+CCTREE                                                          *cctree_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    <F7>                                    加载数据库文件，默认为cscope.out
+    <C-F8>                                  打开光标所在关键字的调用树(向下搜索)
+    <C-F7>                                  打开光标所在关键字的调用树(向上搜索)
+    <F7-l>                                  设置高亮
+    <F7-y>                                  保存窗口，不会被替换
+    <F7-w>                                  窗口开关
+    <F7-=>                                  增加树的层次
+    <F7-->                                  减少树的层次
+    zs                                      折叠树
+
+==============================================================================
+XML                                                                *xml_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    <foo>                                   自动补全Tag
+    foo,,                                   自动补全Tag，并换行
 
 vim:tw=78:ts=8:ft=help:norl:
