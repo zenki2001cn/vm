@@ -3,6 +3,11 @@ ChangLog
 
 ## TODO
 
+### 32 v1.11.9
+
+* 11.1 添加html5语法插件                                    ---> html5 (from github)
+* 11.2 添加NERDTree若干功能
+
 ### 31 v1.11.8
 
 * 11.1 添加CommandT插件（文件搜索）                         ---> CommandT v1.4

@@ -2,9 +2,12 @@
 " File:        NERD_Tree_global.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-10-24 17:18:32
+" Last Change: 2012-11-15 17:06:17
 " License:     
 " ChangeLog:
+"   Date: 2012-11-15 17:05:02
+"       1. 添加cscope子菜单
+"       2. 添加移除tags、GPATH、cscope*等cache子菜单
 "   Date: 2012-10-24 16:43:29
 "       1. 添加utags子菜单
 "       2. 更新若干菜单显示
@@ -56,6 +59,75 @@ call NERDTreeAddMenuItem({
     \ 'callback': 'NERDTreeUtagsRun',
     \ 'parent': globalMenu})
 
+call NERDTreeAddMenuItem({
+    \ 'text': 'c(s)cope run',
+    \ 'shortcut': 's',
+    \ 'callback': 'NERDTreeCscopeRun',
+    \ 'parent': globalMenu})
+
+call NERDTreeAddMenuItem({
+    \ 'text': '(r)emove cache',
+    \ 'shortcut': 'r',
+    \ 'callback': 'NERDTreeRemoveCache',
+    \ 'parent': globalMenu})
+
+function! EntryDir(dir)
+    exec 'chdir '. a:dir
+endfunction
+
+function! NERDTreeRemoveCache()
+    " get the current dir from NERDTree
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+
+    let oldDir = getcwd()
+    let dir = curNode.path.str()
+
+    call EntryDir(dir)
+    let remove_cmd = 'rm -f cscope.in.out cscope.out cscope.po.out GPATH GRTAGS GTAGS tags .utags'
+
+    echomsg "Remove cache..."
+
+    call system(remove_cmd)
+
+    redraw
+    echomsg "Remove finished"
+
+    call EntryDir(oldDir)
+    call curNode.refresh()
+    call NERDTreeRender()
+endfunction
+
+function! NERDTreeCscopeRun()
+    " get the current dir from NERDTree
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+
+    let oldDir = getcwd()
+    let dir = curNode.path.str()
+
+    call EntryDir(dir)
+    let cscope_cmd = 'cscope -Rbkq'
+
+    echomsg "cscope running..."
+
+    call system(cscope_cmd)
+
+    redraw
+    echomsg "cscope run finished"
+
+    call EntryDir(oldDir)
+    call curNode.refresh()
+    call NERDTreeRender()
+endfunction
 
 function! NERDTreeCtagsRun()
     " get the current dir from NERDTree
@@ -77,6 +149,9 @@ function! NERDTreeCtagsRun()
 
     redraw
     echomsg "ctags run finished"
+
+    call curNode.refresh()
+    call NERDTreeRender()
 endfunction
 
 function! NERDTreeGtagsRun()
@@ -100,6 +175,9 @@ function! NERDTreeGtagsRun()
 
     redraw
     echomsg "gtags run finished"
+
+    call curNode.refresh()
+    call NERDTreeRender()
 endfunction
 
 function! NERDTreeUtagsRun()
@@ -121,6 +199,9 @@ function! NERDTreeUtagsRun()
 
     redraw
     echomsg "utags run finished"
+
+    call curNode.refresh()
+    call NERDTreeRender()
 endfunction
 
 function! NERDTreeGlobalUpdate()
