@@ -778,6 +778,8 @@ augroup QuickFixSigns
         unlet s:ev s:class s:def
     endif
     let s:will_purge_register = 1
+    " add zenki, disable sign when enter vim
+    " autocmd VimEnter * exec 'QuickfixsignsDisable'  
     autocmd VimLeavePre * let s:will_purge_register = 0
     autocmd BufUnload * call s:RemoveBuffer(expand("<abuf>"))
     autocmd BufLeave * if s:will_purge_register | call s:PurgeRegister() | endif

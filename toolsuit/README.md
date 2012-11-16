@@ -5,7 +5,8 @@ Toolsuit说明
 
 toolsuit
 |-- ack                                     * 字符串搜索工具
-|-- find_above                              * latex-suite插件
+|-- cpplint                                 * c++语法检查工具
+|-- find_above                              * latex-suite插件工具
 |-- flist                                   * C函数原型参考 - hints
 |-- flist_wrap.py                           * flist python wrapper
 |-- global                                  * 函数查找

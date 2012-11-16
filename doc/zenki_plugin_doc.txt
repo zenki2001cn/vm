@@ -40,6 +40,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    34. jsl工具                      |jsl_zenki|
    35. CCTree                       |cctree_zenki|
    36. XML                          |xml_zenki|
+   37. google-translator            |google-translator_zenki|
+   38. cpplint工具                  |cpplint_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -444,5 +446,19 @@ XML                                                                *xml_zenki*
     KEY                                     说明~
     <foo>                                   自动补全Tag
     foo,,                                   自动补全Tag，并换行
+
+==============================================================================
+GOOGLETRANSLATOR                                     *google-translator_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    <S-t>                                   Virsual模式下，对选中内容进行翻译
+
+2. 有修改记录
+
+==============================================================================
+CPPLINT                                                        *cpplint_zenki*
+1. 快捷键使用说明
+    KEY                                     说明~
+    --                                      c++语法检查
 
 vim:tw=78:ts=8:ft=help:norl:

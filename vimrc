@@ -22,8 +22,9 @@ set maxmempattern=1000
 set nocompatible
 filetype on 
 filetype plugin on
+filetype indent on
 set history=1000 
-set autoindent
+set autoindent 
 set cindent
 set smartindent
 set smarttab
@@ -42,9 +43,8 @@ set incsearch               " 输入搜索内容时，显示匹配的文本
 "set foldmethod=syntax      " 设置语法折叠
 "set foldcolumn=0           " 设置折叠区域的宽度
 "set foldlevel=1            " 设置折叠层数
-set lbr
+set linebreak
 set bs=2
-set wmnu
 " set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
 nmap gj 30j
 nmap gk 30k
@@ -77,8 +77,8 @@ set scrolloff=10
 "设置默认系统剪贴板
 "set clipboard=unnamed
 
-"使得注释换行时自动加上空格和星号
-"set formatoptions=tcqro
+" 使得注释换行时自动加上空格和星号
+set formatoptions=tcoqmMr
 "高亮显示当前行
 set cursorline
 "显示中文帮助
@@ -94,7 +94,9 @@ set smartcase   " Set smartcase mode on, If there is upper case character in the
 let &termencoding=&encoding
 set encoding=utf-8  
 set termencoding=utf-8  
-set fileencodings=utf-8,gbk,ucs-bom,cp936
+set fileencodings=ucs-bom,utf-8,gbk,chinese,prc,taiwan,latin-1,cp936
+set fileformat=unix
+set fileformats=unix,dos,mac
 syntax on
 
 "模板装载路径
@@ -126,7 +128,7 @@ let g:CommandTCancelMap = ['<C-c>', '<ESC>']
 " Tabularize setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 根据指定的字符，对齐文本行
-au FileType c,cpp,java nmap == :Tabularize /= <CR>
+au FileType c,cpp,java,javascript nmap == :Tabularize /= <CR>
 au FileType vim nmap == :Tabularize /" <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabularize setting end }
@@ -423,7 +425,7 @@ let g:YATE_clear_search_string = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pyflake setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight SpellBad term=underline gui=undercurl guisp=Orange 
+" highlight SpellBad term=underline gui=undercurl guisp=Orange 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pyflake setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -702,8 +704,8 @@ nnoremap ws <C-w><C-s>  " 水平分割窗口
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件类型 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full) 
-au BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
+au BufEnter * :syntax sync fromstart      "  ensure every file does syntax highlighting (full)
+au BufNewFile,BufEnter * set cpoptions+=d "  NOTE: ctags find the tags file from the current path instead of the path of currect file
 
 "cflow
 au BufNewFile,BufRead *.cflow set ft=cflow
@@ -1323,6 +1325,23 @@ let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'vcsdiff', 'breakpoints']
 nnoremap <Leader>qs :QuickfixsignsToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfixsigns end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" google-translator setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" google-translator end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cpplint setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType cpp set makeprg=$HOME'/.vim/toolsuit/cpplint.py'\ %
+autocmd FileType cpp nmap <silent><buffer> -- :make<CR> :cw<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cpplint end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

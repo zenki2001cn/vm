@@ -3,6 +3,14 @@ ChangLog
 
 ## TODO
 
+### 33 v1.12 alpha
+
+* 12.1 更新Figlet插件（艺术字体）                           --> figlet v2.0
+* 12.2 修改html5语法插件，支持html和javascript混合缩进
+* 12.3 修改若干vimrc配置
+* 12.4 添加cpplint工具（c++语法检查）
+* 12.5 添加goog-translator                                  ---> goog-translator v1.3.1b
+
 ### 32 v1.11.9
 
 * 11.1 添加html5语法插件                                    ---> html5 (from github)

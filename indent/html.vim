@@ -29,6 +29,15 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
+" add zenki, merge other script
+if exists("g:js_indent") 
+	so g:js_indent
+else 
+	ru! indent/javascript.vim
+endif
+
+echo "Sourcing html indent"
+
 " [-- local settings (must come before aborting the script) --]
 setlocal indentexpr=HtmlIndentGet(v:lnum)
 setlocal indentkeys=o,O,*<Return>,<>>,{,}
@@ -257,11 +266,13 @@ fun! HtmlIndentGet(lnum)
     if   0 < searchpair(js, '', '</script>', 'nWb')
     \ && 0 < searchpair(js, '', '</script>', 'nW')
         " we're inside javascript
-        if getline(lnum) !~ js && getline(a:lnum) != '</script>'
+	
+    " modify zenki, merge other script
+	if getline(lnum) !~ js && getline(a:lnum) !~ '</script>'
             if restore_ic == 0
               setlocal noic
             endif
-            return cindent(a:lnum)
+		return GetJsIndent(a:lnum)
         endif
     endif
 

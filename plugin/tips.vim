@@ -11,18 +11,18 @@ require 'uri'
 
 module TIPS
     def self.tips()
-        begin
-            content = Net::HTTP.get(URI.parse('http://vim-tips.org/tips/random'));
-            VIM::command("echon '#{content}'")
-        rescue => e
-            VIM::command("echon 'Tips offline'")
-        end
+        content = Net::HTTP.get(URI.parse('http://vim-tips.org/tips/random'));
+        print "Tip: #{content}"
     end
 end
 EOF
 
 function DisplayTip()
-    ruby TIPS::tips()
+    try
+        ruby TIPS::tips()
+    catch
+        echo 'Network is offline!'
+    endtry
 endfunction
 
 " 禁止进入时调用
