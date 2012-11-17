@@ -36,8 +36,6 @@ else
 	ru! indent/javascript.vim
 endif
 
-echo "Sourcing html indent"
-
 " [-- local settings (must come before aborting the script) --]
 setlocal indentexpr=HtmlIndentGet(v:lnum)
 setlocal indentkeys=o,O,*<Return>,<>>,{,}

@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
-# Maintainer:  Alexei Mozhaev
-# Last Change: 05-Jul-11
+# Maintainer:  Alexei Mozhaev (lxmzhv@gmail.com)
+# Last Change: 16-Nov-12
 
 WORD_CHARS='_a-zA-Z0-9'
 MAX_FILE_NUM=100
-
-# add zenki, use local find_above
-PWD=`pwd`
-FIND_ABOVE=$PWD/find_above
 
 function usage_exit()
 {
@@ -43,7 +39,6 @@ function grep_source_code_files()
 
 [ $# -lt 2 ] && usage_exit
 
-# modify zenki, use toolsuit bin, and gen utags file
 case "$1" in
     -t|--find-tag)
         tag="$2"
@@ -53,7 +48,7 @@ case "$1" in
         elif [ -n "$proj" ] && [ -f "$proj/.utags" ]; then
             tagsfile="$proj/.utags"
         else
-            tagsfile="`$FIND_ABOVE .utags 2> /dev/null`"
+            tagsfile="`find_above .utags 2> /dev/null`"
             [ $? -eq 0 ] || exit 1
         fi
         dir="`dirname "$tagsfile"`"
@@ -68,7 +63,7 @@ case "$1" in
             -n|--numbers) num_tags=1; shift ;;
         esac
 
-        find $@ -type f -name "*.[ch]" -o -name "*.[ch]pp" -o -name "*.in*" -o -name "*.py" -o -name "*.p[lm]" -o -name "*.sfdl" -o \! -name "*.*" |
+        find $@ -type f -name "*.[ch]" -o -name "*.[ch]pp" -o -name "*.[ch]xx" -o -name "*.cc" -o -name "*.hh" -o -name "*.in*" -o -name "*.py" -o -name "*.p[lm]" -o -name "*.i" -o \! -name "*.*" |
         grep_source_code_files |
         sed 's@^\./@@' |
         while read fname

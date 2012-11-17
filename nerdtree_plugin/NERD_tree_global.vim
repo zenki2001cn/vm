@@ -2,17 +2,23 @@
 " File:        NERD_Tree_global.vim
 " Description: 
 " Maintainer:  Zenki.J.Zha
-" Last Change: 2012-11-15 17:06:17
+" Last Change: 2012-11-16 22:07:38
 " License:     
 " ChangeLog:
+"   Date: 2012-11-16 22:07:52
+"       1. 添加intergrate子菜单
+"
 "   Date: 2012-11-15 17:05:02
 "       1. 添加cscope子菜单
 "       2. 添加移除tags、GPATH、cscope*等cache子菜单
+"
 "   Date: 2012-10-24 16:43:29
 "       1. 添加utags子菜单
 "       2. 更新若干菜单显示
+"
 "   Date: 2012-08-17 15:39:09
 "       1. 添加global子菜单
+"
 "   Date: 2012-09-20 10:11:52
 "       1. 添加ctags参数
 " ============================================================================
@@ -42,31 +48,37 @@ call NERDTreeAddMenuItem({
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(g)tags run',
+    \ 'text': '(g)tags running',
     \ 'shortcut': 'g',
     \ 'callback': 'NERDTreeGtagsRun',
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(c)tags run',
+    \ 'text': '(c)tags running',
     \ 'shortcut': 'c',
     \ 'callback': 'NERDTreeCtagsRun',
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(u)tags run',
+    \ 'text': '(u)tags running',
     \ 'shortcut': 'u',
     \ 'callback': 'NERDTreeUtagsRun',
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': 'c(s)cope run',
+    \ 'text': 'c(s)cope running',
     \ 'shortcut': 's',
     \ 'callback': 'NERDTreeCscopeRun',
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(r)emove cache',
+    \ 'text': '(i)ntergrade <cscope>,<gtags>,<utags> together',
+    \ 'shortcut': 'i',
+    \ 'callback': 'NERDTreeIntergrade',
+    \ 'parent': globalMenu})
+
+call NERDTreeAddMenuItem({
+    \ 'text': '(r)emove all cache under this dir',
     \ 'shortcut': 'r',
     \ 'callback': 'NERDTreeRemoveCache',
     \ 'parent': globalMenu})
@@ -100,6 +112,12 @@ function! NERDTreeRemoveCache()
     call EntryDir(oldDir)
     call curNode.refresh()
     call NERDTreeRender()
+endfunction
+
+function! NERDTreeIntergrade()
+    call NERDTreeGtagsRun()
+    call NERDTreeUtagsRun()
+    call NERDTreeCscopeRun()
 endfunction
 
 function! NERDTreeCscopeRun()

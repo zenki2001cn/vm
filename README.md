@@ -3,9 +3,16 @@ ChangLog
 
 ## TODO
 
+### 34 v1.12 final
+
+* 12.1 修改NERDTree的若干功能
+* 12.2 添加NERD_tree_global的集成功能
+* 12.3 更新utags插件                                        ---> utags v1.2
+* 12.4 添加Conflict_Detection插件（冲突部分高亮显示）       ---> conflict_detection v1.02
+
 ### 33 v1.12 alpha
 
-* 12.1 更新Figlet插件（艺术字体）                           --> figlet v2.0
+* 12.1 更新Figlet插件（艺术字体）                           ---> figlet v2.0
 * 12.2 修改html5语法插件，支持html和javascript混合缩进
 * 12.3 修改若干vimrc配置
 * 12.4 添加cpplint工具（c++语法检查）

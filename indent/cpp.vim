@@ -76,12 +76,13 @@ function! GoogleCppIndent()
     return l:orig_indent
 endfunction
 
-setlocal shiftwidth=2
-setlocal tabstop=2
-setlocal softtabstop=2
+" modify zenki, change tabstop 4 width
+setlocal shiftwidth=4
+setlocal tabstop=4
+setlocal softtabstop=4
 setlocal expandtab
 setlocal textwidth=80
-setlocal wrap
+setlocal nowrap
 
 setlocal cindent
 setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4

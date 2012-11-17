@@ -1345,6 +1345,20 @@ autocmd FileType cpp nmap <silent><buffer> -- :make<CR> :cw<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" conflict_detection setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight def conflictOurs                      guibg=Green
+highlight def conflictBase                      guibg=Brown
+highlight def conflictTheirs                    guibg=Red
+highlight def conflictSeparatorMarkerSymbol     guifg=Black
+highlight def conflictOursMarker                guifg=Green
+highlight def conflictBaseMarker                guifg=Brown
+highlight def conflictTheirsMarker              guifg=Red
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" conflict_detection end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "界面配置 {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if (has("gui_running"))
