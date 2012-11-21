@@ -3,6 +3,17 @@ ChangLog
 
 ## TODO
 
+### 35 v1.12.1
+
+* 12.1 添加sudoku.vim插件（数独解谜）                       ---> sudoku.vim v1.1
+* 12.2 修改vimrc存储结构
+* 12.3 添加deb.vim插件（查看debian包内容）                  ---> deb.vim v1.4
+* 12.4 添加rename.vim插件（refactor变量）                   ---> rename v1.1
+* 12.5 修改PreciseJump插件，禁止弹出错误提示
+* 12.6 更新snippets目录下的若干模板文件
+* 12.7 修改goog-translator插件（加入切换模式）              ---> goog-translator v1.3.1b
+* 12.8 删除CodeOverview、openBrowser、paster、txtfmt插件
+
 ### 34 v1.12 final
 
 * 12.1 修改NERDTree的若干功能

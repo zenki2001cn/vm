@@ -14,7 +14,8 @@ function! s:googMergeConf(gconf,uconf)
   endif
 endfunction
 
-let s:goog_conf = { 'langpair' : 'en|ru', 'cmd' : 'ruby'}
+" modify zenki, chang default language
+let s:goog_conf = { 'langpair' : 'en|zh', 'cmd' : 'ruby'}
 
 
 "@complete
@@ -159,6 +160,13 @@ endfunction
 if exists('g:goog_user_conf')
   call s:googMergeConf(s:goog_conf, g:goog_user_conf)
 endif
+
+" add zenki, switch language
+function MergeConf()
+    if exists('g:goog_user_conf')
+        call s:googMergeConf(s:goog_conf, g:goog_user_conf)
+    endif
+endfunction
 
 if !exists(":Translate")
 	command! -nargs=* -complet=custom,s:GoogComplete Translate call s:GoogTranslate('<args>')

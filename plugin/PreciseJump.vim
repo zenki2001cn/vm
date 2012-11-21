@@ -222,8 +222,12 @@ function! s:AskForTarget(groups) abort
         let el = 0 " element in group no
         for [l, c] in group
             " highlighting with group mark or target mark
-            let lines_with_markers[l][c - 1] = s:index_to_key[ single_group ? el : gr ]
-            let el += 1
+            " add zenki, disable error message
+            try
+                let lines_with_markers[l][c - 1] = s:index_to_key[ single_group ? el : gr ]
+                let el += 1
+            catch
+            endtry
         endfor
         let gr += 1
     endfor

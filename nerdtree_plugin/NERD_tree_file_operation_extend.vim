@@ -62,7 +62,7 @@ function! NERDTreeRmNode()
     let parent = curNode.parent
     let curPath = curNode.path.str()
 
-    let result = confirm("File delete ? ", "&Yes\n&No", 1)
+    let result = confirm("File delete: ".curPath." ? ", "&Yes\n&No", 1)
 
     if result == 1
         python FileUtil.fileOrDirRm(vim.eval("curPath"))

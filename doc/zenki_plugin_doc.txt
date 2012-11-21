@@ -43,6 +43,9 @@ Zenki's vim plugin Document                                        *zenki_doc*
    37. 翻译工具                     |google-translator_zenki|
    38. C++错误检查工具              |cpplint_zenki|
    39. 冲突文件检测                 |conflict_motion&conflict_detection_zenki|
+   40. 数独解谜                     |sudoku_zenki|
+   41. Refactor变量                 |rename_zenki|
+   42. TxtBrowser                   |txtbrowser_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -452,7 +455,8 @@ XML                                                                *xml_zenki*
 GOOGLETRANSLATOR                                     *google-translator_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
-    <S-t>                                   Virsual模式下，对选中内容进行翻译
+    <S-t>                                   Visual模式下，对选中内容进行翻译
+    <leader>ts                              Normal模式下，切换语言
 
 2. 有修改记录
 
@@ -469,5 +473,42 @@ CONFLICTMOTIONCONFLICTDETECTION     *conflict_motion&conflict_detection_zenki*
     ]=                                      向下跳转到冲突位置
     [=                                      向上跳转到冲突位置
     :w                                      保存冲突文件时弹出提示
+
+==============================================================================
+SUDOKU                                                          *sudoku_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    ,s                                      Visual选择数独的迷题，,s显示数独的答案
+
+2.迷题格式如下：
+    8xx 69x xx2
+    91x xxx xxx
+    5xx xx8 xx7
+
+    xxx 2x9 xx6
+    xxx 8xx xx3
+    2xx 3x4 xxx
+
+    3xx 78x xx9
+    xxx xxx xx5
+    4xx x5x x28
+
+==============================================================================
+RENAME                                                          *rename_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    <leader>rc                              refactor变量，需要cscope支持
+    <leader>rf                              refactor文件，需要cscope支持
+    <leader>rr                              还原改变的文件
+
+2. 有修改记录
+
+==============================================================================
+TXTBROWSER                                                  *txtbrowser_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    <leader>g                               浏览器打开当前光标所在url
+    <leader>f                               打开浏览器，翻译当前光标所在的单词
+    <leader>s                               打开浏览器，搜索当前光标所在的单词
 
 vim:tw=78:ts=8:ft=help:norl:
