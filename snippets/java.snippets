@@ -16,12 +16,6 @@ snippet ===
 	 * =====================================================================================
 	 */
 
-snippet main
-	public static void main (String [] args)
-	{
-		${1:/* code */}
-	}
-
 ## Access Modifiers
 snippet po
 	protected
@@ -29,6 +23,18 @@ snippet pu
 	public
 snippet pr
 	private
+snippet pufn
+	public ${1:void} ${2:function}(${3:arg}) {
+		${4:/* code */}
+	}
+snippet pofn
+	protected ${1:void} ${2:function}(${3:arg}) {
+		${4:/* code */}
+	}
+snippet prfn
+	private ${1:void} ${2:function}(${3:arg}) {
+		${4:/* code */}
+	}
 ##
 ## Annotations
 snippet before
@@ -88,7 +94,7 @@ snippet cos
 	static public final String ${1:var} = "${2}";${3}
 ##
 ## Control Statements
-snippet case
+snippet cs
 	case ${1}:
 		${2}
 snippet def

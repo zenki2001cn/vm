@@ -45,11 +45,6 @@ set incsearch               " 输入搜索内容时，显示匹配的文本
 set linebreak
 set bs=2
 " set wildignore=*.o,*.pyc,*~ " vimExplorer may lost these files
-nmap gj 30j
-nmap gk 30k
-" Visual Mode连续缩进
-vnoremap < <gv
-vnoremap > >gv
 set laststatus=2
 
 set matchtime=0       "  0 second to show the matching paren ( much faster )
@@ -61,6 +56,7 @@ set cmdheight=1       "  1 screen lines to use for the command-line
 set hid               "  allow to change buffer without saving
 set shortmess=atI     "  shortens messages to avoid 'press a key' prompt
 set lazyredraw        "  do not redraw while executing macros (much faster)
+set redraw optimize
 set display+=lastline "  for easy browse last line with wrap text
 set showfulltag       "  show tag with function protype.
 

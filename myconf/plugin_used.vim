@@ -265,10 +265,24 @@ let g:DirDiffTextOnlyInCenter = " 存在："
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.svn,.git"
 
 " 如果是diff模式，映射]c和[c
-" if &diff
-    " nmap ]] ]c
-    " nmap [[ [c
-" endif
+function DiffModeMappingNext()
+    if &diff
+        normal ]c
+    else
+        normal }
+    endif
+endfunction
+
+function DiffModeMappingPre()
+    if &diff
+        normal [c
+    else
+        normal {
+    endif
+endfunction
+
+nmap <silent><unique> ]] :call DiffModeMappingNext()<CR>
+nmap <silent><unique> [[ :call DiffModeMappingPre()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dirdiff setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -837,6 +851,7 @@ nnoremap <Leader>qs :QuickfixsignsToggle<CR>
 let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
 let g:goog_switch_mode = 1
 nmap <leader>ts :call SwitchTranslatorLanguage()<CR>
+nmap T VT
 
 function SwitchTranslatorLanguage()
     if g:goog_switch_mode == 1
@@ -907,4 +922,12 @@ nmap <Leader>f  :TFind <CR>
 nmap <Leader>s  :TSearch <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TxtBrowser end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SnipMate setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:snips_author = 'Zenki.J.Zha'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SnipMate end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

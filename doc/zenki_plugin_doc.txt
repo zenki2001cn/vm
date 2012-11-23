@@ -46,6 +46,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    40. 数独解谜                     |sudoku_zenki|
    41. Refactor变量                 |rename_zenki|
    42. TxtBrowser                   |txtbrowser_zenki|
+   43. Mappingmanager               |mappingmanager|                      
 
 ------------------------------------------------------------------------------
 
@@ -510,5 +511,14 @@ TXTBROWSER                                                  *txtbrowser_zenki*
     <leader>g                               浏览器打开当前光标所在url
     <leader>f                               打开浏览器，翻译当前光标所在的单词
     <leader>s                               打开浏览器，搜索当前光标所在的单词
+
+==============================================================================
+MAPPINGMANAGER                                          *mappingmanager_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    ,m                                      查看mapping
+    ,<F1~12>                                切换mapping
+
+2. 有修改记录
 
 vim:tw=78:ts=8:ft=help:norl:

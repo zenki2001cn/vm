@@ -1,7 +1,15 @@
 ChangLog
 ========
 
-## TODO
+## TODO ##
+
+### 36 v1.12.2 ###
+
+* 12.1 更新Recover插件（.swp检测）                          ---> Recover v0.16
+* 12.2 添加mappingmanager插件（F1~F12按键映射）             ---> mappingmanager v1.0
+* 12.3 修改mappingmanager插件
+* 12.4 修改myconf若干配置
+* 12.5 添加asynccommand插件（异步执行命令库）               ---> asynccommand v4.0
 
 ### 35 v1.12.1
 
@@ -116,7 +124,7 @@ Update: 2012-09-15 13:24:03
 * 10.2 更新fugitive插件                                     ---> fugitive (from github)
 * 10.3 更新tlib插件（工具库）                               ---> tlib v0.46
 * 10.4 更新NERD_tree_global.vim（添加ctags参数）            ---> NERD_tree_global_vim
-* 10.5 修改vital插件，添加try-catch机制防止错误             ---> autoload/vital/_9813ec6.vim
+* 10.5 修改vital插件，添加try-catch机制防止错误             ---> autoload/vital/\_9813ec6.vim
 
 ### 20 v1.10.8 final
 
