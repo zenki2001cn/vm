@@ -23,7 +23,8 @@ if !exists("g:path_to_search_app")
     let g:path_to_search_app = "ack"
 endif
 
-let g:path_to_search_app = g:path_to_search_app . "\\ -H\\ --nocolor\\ --nogroup"
+let g:path_to_search_app = g:path_to_search_app . "\\ -H\\ --nocolor\\ --nogroup --smart-ignore"
+" let g:path_to_search_app = g:path_to_search_app . "\\ -R\\ -i "
 
 " add the new menu item via NERD_Tree's API
 call NERDTreeAddMenuItem({

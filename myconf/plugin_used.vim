@@ -316,6 +316,7 @@ let g:NERDCompactSexyComs=1     " 多行注释时样子更好看
 " NERDTreeAck setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:path_to_search_app = $HOME.'/.vim/toolsuit/ack'
+" let g:path_to_search_app = 'grep'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTreeAck setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

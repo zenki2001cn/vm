@@ -147,6 +147,7 @@ nnoremap wj <c-w>j      " 切换到下边窗口
 nnoremap wk <c-w>k      " 切换到上边窗口
 nnoremap wh <c-w>h      " 切换到左边窗口
 nnoremap wl <c-w>l      " 切换到右边窗口
+nnoremap wc <C-w><C-q>  " 关闭当前窗口
 nnoremap wv <C-w><C-v>  " 垂直分割窗口
 nnoremap ws <C-w><C-s>  " 水平分割窗口
 

@@ -3,6 +3,10 @@ ChangLog
 
 ## TODO ##
 
+### 37 v1.12.2 final ###
+
+* 12.1 更新myconf若干配置
+
 ### 36 v1.12.2 ###
 
 * 12.1 更新Recover插件（.swp检测）                          ---> Recover v0.16
