@@ -18,60 +18,43 @@ snippet ===
 
 ## Access Modifiers
 snippet po
-	protected
+	protected ${1}
 snippet pu
-	public
+	public ${1}
 snippet pr
-	private
+	private ${1}
 snippet pufn
-	public ${1:void} ${2:function}(${3:arg}) {
+	public ${1:void} ${2:function}(${3}) {
 		${4:/* code */}
 	}
 snippet pofn
-	protected ${1:void} ${2:function}(${3:arg}) {
+	protected ${1:void} ${2:function}(${3}) {
 		${4:/* code */}
 	}
 snippet prfn
-	private ${1:void} ${2:function}(${3:arg}) {
+	private ${1:void} ${2:function}(${3}) {
 		${4:/* code */}
 	}
-##
-## Annotations
-snippet before
-	@Before
-	static void ${1:intercept}(${2:args}) { ${3} }
-snippet mm
-	@ManyToMany
-	${1}
-snippet mo
-	@ManyToOne
-	${1}
-snippet om
-	@OneToMany${1:(cascade=CascadeType.ALL)}
-	${2}
-snippet oo
-	@OneToOne
-	${1}
-##
 ## Basic Java packages and import
 snippet im
 	import
-snippet j.b
-	java.beans.
-snippet j.i
-	java.io.
-snippet j.m
-	java.math.
-snippet j.n
-	java.net.
-snippet j.u
-	java.util.
-##
 ## Class
 snippet cl
-	class ${1:`Filename("", "untitled")`} ${2}
+	class ${1:`Filename("", "untitled")`} {
+		${2}
+	}
+snippet pucl
+	public class ${1:`Filename("", "untitled")`} {
+		${2}
+	} 
+snippet pocl
+	protected class ${1:`Filename("", "untitled")`} {
+		${2}
+	}
 snippet in
-	interface ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}
+	interface ${1:`Filename("", "untitled")`} {
+		${2}
+	}
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}
 ##
@@ -80,13 +63,6 @@ snippet ext
 	extends 
 snippet imp
 	implements
-##
-## Comments
-snippet /*
-	/*
-	 * ${1}
-	 */
-##
 ## Constants
 snippet co
 	static public final ${1:String} ${2:var} = ${3};${4}
@@ -101,20 +77,21 @@ snippet def
 	default:
 		${2}
 snippet el
-	else
+	else {
+		${1}
+	}
 snippet elif
-	else if (${1}) ${2}
+	else if (${1}) {
+		${2}
+	}
 snippet if
-	if (${1}) ${2}
+	if (${1}) {
+		${2}
+	}
 snippet sw
 	switch (${1}) {
 		${2}
 	}
-##
-## Create a Method
-snippet m
-	${1:void} ${2:method}(${3}) ${4:throws }${5}
-##
 ## Create a Variable
 snippet v
 	${1:String} ${2:var}${3: = null}${4};${5}
@@ -157,46 +134,31 @@ snippet tryf
 	} catch(${1:Exception} ${2:e}) {
 	} finally {
 	}
-##
 ## Find Methods
 snippet findall
 	List<${1:listName}> ${2:items} = ${1}.findAll();${3}
 snippet findbyid
 	${1:var} ${2:item} = ${1}.findById(${3});${4}
-##
-## Javadocs
-snippet /**
-	/**
-	 * ${1}
-	 */
-snippet @au
-	@author `system("grep \`id -un\` /etc/passwd | cut -d \":\" -f5 | cut -d \",\" -f1")`
-snippet @br
-	@brief ${1:Description}
-snippet @fi
-	@file ${1:`Filename()`}.java
-snippet @pa
-	@param ${1:param}
-snippet @re
-	@return ${1:param}
-##
 ## Logger Methods
-snippet debug
-	Logger.debug(${1:param});${2}
-snippet error
-	Logger.error(${1:param});${2}
-snippet info
-	Logger.info(${1:param});${2}
-snippet warn
-	Logger.warn(${1:param});${2}
-##
+snippet log
+	Log.${1:e}(${2:TAG}, "${3:message}");
 ## Loops
-snippet enfor
-	for (${1} : ${2}) ${3}
+snippet fore
+	for (${1:String} item : ${2:Items}) {
+		${3}
+	}
 snippet for
-	for (${1}; ${2}; ${3}) ${4}
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+		${4:/* code */}
+	}
 snippet wh
-	while (${1}) ${2}
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
+snippet while
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
 ##
 ## Main method
 snippet main
@@ -210,19 +172,7 @@ snippet print
 snippet printf
 	System.out.printf("${1:Message}", ${2:args});
 snippet println
-	System.out.println(${1});
-##
-## Render Methods
-snippet ren
-	render(${1:param});${2}
-snippet rena
-	renderArgs.put("${1}", ${2});${3}
-snippet renb
-	renderBinary(${1:param});${2}
-snippet renj
-	renderJSON(${1:param});${2}
-snippet renx
-	renderXml(${1:param});${2}
+	System.out.println("${1:Message}");
 ##
 ## Setter and Getter Methods
 snippet set
@@ -250,21 +200,7 @@ snippet test
 	public void test${1:Name}() throws Exception {
 		${2}
 	}
-##
-## Utils
-snippet Sc
-	Scanner
-##
-## Miscellaneous
-snippet action
-	public static void ${1:index}(${2:args}) { ${3} }
-snippet rnf
-	notFound(${1:param});${2}
-snippet rnfin
-	notFoundIfNull(${1:param});${2}
-snippet rr
-	redirect(${1:param});${2}
-snippet ru
-	unauthorized(${1:param});${2}
-snippet unless
-	(unless=${1:param});${2}
+snippet @or
+	@Override
+snippet @sw
+	@SuppressWarnings

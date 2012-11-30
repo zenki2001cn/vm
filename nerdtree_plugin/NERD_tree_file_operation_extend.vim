@@ -3,8 +3,9 @@
 " Author: Zenki (Zenki.J.Zha), zenki2001cn@163.com
 " Description: 
 " Version: 
-" Last Modified: 十一月 12, 2012
+" Last Modified: 2012-11-28 10:22:16
 "   1. Porting from SzTools plugin.
+"   2. Add <C-n> to create child node.
 " ============================================================================
 if exists("g:loaded_nerdtree_file_extend")
     finish
@@ -37,6 +38,11 @@ call NERDTreeAddKeyMap({
        \ 'callback': 'NERDTreeRmNode',
        \ 'quickhelpText': 'remove current node recursively' })
 
+call NERDTreeAddKeyMap({
+       \ 'key': '<C-n>',
+       \ 'callback': 'NERDTreeAddNodeM',
+       \ 'quickhelpText': 'add childnode' })
+
 let g:SzToolNodeBuf = ""
 let g:SzToolOpType = ""
 let g:SzToolParentOfRmNode = {}
@@ -47,6 +53,34 @@ endfunction
 
 function! NERDTreeCutNode()
   call NodeToBuf("cut")
+endfunction
+
+function! NERDTreeAddNodeM()
+    let curDirNode = g:NERDTreeDirNode.GetSelected()
+
+    let newNodeName = input("Add a childnode\n".
+                          \ "==========================================================\n".
+                          \ "Enter the dir/file name to be created. Dirs end with a '/'\n" .
+                          \ "", curDirNode.path.str() . g:NERDTreePath.Slash(), "file")
+
+    if newNodeName ==# ''
+        call s:echo("Node Creation Aborted.")
+        return
+    endif
+
+    try
+        let newPath = g:NERDTreePath.Create(newNodeName)
+        let parentNode = b:NERDTreeRoot.findNode(newPath.getParent())
+
+        let newTreeNode = g:NERDTreeFileNode.New(newPath)
+        if parentNode.isOpen || !empty(parentNode.children)
+            call parentNode.addChild(newTreeNode, 1)
+            call NERDTreeRender()
+            call newTreeNode.putCursorHere(1, 0)
+        endif
+    catch /^NERDTree/
+        echomsg "Node Not Created."
+    endtry
 endfunction
 
 function! NERDTreeYankPath()

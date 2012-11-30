@@ -123,16 +123,17 @@ let g:navigation     += ["  !do-daily-yoga-and-stay-healthy!"]
 let g:mm_info_extra = ""
 let g:mm_info_extra .= "\n*** Other mapping ***                                                                                                     \n\n"
 let g:mm_info_extra .= "Tab操作:    te, tc, tn, tp, tf, tl                                                  Session:        \\sl(选择), \\sv(保存)  \n"
-let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       Quickfix:       \\qs    \n"
+let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       Quickfix:       \\qs(显示切换)    \n"
 let g:mm_info_extra .= "Ctags:      <C-]>, <C-t>, <C-n>, <C-p>, <C-l>                                       Gtags,Utags:    <C-\\>c, <C-\\>s, <C-\\>u, <C-\\>d\n"
 let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>                           \n"
-let g:mm_info_extra .= "Windows:    qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL, ww, WW                      GoogleTrans:    \\ts(切换语言), <S-t>(Normal-翻译一行), <S-t>(Virual-翻译选中)  \n"
+let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL, ww, WW            GoogleTrans:    \\ts(切换语言), <S-t>(Normal-翻译一行), <S-t>(Virual-翻译选中)  \n"
 let g:mm_info_extra .= "Refactor:   \\rc(变量), \\rf(文件名), \\rr(恢复)                                       URL:            \\f(翻译), \\g(浏览), \\s(搜索) \n"
 let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                                                  BufSearch:      ,bs                             \n"
 let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭)                              Jump:           ,,                              \n"
 let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame)                                     Vimwiki:        wt(table), wg(links), \\wdi(dairy)  \n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other)    \n"
 let g:mm_info_extra .= "CommandT:   \\ct(浏览), \\cb(缓存)                                                    Diff:           dp(push), do(get)                        \n"
+let g:mm_info_extra .= "Surround:   cs)], ds), ysiw), yssb, vS}                                             Repeat:         .                               \n"
 
 " load the user mappings
 if has("unix")
@@ -261,7 +262,7 @@ function! PrintMapping(onlymappingnames)
         return 
       " just print one line
       endif
-      call SetStatus()
+      " call SetStatus()    " del zenki, disable
       call GenerateDialogMappingInfo(0)
       echo g:mm_info 
       let g:view = "mapping"
@@ -275,7 +276,7 @@ function! PrintMapping(onlymappingnames)
         if g:toggle == 0 
           call ToggleCmdHeight(0)
         endif
-        call SetStatus()
+        " call SetStatus()      " del zenki, disable
         call LoadMappings()
         call GenerateDialogMappingNames()
         echo "\n*** preset ***\n\n" 
@@ -313,7 +314,7 @@ function! CycleMapping( index )
     let g:map_index = 1
   endif
   call LoadMappings()
-  call SetStatus()
+  " call SetStatus()        " del zenki, disable
   if g:toggle == 0
     call GenerateDialogMappingInfo(1)
     echo g:mm_info
@@ -356,7 +357,7 @@ endfunction
 function! SetMapping(index)
   if a:index <= g:maps
     let g:map_index = a:index 
-    call SetStatus()
+    " call SetStatus()      " del zenki, disable
     call LoadMappings()
     if g:toggle == 1
       if g:view == "mapping"
@@ -388,4 +389,4 @@ nnoremap <silent> ,<F11> :call SelectMapping(0,0,11)<cr>
 nnoremap <silent> ,<F12> :call SelectMapping(0,0,12)<cr>
 nnoremap <silent> ,m :call ToggleCmdHeight(1)<cr>
 call LoadMappings()
-call SetStatus()
+" call SetStatus()      " del zenki, disable

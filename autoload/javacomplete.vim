@@ -280,7 +280,8 @@ function! javacomplete#Complete(findstart, base)
     return result
   endif
 
-  if strlen(b:errormsg) > 0
+  " add zenki, b:errormsg variable error
+  if exists(b:errormsg) && strlen(b:errormsg) > 0
     echoerr 'javacomplete error: ' . b:errormsg
     let b:errormsg = ''
   endif

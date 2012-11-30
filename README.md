@@ -3,6 +3,15 @@ ChangLog
 
 ## TODO ##
 
+### 38 v1.12.3 ###
+
+* 12.1 更新locator插件                                      ---> locator v1.3
+* 12.2 更新undotree插件                                     ---> undotree  v4.2
+* 12.3 添加surround插件                                     ---> surround v1.9
+* 12.4 更新viewdoc插件                                      ---> viewdoc v1.3
+* 12.5 添加repeat插件                                       ---> repeat v1.0
+* 12.6 添加NERDTree若干功能（<C-n>新建）
+
 ### 37 v1.12.2 final ###
 
 * 12.1 更新myconf若干配置

@@ -47,6 +47,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    41. Refactor变量                 |rename_zenki|
    42. TxtBrowser                   |txtbrowser_zenki|
    43. Mappingmanager               |mappingmanager|                      
+   44. surround                     |surround_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -520,5 +521,27 @@ MAPPINGMANAGER                                          *mappingmanager_zenki*
     ,<F1~12>                                切换mapping
 
 2. 有修改记录
+
+==============================================================================
+SURROUND                                                      *surround_zenki* 
+1. 快捷键使用说明
+    Old text                  Command     New text ~
+    "Hello *world!"           ds"         Hello world!
+    (123+4*56)/2              ds)         123+456/2
+    <div>Yo!*</div>           dst         Yo!
+
+    Old text                  Command     New text ~
+    "Hello *world!"           cs"'        'Hello world!'
+    "Hello *world!"           cs"<q>      <q>Hello world!</q>
+    (123+4*56)/2              cs)]        [123+456]/2
+    (123+4*56)/2              cs)[        [ 123+456 ]/2
+    <div>Yo!*</div>           cst<p>      <p>Yo!</p>
+
+    Old text                  Command     New text ~
+    Hello w*orld!             ysiw)       Hello (world)!
+    Hello w*orld!             yssB        {Hello world!}
+
+    Old text                  Command     New text ~
+    hello world               vS}         {hello world}
 
 vim:tw=78:ts=8:ft=help:norl:

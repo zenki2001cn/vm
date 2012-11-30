@@ -128,6 +128,7 @@ nmap <leader>sv :SessionSave <CR>
 nmap <leader>w :w! <CR>
 " 快速退出
 nmap <leader>qa :qa! <CR>
+nmap <leader>qq :q! <CR>
 
 " 快速翻滚
 nmap gj 30j
