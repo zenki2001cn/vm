@@ -126,14 +126,15 @@ let g:mm_info_extra .= "Tab操作:    te, tc, tn, tp, tf, tl                    
 let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       Quickfix:       \\qs(显示切换)    \n"
 let g:mm_info_extra .= "Ctags:      <C-]>, <C-t>, <C-n>, <C-p>, <C-l>                                       Gtags,Utags:    <C-\\>c, <C-\\>s, <C-\\>u, <C-\\>d\n"
 let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>                           \n"
-let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL, ww, WW            GoogleTrans:    \\ts(切换语言), <S-t>(Normal-翻译一行), <S-t>(Virual-翻译选中)  \n"
+let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL, ww, WW            GoogleTrans:    \\t, \\tr, \\ta, \\tar, \\ts, \\tss, \\tf, <S-t>(可选中)\n"
 let g:mm_info_extra .= "Refactor:   \\rc(变量), \\rf(文件名), \\rr(恢复)                                       URL:            \\f(翻译), \\g(浏览), \\s(搜索) \n"
 let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                                                  BufSearch:      ,bs                             \n"
 let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭)                              Jump:           ,,                              \n"
 let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame)                                     Vimwiki:        wt(table), wg(links), \\wdi(dairy)  \n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other)    \n"
 let g:mm_info_extra .= "CommandT:   \\ct(浏览), \\cb(缓存)                                                    Diff:           dp(push), do(get)                        \n"
-let g:mm_info_extra .= "Surround:   cs)], ds), ysiw), yssb, vS}                                             Repeat:         .                               \n"
+let g:mm_info_extra .= "Surround:   ,cs)], ,ds), ysiw), yssb, vS}                                           Repeat:         .                               \n"
+let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer)      \n"
 
 " load the user mappings
 if has("unix")

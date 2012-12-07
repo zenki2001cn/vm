@@ -34,6 +34,30 @@ function! s:GoogComplete(A,L,C) abort
 endfunction
 
 "@visual mode
+" add zenki, translate and insert results
+function! GoogTranslateBlockAndInsert() abort
+  let start_v = col("'<") - 1
+  let end_v = col("'>")
+  let lines = getline("'<","'>")
+
+  if len(lines) > 1
+    let lines[0] = strpart(lines[0],start_v)
+    let lines[-1] = strpart(lines[-1],0,end_v)
+    let str = join(lines)
+  else
+    let str = strpart(lines[0],start_v,end_v-start_v)
+  endif
+
+  let g:google_translate_result = s:GoogTranslate(str)
+  if g:google_translate_result != ''
+    exec "normal o".g:google_translate_result
+    exec "normal o"
+  endif
+
+  return g:google_translate_result
+endfunction
+
+"@visual mode
 "translate block text
 function! GoogTranslateBlock() abort
   let start_v = col("'<") - 1
@@ -100,6 +124,7 @@ function! s:_googRBTranslate(query)
 
   let result = ""
 
+" modify zenki, Changing the default transformation language, en|ru -> en|zh
 ruby <<EOF
   require 'uri'
   require 'cgi'
@@ -124,7 +149,7 @@ ruby <<EOF
       end
 
       def langpair
-        @langpair ||= "en|ru"
+        @langpair ||= "en|zh"
       end
 
       protected
@@ -176,5 +201,11 @@ if exists("s:goog_conf.v_key")
 	nnoremap <silent> <plug>TranslateBlockText :call GoogTranslateBlock()<cr>
 	vnoremap <silent> <plug>TranslateBlockText <ESC>:call GoogTranslateBlock()<cr>
 	let cmd = "vmap ".s:goog_conf.v_key." <Plug>TranslateBlockText"
+	exec cmd
+
+    " add zenki, add GoogTranslateBlockAndInsert function
+	nnoremap <silent> <plug>TranslateBlockTextAndInsert :call GoogTranslateBlockAndInsert()<cr>
+	vnoremap <silent> <plug>TranslateBlockTextAndInsert <ESC>:call GoogTranslateBlockAndInsert()<cr>
+	let cmd = "vmap ,GTS"." <Plug>TranslateBlockTextAndInsert"
 	exec cmd
 endif

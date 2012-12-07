@@ -3,6 +3,14 @@ ChangLog
 
 ## TODO ##
 
+### 39 v1.12.4 ###
+
+* 12.1 更新Conflict_Detection插件                           ---> Conflict_Detection v1.11.005
+* 12.2 添加twl插件（水平/垂直切换窗口）                     ---> twl
+* 12.3 修改goog-translator（支持单行翻译和全文翻译，插入翻译结果，切换语言，格式化全文）
+* 12.4 更新bufexplorer                                      ---> bufexplorer v7.3.1
+* 12.5 修改surround插件（快捷键映射）
+
 ### 38 v1.12.3 ###
 
 * 12.1 更新locator插件                                      ---> locator v1.3

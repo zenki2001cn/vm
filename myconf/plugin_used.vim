@@ -817,14 +817,10 @@ autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" javascript & jsl setting {
+" javascript setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let b:javascript_fold = 1
 let javascript_enable_domhtmlcss = 1
-
-autocmd FileType javascript set makeprg=$HOME'/.vim/toolsuit/jsl'\ -nologo\ -nofilelisting\ -nosummary\ -nocontext\ -conf\ $HOME'/.vim/toolsuit/jsl.conf'\ -process\ %
-autocmd FileType javascript set errorformat=%f(%l):\ %m
-autocmd FileType javascript nmap <silent><buffer> -- :make<CR><CR> :cw<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript & jsl end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -852,29 +848,134 @@ nnoremap <Leader>qs :QuickfixsignsToggle<CR>
 let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
 let g:goog_switch_mode = 1
 nmap <leader>ts :call SwitchTranslatorLanguage()<CR>
+nmap <leader>tss :call SelectTranslatorLanguage()<CR>
 nmap T VT
+nmap <leader>t :call TranslateSingle(0)<CR>
+nmap <leader>tr :call TranslateSingle(1)<CR>
+nmap <leader>ta :call TranslateAll(0)<CR>
+nmap <leader>tar :call TranslateAll(1)<CR>
+nmap <leader>tf :call TranslateFormatter()<CR>
+
+function TranslateSingle(remove_org)
+    exec "normal V,GTS"
+    if a:remove_org == 1
+        exec "normal dd"
+        exec "normal 2k"
+        exec "normal dd"
+    endif
+endfunction
+
+function TranslateAll(remove_org)
+    exec "normal gg"
+
+    let all_lines = line("$")
+    let cur_line = line(".")
+    while cur_line <= all_lines
+        exec "normal V,GTS"
+
+        if cur_line == all_lines
+            if a:remove_org == 1 && exists('g:google_translate_result') && g:google_translate_result != ''
+                exec "normal 2k"
+                exec "normal dd"
+                exec "normal j"
+                exec "normal dd"
+            endif
+
+            break
+        endif
+
+        if a:remove_org == 1 && exists('g:google_translate_result') && g:google_translate_result != ''
+            exec "normal 2k"
+            exec "normal dd"
+            exec "normal j"
+            exec "normal dd"
+        else
+            exec "normal j"
+        endif
+
+        let cur_line = line(".")
+        let all_lines = line("$")
+    endw
+        
+    echon 'Translate finished, enjoy it!'
+endfunction
 
 function SwitchTranslatorLanguage()
     if g:goog_switch_mode == 1
         let g:goog_user_conf = {'langpair':'zh|en', 'v_key':'T'}
         let g:goog_switch_mode = 0
-        echomsg 'Switch to zh->en mode'
+        echohl Special | echomsg 'Switch to zh->en mode' | echohl None
     else
         let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
         let g:goog_switch_mode = 1
-        echomsg 'Switch to en->zh mode'
+        echohl Special | echomsg 'Switch to en->zh mode' | echohl None
     endif
     call MergeConf()
+endfunction
+
+function TranslateLanguageOptions(A,L,P)
+    return ['zh|en', 'zh|zh-tw', 'zh-tw|zh', 'zh|ja', 'zh|ko', 'zh|fr', 'zh|de', 
+        \ 'en|zh', 'en|ja', 'en|ko', 'en|fr', 'en|de',
+        \ 'ja|zh', 'ja|en', 'ja|ko', 'ja|fr', 'ja|de',
+        \ 'ko|zh', 'ko|en', 'ko|ja', 'ko|fr', 'ko|de',
+        \ 'ko', 'th', 'fr', 'ru', 'ar', 'es', 'hi', 'tr', 'de',
+        \ ]
+endfunction
+
+function SelectTranslatorLanguage()
+    echohl Special | echomsg 'zh(中文), zh-tw(繁体), en(英文), ja(日文), ko(韩文), th(泰文), fr(法文)'
+    echohl Special | echomsg 'ru(俄文), ar(阿拉伯文), es(西班牙文), hi(印度文), tr(土耳其文), de(德文)'
+    echohl None
+    let langpair  = input("(Format:zh|en) Select Language: ",'zh|', 'customlist,TranslateLanguageOptions')
+    if langpair == ''
+        let langpair = 'zh|en'
+    endif
+
+    let g:goog_user_conf = {'langpair':langpair, 'v_key':'T'}
+    redraw | echohl Special | echomsg 'Switch to <'. langpair . '> mode'
+    echohl None
+    call MergeConf()
+endfunction
+
+function TranslateFormatter()
+    let split_text = input("Input split token: ",'.')
+    if split_text == '' || split_text == '.'
+        let split_text = '\.'
+    endif
+
+    exec '%s/'.split_text.'/'.split_text.'\r/g'
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " google-translator end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cpplint setting {
+" cpplint & jsl setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType cpp set makeprg=$HOME'/.vim/toolsuit/cpplint.py'\ %
-autocmd FileType cpp nmap <silent><buffer> -- :make<CR> :cw<CR>
+" by LintCheck checking cpp,javascript syntax
+function MyLintCheck()
+    if &ft == 'cpp'
+        set makeprg=$HOME'/.vim/toolsuit/cpplint.py'\ %
+        silent exec 'make'
+    elseif &ft == 'javascript'
+        set makeprg=$HOME'/.vim/toolsuit/jsl'\ -nologo\ -nofilelisting\ -nosummary\ -nocontext\ -conf\ $HOME'/.vim/toolsuit/jsl.conf'\ -process\ %
+        silent exec 'make'
+    endif
+    
+    set makeprg=make
+    silent exec 'copen'
+endfunction
+
+autocmd FileType cpp,javascript nmap -- :call MyLintCheck()<CR>
+
+" CPP old style
+" autocmd FileType cpp set makeprg=$HOME'/.vim/toolsuit/cpplint.py'\ %
+" autocmd FileType cpp nmap <silent><buffer> -- :make<CR> :cw<CR>
+
+" jsl old style
+" autocmd FileType javascript set makeprg=$HOME'/.vim/toolsuit/jsl'\ -nologo\ -nofilelisting\ -nosummary\ -nocontext\ -conf\ $HOME'/.vim/toolsuit/jsl.conf'\ -process\ %
+" autocmd FileType javascript set errorformat=%f(%l):\ %m
+" autocmd FileType javascript nmap <silent><buffer> -- :make<CR><CR> :cw<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cpplint end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -931,4 +1032,12 @@ nmap <Leader>s  :TSearch <CR>
 let g:snips_author = 'Zenki.J.Zha'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SnipMate end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TWL setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>tw :TWL <CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TWL end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -89,7 +89,7 @@ set smartcase   " Set smartcase mode on, If there is upper case character in the
 let &termencoding=&encoding
 set encoding=utf-8  
 set termencoding=utf-8  
-set fileencodings=ucs-bom,utf-8,gbk,chinese,prc,taiwan,latin-1,cp936
+set fileencodings=utf-8,gbk,chinese,ucs-bom,prc,taiwan,latin-1,cp936
 set fileformat=unix
 set fileformats=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

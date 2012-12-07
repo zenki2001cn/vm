@@ -584,9 +584,10 @@ vnoremap <silent> <Plug>VgSurround :<C-U>call <SID>opfunc(visualmode(),visualmod
 inoremap <silent> <Plug>Isurround  <C-R>=<SID>insert()<CR>
 inoremap <silent> <Plug>ISurround  <C-R>=<SID>insert(1)<CR>
 
+" modify zenki, change hotkey
 if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
-  nmap      ds   <Plug>Dsurround
-  nmap      cs   <Plug>Csurround
+  nmap      ,ds   <Plug>Dsurround
+  nmap      ,cs   <Plug>Csurround
   nmap      ys   <Plug>Ysurround
   nmap      yS   <Plug>YSurround
   nmap      yss  <Plug>Yssurround

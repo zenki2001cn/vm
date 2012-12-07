@@ -459,6 +459,12 @@ GOOGLETRANSLATOR                                     *google-translator_zenki*
     KEY                                     说明~
     <S-t>                                   Visual模式下，对选中内容进行翻译
     <leader>ts                              Normal模式下，切换语言
+    <leader>tss                             Normal模式下，自定义转换语言
+    <leader>t                               Normal模式下，翻译当前行，并将结果插入到下一行
+    <leader>tr                              Normal模式下，翻译当前行，并删除原文
+    <leader>ta                              Normal模式下，翻译全文，并将结果插入到原文下一行
+    <leader>tar                             Normal模式下，翻译全文，并删除原文
+    <leader>tf                              Normal模式下，格式化全文
 
 2. 有修改记录
 

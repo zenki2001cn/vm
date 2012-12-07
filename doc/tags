@@ -131,6 +131,7 @@
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
 :CommandTJumps	command-t.txt	/*:CommandTJumps*
 :CommandTTag	command-t.txt	/*:CommandTTag*
+:ConflictSyntax	ConflictDetection.txt	/*:ConflictSyntax*
 :FormatCommand	format.txt	/*:FormatCommand*
 :HighlightTags	easytags.txt	/*:HighlightTags*
 :LoadCommand	load.txt	/*:LoadCommand*
