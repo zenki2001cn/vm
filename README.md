@@ -3,7 +3,13 @@ ChangLog
 
 ## TODO ##
 
-### 40 v1.12.5
+### 41 v1.12.6 ###
+
+* 12.1 添加splice插件（版本控制merge工具）                  ---> splice v1.01
+* 12.2 添加clam插件（执行shell命令）                        ---> clam v1.3.0
+* 12.3 修改DoxygenToolkit插件（消除mark d）                 ---> DoxygenToolkit v0.2.13
+
+### 40 v1.12.5 ###
 
 * 12.1 更新tlib                                             ---> tlib v1.04
 * 12.2 添加dot.snippets

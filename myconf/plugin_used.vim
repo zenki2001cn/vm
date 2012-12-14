@@ -295,8 +295,8 @@ let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns "
 "let g:DoxygenToolkit_blockHeader="---------------------------"
 "let g:DoxygenToolkit_blockFooter="----------------------------"
-let g:DoxygenToolkit_authorName="Zenki J.Zha"
-let g:DoxygenToolkit_licenseTag="Zenki J.Zha"
+let g:DoxygenToolkit_authorName="Zenki J.Zha, zenki2001cn@163.com"
+let g:DoxygenToolkit_licenseTag="Zenki J.Zha, Copyright(C) All right reserved."
 
 nnoremap ,cf :Dox<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1041,3 +1041,13 @@ nmap <Leader>tw :TWL <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TWL end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clam setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clam end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+

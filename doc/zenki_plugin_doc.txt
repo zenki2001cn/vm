@@ -48,6 +48,9 @@ Zenki's vim plugin Document                                        *zenki_doc*
    42. TxtBrowser                   |txtbrowser_zenki|
    43. Mappingmanager               |mappingmanager|                      
    44. surround                     |surround_zenki|
+   45. splice                       |splice_zenki|
+   46. TWL                          |twl_zenki|
+   47. clam                         |clam_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -549,5 +552,35 @@ SURROUND                                                      *surround_zenki*
 
     Old text                  Command     New text ~
     hello world               vS}         {hello world}
+
+==============================================================================
+SPLICE                                                          *splice_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    -g                                      Grid视图模式
+    -l                                      单个文件模式
+    -c                                      比较模式
+    -p                                      三方比较模式
+    -u                                      hunk冲突文件
+
+2. .gitconfig加入以下配置
+    [merge]
+        tool = splice
+    [mergetool "splice"]
+        cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+        trustExitCode = true
+
+==============================================================================
+TWL                                                                *twl_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    <leader>tw                              切换窗口布局
+
+==============================================================================
+CLAM                                                              *clam_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    !                                       执行shell命令
+    V模式 !                                 执行shell命令
 
 vim:tw=78:ts=8:ft=help:norl:

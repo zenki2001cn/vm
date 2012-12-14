@@ -135,6 +135,7 @@ let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)              
 let g:mm_info_extra .= "CommandT:   \\ct(浏览), \\cb(缓存)                                                    Diff:           dp(push), do(get)                        \n"
 let g:mm_info_extra .= "Surround:   ,cs)], ,ds), ysiw), yssb, vS}                                           Repeat:         .                               \n"
 let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer)      \n"
+let g:mm_info_extra .= "Clam:       !                                                                        \n"
 
 " load the user mappings
 if has("unix")
