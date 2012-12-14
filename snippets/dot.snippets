@@ -1,0 +1,35 @@
+snippet G
+	digraph G {
+		// dot：阶层式	neato：无向图	fdp：类似neato	sfdp：多图层	twopi：放射性	circo：环状图
+		graph [layout=dot]
+
+		size="${1:4, 4}";
+		node [shape="${2:box}", style="${3:solid}", color="${4:blue}"];
+		edge [shape="${5:normal}", style="${6:dashed}", color="${7:red}"];
+		rankdir="${8:LR}";
+		fontsize="${9:10}";
+
+		${10}
+	}
+snippet sub
+	subgraph cluster_${1:0} {
+		label="${2:subgraph 0}";
+		bgcolor="${3:mintcream}";
+
+		${4}
+	}
+snippet node
+	${1:node} [label="${2:node_a}", shape="${3:polygon}", style="${4:filled}", sides="${5:5}", peripheries="${6:3}", color="${7:lightblue}"];
+snippet edge
+	${1:edge} [shape="${2:normal}", style="${3:dashed}", color="${4:red}"];
+#
+# label="<mark1>name1|<mark2>name2"
+# label="{<mark1>name1|<mark2>name2}"
+snippet table
+	${1:table} [shape="record", width=.1, height=.1, label="<f0> ${2:left}|<f1> ${3:middle}|<f2> ${4:right}"]; 
+snippet ->
+	${1:nodea_a} -> ${2:node_b}:${3:se} [label="${4:arrow}", style="${5:dashed}", color="${6:blue}", arrowhead="${7:normal}", arrowtail="${8:normal}"]
+snippet ->t
+	${1:nodea_a} -> ${2:node_b} [label="${3:arrow}", color="transparent"]
+snippet attr
+	[label="${1:label}", style="${2:solid}", color="${3:red}"]

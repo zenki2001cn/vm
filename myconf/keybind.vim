@@ -125,7 +125,8 @@ nmap <leader>sv :SessionSave <CR>
 " map <leader>sc :SessionClose <CR>
 
 " 快速保存
-nmap <leader>w :w! <CR>
+nmap <leader>wa :wa! <CR>
+nmap ww :w! <CR>
 " 快速退出
 nmap <leader>qa :qa! <CR>
 nmap <leader>qq :q! <CR>
@@ -138,8 +139,6 @@ vnoremap < <gv
 vnoremap > >gv
 
 " 窗口管理
-nnoremap ww <c-w>w      " 切换下一个窗口
-nnoremap WW <c-w><S-w>  " 切换上一个窗口
 nnoremap wJ <c-w><S-j>  " 与下边窗口交换位置
 nnoremap wK <c-w><S-k>  " 与上边窗口交换位置
 nnoremap wH <c-w><S-h>  " 与左边窗口交换位置

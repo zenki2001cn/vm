@@ -281,8 +281,8 @@ function DiffModeMappingPre()
     endif
 endfunction
 
-nmap <silent><unique> ]] :call DiffModeMappingNext()<CR>
-nmap <silent><unique> [[ :call DiffModeMappingPre()<CR>
+nmap <silent> ]] :call DiffModeMappingNext()<CR>
+nmap <silent> [[ :call DiffModeMappingPre()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dirdiff setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

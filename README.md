@@ -3,6 +3,13 @@ ChangLog
 
 ## TODO ##
 
+### 40 v1.12.5
+
+* 12.1 更新tlib                                             ---> tlib v1.04
+* 12.2 添加dot.snippets
+* 12.3 修改若干快捷键
+
+
 ### 39 v1.12.4 ###
 
 * 12.1 更新Conflict_Detection插件                           ---> Conflict_Detection v1.11.005
