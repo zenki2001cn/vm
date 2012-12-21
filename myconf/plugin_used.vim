@@ -241,7 +241,7 @@ nmap <Leader>gt :Gtabedit<CR>
 " autoclose setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置需要自动补全的字符对
-let g:AutoClosePairs = {'{': '}', '[': ']', '"': '"', "'": "'"}
+let g:AutoClosePairs = {'{': '}', '[': ']', '"': '"', "'": "'", '(':')', '（':'）'}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autoclose setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -799,6 +799,14 @@ let OmniCpp_SelectFirstItem = 0
 let g:CCTreeUseUTF8Symbols = 0              " 使用UTF8的符号显示折叠
 let g:CCTreeCscopeDb = "cscope.out"
 let g:CCTreeKeyCompressTree = 'zs'          " Compress call-tree
+
+let g:CCTreeKeyTraceForwardTree = '<C-F8>'
+let g:CCTreeKeyTraceReverseTree = '<C-F7>'
+let g:CCTreeKeyHilightTree = '<F7>l'        " Static highlighting
+let g:CCTreeKeySaveWindow = '<F7>y'
+let g:CCTreeKeyToggleWindow = '<F7>w'
+let g:CCTreeKeyDepthPlus = '<F7>='
+let g:CCTreeKeyDepthMinus = '<F7>-'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CCTree end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

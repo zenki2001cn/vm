@@ -3,6 +3,12 @@ ChangLog
 
 ## TODO ##
 
+### 42 v1.12.7 ###
+
+* 12.1 修改mappings.vim
+* 12.2 修改plugin_used.vim
+* 12.3 修改molokai配色
+
 ### 41 v1.12.6 ###
 
 * 12.1 添加splice插件（版本控制merge工具）                  ---> splice v1.01

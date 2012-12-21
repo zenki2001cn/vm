@@ -12,7 +12,7 @@ let g:map_info += ["TList",                 "打开TagList            "]
 let g:map_info += ["Tagbar",                "打开Tagbar             "]
 let g:map_info += ["Mark Previous",         "跳转到上一个标记位置   "]
 let g:map_info += ["Mark Next",             "跳转到下一个标记位置   "]
-let g:map_info += ["CCTree",                "<C-F7>, <C-F8>, zs, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>"]
+let g:map_info += ["CCTree",                "<C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>"]
 let g:map_info += ["UndoTree",              "显示修改的历史记录     "]
 let g:map_info += ["Latex-suite",           "Latex环境              "]
 let g:map_info += ["Latex-suite",           "Latex命令              "]
@@ -72,16 +72,6 @@ if g:map_index == 1
 
     " 开关UndoTree
     nnoremap <F8> :UndotreeToggle <CR>
-
-    " CCTree maps {
-    let g:CCTreeKeyTraceForwardTree = '<C-F8>'
-    let g:CCTreeKeyTraceReverseTree = '<C-F7>'
-    let g:CCTreeKeyHilightTree = '<F7>l'        " Static highlighting
-    let g:CCTreeKeySaveWindow = '<F7>y'
-    let g:CCTreeKeyToggleWindow = '<F7>w'
-    let g:CCTreeKeyDepthPlus = '<F7>='
-    let g:CCTreeKeyDepthMinus = '<F7>-'
-    " CCTree maps }
 
     " quickfix maps {
     nmap <C-F5> :cprevious <CR>
