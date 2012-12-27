@@ -8,25 +8,6 @@ let g:template_path = $HOME.'/.vim/template/*/'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CommandT setting start {
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Leader>ct :CommandT<CR>
-nnoremap <silent> <Leader>cb :CommandTBuffer<CR>
-
-let g:CommandTMaxFiles = 100000
-let g:CommandTMaxDepth = 100
-let g:CommandTMaxCachedDirectories = 10
-let g:CommandTCancelMap = ['<C-c>', '<ESC>']
-" let g:CommandTSelectNextMap = 'j'
-" let g:CommandTSelectPrevMap = 'k'
-" let g:CommandTAcceptSelectionSplitMap = 's'
-" let g:CommandTAcceptSelectionVSplitMap = 'v'
-" let g:CommandTAcceptSelectionTabMap = 't'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CommandT setting end }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabularize setting start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 根据指定的字符，对齐文本行
@@ -346,30 +327,6 @@ nnoremap <S-M> :MRU<CR>
 " MRU setting end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SuperTab setting {
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"SuperTab 补全设置
-" let g:SuperTabDefaultCompletionType = "<c-x><c-u><c-p>"
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabContextDiscoverDiscovery =
-          \ ["&completefunc:<c-x><c-n>", "&omnifunc:<c-x><c-p>"]
-" let g:SuperTabNoCompleteBefore = []
-" let g:SuperTabNoCompleteAfter = ['\s']
-
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-        \	if &omnifunc == "" |
-        \		setlocal omnifunc=syntaxcomplete#Complete |
-        \	endif
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SuperTab setting end }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " showmarks setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1027,9 +984,22 @@ nmap <leader>rf :call Renamef()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let TxtBrowser_Dict_Url = 'http://dict.cn/text'
 let Txtbrowser_Search_Engine='http://www.baidu.com/s?wd=text&oq=text&f=3&rsp=2'
-nmap <Leader>g  :TGoto <CR>
-nmap <Leader>f  :TFind <CR>
-nmap <Leader>s  :TSearch <CR>
+let g:TxtBrowser_Use_W3m = 1      " default use W3m to open url
+nmap <Leader>g  :TGoto<CR>
+nmap <Leader>f  :TFind<CR>
+nmap <Leader>s  :TSearch<CR>
+
+" W3m功能切换
+function ToggleTxtBrowserUseW3m()
+    if g:TxtBrowser_Use_W3m == 1
+        let g:TxtBrowser_Use_W3m = 0
+        echon "Disable W3m"
+    else
+        let g:TxtBrowser_Use_W3m = 1
+        echon "Enable W3m"
+    endif
+endfunction
+nmap <C-x>w :call ToggleTxtBrowserUseW3m()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TxtBrowser end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1059,3 +1029,79 @@ vnoremap ! :ClamVisual<space>
 " clam end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" w3m setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:w3m#external_browser = 'firefox'
+let g:w3m#homepage = "http://www.baidu.com/"
+let g:w3m#search_engine = 
+    \ 'http://www.baidu.com/s?wd='
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" w3m end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CommandT setting start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>ct :CommandT<CR>
+nnoremap <silent> <Leader>cb :CommandTBuffer<CR>
+
+let g:CommandTMaxFiles = 100000
+let g:CommandTMaxDepth = 100
+let g:CommandTMaxCachedDirectories = 10
+let g:CommandTCancelMap = ['<C-c>', '<ESC>']
+" let g:CommandTSelectNextMap = 'j'
+" let g:CommandTSelectPrevMap = 'k'
+" let g:CommandTAcceptSelectionSplitMap = 's'
+" let g:CommandTAcceptSelectionVSplitMap = 'v'
+" let g:CommandTAcceptSelectionTabMap = 't'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CommandT setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_files = 100000
+let g:ctrlp_max_depth = 100
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_open_multiple_files = '1vji'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(swp|so)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SuperTab 补全设置
+" let g:SuperTabDefaultCompletionType = "<c-x><c-u><c-p>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery =
+          \ ["&completefunc:<c-x><c-n>", "&omnifunc:<c-x><c-p>"]
+" let g:SuperTabNoCompleteBefore = []
+" let g:SuperTabNoCompleteAfter = ['\s']
+
+" 原始配置
+" if has("autocmd") && exists("+omnifunc")
+    " autocmd Filetype *
+        " \	if &omnifunc == "" |
+        " \		setlocal omnifunc=syntaxcomplete#Complete |
+        " \	endif
+" endif
+
+autocmd FileType *
+    \ if &omnifunc != '' |
+    \   call SuperTabChain(&omnifunc, "<c-p>") |
+    \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+    \ endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab setting end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

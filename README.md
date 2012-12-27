@@ -3,6 +3,18 @@ ChangLog
 
 ## TODO ##
 
+### 43 v1.12.8 ###
+
+* 12.1 更新SuperTab                                         ---> SuperTab (from github)
+* 12.2 更新bufexplorer                                      ---> bufexplorer v7.3.2
+* 12.3 添加WebAPI插件（访问web service）                    ---> WebAPI v0.2
+* 12.4 添加W2m插件（集成w3m）                               ---> W2m v1.2.0
+* 12.5 更新多个配置文件
+* 12.6 添加CtrlP插件（文件搜索）                            ---> CtrlP (from github)
+* 12.7 修改TxtBrowser插件（使用W3m浏览引擎）
+* 12.8 添加NERD_tree_java.vim（Java相关功能）
+* 12.9 修改javacomplete.vim（配合NERD_tree_java插件）       ---> javacomplete v0.77.1.2
+
 ### 42 v1.12.7 ###
 
 * 12.1 修改mappings.vim

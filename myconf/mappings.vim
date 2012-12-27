@@ -5,32 +5,32 @@
 " mapping menu
 "
 let g:map_info  = []
-let g:map_info += ["Mapping F1",             "this is the default mapping"]
-let g:map_info += ["NERDTreeToggle",        "打开NERDTree           "]
-let g:map_info += ["NERDTreeFind",          "关联NERDTree           "]
-let g:map_info += ["TList",                 "打开TagList            "]
-let g:map_info += ["Tagbar",                "打开Tagbar             "]
-let g:map_info += ["Mark Previous",         "跳转到上一个标记位置   "]
-let g:map_info += ["Mark Next",             "跳转到下一个标记位置   "]
-let g:map_info += ["CCTree",                "<C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>"]
-let g:map_info += ["UndoTree",              "显示修改的历史记录     "]
-let g:map_info += ["Latex-suite",           "Latex环境              "]
-let g:map_info += ["Latex-suite",           "Latex命令              "]
-let g:map_info += ["Latex-suite",           "Latex完成              "]
-let g:map_info += ["Latex-suite",           "dvi预览                "]
-let g:map_info += ["Mapping F2",             "Not mapping"]
-let g:map_info += ["F1 not set",            "please modify mappings.vim"]
-let g:map_info += ["F2 not set",            "please modify mappings.vim"]
-let g:map_info += ["F3 not set",            "please modify mappings.vim"]
-let g:map_info += ["F4 not set",            "please modify mappings.vim"]
-let g:map_info += ["F5 not set",            "please modify mappings.vim"]
-let g:map_info += ["F6 not set",            "please modify mappings.vim"]
-let g:map_info += ["F7 not set",            "please modify mappings.vim"]
-let g:map_info += ["F8 not set",            "please modify mappings.vim"]
-let g:map_info += ["F9 not set",            "please modify mappings.vim"]
-let g:map_info += ["F10 not set",           "please modify mappings.vim"]
-let g:map_info += ["F11 not set",           "please modify mappings.vim"]
-let g:map_info += ["F12 not set",           "please modify mappings.vim"]
+let g:map_info += ["Mapping F1",            "Programmer             "]
+let g:map_info += ["F1 - NERDTreeToggle",   "打开NERDTree           "]
+let g:map_info += ["F2 - NERDTreeFind",     "关联NERDTree           "]
+let g:map_info += ["F3 - TList",            "打开TagList            "]
+let g:map_info += ["F4 - Tagbar",           "打开Tagbar             "]
+let g:map_info += ["F5 - Mark Previous",    "跳转到上一个标记位置   "]
+let g:map_info += ["F6 - Mark Next",        "跳转到下一个标记位置   "]
+let g:map_info += ["F7 - CCTree",           "打开CCTree"]
+let g:map_info += ["F8 - UndoTree",         "显示修改的历史记录     "]
+let g:map_info += ["F9 - Latex-suite",      "Latex环境              "]
+let g:map_info += ["F10 - Latex-suite",     "Latex命令              "]
+let g:map_info += ["F11 - Latex-suite",     "Latex完成              "]
+let g:map_info += ["F12 - Latex-suite",     "dvi预览                "]
+let g:map_info += ["Mapping F2",            "Web Browser            "]
+let g:map_info += ["F1 - NERDTreeToggle",   "打开NERDTree           "]
+let g:map_info += ["F2 - NERDTreeFind",     "关联NERDTree           "]
+let g:map_info += ["F3 - not set",          "                       "]
+let g:map_info += ["F4 - W3m",              "打开W3m                "]
+let g:map_info += ["F5 - Reload",           "刷新页面               "]
+let g:map_info += ["F6 - not set",          "                       "]
+let g:map_info += ["F7 - HistoryClear",     "清空历史               "]
+let g:map_info += ["F8 - History",          "打开历史               "]
+let g:map_info += ["F9 - ShowTitle",        "显示标题               "]
+let g:map_info += ["F10 - ShowUrl",         "显示地址               "]
+let g:map_info += ["F11 - not set",         "                       "]
+let g:map_info += ["F12 - Browser",         "外部浏览器             "]
 " .. and so on (modify/add to your likings)
 
 let g:hotkeys = ['<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>', '<F7>', '<F8>', '<F9>', '<F10>', '<F11>', '<F12>' ]
@@ -109,5 +109,17 @@ call MMUpdate()
 if g:map_index == 2
     exec "autocmd! FileType tex"
     call ClearMaps(g:hotkeys)
+
+    nnoremap <F1> :NERDTreeToggle<CR>
+    nnoremap <F2> :NERDTreeFind<CR>
+    nnoremap <F4> :W3m<Space>
+
+    nnoremap <F5> :W3mReload<CR>
+    nnoremap <F7> :W3mHistoryClear<CR>
+    nnoremap <F8> :W3mHistory<CR>
+
+    nnoremap <F9> :W3mShowTitle<CR>
+    nnoremap <F10> :W3mAddressBar<CR>
+    nnoremap <F12> :W3mShowExtenalBrowser<CR>
 endif
 " .. and so on (modify/add to your likings)

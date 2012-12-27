@@ -282,8 +282,11 @@ function! s:TxtbrowserOpenUrl (url)
 	return -1
     endif
 
+    " add zenki, use W3m plugin to open url, if set g:TxtBrowser_Use_W3m flag
     if exists("g:default_web_browser")
 	exec ":silent ! " . g:default_web_browser . " \"" . a:url . "\" &"
+    elseif exists("g:TxtBrowser_Use_W3m") && g:TxtBrowser_Use_W3m == 1
+    exec ':W3mSplit ' . a:url
     else
 	if (has("mac"))
 	    exec "!open \"" . a:url . "\""

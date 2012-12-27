@@ -36,7 +36,7 @@ snippet prfn
 		${4:/* code */}
 	}
 ## Basic Java packages and import
-snippet im
+snippet imp
 	import
 ## Class
 snippet cl
@@ -55,13 +55,13 @@ snippet in
 	interface ${1:`Filename("", "untitled")`} {
 		${2}
 	}
-snippet tc
+snippet cle
 	public class ${1:`Filename()`} extends ${2:TestCase}
 ##
 ## Class Enhancements
 snippet ext
 	extends 
-snippet imp
+snippet impl
 	implements
 ## Constants
 snippet co
@@ -191,10 +191,6 @@ snippet br
 	break;
 ##
 ## Test Methods
-snippet t
-	public void test${1:Name}() throws Exception {
-		${2}
-	}
 snippet test
 	@Test
 	public void test${1:Name}() throws Exception {
@@ -204,3 +200,27 @@ snippet @or
 	@Override
 snippet @sw
 	@SuppressWarnings
+snippet thread
+	Thread ${1:thread} = new Thread() {
+		public void run() {
+			${2:/* code here */}
+		};
+	};
+snippet runnable
+	new Runnable() {
+		public void run() {
+			${1:/* code here */}
+		}
+	}
+snippet thread_run
+	Thread ${1:thread} = new Thread(new Runnable() {
+		public void run() {
+			${2:/* code here */}
+		}
+	}, "${3:thread_name}");
+snippet sleep
+	try {
+		Thread.sleep(${1:1000});
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}

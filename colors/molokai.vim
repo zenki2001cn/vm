@@ -217,9 +217,9 @@ if &t_Co > 255
    hi WildMenu        ctermfg=81  ctermbg=16
 
    hi Normal          ctermfg=252 ctermbg=233
-   " modify zenki, 注释颜色
+   " modify zenki, 注释颜色，当前选中行
    hi Comment         ctermfg=248
-   hi CursorLine                  ctermbg=234   cterm=none
+   hi CursorLine                  ctermbg=235   cterm=none
    hi CursorColumn                ctermbg=234
    hi ColorColumn                 ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234

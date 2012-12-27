@@ -106,6 +106,8 @@ let s:cache = {}	" FQN -> member list, e.g. {'java.lang.StringBuffer': classinfo
 let s:files = {}	" srouce file path -> properties, e.g. {filekey: {'unit': compilationUnit, 'changedtick': tick, }}
 let s:history = {}	" 
 
+" add zenki, add s:classpath
+let s:classpath = split($CLASSPATH, ':', 1) 
 
 " This function is used for the 'omnifunc' option.		{{{1
 function! javacomplete#Complete(findstart, base)
@@ -281,10 +283,13 @@ function! javacomplete#Complete(findstart, base)
   endif
 
   " add zenki, b:errormsg variable error
-  if exists(b:errormsg) && strlen(b:errormsg) > 0
-    echoerr 'javacomplete error: ' . b:errormsg
-    let b:errormsg = ''
-  endif
+  try
+    if exists(b:errormsg) && strlen(b:errormsg) > 0
+      echoerr 'javacomplete error: ' . b:errormsg
+      let b:errormsg = ''
+    endif    
+  catch
+  endtry
 endfunction
 
 " Precondition:	incomplete must be a word without '.'.
@@ -1685,7 +1690,8 @@ endfu
 
 " classpath								{{{2
 fu! javacomplete#AddClassPath(s)
-  if !isdirectory(a:s)
+  " modify zenki, .jar files can also be as a path name
+  if !isdirectory(a:s) && match(a:s, "\\.jar$") == -1
     echoerr 'invalid classpath: ' . a:s
     return
   endif
