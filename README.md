@@ -3,6 +3,14 @@ ChangLog
 
 ## TODO ##
 
+### 44 v1.12.9 ###
+
+* 12.1 添加after/ftplugin/java.vim（自动加载android.jar）   ---> java.vim (from github)
+    - link: https://github.com/anddam/android-javacomplete
+* 12.2 修改NERD_tree_java.vim插件
+* 12.3 添加vcscommand.vim（版本控制插件）                   ---> vcscommand.vim (from github)
+    - link: https://github.com/molok/vcscommand.vim
+
 ### 43 v1.12.8 ###
 
 * 12.1 更新SuperTab                                         ---> SuperTab (from github)

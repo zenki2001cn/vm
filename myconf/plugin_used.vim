@@ -802,6 +802,12 @@ let g:jad_bin_path = $HOME.'/.vim/toolsuit/jad'
 " quickfixsigns setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns#vcsdiff#vcs = {
+    \ 'git': {'cmd': 'git diff --no-ext-diff -U0 %s', 'dir': '.git'}
+    \ , 'svn': {'cmd': 'svn diff --diff-cmd diff --extensions -U0 %s', 'dir': '.svn'}
+    \ , 'hg': {'cmd': 'hg diff -U0 %s', 'dir': '.hg'}
+    \ , 'bzr': {'cmd': 'bzr diff --diff-options=-U0 %s', 'dir': '.bzr'}
+    \ }
 nnoremap <Leader>qs :QuickfixsignsToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfixsigns end }
@@ -1074,6 +1080,15 @@ let g:ctrlp_custom_ignore = {
   \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  vscommand setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let VCSCommandCommitOnWrite = 0
+let VCSCommandDeleteOnHide = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  vscommand end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

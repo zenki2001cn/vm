@@ -137,6 +137,8 @@ nmap gk 30k
 " V模式连续缩进
 vnoremap < <gv
 vnoremap > >gv
+" 取消高亮搜索
+nmap ge :nohlsearch<CR>
 
 " 窗口管理
 nnoremap wJ <c-w><S-j>  " 与下边窗口交换位置

@@ -73,6 +73,7 @@ endfunction " }}}
 function! s:ReplaceCurrentBuffer(contents) " {{{
     normal! ggdG
     call append(0, split(a:contents, '\v\n'))
+    set ft=sh           " add zenki, set ft=sh
 endfunction " }}}
 
 function! s:ExeclamVisual(command) range " {{{

@@ -54,6 +54,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    48. WebAPI                       |webapi_zenki|
    49. W3m                          |w3m_zenki|
    50. CtrlP                        |ctrlp_zenki|
+   51. VCScommand                   |vcscommand_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -626,5 +627,18 @@ CTRLP                                                            *ctrlp_zenki*
     <C-r>                                   切换正则表达式匹配
     <F5>                                    刷新列表
     <F7>                                    清空MRU缓存
+
+==============================================================================
+VCSCOMMAND                                                  *vcscommand_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    \ca                                     加入当前文件到版本库
+    \cd                                     从版本库删除当前文件
+    \cc                                     提交当前文件
+    \cD                                     查看当前文件的diff
+    \cl                                     查看log
+    \cn                                     blame模式
+    \cs                                     查看status
+    \cv                                     使用vimdiff模式查看当前文件的diff
 
 vim:tw=78:ts=8:ft=help:norl:
