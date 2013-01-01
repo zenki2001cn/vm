@@ -3,6 +3,15 @@ ChangLog
 
 ## TODO ##
 
+## HISTORY ##
+### 45 v1.13 ###
+
+* 13.1 优化部分设置
+* 13.2 修改NERD_tree_java.vim为NERD_tree_tools.vim，添加加入头文件目录功能
+* 13.3 添加maximizer插件（最大最小化窗口）                  ---> maximizer.vim v1.0.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4376
+* 13.4 删除ZoomWin插件（用maximizer替换）
+
 ### 44 v1.12.9 ###
 
 * 12.1 添加after/ftplugin/java.vim（自动加载android.jar）   ---> java.vim (from github)
@@ -154,7 +163,7 @@ ChangLog
 
 ### 24 v1.11.1
 
-* 11.1 更新signature插件                                    ---> signature v1.35
+* 11.1 更新signature插件                                    ---> signature v1.3.5
 * 11.2 更新inccomplete插件（补全#include）                  ---> inccomplete v1.6.32
 * 11.3 更新SnippetComplete（新版本需要CompleteHelper库）    ---> SnippetComplete v2.10
 * 11.4 添加CompleteHelper插件（支持新版本的SnippetComplete）---> CompleteHelper v1.30
@@ -433,3 +442,6 @@ Update: 2012-06-08 17:42:31
 * 1.1 更新viki插件
 * 1.2 更新tlib插件
 * 1.3 更新bufexplore插件
+
+## WARNNING ##
+- 当版本库中的文件过多时，加载`quickfixsigns`插件会产生一定的延迟，此时可通过`<leader>qs`禁用quickfixsigns插件。

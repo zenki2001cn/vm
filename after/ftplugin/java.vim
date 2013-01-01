@@ -4,9 +4,17 @@
 " Description: 
 " Version: 
 " Last Modified: 2012-12-27 13:40:40
-"   1. Need to set $ANDROID_TOOLS_PATH.
+"   1. Need to set $ANDROID_TOOLS_PATH, $CLASS_PATH .etc
+"       ExampleSettings:
+"       export JAVA_HOME=/usr/lib/jvm/java-6-sun
+"       export ANDROID_TOOLS_PATH=/media/Data/Ubuntu_10_04/home/sourcecode/project/foxconn/android-sdk-linux_86
+"       export PATH=$PATH:$ANDROID_TOOLS_PATH/tools:$ANDROID_TOOLS_PATH/platform-tools
+"       export CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/jre/lib/junit.jar
+"
 "   2. Need to switch to the Android project directory , then open the java file.
-"   3. Directory structure as follows :
+"
+"   3. Directory structure as follows:
+"       ProjectDirectory:
 "       .
 "       |-- src                     --- all java source code dir
 "       |-- bin                     --- all java class dir

@@ -1630,7 +1630,7 @@ endfu
 " sourcepath								{{{2
 fu! javacomplete#AddSourcePath(s)
   if !isdirectory(a:s)
-    echoerr 'invalid source path: ' . a:s
+    " echoerr 'invalid source path: ' . a:s
     return
   endif
   let path = fnamemodify(a:s, ':p:h')
