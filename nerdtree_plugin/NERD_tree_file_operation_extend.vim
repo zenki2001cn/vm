@@ -43,6 +43,11 @@ call NERDTreeAddKeyMap({
        \ 'callback': 'NERDTreeAddNodeM',
        \ 'quickhelpText': 'add childnode' })
 
+call NERDTreeAddKeyMap({
+       \ 'key': '<C-f>',
+       \ 'callback': 'NERDTreeFilePirate',
+       \ 'quickhelpText': 'Search File faster' })
+
 let g:SzToolNodeBuf = ""
 let g:SzToolOpType = ""
 let g:SzToolParentOfRmNode = {}
@@ -64,7 +69,7 @@ function! NERDTreeAddNodeM()
                           \ "", curDirNode.path.str() . g:NERDTreePath.Slash(), "file")
 
     if newNodeName ==# ''
-        call s:echo("Node Creation Aborted.")
+        echon "Node Creation Aborted."
         return
     endif
 

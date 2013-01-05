@@ -56,6 +56,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    50. CtrlP                        |ctrlp_zenki|
    51. VCScommand                   |vcscommand_zenki|
    52. A                            |a_zenki|
+   53. FilePirate                   |filepirate_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -649,5 +650,16 @@ A                                                                    *a_zenki*
     NERDTree->Menu->tools->add              加入include目录及其子目录到缓存
     <leader>a                               切换到当前源文件对应的头文件
     <leader>A                               切换到#include包含的头文件
+
+==============================================================================
+FILEPIRATE                                                  *filepirate_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    <C-x><C-f>                              打开文件搜索模式
+    <C-j>                                   向下移动光标
+    <C-k>                                   向上移动光标
+    集成NERD_tree菜单
+
+2. 有修改记录
 
 vim:tw=78:ts=8:ft=help:norl:

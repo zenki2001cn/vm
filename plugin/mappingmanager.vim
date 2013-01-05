@@ -121,11 +121,11 @@ let g:navigation     += ["  !do-daily-yoga-and-stay-healthy!"]
 
 " add zenki, extra key mapping info
 let g:mm_info_extra = ""
-let g:mm_info_extra .= "\n*** Other mapping ***                                                                                                     \n\n"
+let g:mm_info_extra .= "\n*** Other mapping ***                                                                                         \n\n"
 let g:mm_info_extra .= "Tab操作:    te, tc, tn, tp, tf, tl                                                  Session:        \\sl(选择), \\sv(保存)  \n"
 let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       Quickfix:       \\qs(显示切换)    \n"
 let g:mm_info_extra .= "Ctags:      <C-]>, <C-t>, <C-n>, <C-p>, <C-l>                                       Gtags,Utags:    <C-\\>c, <C-\\>s, <C-\\>u, <C-\\>d\n"
-let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>                           \n"
+let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>         \n"
 let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL                    GoogleTrans:    \\t, \\tr, \\ta, \\tar, \\ts, \\tss, \\tf, <S-t>(可选中)\n"
 let g:mm_info_extra .= "Refactor:   \\rc(变量), \\rf(文件名), \\rr(恢复)                                       URL:            \\f(翻译), \\g(浏览), \\s(搜索), <C-x>w(W3m切换) \n"
 let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                                                  BufSearch:      ,bs                             \n"
@@ -133,11 +133,11 @@ let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d
 let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), <S-s>(list)                        Vimwiki:        \\wt(table), \\wg(links), \\wdi(dairy)  \n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get)               \n"
-let g:mm_info_extra .= "Surround:   ,cs)], ,ds), ysiw), yssb, vS}                                           Repeat:         .                               \n"
+let g:mm_info_extra .= "Surround:   ,cs)], ,ds), ysiw), yssb, vS}                                           Highlight:      gd(高亮搜索), ge(取消高亮)      \n"
 let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer), wo(最大最小化窗口)  \n"
-let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,                    \n"
+let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
-let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      \n"
+let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
 let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cd(delete), \\cD(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff)  \n"
 
 " load the user mappings

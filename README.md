@@ -11,6 +11,10 @@ ChangLog
 * 13.3 添加maximizer插件（最大最小化窗口）                  ---> maximizer.vim v1.0.1
     - link: http://www.vim.org/scripts/script.php?script_id=4376
 * 13.4 删除ZoomWin插件（用maximizer替换）
+* 13.5 更新surround插件                                     ---> surround.vim v2.0
+* 13.6 删除repeat插件
+* 13.7 添加filepirate插件（快速文件搜索）                   ---> filepirate.vim v0.1.0
+* 13.8 添加NERD_tree_filepirate.vim（集成filepirate插件）
 
 ### 44 v1.12.9 ###
 

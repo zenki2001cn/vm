@@ -29,8 +29,8 @@ let g:FLIST_WRAP = $HOME.'/.vim/toolsuit/flist_wrap.py'
 
 " add the new menu item via NERD_Tree's API
 let flistMenu = NERDTreeAddSubmenu({
-    \ 'text': '(f)list C function hints',
-    \ 'shortcut': 'f' })
+    \ 'text': '(h)ints C function',
+    \ 'shortcut': 'h' })
 
 call NERDTreeAddMenuItem({
     \ 'text': '(f)list hints to ftplugin/c',
