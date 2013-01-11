@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/media/DATA/data/vim/0'
 let g:netrw_dirhist_2='/home/zenki/workspace/Edu-BBS_svn'
 let g:netrw_dirhist_3='/media/Data/Ubuntu_10_04/home/config/vim/myconf'
+let g:netrw_dirhist_4='/home/zenki/.config/fcitx/conf'

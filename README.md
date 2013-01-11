@@ -4,6 +4,12 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 46 v1.13.1 ###
+
+* 13.1 添加gitlog插件
+    - link: https://github.com/PAntoine/vimgitlog
+* 13.2 优化若干配置
+
 ### 45 v1.13 ###
 
 * 13.1 优化部分设置

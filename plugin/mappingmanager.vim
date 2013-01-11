@@ -138,7 +138,7 @@ let g:mm_info_extra .= "Conflict:   ]=, [=                                      
 let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
-let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cd(delete), \\cD(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff)  \n"
+let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)  \n"
 
 " load the user mappings
 if has("unix")

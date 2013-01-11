@@ -53,7 +53,7 @@ if g:map_index == 1
 
     " 目录管理插件
     nnoremap <F1> :NERDTreeToggle<CR>
-    nnoremap <C-F1> :NERDTree<CR>
+    nnoremap <C-F1> :NERDTree 
 
     " 文件与NERDTree关联
     nnoremap <F2> :NERDTreeFind<CR>
@@ -112,7 +112,7 @@ if g:map_index == 2
     call ClearMaps(g:hotkeys)
 
     nnoremap <F1> :NERDTreeToggle<CR>
-    nnoremap <C-F1> :NERDTree<CR>
+    nnoremap <C-F1> :NERDTree
     nnoremap <F2> :NERDTreeFind<CR>
     nnoremap <F4> :W3m<Space>
 
