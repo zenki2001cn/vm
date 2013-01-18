@@ -4,6 +4,11 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 47 v1.13.2 ###
+
+* 13.1 更新filepirate插件                                   ---> filepirate.vim v0.1.1
+* 13.2 更新bufexplore插件                                   ---> bufexplore.vim v7.3.3
+
 ### 46 v1.13.1 ###
 
 * 13.1 添加gitlog插件
