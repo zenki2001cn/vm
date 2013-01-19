@@ -3,9 +3,10 @@
 " Author: Zenki (Zenki.J.Zha), zenki2001cn@163.com
 " Description: 
 " Version: 
-" Last Modified: 2012-11-28 10:22:16
+" Last Modified: 2013-01-19 13:45:49
 "   1. Porting from SzTools plugin.
 "   2. Add <C-n> to create child node.
+"   3. Add ;e to open directory with external explorer
 " ============================================================================
 if exists("g:loaded_nerdtree_file_extend")
     finish
@@ -47,6 +48,11 @@ call NERDTreeAddKeyMap({
        \ 'key': '<C-f>',
        \ 'callback': 'NERDTreeFilePirate',
        \ 'quickhelpText': 'Search File faster' })
+
+call NERDTreeAddKeyMap({
+       \ 'key': ';e',
+       \ 'callback': 'OpenWithExternalExplorer',
+       \ 'quickhelpText': 'Open External Explorer' })
 
 let g:SzToolNodeBuf = ""
 let g:SzToolOpType = ""
@@ -158,4 +164,17 @@ function! NodeToBuf(opType)
         let g:SzToolOpType = a:opType
         let g:SzToolParentOfRmNode = curNode.parent
     endif
+endfunction
+
+function! OpenWithExternalExplorer()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode == {}
+      redraw
+      echomsg "NERDTree: " . "Put the cursor on a node first"
+      return
+    endif 
+    let curPath = curNode.path.str()
+    let cmd = "nautilus " . curPath 
+
+    call system(cmd)
 endfunction

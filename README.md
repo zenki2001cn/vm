@@ -4,6 +4,10 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 48 v1.13.3 ###
+
+* 13.1 添加NERD_tree使用外部浏览器打开当前目录
+
 ### 47 v1.13.2 ###
 
 * 13.1 更新filepirate插件                                   ---> filepirate.vim v0.1.1
