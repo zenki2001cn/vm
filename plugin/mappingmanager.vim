@@ -129,7 +129,7 @@ let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)    
 let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL                    GoogleTrans:    \\t, \\tr, \\ta, \\tar, \\ts, \\tss, \\tf, <S-t>(可选中)\n"
 let g:mm_info_extra .= "Refactor:   \\rc(变量), \\rf(文件名), \\rr(恢复)                                       URL:            \\f(翻译), \\g(浏览), \\s(搜索), <C-x>w(W3m切换) \n"
 let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                                                  BufSearch:      ,bs                             \n"
-let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭)                              Jump:           ,,[key], <C-o>(后退), <C-i>(前进)   \n"
+let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭)                              Jump:           ,,[key](字符跳转), gL(行跳转), gv(V模式跳转), <C-o>(后退), <C-i>(前进)   \n"
 let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), <S-s>(list)                        Vimwiki:        \\wt(table), \\wg(links), \\wdi(dairy)  \n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get)               \n"

@@ -4,6 +4,11 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 49 v1.13.4 ###
+
+* 13.1 添加accelerated插件                                  ---> accelerated v1.0.0
+* 13.2 添加RocketJump插件                                   ---> RocketJump v1.0
+
 ### 48 v1.13.3 ###
 
 * 13.1 添加NERD_tree使用外部浏览器打开当前目录
