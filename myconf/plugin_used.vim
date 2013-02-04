@@ -1073,6 +1073,7 @@ let g:ctrlp_max_files = 100000
 let g:ctrlp_max_depth = 100
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_open_multiple_files = '1vji'
+let g:ctrlp_dotfiles = 1
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(swp|so)$',
@@ -1175,4 +1176,12 @@ noremap <silent> gv V <bar> :call RocketJump#PerformJump(1) <CR>
 vnoremap <silent> gL :call RocketJump#PerformJump(1) <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  RocketJump end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Narrow setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <silent> <C-x><C-n> :NR<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Narrow end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

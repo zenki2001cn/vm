@@ -4,6 +4,14 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 50 v1.13.5 ###
+
+* 13.1 添加NrrwRgn插件（局部文本操作）                      ---> Narrow v30
+    - link: http://www.vim.org/scripts/script.php?script_id=3075
+* 13.2 更新bufexplore插件                                   ---> bufexplore.vim v7.3.4
+* 13.3 更新Ctrlp插件                                        ---> Ctrlp v1.79
+* 13.4 调整一些快捷键映射
+
 ### 49 v1.13.4 ###
 
 * 13.1 添加accelerated插件                                  ---> accelerated v1.0.0

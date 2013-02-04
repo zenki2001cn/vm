@@ -97,12 +97,13 @@
 nmap <leader><leader> \be
 
 " TAB,标签页的映射
-nmap te :tabedit <CR> 
-nmap tc :tabclose <CR>
-nmap tn :tabnext <CR>
-nmap tp :tabprevious <CR>
-nmap tf :tabfirst <CR>
-nmap tl :tablast <CR>
+nmap <leader>te :tabedit <CR> 
+nmap <leader>tc :tabclose <CR>
+nmap <leader>tn :tabnext <CR>
+nmap <leader>tp :tabprevious <CR>
+" nmap <leader>tf :tabfirst <CR>
+" nmap <leader>tl :tablast <CR>
+
 " 标签页自动编号
 set guitablabel=%{tabpagenr()}.%t\ %m
 

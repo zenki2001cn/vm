@@ -139,6 +139,7 @@ let g:mm_info_extra .= "Clam:       !                                           
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
 let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)  \n"
+let g:mm_info_extra .= "Narrow:     <C-x><C-n>                                                              \n"
 
 " load the user mappings
 if has("unix")
