@@ -4,6 +4,12 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+
+### 51 v1.13.5 final ###
+
+* 13.1 更新SyntaxComplete插件                               ---> SyntaxComplete v12.0
+    - link: http://www.vim.org/scripts/script.php?script_id=3172
+
 ### 50 v1.13.5 ###
 
 * 13.1 添加NrrwRgn插件（局部文本操作）                      ---> Narrow v30

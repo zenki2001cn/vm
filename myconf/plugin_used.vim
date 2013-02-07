@@ -1142,12 +1142,12 @@ let g:SuperTabContextDiscoverDiscovery =
 " let g:SuperTabNoCompleteBefore = []
 " let g:SuperTabNoCompleteAfter = ['\s']
 
-" 原始配置
+" 禁用，与自动补全冲突
 " if has("autocmd") && exists("+omnifunc")
     " autocmd Filetype *
-        " \	if &omnifunc == "" |
-        " \		setlocal omnifunc=syntaxcomplete#Complete |
-        " \	endif
+        " \ if &omnifunc == "" |
+            " \ setlocal omnifunc=syntaxcomplete#Complete |
+        " \ endif
 " endif
 
 autocmd FileType *
