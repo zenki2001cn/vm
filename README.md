@@ -5,6 +5,10 @@ ChangLog
 
 ## HISTORY ##
 
+### 52 v1.13.6 ###
+
+* 13.1 更新undotree插件                                     ---> undotree v4.3
+
 ### 51 v1.13.5 final ###
 
 * 13.1 更新SyntaxComplete插件                               ---> SyntaxComplete v12.0
