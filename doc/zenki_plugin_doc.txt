@@ -664,7 +664,7 @@ FILEPIRATE                                                  *filepirate_zenki*
 2. 有修改记录
 
 ==============================================================================
-GITLOG                                                      *filepirate_zenki* 
+GITLOG                                                          *gitlog_zenki* 
 1. 快捷键使用说明
     KEY                                     说明~
     \cg                                     打开gitlog模式

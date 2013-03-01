@@ -5,6 +5,13 @@ ChangLog
 
 ## HISTORY ##
 
+### 53 v1.13.7 ###
+
+* 13.1 更新taglist插件                                      ---> taglist v4.6
+    - link: http://www.vim.org/scripts/script.php?script_id=273
+* 13.2 添加Replay插件                                       ---> Replay v4
+    - link: http://www.vim.org/scripts/script.php?script_id=3216
+
 ### 52 v1.13.6 ###
 
 * 13.1 更新undotree插件                                     ---> undotree v4.3

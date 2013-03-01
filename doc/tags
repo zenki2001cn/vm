@@ -216,6 +216,7 @@
 :CtrlPUndo	ctrlp.txt	/*:CtrlPUndo*
 :FormatCommand	format.txt	/*:FormatCommand*
 :HighlightTags	easytags.txt	/*:HighlightTags*
+:ListRecords	Replay.txt	/*:ListRecords*
 :LoadCommand	load.txt	/*:LoadCommand*
 :MatchDebug	matchit.txt	/*:MatchDebug*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
@@ -279,6 +280,7 @@
 :Ref	ref.txt	/*:Ref*
 :Ref-option	ref.txt	/*:Ref-option*
 :RefHistory	ref.txt	/*:RefHistory*
+:Replay	Replay.txt	/*:Replay*
 :RopeCodeAssist	ropevim.txt	/*:RopeCodeAssist*
 :RopeFindFile	ropevim.txt	/*:RopeFindFile*
 :RopeFindFileOtherWindow	ropevim.txt	/*:RopeFindFileOtherWindow*
@@ -288,6 +290,8 @@
 :SBSettings	selectbuf.txt	/*:SBSettings*
 :Search	MultipleSearch.txt	/*:Search*
 :SearchBuffers	MultipleSearch.txt	/*:SearchBuffers*
+:StartRecord	Replay.txt	/*:StartRecord*
+:StopRecord	Replay.txt	/*:StopRecord*
 :TBrowseOutput	tlib.txt	/*:TBrowseOutput*
 :TBrowseScriptnames	tlib.txt	/*:TBrowseScriptnames*
 :TKeyArg	tlib.txt	/*:TKeyArg*
@@ -808,6 +812,14 @@ RecoverPluginFinish	recoverPlugin.txt	/*RecoverPluginFinish*
 RecoverPluginHelp	recoverPlugin.txt	/*RecoverPluginHelp*
 ReloadAllSnippets()	snipMate.txt	/*ReloadAllSnippets()*
 ReloadSnippets()	snipMate.txt	/*ReloadSnippets()*
+Replay-config	Replay.txt	/*Replay-config*
+Replay-feedback	Replay.txt	/*Replay-feedback*
+Replay-history	Replay.txt	/*Replay-history*
+Replay-manual	Replay.txt	/*Replay-manual*
+Replay-record	Replay.txt	/*Replay-record*
+Replay-speed	Replay.txt	/*Replay-speed*
+Replay.txt	Replay.txt	/*Replay.txt*
+ReplayPlugin	Replay.txt	/*ReplayPlugin*
 ResetAllSnippets()	snipMate.txt	/*ResetAllSnippets()*
 ResetCtrlP	ctrlp.txt	/*ResetCtrlP*
 ResetSnippets()	snipMate.txt	/*ResetSnippets()*
@@ -945,6 +957,7 @@ TOhtml_zenki	zenki_plugin_doc.txt	/*TOhtml_zenki*
 TXtermColorTable	xterm-color-table.txt	/*TXtermColorTable*
 Tab_zenki	zenki_plugin_doc.txt	/*Tab_zenki*
 Tabular.txt	Tabular.txt	/*Tabular.txt*
+Tlist_Get_Filenames()	taglist.txt	/*Tlist_Get_Filenames()*
 Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line()*
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
@@ -1354,7 +1367,6 @@ filepirate-install	filepirate.txt	/*filepirate-install*
 filepirate-options	filepirate.txt	/*filepirate-options*
 filepirate-usage	filepirate.txt	/*filepirate-usage*
 filepirate.vim	filepirate.txt	/*filepirate.vim*
-filepirate_zenki	zenki_plugin_doc.txt	/*filepirate_zenki*
 filepirate_zenki	zenki_plugin_doc.txt	/*filepirate_zenki*
 filetype-ref	ref.txt	/*filetype-ref*
 filetype-ref-{source-name}	ref.txt	/*filetype-ref-{source-name}*
@@ -1879,6 +1891,7 @@ gitlog-mapping	gitlog.txt	/*gitlog-mapping*
 gitlog-searching	gitlog.txt	/*gitlog-searching*
 gitlog-usage	gitlog.txt	/*gitlog-usage*
 gitlog.txt	gitlog.txt	/*gitlog.txt*
+gitlog_zenki	zenki_plugin_doc.txt	/*gitlog_zenki*
 gitv	gitv.txt	/*gitv*
 gitv-author	gitv.txt	/*gitv-author*
 gitv-changelog	gitv.txt	/*gitv-changelog*
