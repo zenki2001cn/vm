@@ -127,14 +127,14 @@ function! s:ClangCompleteInit()
 
   let b:should_overload = 0
   let b:my_changedtick = b:changedtick
-  let b:clang_parameters = ''           " modify zenki, remove '-x c' option, disable error message
+  let b:clang_parameters = '-x c'
 
   if &filetype == 'objc'
     let b:clang_parameters = '-x objective-c'
   endif
 
   if &filetype == 'cpp' || &filetype == 'objcpp'
-    let b:clang_parameters .= ''        " modify zenki, remove '++' option, disable error message
+    let b:clang_parameters .= '++'
   endif
 
   if expand('%:e') =~ 'h.*'

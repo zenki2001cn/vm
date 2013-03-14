@@ -350,7 +350,7 @@ let showmarks_hlline_upper = 1
 " python 补全文件路径
 let g:pydiction_location = $HOME.'/.vim/ftplugin/complete-dict'
 let g:pydiction_menu_height = 20
-autocmd FileType python setlocal complete+=k$HOME/.vim/ftplugin/complete-dict iskeyword+=.,(
+autocmd FileType python setlocal complete+=k$HOME/.vim/ftplugin/complete-dict iskeyword+=^.
 autocmd FileType python setlocal dict=$HOME/.vim/ftplugin/complete-dict
 au FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

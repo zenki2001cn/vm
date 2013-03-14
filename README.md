@@ -5,6 +5,14 @@ ChangLog
 
 ## HISTORY ##
 
+### 55 v1.13.9 ###
+
+* 13.1 更新python.vim插件，合并syntax/python3.0.vim         ---> python.vim v3.3.0
+    - link: http://www.vim.org/scripts/script.php?script_id=790
+* 13.2 修改myconf/plugin_used.vim配置，修正python高亮范围问题
+* 13.3 更新DrawIt插件                                       ---> DrawIt v12
+    - link: http://www.vim.org/scripts/script.php?script_id=40
+
 ### 54 v1.13.8 final ###
 
 * 13.1 更新signature插件                                    ---> signature v1.3.6
