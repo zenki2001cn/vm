@@ -5,6 +5,10 @@ ChangLog
 
 ## HISTORY ##
 
+### 56 v1.14 ###
+
+* 14.1 更新pymode插件                                       ---> pymode v0.6.12
+
 ### 55 v1.13.9 ###
 
 * 13.1 更新python.vim插件，合并syntax/python3.0.vim         ---> python.vim v3.3.0
