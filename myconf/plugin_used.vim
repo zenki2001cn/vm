@@ -758,6 +758,7 @@ let g:clang_hl_errors = 1
 let g:clang_snippets = 1
 let g:clang_close_preview = 1
 let g:clang_use_library = 1
+let g:clang_library_path = '/usr/local/lib'
 let g:clang_user_options = ''
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Clang end }

@@ -44,7 +44,7 @@ function! ClearMaps(keys)
     endfor
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAPPING #1 (default)
+" MAPPING #1 (default) Common Mode
 "
 call MMUpdate()
 if g:map_index == 1
@@ -104,7 +104,7 @@ if g:map_index == 1
 
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAPPING #2
+" MAPPING #2 W3M Browser Mode
 "
 call MMUpdate()
 if g:map_index == 2

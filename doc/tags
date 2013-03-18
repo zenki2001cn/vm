@@ -121,6 +121,7 @@
 'pickacolor_get_clipboard'	PickAColor.txt	/*'pickacolor_get_clipboard'*
 'pickacolor_set_clipboard'	PickAColor.txt	/*'pickacolor_set_clipboard'*
 'pickacolor_use_web_colors'	PickAColor.txt	/*'pickacolor_use_web_colors'*
+'pymode'	pymode.txt	/*'pymode'*
 'pymode_breakpoint'	pymode.txt	/*'pymode_breakpoint'*
 'pymode_breakpoint_key'	pymode.txt	/*'pymode_breakpoint_key'*
 'pymode_doc'	pymode.txt	/*'pymode_doc'*
