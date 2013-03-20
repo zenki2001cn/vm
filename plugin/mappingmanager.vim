@@ -140,6 +140,7 @@ let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                           
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
 let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)  \n"
 let g:mm_info_extra .= "Narrow:     <C-x><C-n>                                                              \n"
+let g:mm_info_extra .= "Commander:  <Tab>(Goto), <F3>(查看), <F4>(编辑), <F5>(拷贝), <F6>(移动), <F7>(创建目录), <F8>(删除), <F10>(退出), INS(选择), +-(选择匹配), \\h(显示隐藏) \n"
 
 " load the user mappings
 if has("unix")

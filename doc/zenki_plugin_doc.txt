@@ -58,6 +58,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    52. A                            |a_zenki|
    53. FilePirate                   |filepirate_zenki|
    54. gitlog                       |gitlog_zenki|
+   55. vimcmmander                  |vimcommander_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -669,5 +670,31 @@ GITLOG                                                          *gitlog_zenki*
     KEY                                     说明~
     \cg                                     打开gitlog模式
     s(commit窗口)                           搜索关键字
+
+==============================================================================
+VIMCOMMANDER                                              *vimcommander_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    TAB                                     Go to the other panel.
+    F3                                      View file under cursor.
+    F4                                      Edit file under cursor.
+    F5                                      Copy file.
+    F6                                      Move/rename file.
+    F7                                      Create directory.
+    F8/DEL                                  Remove file.
+    F10                                     Quit VimCommander.
+    C-R                                     Refresh panels.
+    Backspace                               Go to parent directory.
+    C-U                                     Exchange panels.
+    C-Left                                  Put directory under cursor on other panel.
+    C-Right                                 Same.
+    \H                                      Show hidden files (toggle).
+    INS                                     Select file under cursor.
+    "+"                                     Select file by pattern.
+    "-"                                     De-select file by pattern.
+    S-F4                                    Edit new file.
+    C-t                                     Previous directory.
+    C-y                                     Next directory.
+
 
 vim:tw=78:ts=8:ft=help:norl:

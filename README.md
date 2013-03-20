@@ -5,11 +5,12 @@ ChangLog
 
 ## HISTORY ##
 
-### 57 v1.14.1 ###
+### 57 v1.14.1 final ###
 
 * 14.1 更新vimcommander插件                                 ---> vimcommander v0.81
     - link: http://www.vim.org/scripts/script.php?script_id=808
 * 14.2 修改myconf/plugin_used.vim配置，添加clang插件`g:clang_library_path`配置
+* 14.3 添加vimcommander插件的快捷配置
 
 ### 56 v1.14 ###
 

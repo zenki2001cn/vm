@@ -2956,6 +2956,7 @@ vimcommander-links	vimcommander.txt	/*vimcommander-links*
 vimcommander-opts	vimcommander.txt	/*vimcommander-opts*
 vimcommander-todo	vimcommander.txt	/*vimcommander-todo*
 vimcommander.txt	vimcommander.txt	/*vimcommander.txt*
+vimcommander_zenki	zenki_plugin_doc.txt	/*vimcommander_zenki*
 vimexplorer_zenki	zenki_plugin_doc.txt	/*vimexplorer_zenki*
 vimprj	vimprj.txt	/*vimprj*
 vimprj-bugs	vimprj.txt	/*vimprj-bugs*

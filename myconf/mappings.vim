@@ -12,9 +12,9 @@ let g:map_info += ["F3 - TList",            "打开TagList            "]
 let g:map_info += ["F4 - Tagbar",           "打开Tagbar             "]
 let g:map_info += ["F5 - Mark Previous",    "跳转到上一个标记位置   "]
 let g:map_info += ["F6 - Mark Next",        "跳转到下一个标记位置   "]
-let g:map_info += ["F7 - CCTree",           "打开CCTree"]
+let g:map_info += ["F7 - CCTree",           "打开CCTree             "]
 let g:map_info += ["F8 - UndoTree",         "显示修改的历史记录     "]
-let g:map_info += ["F9 - Latex-suite",      "Latex环境              "]
+let g:map_info += ["F9 - VimCommander",     "VimCommander           "]
 let g:map_info += ["F10 - Latex-suite",     "Latex命令              "]
 let g:map_info += ["F11 - Latex-suite",     "Latex完成              "]
 let g:map_info += ["F12 - Latex-suite",     "dvi预览                "]
@@ -31,6 +31,19 @@ let g:map_info += ["F9 - ShowTitle",        "显示标题               "]
 let g:map_info += ["F10 - ShowUrl",         "显示地址               "]
 let g:map_info += ["F11 - not set",         "                       "]
 let g:map_info += ["F12 - Browser",         "外部浏览器             "]
+let g:map_info += ["Mapping F3",            "VimCommander           "]
+let g:map_info += ["F1 - not set",          "                       "]
+let g:map_info += ["F2 - not set",          "                       "]
+let g:map_info += ["F3 - ViewFile",         "查看文件               "]
+let g:map_info += ["F4 - EditFile",         "编辑文件               "]
+let g:map_info += ["F5 - CopyFile",         "拷贝文件               "]
+let g:map_info += ["F6 - MoveFile",         "移动文件               "]
+let g:map_info += ["F7 - CreateDir",        "创建目录               "]
+let g:map_info += ["F8 - DelFile",          "删除文件               "]
+let g:map_info += ["F9 - not set",          "                       "]
+let g:map_info += ["F10 - Quit",            "退出                   "]
+let g:map_info += ["F11 - not set",         "                       "]
+let g:map_info += ["F12 - not set",         "                       "]
 " .. and so on (modify/add to your likings)
 
 let g:hotkeys = ['<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>', '<F7>', '<F8>', '<F9>', '<F10>', '<F11>', '<F12>' ]
@@ -79,13 +92,15 @@ if g:map_index == 1
     nmap <C-F6> :cnext <CR>
     " quickfix maps }
 
-    " latex-suite maps {
-    au FileType tex imap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
-    au FileType tex nmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
-    au FileType tex vmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
-    au FileType tex imap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
-    au FileType tex nmap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
+    " Replaced by vimcommander plugin
+    " au FileType tex imap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+    " au FileType tex nmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+    " au FileType tex vmap <silent><buffer>   <F9>    <Plug>Tex_FastEnvironmentInsert
+    " au FileType tex imap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
+    " au FileType tex nmap <silent><buffer>   <S-F9>  <Plug>Tex_FastEnvironmentChange
+    noremap <silent> <F9> :cal VimCommanderToggle()<CR><CR>
 
+    " latex-suite maps {
     au FileType tex imap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
     au FileType tex nmap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
     au FileType tex vmap <silent> <buffer> <F10> <Plug>Tex_FastCommandInsert
@@ -124,4 +139,13 @@ if g:map_index == 2
     nnoremap <F10> :W3mAddressBar<CR>
     nnoremap <F12> :W3mShowExtenalBrowser<CR>
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAPPING #2 W3M Browser Mode
+"
+call MMUpdate()
+if g:map_index == 3
+    " do nothing
+endif
+
 " .. and so on (modify/add to your likings)
