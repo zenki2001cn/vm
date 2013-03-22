@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 58 v1.14.2 ###
+
+* 14.1 更新Narrow插件                                       ---> Narrow v31
+* 14.2 更新gitlog插件                                       ---> gitlog v1.3.1
+
 ### 57 v1.14.1 final ###
 
 * 14.1 更新vimcommander插件                                 ---> vimcommander v0.81
