@@ -5,6 +5,13 @@ ChangLog
 
 ## HISTORY ##
 
+### 59 v1.14.3 ###
+
+* 14.1 更新tagbar                                           ---> tagbar 2.5
+    - link: http://www.vim.org/scripts/script.php?script_id=3465
+* 14.2 更新Calendar                                         ---> Calendar v2.9
+    - link: http://www.vim.org/scripts/script.php?script_id=52
+
 ### 58 v1.14.2 ###
 
 * 14.1 更新Narrow插件                                       ---> Narrow v31

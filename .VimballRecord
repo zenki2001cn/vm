@@ -8,7 +8,6 @@ rdoc-1.1.2.vba: call delete('/home/zenki/.vim/ftdetect/rdoc.vim')|call delete('/
 Viki.vba: call delete('/home/zenki/.vim/autoload/viki.vim')|call delete('/home/zenki/.vim/autoload/viki_anyword.vim')|call delete('/home/zenki/.vim/autoload/viki_latex.vim')|call delete('/home/zenki/.vim/autoload/viki_viki.vim')|call delete('/home/zenki/.vim/compiler/deplate.vim')|call delete('/home/zenki/.vim/doc/viki.txt')|call delete('/home/zenki/.vim/ftplugin/bib/viki.vim')|call delete('/home/zenki/.vim/ftplugin/viki.vim')|call delete('/home/zenki/.vim/indent/viki.vim')|call delete('/home/zenki/.vim/plugin/viki.vim')|call delete('/home/zenki/.vim/syntax/viki.vim')|call delete('/home/zenki/.vim/syntax/texmath.vim')
 vimcommander_0.80.vba: call delete('/home/zenki/.vim/doc/vimcommander.txt')|call delete('/home/zenki/.vim/plugin/vimcommander.vim')
 supertab.vba: call delete('/home/zenki/.vim/doc/supertab.txt')|call delete('/home/zenki/.vim/plugin/supertab.vim')
-tagbar.vmb: call delete('/home/zenki/.vim/autoload/tagbar.vim')|call delete('/home/zenki/.vim/doc/tagbar.txt')|call delete('/home/zenki/.vim/plugin/tagbar.vim')|call delete('/home/zenki/.vim/syntax/tagbar.vim')
 vis.vba: call delete('/home/zenki/.vim/plugin/vis.vim')|call delete('/home/zenki/.vim/plugin/cecutil.vim')|call delete('/home/zenki/.vim/doc/vis.txt')
 histwin-0.12.vba: call delete('/home/zenki/.vim/plugin/histwinPlugin.vim')|call delete('/home/zenki/.vim/autoload/histwin.vim')|call delete('/home/zenki/.vim/doc/histwin.txt')
 hints_man2.vba: call delete('/home/zenki/.vim/ftplugin/c/hints_man2.vim')|call delete('/home/zenki/.vim/autoload/Hints.vim')
@@ -48,3 +47,4 @@ clang_complete.vmb: call delete('/home/zenki/.vim/autoload/snippets/clang_comple
 DrawIt.vba: call delete('/home/zenki/.vim/plugin/DrawItPlugin.vim')|call delete('/home/zenki/.vim/plugin/cecutil.vim')|call delete('/home/zenki/.vim/autoload/DrawIt.vim')|call delete('/home/zenki/.vim/doc/DrawIt.txt')
 vimcommander_0.81.vba: call delete('/home/zenki/.vim/doc/vimcommander.txt')|call delete('/home/zenki/.vim/plugin/vimcommander.vim')
 NrrwRgn-0.31.vmb: call delete('/home/zenki/.vim/plugin/NrrwRgn.vim')|call delete('/home/zenki/.vim/autoload/nrrwrgn.vim')|call delete('/home/zenki/.vim/doc/NarrowRegion.txt')
+tagbar.vmb: call delete('/home/zenki/.vim/README.md')|call delete('/home/zenki/.vim/autoload/tagbar.vim')|call delete('/home/zenki/.vim/doc/tagbar.txt')|call delete('/home/zenki/.vim/plugin/tagbar.vim')|call delete('/home/zenki/.vim/syntax/tagbar.vim')
