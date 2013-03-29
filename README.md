@@ -5,6 +5,17 @@ ChangLog
 
 ## HISTORY ##
 
+### 60 v1.14.4 ###
+
+* 14.1 更新Conflict_Detection插件                           ---> Conflict_Detection v1.12
+    - link: http://www.vim.org/scripts/script.php?script_id=4129
+* 14.2 添加ingo-library插件（配合Conflict_Detection）       ---> ingo-library v1.003
+    - link: http://www.vim.org/scripts/script.php?script_id=4433
+* 14.3 更新quickfixsigns插件                                ---> quickfixsigns v1.01
+    - link: http://www.vim.org/scripts/script.php?script_id=2584
+* 14.4 添加QFGrep插件                                       ---> QFGrep v1.0.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4490
+
 ### 59 v1.14.3 ###
 
 * 14.1 更新tagbar                                           ---> tagbar 2.5

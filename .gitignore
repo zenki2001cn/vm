@@ -13,4 +13,4 @@ sessions/*
 # cache for MRU
 .vim_mru_files
 
-*.swp
+*swp

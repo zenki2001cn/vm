@@ -123,7 +123,7 @@ let g:navigation     += ["  !do-daily-yoga-and-stay-healthy!"]
 let g:mm_info_extra = ""
 let g:mm_info_extra .= "\n*** Other mapping ***                                                                                         \n\n"
 let g:mm_info_extra .= "Tab操作:    te, tc, tn, tp, tf, tl                                                  Session:        \\sl(选择), \\sv(保存)  \n"
-let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       Quickfix:       \\qs(显示切换)    \n"
+let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       QuickfixSigns:  \\qs(显示切换)    \n"
 let g:mm_info_extra .= "Ctags:      <C-]>, <C-t>, <C-n>, <C-p>, <C-l>                                       Gtags,Utags:    <C-\\>c, <C-\\>s, <C-\\>u, <C-\\>d\n"
 let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>         \n"
 let g:mm_info_extra .= "Windows:    \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL                    GoogleTrans:    \\t, \\tr, \\ta, \\tar, \\ts, \\tss, \\tf, <S-t>(可选中)\n"
@@ -138,8 +138,8 @@ let g:mm_info_extra .= "Conflict:   ]=, [=                                      
 let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
-let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)  \n"
-let g:mm_info_extra .= "Narrow:     <C-x><C-n>                                                              \n"
+let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)    \n"
+let g:mm_info_extra .= "Narrow:     <C-x><C-n>                                                              QFGrep:         \\g(匹配), \\r(恢复)            \n"
 let g:mm_info_extra .= "Commander:  <Tab>(Goto), <F3>(查看), <F4>(编辑), <F5>(拷贝), <F6>(移动), <F7>(创建目录), <F8>(删除), <F10>(退出), INS(选择), +-(选择匹配), \\h(显示隐藏) \n"
 
 " load the user mappings
