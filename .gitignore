@@ -14,4 +14,4 @@ sessions/*
 .vim_mru_files
 
 *swp
-*pyc
+*.pyc
