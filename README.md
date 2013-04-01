@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 61 v1.14.5 ###
+
+* 14.1 更新pymode插件                                       ---> pymode v0.6.15
+    - link: http://www.vim.org/scripts/script.php?script_id=3770
+
 ### 60 v1.14.4 ###
 
 * 14.1 更新Conflict_Detection插件                           ---> Conflict_Detection v1.12

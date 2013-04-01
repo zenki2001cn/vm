@@ -5,7 +5,7 @@ fun! pymode#lint#Check() "{{{
 
     if &modifiable && &modified
         try
-            write
+            noautocmd write
         catch /E212/
             echohl Error | echo "File modified and I can't save it. Cancel code checking." | echohl None
             return 0
@@ -20,13 +20,13 @@ fun! pymode#lint#Check() "{{{
 endfunction " }}}
 
 
-fun! pymode#lint#Parse()
+fun! pymode#lint#Parse(bnum)
     " DESC: Parse result of code checking.
     "
     call setqflist(g:qf_list, 'r')
 
     if g:pymode_lint_signs
-        call pymode#PlaceSigns()
+        call pymode#PlaceSigns(a:bnum)
     endif
 
     if g:pymode_lint_cwindow
@@ -94,7 +94,7 @@ endfunction " }}}
 fun! pymode#lint#Auto() "{{{
     if &modifiable && &modified
         try
-            write
+            noautocmd write
         catch /E212/
             echohl Error | echo "File modified and I can't save it. Cancel operation." | echohl None
             return 0
