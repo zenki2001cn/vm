@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 62 v1.14.6 ###
+
+* 14.1 更新signature插件                                    ---> signature v1.4
+    - link: http://www.vim.org/scripts/script.php?script_id=4118
+
 ### 61 v1.14.5 ###
 
 * 14.1 更新pymode插件                                       ---> pymode v0.6.15

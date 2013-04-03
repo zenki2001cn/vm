@@ -122,7 +122,7 @@ let g:navigation     += ["  !do-daily-yoga-and-stay-healthy!"]
 " add zenki, extra key mapping info
 let g:mm_info_extra = ""
 let g:mm_info_extra .= "\n*** Other mapping ***                                                                                         \n\n"
-let g:mm_info_extra .= "Tab操作:    te, tc, tn, tp, tf, tl                                                  Session:        \\sl(选择), \\sv(保存)  \n"
+let g:mm_info_extra .= "Tab操作:    \\te, \\tc, \\tn, \\tp                                                      Session:        \\sl(选择), \\sv(保存)  \n"
 let g:mm_info_extra .= "Bin操作:    \\xx(十六进制), \\xb(二进制), \\xc(C格式), \\xr(恢复)                       QuickfixSigns:  \\qs(显示切换)    \n"
 let g:mm_info_extra .= "Ctags:      <C-]>, <C-t>, <C-n>, <C-p>, <C-l>                                       Gtags,Utags:    <C-\\>c, <C-\\>s, <C-\\>u, <C-\\>d\n"
 let g:mm_info_extra .= "Quit:       \\w(强制保存), \\qa(不保存退出)                                           Document:       <C-h>         \n"
@@ -132,7 +132,7 @@ let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                 
 let g:mm_info_extra .= "Filter:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭)                              Jump:           ,,[key](字符跳转), gL(行跳转), gv(V模式跳转), <C-o>(后退), <C-i>(前进)   \n"
 let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), <S-s>(list)                        Vimwiki:        \\wt(table), \\wg(links), \\wdi(dairy)  \n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
-let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get)               \n"
+let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get), ]c(next), [c(prev), ]=(冲突)         \n"
 let g:mm_info_extra .= "Surround:   ,cs)], ,ds), ysiw), yssb, vS}                                           Highlight:      gd(高亮搜索), ge(取消高亮)      \n"
 let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer), wo(最大最小化窗口)  \n"
 let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
