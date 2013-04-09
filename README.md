@@ -5,6 +5,10 @@ ChangLog
 
 ## HISTORY ##
 
+### 63 v1.14.6 final ###
+
+* 14.1 fix some bugs
+
 ### 62 v1.14.6 ###
 
 * 14.1 更新signature插件                                    ---> signature v1.4

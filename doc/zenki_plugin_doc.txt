@@ -59,6 +59,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    53. FilePirate                   |filepirate_zenki|
    54. gitlog                       |gitlog_zenki|
    55. vimcmmander                  |vimcommander_zenki|
+   56. clang                        |clang_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -696,5 +697,12 @@ VIMCOMMANDER                                              *vimcommander_zenki*
     C-t                                     Previous directory.
     C-y                                     Next directory.
 
+==============================================================================
+CLANG                                                            *clang_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    .clang_complete                         -I/include/
+                                            -DDEBUG
+                                            -include ../include
 
 vim:tw=78:ts=8:ft=help:norl:

@@ -182,7 +182,8 @@ endif
 "
 " global command name
 "
-let s:global_command = $GTAGSGLOBAL
+" modify zenki, change default global path
+let s:global_command = g:path_to_global_app
 if s:global_command == ''
         let s:global_command = "global"
 endif

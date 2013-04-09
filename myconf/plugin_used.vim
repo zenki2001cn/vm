@@ -567,7 +567,7 @@ imap <C-l> <Plug>(SnippetCompleteSnipMate)
 " set tags+=~/.vim/tags/qt4
 
 nmap <C-n> :tn <CR>
-nmap <C-p> :tp <CR>
+nmap <C-b> :tp <CR>
 nmap <C-l> :ts <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags setting end }
