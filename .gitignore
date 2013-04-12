@@ -13,5 +13,8 @@ sessions/*
 # cache for MRU
 .vim_mru_files
 
+# cache for network rw
+.netrwhist
+
 *.swp
 *.pyc

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/zenki/workspace_real/android-coverflow/src'
 let g:netrw_dirhist_2='/home/zenki/workspace_real/android-coverflow'
 let g:netrw_dirhist_3='/home/zenki/.DATA/home/sourcecode/snippet_code/python/threading'
@@ -7,3 +7,5 @@ let g:netrw_dirhist_4='/home/zenki/.DATA/home/sourcecode/snippet_code/python/tes
 let g:netrw_dirhist_5='/home/zenki/.DATA/home/sourcecode/snippet_code/java/HttpRequest/src/test'
 let g:netrw_dirhist_6='/home/zenki/pateo/a1001eh/frameworks/base/packages/SystemUI'
 let g:netrw_dirhist_7='/home/zenki'
+let g:netrw_dirhist_8='/home/zenki/.oh-my-zsh'
+let g:netrw_dirhist_9='/home/zenki/.DATA/home/config/oh-my-zsh/custom'
