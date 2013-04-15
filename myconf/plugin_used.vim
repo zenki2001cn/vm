@@ -407,6 +407,11 @@ let g:vimwiki_CJK_length = 1
 let tlist_vimwiki_settings = 'wiki;h:Headers'
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1'
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+
+" 禁止自动删除的html文件
+let g:vimwiki_user_htmls = '404.html,search.html'
+
 "iphone风格
 "let g:vimwiki_list = [
             "\   {'path': '~/Wiki/vimwiki/项目管理/', 
