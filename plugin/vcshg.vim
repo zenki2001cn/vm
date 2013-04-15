@@ -72,7 +72,7 @@ let s:hgFunctions = {}
 " Returns the executable used to invoke hg suitable for use in a shell
 " command.
 function! s:Executable()
-	return VCSCommandGetOption('VCSCommandHGExec', 'hg')
+	return shellescape(VCSCommandGetOption('VCSCommandHGExec', 'hg'))
 endfunction
 
 " Function: s:DoCommand(cmd, cmdName, statusText, options) {{{2
@@ -130,16 +130,6 @@ function! s:hgFunctions.Annotate(argList)
 
 	return s:DoCommand('blame' . options, 'annotate', caption, {})
 endfunction
-
-
-function! s:hgFunctions.CommitAll(argList)
-	try
-		return s:DoCommand('commit -v -l "' . a:argList[0] . '"', 'commit', '', {'isAll': 1})
-	catch /Version control command failed.*nothing changed/
-		echomsg 'No commit needed.'
-	endtry
-endfunction
-
 
 " Function: s:hgFunctions.Commit(argList) {{{2
 function! s:hgFunctions.Commit(argList)
@@ -200,53 +190,32 @@ endfunction
 function! s:hgFunctions.GetBufferInfo()
 	let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
 	let fileName = bufname(originalBuffer)
-	let statusText = s:VCSCommandUtility.system(s:Executable() . ' status -A -- "' . fileName . '"')
+	let statusText = s:VCSCommandUtility.system(s:Executable() . ' status -- "' . fileName . '"')
 	if(v:shell_error)
 		return []
 	endif
 
 	" File not under HG control.
-    if statusText =~ '^C'
-        let displayStatus = 'Clean'
-    elseif statusText =~ '^M'
-        let displayStatus = 'Modified'
-    elseif statusText =~ '^A'
-        let displayStatus = 'Added'
-    elseif statusText =~ '^R'
-        let displayStatus = 'Removed'
-    elseif statusText =~ '^!'
-        let displayStatus = 'Missing'
-    elseif statusText =~ '^?'
-        let displayStatus = 'Unknown'
-    elseif statusText =~ '^I'
-        let displayStatus = 'Ignored'
-    else
-        let displayStatus = ''
-    endif
+	if statusText =~ '^?'
+		return ['Unknown']
+	endif
 
-    return [displayStatus]
+	let parentsText = s:VCSCommandUtility.system(s:Executable() . ' parents -- "' . fileName . '"')
+	let revision = matchlist(parentsText, '^changeset:\s\+\(\S\+\)\n')[1]
 
-	"let parentsText = s:VCSCommandUtility.system(s:Executable() . ' log -l 1 ' .  fnamemodify(resolve(fileName), ':p:h'))
-	"let last_rev_repo = matchlist(parentsText, '^changeset:\s\+\(\d\+\):\S')[1]
+	let logText = s:VCSCommandUtility.system(s:Executable() . ' log -- "' . fileName . '"')
+	let repository = matchlist(logText, '^changeset:\s\+\(\S\+\)\n')[1]
 
-    "if displayStatus == 'Clean' || displayStatus == 'Modified' || displayStatus == 'Removed' || displayStatus == 'Missing'
-        "let logText = s:VCSCommandUtility.system(s:Executable() . ' log -- "' . fileName . '"')
-        "let last_rev_file_modif = matchlist(logText, '^changeset:\s\+\(\d\+\):\S')[1]
-    "else
-        "let last_rev_file_modif = ''
-    "endif
-
-
-	"if last_rev_repo == '' || last_rev_file_modif == ''
-		"return [displayStatus]
-	"else
-        "if last_rev_file_modif == last_rev_repo
-            "return [displayStatus, last_rev_file_modif]
-        "else
-            "return [displayStatus, last_rev_file_modif, last_rev_repo]
-        "endif
-	"endif
+	if revision == ''
+		" Error
+		return ['Unknown']
+	elseif statusText =~ '^A'
+		return ['New', 'New']
+	else
+		return [revision, repository]
+	endif
 endfunction
+
 " Function: s:hgFunctions.Log(argList) {{{2
 function! s:hgFunctions.Log(argList)
 	if len(a:argList) == 0
@@ -262,23 +231,6 @@ function! s:hgFunctions.Log(argList)
 	endif
 
 	let resultBuffer = s:DoCommand(join(['log', '-v'] + options), 'log', caption, {})
-	return resultBuffer
-endfunction
-
-function! s:hgFunctions.LogAll(argList)
-	if len(a:argList) == 0
-		let options = []
-		let caption = ''
-	elseif len(a:argList) <= 2 && match(a:argList, '^-') == -1
-		let options = ['-r' . join(a:argList, ':')]
-		let caption = options[0]
-	else
-		" Pass-through
-		let options = a:argList
-		let caption = join(a:argList, ' ')
-	endif
-
-	let resultBuffer = s:DoCommand(join(['log', '-v'] + options), 'log', caption, {'isAll': 1})
 	return resultBuffer
 endfunction
 
@@ -308,24 +260,11 @@ function! s:hgFunctions.Status(argList)
 	endif
 	return s:DoCommand(join(['status'] + options, ' '), 'status', join(options, ' '), {})
 endfunction
-"
-function! s:hgFunctions.StatusAll(argList)
-	let options = ['-A', '-v']
-	if len(a:argList) != 0
-		let options = a:argList
-	endif
-	return s:DoCommand(join(['status'] + options, ' '), 'status', join(options, ' '), {'isAll': 1})
-endfunction
 
 " Function: s:hgFunctions.Update(argList) {{{2
 function! s:hgFunctions.Update(argList)
 	return s:DoCommand('update', 'update', '', {})
 endfunction
-
-function! s:hgFunctions.GetRoot(argList)
-	return substitute(s:VCSCommandUtility.system(s:Executable() . ' root'), '\n', '', 'g')
-endfunction
-
 
 " Annotate setting {{{2
 let s:hgFunctions.AnnotateSplitRegex = '\d\+: '
@@ -334,4 +273,3 @@ let s:hgFunctions.AnnotateSplitRegex = '\d\+: '
 let s:VCSCommandUtility = VCSCommandRegisterModule('HG', expand('<sfile>'), s:hgFunctions, [])
 
 let &cpo = s:save_cpo
-

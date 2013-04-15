@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 64 v1.14.7 ###
+
+* 14.1 更新vcscommand插件                                   ---> vcscommand v1.99.47
+    link: http://www.vim.org/scripts/script.php?script_id=90
+
 ### 63 v1.14.6 final ###
 
 * 14.1 fix some bugs
