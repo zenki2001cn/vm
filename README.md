@@ -5,6 +5,17 @@ ChangLog
 
 ## HISTORY ##
 
+### 66 v1.14.9 2013-04-25 15:22:12 ###
+
+* 14.1 添加MPage插件（多页同步显示同一文件内容）            ---> MPage v1.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4545
+* 14.2 添加startify插件（无文件参数时，开启提示模式，可配合sessionman插件） 
+                                                            ---> startify v1.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4544
+* 14.3 添加nextval插件（快捷增减数字）                      ---> nextval v1.02
+    - link: http://www.vim.org/scripts/script.php?script_id=4536
+* 14.4 在NERD_tree_global添加生成.clang_complete文件
+
 ### 65 v1.14.8 ###
 
 * 14.1 更新vimwiki插件                                      ---> vimwiki v2.1
@@ -569,3 +580,4 @@ Update: 2012-06-08 17:42:31
 
 ## WARNNING ##
 - 当版本库中的文件过多时，加载`quickfixsigns`插件会产生一定的延迟，此时可通过`<leader>qs`禁用quickfixsigns插件。
+- 需要编译Clang库，以支持Clang特性的插件。

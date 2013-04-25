@@ -219,6 +219,9 @@
 :HighlightTags	easytags.txt	/*:HighlightTags*
 :ListRecords	Replay.txt	/*:ListRecords*
 :LoadCommand	load.txt	/*:LoadCommand*
+:MPN	mpage.txt	/*:MPN*
+:MPP	mpage.txt	/*:MPP*
+:MPage	mpage.txt	/*:MPage*
 :MatchDebug	matchit.txt	/*:MatchDebug*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
 :NERDTreeClose	NERD_tree.txt	/*:NERDTreeClose*
@@ -421,6 +424,8 @@
 :highlight	QFGrep.txt	/*:highlight*
 :infman	viewdoc.txt	/*:infman*
 :man	viewdoc.txt	/*:man*
+:mpage-pagedown	mpage.txt	/*:mpage-pagedown*
+:mpage-pageup	mpage.txt	/*:mpage-pageup*
 :perldoc	viewdoc.txt	/*:perldoc*
 :pman	viewdoc.txt	/*:pman*
 :pydoc	viewdoc.txt	/*:pydoc*
@@ -606,6 +611,7 @@ Log界面	zenki_plugin_doc.txt	/*Log界面*
 Loupe	splice.txt	/*Loupe*
 MRU_zenki	zenki_plugin_doc.txt	/*MRU_zenki*
 MatchError	matchit.txt	/*MatchError*
+MultiPager	mpage.txt	/*MultiPager*
 MultipleSearch	MultipleSearch.txt	/*MultipleSearch*
 MultipleSearch-commands	MultipleSearch.txt	/*MultipleSearch-commands*
 MultipleSearch-mappings	MultipleSearch.txt	/*MultipleSearch-mappings*
@@ -1698,6 +1704,7 @@ g:manpageview_sfx_EXT	manpageview.txt	/*g:manpageview_sfx_EXT*
 g:manpageview_syntax_EXT	manpageview.txt	/*g:manpageview_syntax_EXT*
 g:manpageview_winopen	manpageview.txt	/*g:manpageview_winopen*
 g:manpgeview_user	manpageview.txt	/*g:manpgeview_user*
+g:mpage_autonxtwin	mpage.txt	/*g:mpage_autonxtwin*
 g:neocomplcache_auto_completion_start_length	neocomplcache.txt	/*g:neocomplcache_auto_completion_start_length*
 g:neocomplcache_caching_limit_file_size	neocomplcache.txt	/*g:neocomplcache_caching_limit_file_size*
 g:neocomplcache_compare_function	neocomplcache.txt	/*g:neocomplcache_compare_function*
@@ -2183,6 +2190,12 @@ maximizer-configuration	maximizer.txt	/*maximizer-configuration*
 maximizer-usage	maximizer.txt	/*maximizer-usage*
 maximizer.txt	maximizer.txt	/*maximizer.txt*
 member_complete	neocomplcache.txt	/*member_complete*
+mpage	mpage.txt	/*mpage*
+mpage-contents	mpage.txt	/*mpage-contents*
+mpage-copyright	mpage.txt	/*mpage-copyright*
+mpage-history	mpage.txt	/*mpage-history*
+mpage-manual	mpage.txt	/*mpage-manual*
+mpage.txt	mpage.txt	/*mpage.txt*
 multi_snip	snipMate.txt	/*multi_snip*
 neocomplcache	neocomplcache.txt	/*neocomplcache*
 neocomplcache#cancel_popup()	neocomplcache.txt	/*neocomplcache#cancel_popup()*

@@ -60,6 +60,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    54. gitlog                       |gitlog_zenki|
    55. vimcmmander                  |vimcommander_zenki|
    56. clang                        |clang_zenki|
+   57. MPage                        |mpage_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -704,5 +705,15 @@ CLANG                                                            *clang_zenki*
     .clang_complete                         -I/include/
                                             -DDEBUG
                                             -include ../include
+
+==============================================================================
+MPAGE                                                            *mpage_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    :MPage [splits]                         分割[splits]个窗口显示
+    :MPN                                    显示下页
+    :MPP                                    显示上页
+    :MPT                                    取消该页的同步显示
+    <leader>mp                              快捷分割
 
 vim:tw=78:ts=8:ft=help:norl:

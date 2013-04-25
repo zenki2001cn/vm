@@ -5,6 +5,9 @@
 " Last Change: 2012-11-16 22:07:38
 " License:     
 " ChangeLog:
+"   Date: 2013-04-25 18:46:47
+"       1. 添加NERDTreeClangComplete功能
+"
 "   Date: 2012-11-16 22:07:52
 "       1. 添加intergrate子菜单
 "
@@ -100,7 +103,7 @@ function! NERDTreeRemoveCache()
     let dir = curNode.path.str()
 
     call EntryDir(dir)
-    let remove_cmd = 'rm -f cscope.in.out cscope.out cscope.po.out GPATH GRTAGS GTAGS tags .utags'
+    let remove_cmd = 'rm -f cscope.in.out cscope.out cscope.po.out GPATH GRTAGS GTAGS tags .utags .clang_complete'
 
     echomsg "Remove cache..."
 
@@ -118,6 +121,30 @@ function! NERDTreeIntergrade()
     call NERDTreeGtagsRun()
     call NERDTreeUtagsRun()
     call NERDTreeCscopeRun()
+    call NERDTreeClangComplete()
+endfunction
+
+function! NERDTreeClangComplete()
+    let curNode = g:NERDTreeDirNode.GetSelected()
+    if curNode ==# {}
+        redraw
+        echomsg "NERDTree: " . "Put the cursor on a node first"
+        return
+    endif
+
+    let oldDir = getcwd()
+    let dir = curNode.path.str()
+
+    call EntryDir(dir)
+    let clang_cmd = 'touch .clang_complete && echo "-I./include" > .clang_complete'
+
+    call system(clang_cmd)
+
+    redraw
+    echomsg "Add include path to .clang_complete. example: -I/usr/include"
+
+    call curNode.refresh()
+    call NERDTreeRender()
 endfunction
 
 function! NERDTreeCscopeRun()
