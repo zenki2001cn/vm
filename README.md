@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 67 v1.14.10 2013-04-27 09:52:10 ###
+* 14.1 更新startify插件                                     ---> startify v1.2
+* 14.2 更新gitlog插件                                       ---> gitlog v2.0.2
+    - link: http://www.vim.org/scripts/script.php?script_id=4294
+
 ### 66 v1.14.9 2013-04-25 15:22:12 ###
 
 * 14.1 添加MPage插件（多页同步显示同一文件内容）            ---> MPage v1.0
