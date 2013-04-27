@@ -5,6 +5,13 @@ ChangLog
 
 ## HISTORY ##
 
+### 68 v1.15 2013-04-27 10:03:05 ###
+* 15.1 更新pymode插件                                       ---> pymode v0.6.16
+    - link: http://www.vim.org/scripts/script.php?script_id=3770
+* 15.2 添加GoldenView插件（缩放窗口）                       ---> GoldenView v1.3.5
+    - link: http://www.vim.org/scripts/script.php?script_id=4529
+* 15.3 修复signature在gvim7.3中的小Bug
+
 ### 67 v1.14.10 2013-04-27 09:52:10 ###
 * 14.1 更新startify插件                                     ---> startify v1.2
 * 14.2 更新gitlog插件                                       ---> gitlog v2.0.2

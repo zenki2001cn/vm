@@ -134,11 +134,11 @@ let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), 
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto模式补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get), ]c(next), [c(prev), ]=(冲突)         \n"
 let g:mm_info_extra .= "Surround:   ,cs)](替换), ,ds)(删除), ysiw)(插入), yssb(行插入), vS}(V模式插入)      Highlight:      gd(高亮搜索), ge(取消高亮)      \n"
-let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer), wo(最大最小化窗口)  \n"
+let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割所有buffer), wo(最大最小化窗口), ,w(Resize)\n"
 let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
-let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog)    \n"
+let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog), \\cf(gitlog_flip)    \n"
 let g:mm_info_extra .= "Text:       <C-x><C-n>(Narrow), <C-x><C-m>(多页同步显示), -/+(nextval)              QuickFixGrep:   \\g(匹配), \\r(恢复)            \n"
 let g:mm_info_extra .= "Commander:  <Tab>(Goto), <F3>(查看), <F4>(编辑), <F5>(拷贝), <F6>(移动), <F7>(创建目录), <F8>(删除), <F10>(退出), INS(选择), +-(选择匹配), \\h(显示隐藏) \n"
 

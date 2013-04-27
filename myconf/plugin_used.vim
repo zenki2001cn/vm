@@ -1145,6 +1145,7 @@ let g:filepirate_rescan="<F5>"
 "  gitlog setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>cg :call GITLOG_ToggleWindows()<cr>
+nmap <silent> <leader>cf :call GITLOG_FlipWindows()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  gitlog end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1237,4 +1238,14 @@ nmap <silent> <unique> + <Plug>nextvalInc
 nmap <silent> <unique> - <Plug>nextvalDec
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  nextval end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  GoldenView setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_default_mapping = 0
+nmap <silent> ,w <Plug>GoldenViewResize
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  GoldenView end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

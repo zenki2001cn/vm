@@ -101,6 +101,7 @@ function! s:UnusedMarks() "                           {{{2
 endfunction
 
 
+" add by zenki, add try-catch to ignore error in gvim7.3
 function! signature#MapKey( rhs, mode ) "             {{{2
   " Description: Inverse of maparg()
   "              Pass in a key sequence and the first letter of a vim mode.
@@ -108,7 +109,11 @@ function! signature#MapKey( rhs, mode ) "             {{{2
   " Example:     :nnoremap <Tab> :bn<CR>
   "              :call Mapkey(':bn<CR>', 'n')
   "              returns <Tab>
-  execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
+  try
+    execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
+  catch
+  endtry
+  
 
   " Convert all text between angle-brackets to lowercase
   " Required to recognize all case-variants of <c-A> and <C-a> as the same thing
