@@ -5,6 +5,11 @@ ChangLog
 
 ## HISTORY ##
 
+### 69 v1.15.1 2013-04-28 10:18:29 ###
+* 15.1 更新startify插件                                     ---> startify v1.3
+    - link: http://www.vim.org/scripts/script.php?script_id=4544
+* 15.2 修改若干映射
+
 ### 68 v1.15 2013-04-27 10:03:05 ###
 * 15.1 更新pymode插件                                       ---> pymode v0.6.16
     - link: http://www.vim.org/scripts/script.php?script_id=3770
