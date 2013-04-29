@@ -62,6 +62,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    56. clang                        |clang_zenki|
    57. MPage                        |mpage_zenki|
    58. VTermStart                   |vtermstart_zenki|
+   59. yankring                     |yankring_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -727,5 +728,12 @@ VTERMSTART                                                  *vtermstart_zenki*
     <C-n>                                   下一条命令
     <C-p>                                   上一条命令
     <C-l>                                   清除屏幕
+
+==============================================================================
+YANKRING                                                      *yankring_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    ,yr                                     显示剪贴板
+    ,ys                                     搜索剪贴板
 
 vim:tw=78:ts=8:ft=help:norl:

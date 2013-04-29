@@ -4,6 +4,9 @@ ChangLog
 ## TODO ##
 
 ## HISTORY ##
+### 71 v1.15.3 2013-04-29 15:04:25 ###
+* 15.1 添加yankring插件（剪贴板查看）                       ---> yankring v17.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=1234
 
 ### 70 v1.15.2 2013-04-29 14:54:12 ###
 * 15.1 添加VTermStart插件（终端模拟）                       ---> VTermStart v1.11
