@@ -5,6 +5,10 @@ ChangLog
 
 ## HISTORY ##
 
+### 70 v1.15.2 2013-04-29 14:54:12 ###
+* 15.1 添加VTermStart插件（终端模拟）                       ---> VTermStart v1.11
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4546
+
 ### 69 v1.15.1 2013-04-28 10:18:29 ###
 * 15.1 更新startify插件                                     ---> startify v1.3
     - link: http://www.vim.org/scripts/script.php?script_id=4544

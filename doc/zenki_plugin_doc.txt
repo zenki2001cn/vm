@@ -61,6 +61,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    55. vimcmmander                  |vimcommander_zenki|
    56. clang                        |clang_zenki|
    57. MPage                        |mpage_zenki|
+   58. VTermStart                   |vtermstart_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -715,5 +716,16 @@ MPAGE                                                            *mpage_zenki*
     :MPP                                    显示上页
     :MPT                                    取消该页的同步显示
     <leader>mp                              快捷分割
+
+==============================================================================
+VTERMSTART                                                  *vtermstart_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    !!                                      启动VTermStart
+
+    VTermStart模式:
+    <C-n>                                   下一条命令
+    <C-p>                                   上一条命令
+    <C-l>                                   清除屏幕
 
 vim:tw=78:ts=8:ft=help:norl:

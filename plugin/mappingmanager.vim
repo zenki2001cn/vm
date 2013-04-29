@@ -135,7 +135,7 @@ let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)              
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get), ]c(next), [c(prev), ]=(冲突)         \n"
 let g:mm_info_extra .= "Surround:   ,cs)](替换), ,ds)(删除), ysiw)(插入), yssb(行插入), vS}(V模式插入)      Highlight:      gd(高亮搜索), ge(取消高亮)      \n"
 let g:mm_info_extra .= "Conflict:   ]=, [=                                                                  WindowLayout:   \\tw, :sba(分割buffer), wo(调整窗口), ,w(AutoFit)\n"
-let g:mm_info_extra .= "Clam:       !                                                                       HTML & XML:     <tag>, tag,,        \n"
+let g:mm_info_extra .= "Exec:       !, !!, <C-n>, <C-p>, <C-l>                                              HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
 let g:mm_info_extra .= "Text:       <C-x><C-n>(Narrow), <C-x><C-m>(多页同步显示), _/+(nextval)              QuickFixGrep:   \\g(匹配), \\r(恢复)            \n"
