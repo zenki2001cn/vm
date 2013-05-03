@@ -75,7 +75,7 @@ call NERDTreeAddMenuItem({
     \ 'parent': globalMenu})
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(i)ntergrade <cscope>,<gtags>,<utags> together',
+    \ 'text': '(i)ntergrade <cscope>,<gtags>,<utags>,<clang> together',
     \ 'shortcut': 'i',
     \ 'callback': 'NERDTreeIntergrade',
     \ 'parent': globalMenu})
@@ -136,7 +136,7 @@ function! NERDTreeClangComplete()
     let dir = curNode.path.str()
 
     call EntryDir(dir)
-    let clang_cmd = 'touch .clang_complete && echo "-I./include" > .clang_complete'
+    let clang_cmd = 'touch .clang_complete && echo "-I./include" >> .clang_complete'
 
     call system(clang_cmd)
 

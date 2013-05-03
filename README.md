@@ -2,8 +2,17 @@ ChangLog
 ========
 
 ## TODO ##
+1. 整合publish插件
 
 ## HISTORY ##
+### 72 v1.15.4 2013-05-02 13:49:29 ###
+* 15.1 更新bufexplorer插件                                  ---> bufexplore v7.3.5
+    - link: http://www.vim.org/scripts/script.php?script_id=42
+* 15.2 更新ingo-library插件                                 ---> ingo-library v1.005
+    - link: http://www.vim.org/scripts/script.php?script_id=4433
+* 15.3 添加publish插件（代码转换html）                      ---> publish v1.7.10
+    - link: http://www.vim.org/scripts/script.php?script_id=2252
+
 ### 71 v1.15.3 2013-04-29 15:04:25 ###
 * 15.1 添加yankring插件（剪贴板查看）                       ---> yankring v17.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=1234
@@ -604,4 +613,5 @@ Update: 2012-06-08 17:42:31
 
 ## WARNNING ##
 - 当版本库中的文件过多时，加载`quickfixsigns`插件会产生一定的延迟，此时可通过`<leader>qs`禁用quickfixsigns插件。
-- 需要编译Clang库，以支持Clang特性的插件。
+- 需要编译Clang库，以支持Clang特性的插件，参见Viki。
+- 需要安装ctags支持。
