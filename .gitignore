@@ -18,3 +18,5 @@ sessions/*
 
 *.swp
 *.pyc
+
+doc/tags

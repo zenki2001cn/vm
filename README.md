@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 73 v1.15.5 2013-05-07 09:51:28 ###
+* 15.1 更新bufexplore插件                                   ---> bufexplore v7.3.6
+    - link: http://www.vim.org/scripts/script.php?script_id=42
+
 ### 72 v1.15.4 2013-05-02 13:49:29 ###
 * 15.1 更新bufexplorer插件                                  ---> bufexplore v7.3.5
     - link: http://www.vim.org/scripts/script.php?script_id=42

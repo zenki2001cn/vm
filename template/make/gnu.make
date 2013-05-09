@@ -9,7 +9,7 @@ OPTIMIZE        := -O
 WARNINGS        := -Wall -Wno-unused -Wno-format
 DEFS            := 
 EXTRA_CFLAGS    := 
-LDFLAGS         := 
+LDFLAGS         := -pthread -lm
 
 # 输出目录，会自动创建
 OUT_DIR 	    = out
