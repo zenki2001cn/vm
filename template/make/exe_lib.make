@@ -13,9 +13,9 @@ LIB_INC = -L.
 DEBUG = y
 # Add your debugging flag (or not) to C_FLAGS
 ifeq ($(DEBUG),y)
-  DEBFLAGS = -g -O -DUSE_DEBUG # "-O" is needed to expand inlines
+  DEBFLAGS = -g -DUSE_DEBUG # "-O" is needed to expand inlines
 else
-  DEBFLAGS = -O2
+  DEBFLAGS =
 endif
 C_FLAGS += $(DEBFLAGS)
 # Debug setting end

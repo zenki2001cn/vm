@@ -5,7 +5,7 @@
 ###############################################################################
 
 CROSS_COMPILE   =
-OPTIMIZE        := -O
+OPTIMIZE        := 
 WARNINGS        := -Wall -Wno-unused -Wno-format
 DEFS            := 
 EXTRA_CFLAGS    := 
