@@ -1265,6 +1265,7 @@ nnoremap !! :VTermStart<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ,yy  :YRShow<CR>
 nnoremap ,ys :YRSearch<CR>
+let g:yankring_history_file = '.yankring_history_file'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yankring end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
