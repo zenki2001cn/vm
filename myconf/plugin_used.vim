@@ -1228,6 +1228,7 @@ noremap <silent> <C-x><C-m> :MPage 2<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir = $HOME.'/.vim_sessions/'
 let g:startify_empty_buffer_key = 'o'
+let g:startify_enable_special = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  startify end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1262,7 +1263,7 @@ nnoremap !! :VTermStart<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yankring setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ,yr :YRShow<CR>
+nnoremap ,yy  :YRShow<CR>
 nnoremap ,ys :YRSearch<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " yankring end }

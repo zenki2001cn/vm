@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 74 v1.15.6 2013-05-10 15:46:41 ###
+* 15.1 更新startify插件                                     ---> startify v1.5
+    - link: http://www.vim.org/scripts/script.php?script_id=4544
+* 15.2 修改yankring插件的快捷键
+
 ### 73 v1.15.5 2013-05-07 09:51:28 ###
 * 15.1 更新bufexplore插件                                   ---> bufexplore v7.3.6
     - link: http://www.vim.org/scripts/script.php?script_id=42
