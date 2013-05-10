@@ -9,6 +9,8 @@ ChangLog
 * 15.1 更新startify插件                                     ---> startify v1.5
     - link: http://www.vim.org/scripts/script.php?script_id=4544
 * 15.2 修改yankring插件的快捷键
+* 15.3 更新mru插件                                          ---> mru v3.5
+    - link: http://vim.wendal.net/scripts/script.php?script_id=521
 
 ### 73 v1.15.5 2013-05-07 09:51:28 ###
 * 15.1 更新bufexplore插件                                   ---> bufexplore v7.3.6

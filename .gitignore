@@ -20,3 +20,4 @@ sessions/*
 *.pyc
 
 doc/tags
+.netrwhist
