@@ -295,12 +295,13 @@ function! neocomplcache#complete#_set_results_pos(cur_text, ...) "{{{
             \ source.get_complete_position(context) :
             \ neocomplcache#match_word(context.input)[0]
     catch
-      call neocomplcache#print_error(v:throwpoint)
-      call neocomplcache#print_error(v:exception)
-      call neocomplcache#print_error(
-            \ 'Error occured in source''s get_complete_position()!')
-      call neocomplcache#print_error(
-            \ 'Source name is ' . source.name)
+      " comment zenki
+      " call neocomplcache#print_error(v:throwpoint)
+      " call neocomplcache#print_error(v:exception)
+      " call neocomplcache#print_error(
+            " \ 'Error occured in source''s get_complete_position()!')
+      " call neocomplcache#print_error(
+            " \ 'Source name is ' . source.name)
       return complete_sources
     finally
       if winsaveview() != pos
@@ -359,12 +360,13 @@ function! neocomplcache#complete#_set_results_words(sources) "{{{
             \   context.complete_pos, context.complete_str) :
             \ source.gather_candidates(context)
     catch
-      call neocomplcache#print_error(v:throwpoint)
-      call neocomplcache#print_error(v:exception)
-      call neocomplcache#print_error(
-            \ 'Source name is ' . source.name)
-      call neocomplcache#print_error(
-            \ 'Error occured in source''s gather_candidates()!')
+      " comment zenki
+      " call neocomplcache#print_error(v:throwpoint)
+      " call neocomplcache#print_error(v:exception)
+      " call neocomplcache#print_error(
+            " \ 'Source name is ' . source.name)
+      " call neocomplcache#print_error(
+      "       \ 'Error occured in source''s gather_candidates()!')
       return
     finally
       if winsaveview() != pos

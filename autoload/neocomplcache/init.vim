@@ -764,12 +764,13 @@ function! neocomplcache#init#_source(source) "{{{
     try
       call source.initialize()
     catch
-      call neocomplcache#print_error(v:throwpoint)
-      call neocomplcache#print_error(v:exception)
-      call neocomplcache#print_error(
-            \ 'Error occured in source''s initialize()!')
-      call neocomplcache#print_error(
-            \ 'Source name is ' . source.name)
+      " comment zenki
+      " call neocomplcache#print_error(v:throwpoint)
+      " call neocomplcache#print_error(v:exception)
+      " call neocomplcache#print_error(
+            " \ 'Error occured in source''s initialize()!')
+      " call neocomplcache#print_error(
+      "       \ 'Source name is ' . source.name)
     endtry
 
     let source.loaded = 1

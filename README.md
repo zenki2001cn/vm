@@ -8,8 +8,10 @@ ChangLog
 ### 75 v1.15.7 2013-05-12 12:57:54 ###
 * 更新neocomplcache插件                                     ---> neocomplcache v8.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=2620
-* 添加neo-look插件                                              ---> neo-look v1.2
+* 添加neo-look插件                                          ---> neo-look v1.2
     - link: http://vim.wendal.net/scripts/script.php?script_id=3440
+* 修改补全菜单颜色
+* 禁止neocomplcache插件的错误信息输出
 
 ### 74 v1.15.6 2013-05-10 15:46:41 ###
 * 15.1 更新startify插件                                     ---> startify v1.5

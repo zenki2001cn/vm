@@ -41,12 +41,13 @@ if v:version < 702
 elseif $SUDO_USER != '' && $USER !=# $SUDO_USER
       \ && $HOME !=# expand('~'.$USER)
       \ && $HOME ==# expand('~'.$SUDO_USER)
-  echohl Error
-  echomsg 'neocomplcache disabled: "sudo vim" is detected and $HOME is set to '
-        \.'your user''s home. '
-        \.'You may want to use the sudo.vim plugin, the "-H" option '
-        \.'with "sudo" or set always_set_home in /etc/sudoers instead.'
-  echohl None
+  " comment zenki
+  " echohl Error
+  " echomsg 'neocomplcache disabled: "sudo vim" is detected and $HOME is set to '
+        " \.'your user''s home. '
+        " \.'You may want to use the sudo.vim plugin, the "-H" option '
+        " \.'with "sudo" or set always_set_home in /etc/sudoers instead.'
+  " echohl None
   finish
 endif
 
