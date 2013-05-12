@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/zenki/temp/player'
 let g:netrw_dirhist_2='/home/zenki/temp/python-for-android'
 let g:netrw_dirhist_3='/home/zenki/temp/python-for-android/src/src/org'
 let g:netrw_dirhist_4='/home/zenki/.DATA/home/config/vim/template'
 let g:netrw_dirhist_5='/home/zenki/pateo/sdk'
+let g:netrw_dirhist_6='/home/zenki/.config/fcitx'
