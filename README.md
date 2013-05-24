@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 77 v1.15.9 2013-05-20 08:56:06 ###
+* 15.1 更新publish插件                                      ---> publish v1.7.13
+    - link: http://vim.wendal.net/scripts/script.php?script_id=2252
+* 15.2 更新gitlog插件                                       ---> gitlog v2.1.2
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4294
+
 ### 76 v1.15.8 2013-05-15 08:34:10 ###
 * 15.1 更新publish插件                                      ---> publish v1.7.11
 * 15.2 更新pymode插件                                       ---> pymode v0.6.8
