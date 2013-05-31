@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 78 v1.15.10 2013-05-27 10:08:22 ###
+* 15.1 更新gitlog插件                                       ---> gitlog v3.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4294 
+* 15.2 update startify plugin                               ---> startify v1.6
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4544
+
 ### 77 v1.15.9 2013-05-20 08:56:06 ###
 * 15.1 更新publish插件                                      ---> publish v1.7.13
     - link: http://vim.wendal.net/scripts/script.php?script_id=2252
