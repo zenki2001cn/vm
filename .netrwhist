@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/zenki/temp/player'
 let g:netrw_dirhist_2='/home/zenki/temp/python-for-android'
 let g:netrw_dirhist_3='/home/zenki/temp/python-for-android/src/src/org'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/zenki/.DATA/home/config/vim/template'
 let g:netrw_dirhist_5='/home/zenki/pateo/sdk'
 let g:netrw_dirhist_6='/home/zenki/.config/fcitx'
 let g:netrw_dirhist_7='/home/zenki/ruizhan/Grade/Rel_GetPic/daisy'
+let g:netrw_dirhist_8='/home/zenki/ruizhan/IndustrySight/ColorSepServer'

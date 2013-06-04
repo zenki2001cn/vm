@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 79 v1.16 2013-06-04 08:39:01 ###
+* 16.1 添加seoul256配色方案
+* 16.2 更新gnu.make
+
 ### 78 v1.15.10 2013-05-27 10:08:22 ###
 * 15.1 更新gitlog插件                                       ---> gitlog v3.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=4294 

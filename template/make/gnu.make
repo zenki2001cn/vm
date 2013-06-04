@@ -26,6 +26,9 @@ EXCLUDE_FILES 	=
 # 源文件后缀
 SUFFIX 			= c cpp cc cxx
 # 额外的目标文件
+# 第三方的库需要在这里写全路径名
+# 例如：/usr/local/lib/libprotobuf.so
+# 否则无法找到符号
 EXTRA_OBJS      = 
 
 # 目标名称和类型，不需要考虑后缀名，定义多个名称实际上多个拷贝
