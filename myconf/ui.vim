@@ -5,14 +5,14 @@ if (has("gui_running"))
     "GUI配置
     "set guioptions+=b "添加水平滚动条
     "去除工具栏
-    " set guioptions-=T
+    set guioptions-=T
     "去除菜单栏
-    " set guioptions-=m
+    set guioptions-=m
     "去除右边滚动条
     set guioptions-=r
     set guioptions-=L
     "字体配置
-    set guifont=monospace\ 10
+    set guifont=monospace\ 12
 
     " 解决gvim下无法显示中文的问题
     " 在/usr/share/vim/vim72/lang/下创建链接：
