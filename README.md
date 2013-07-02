@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 81 v1.16.2 2013-07-02 17:43:15 ###
+* 16.1 fix bugs
+* 16.2 更新neo-look插件
+
 ### 80 v1.16.1 2013-06-05 08:30:13 ###
 * 16.1 更新signature插件                                    ---> v1.5
     - link: http://vim.wendal.net/scripts/script.php?script_id=4118
