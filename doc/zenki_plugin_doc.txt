@@ -63,6 +63,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    57. MPage                        |mpage_zenki|
    58. VTermStart                   |vtermstart_zenki|
    59. yankring                     |yankring_zenki|
+   60. conflict-slides              |conflict_slides_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -735,5 +736,39 @@ YANKRING                                                      *yankring_zenki*
     KEY                                     说明~
     ,yr                                     显示剪贴板
     ,ys                                     搜索剪贴板
+
+==============================================================================
+CONFLICTSLIDES                                         *conflict_slides_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    Normal模式:
+    ,ll                                     lock当前冲突代码块
+    ,lr                                     退出lock模式
+    ,ln                                     lock下一段代码块
+    ,li                                     显示当前lock代码块信息
+
+    Lock模式:
+    b                                       : insert base content
+    B                                       : append base content
+    o                                       : insert our content
+    O                                       : append our content
+    t                                       : insert their content
+    T                                       : append their content
+    a                                       : insert ours and their content
+    A                                       : insert theirs and our content
+
+    f                                       : restore the conflict (forward)
+    r                                       : reverse the conflict
+    F                                       : restore the conflict without the base section (Forward)
+    R                                       : reverse the conflict without the base section
+
+    e                                       : unlock the content (edit)
+    q                                       : restore the conflict and unlock (quit)
+
+    <CR>                                    : lock the next conflict
+    <BS>                                    : restore the current conflict and lock the next one
+
+    v                                       : visually select the conflict range for 500 ms
+    V                                       : visually select the conflict range permanently
 
 vim:tw=78:ts=8:ft=help:norl:

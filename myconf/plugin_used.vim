@@ -1277,3 +1277,14 @@ let g:bufExplorerShowNoName = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bufExplorer end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" conflict-slides setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ,ll :call CS_LockCurrentConflict()<CR>
+nnoremap ,ln :call CS_MoveCursorToCurrentConflict()<CR>
+nnoremap ,lr :call CS_ReleaseLockedConflict()<CR>
+nnoremap ,li :call CS_DisplayCurrentLockInfo()<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" conflict-slides end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

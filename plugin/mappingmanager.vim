@@ -141,11 +141,12 @@ let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, 
 let g:mm_info_extra .= "Text:       <C-x><C-n>(Narrow), <C-x><C-m>(多页同步显示), _/+(nextval)              QuickFixGrep:   \\g(匹配), \\r(恢复)            \n"
 let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog), \\cf(gitlog_flip)    \n"
 let g:mm_info_extra .= "Commander:  <Tab>(Goto), <F3>(查看), <F4>(编辑), <F5>(拷贝), <F6>(移动), <F7>(创建目录), <F8>(删除), <F10>(退出), INS(选择), +-(选择匹配), \\h(显示隐藏) \n"
+let g:mm_info_extra .= "Conflict:   ,ll(锁定), ,ln(next), ,lr(释放), ,li(info)      锁定模式: o(our), t(their), a(all), e(unlock), q(quit), v(view) \n"
 
 " load the user mappings
 if has("unix")
   " modify zenki, change default dir
-  let g:usermapping_file = $HOME."/.vim/myconf/mappings.vim"
+  let g:usermapping_file = $HOME."/.vim/myconf/mappingsCommander.vim"
   let g:globalmapping_file = $HOME."/.vim/myconf/mappings.vim"
 endif
 if has("win32")

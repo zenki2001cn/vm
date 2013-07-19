@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 82 v1.16.3 2013-07-16 13:11:19 ###
+* 16.1 添加conflict-slides插件（冲突处理）                  ---> v1.0.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4650
+
 ### 81 v1.16.2 2013-07-02 17:43:15 ###
 * 16.1 fix bugs
 * 16.2 更新neo-look插件
