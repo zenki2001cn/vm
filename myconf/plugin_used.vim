@@ -1229,6 +1229,9 @@ noremap <silent> <C-x><C-m> :MPage 2<CR>
 let g:startify_session_dir = $HOME.'/.vim_sessions/'
 let g:startify_empty_buffer_key = 'o'
 let g:startify_enable_special = 0
+let g:startify_files_number = 10
+let g:startify_lists = ['files', 'sessions', 'bookmarks']
+let g:startify_custom_indices = ['a', 's', 'd', 'f']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  startify end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

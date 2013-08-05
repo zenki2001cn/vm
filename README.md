@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 83 v1.16.4 2013-08-03 19:19:29 ###
+* 16.1 更新viewdoc插件                                      ---> v1.6
+    - link: http://vim.wendal.net/scripts/script.php?script_id=3893
+* 16.2 更新startify插件                                     ---> v1.7
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4544
+
 ### 82 v1.16.3 2013-07-16 13:11:19 ###
 * 16.1 添加conflict-slides插件（冲突处理）                  ---> v1.0.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=4650
