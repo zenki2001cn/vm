@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 84 v1.16.5 2013-08-08 22:31:06 ###
+* 16.1 添加EasyAlign插件                                    ---> v2.0.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4520          
+* 16.2 添加Crunch插件（计算器）                             ---> 1.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4686
+* 16.3 更新Recover插件                                      ---> v0.18
+    - link: http://vim.wendal.net/scripts/script.php?script_id=3068
+
 ### 83 v1.16.4 2013-08-03 19:19:29 ###
 * 16.1 更新viewdoc插件                                      ---> v1.6
     - link: http://vim.wendal.net/scripts/script.php?script_id=3893
