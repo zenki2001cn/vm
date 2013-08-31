@@ -1,6 +1,6 @@
 " QFGrep  : a vim plugin to filter Quickfix entries
 " Author  : Kai Yuan <kent.yuan@gmail.com>
-" Version : 1.0.0
+" Version : 1.0.1
 " License: {{{
 "Copyright (c) 2013 Kai Yuan
 "Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -24,12 +24,13 @@ if exists("g:loaded_QFGrep") || &cp
   finish
 endif
 
-let g:loaded_GrepQF = 1
+let g:loaded_QFGrep = 1
 
 let g:origQF =  !exists("g:origQF")? [] : g:origQF
 
 "mappings
-let g:QFG_Grep = !exists('g:QFG_Grep')? '<Leader>g' : g:QFG_Grep
+let g:QFG_Grep    = !exists('g:QFG_Grep')? '<Leader>g' : g:QFG_Grep
+let g:QFG_GrepV   = !exists('g:QFG_GrepV')? '<Leader>v' : g:QFG_GrepV
 let g:QFG_Restore = !exists('g:QFG_Restore')? '<Leader>r' : g:QFG_Restore
 
 "highlighting
@@ -49,7 +50,7 @@ endif
 let s:msgHead = '[QFGrep] ' 
 
 "do grep on quickfix entries
-function! <SID>GrepQuickFix()
+function! <SID>GrepQuickFix(invert)
   "store original quickfix lists, so that later could be restored
   let g:origQF = len( g:origQF )>0? g:origQF : getqflist()
   let all = getqflist()
@@ -60,7 +61,7 @@ function! <SID>GrepQuickFix()
   let cp = deepcopy(all)
   call inputsave()
   echohl QFGPrompt
-  let pat = input( s:msgHead . 'Pattern:')
+  let pat = input( s:msgHead . 'Pattern' . (a:invert?' (Invert-matching):':':'))
   echohl None
   call inputrestore()
   "clear the cmdline
@@ -71,8 +72,14 @@ function! <SID>GrepQuickFix()
   endif
   try
     for d in cp
-      if bufname(d['bufnr']) !~ pat && d['text'] !~ pat
-        call remove(cp, index(cp,d))
+      if (!a:invert)
+        if ( bufname(d['bufnr']) !~ pat && d['text'] !~ pat)
+          call remove(cp, index(cp,d))
+        endif
+      else " here do invert matching
+        if (bufname(d['bufnr']) =~ pat || d['text'] =~ pat)
+          call remove(cp, index(cp,d))
+        endif
       endif
     endfor
     if empty(cp)
@@ -118,10 +125,12 @@ fun! <SID>FTautocmdBatch()
   execute 'hi QFGPrompt '. g:QFG_hi_prompt
   execute 'hi QFGInfo '. g:QFG_hi_info
   execute 'hi QFGError '. g:QFG_hi_error
-  command! QFGrep call <SID>GrepQuickFix()
+  command! QFGrep call <SID>GrepQuickFix(0)  "invert flag =0
+  command! QFGrepV call <SID>GrepQuickFix(1) "invert flag =1
   command! QFRestore call <SID>RestoreQuickFix()
   "mapping
   execute 'nnoremap <buffer><silent>' . g:QFG_Grep . ' :QFGrep<cr>'
+  execute 'nnoremap <buffer><silent>' . g:QFG_GrepV . ' :QFGrepV<cr>'
   execute 'nnoremap <buffer><silent>' . g:QFG_Restore . ' :QFRestore<cr>'
 endf
 
@@ -130,7 +139,7 @@ augroup QFG
   autocmd QuickFixCmdPre * let g:origQF = []
   autocmd QuickFixCmdPost * let g:origQF = getqflist() 
   autocmd FileType qf call <SID>FTautocmdBatch()
-augroup end
+  augroup end
 
 
-   " vim:ts=2:tw=80:shiftwidth=2:tabstop=2:fdm=marker:expandtab
+    " vim:ts=2:tw=80:shiftwidth=2:tabstop=2:fdm=marker:expandtab

@@ -5,6 +5,16 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 85 v1.16.6 2013-08-19 22:22:06 ###
+* 16.1 更新EasyAlign插件                                    ---> v2.3.1
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4520          
+* 16.2 更新publish插件                                      ---> v1.7.14
+    - link: http://vim.wendal.net/scripts/script.php?script_id=2252
+* 16.3 添加open-pdf插件                                     ---> v1.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4708
+* 16.4 添加QFGrep插件                                       ---> QFGrep v1.0.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4490
+
 ### 84 v1.16.5 2013-08-08 22:31:06 ###
 * 16.1 添加EasyAlign插件                                    ---> v2.0.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=4520          

@@ -780,9 +780,10 @@ EASYALIGN                                                   *easy_align_zenki*
     V模式<Enter>                            进入EasyAlign模式
 
     EasyAlign模式：
+    <Enter>                                 向右、中间、左边对齐切换
     <space>                                 空格对齐
-    **=                                     等号对齐
-    **|                                     |对齐 
+    *=                                      等号对齐
+    *|                                      |对齐 
 
 ==============================================================================
 CRUNCH                                                          *crunch_zenki* 
