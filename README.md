@@ -5,6 +5,18 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 86 v1.16.7 2013-09-14 16:44:20 ###
+* 16.1 更新EasyAlign插件                                    ---> v2.6.1
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4520          
+* 16.2 添加vgdb插件                                         ---> v1.2
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4456
+* 16.3 更新nextval插件                                      ---> v1.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4536
+* 16.4 更新stl插件                                          ---> v0.3
+    - link: http://www.vim.org/scripts/script.php?script_id=4293
+* 16.5 更新bufexplorer插件                                  ---> v7.4.1
+    - link: http://www.vim.org/scripts/script.php?script_id=42
+
 ### 85 v1.16.6 2013-08-19 22:22:06 ###
 * 16.1 更新EasyAlign插件                                    ---> v2.3.1
     - link: http://vim.wendal.net/scripts/script.php?script_id=4520          
