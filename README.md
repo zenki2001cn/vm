@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 87 v1.16.8 2013-10-20 20:45:45 ###
+* 16.1 更新tlib插件                                         ---> v1.0.6
+    - link: http://www.vim.org/scripts/script.php?script_id=1863
+* 16.2 更新viki插件                                         ---> v4.0.5
+    - link: http://www.vim.org/scripts/script.php?script_id=861
+
 ### 86 v1.16.7 2013-09-14 16:44:20 ###
 * 16.1 更新EasyAlign插件                                    ---> v2.6.1
     - link: http://vim.wendal.net/scripts/script.php?script_id=4520          
