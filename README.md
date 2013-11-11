@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 89 v1.17.0 2013-11-01 21:08:28 ###
+* 17.1 更新EasyAlign插件                                    ---> v2.8.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4520
+
 ### 88 v1.16.9 2013-10-22 20:38:32 ###
 * 16.1 更新EasyAlign插件                                    ---> v2.7.0
     - link: http://www.vim.org/scripts/script.php?script_id=4520
@@ -87,7 +91,7 @@ ChangLog
 
 ### 76 v1.15.8 2013-05-15 08:34:10 ###
 * 15.1 更新publish插件                                      ---> publish v1.7.11
-* 15.2 更新pymode插件                                       ---> pymode v0.6.8
+* 15.2 更新pymode插件                                       ---> pymode v0.6.18
 
 ### 75 v1.15.7 2013-05-12 12:57:54 ###
 * 15.1 更新neocomplcache插件                                ---> neocomplcache v8.0
