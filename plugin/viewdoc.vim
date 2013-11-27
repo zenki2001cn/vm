@@ -43,9 +43,9 @@ endif
 " - map
 if !exists('g:no_plugin_maps') && !exists('g:no_viewdoc_maps')
     " modify zenki, remap hot key
-    " inoremap <unique> <C-k> :call ViewDoc('new', '<cword>')<CR>
-	" nnoremap <unique> <C-j>	:call ViewDoc('doc', '<cword>')<CR>
-    nnoremap <unique> <C-h>	:call ViewDoc('new', '<cword>')<CR>
+	" inoremap <unique> <F1>	<C-O>:call ViewDoc('new', '<cword>')<CR>
+	" nnoremap <unique> <F1>	:call ViewDoc('new', '<cword>')<CR>
+	nnoremap <unique> <C-h>		:call ViewDoc('new', '<cword>')<CR>
 endif
 " - function
 " call ViewDoc('new', '<cword>')		auto-detect context/syntax and file type
@@ -150,10 +150,12 @@ function ViewDoc_SetShellToBash()
 	let s:_shellcmdflag=&shellcmdflag
 	let s:_shellpipe=&shellpipe
 	let s:_shellredir=&shellredir
-	setlocal shell=/bin/bash
-	setlocal shellcmdflag=-c
-	setlocal shellpipe=2>&1\|\ tee
-	setlocal shellredir=>%s\ 2>&1
+	if !has('win16') && !has('win32') && !has('win64')
+		setlocal shell=/bin/sh
+		setlocal shellcmdflag=-c
+		setlocal shellpipe=2>&1\|\ tee
+		setlocal shellredir=>%s\ 2>&1
+	endif
 endfunction
 
 function ViewDoc_RestoreShell()

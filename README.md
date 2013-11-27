@@ -8,6 +8,17 @@ ChangLog
 ### 89 v1.17.0 2013-11-01 21:08:28 ###
 * 17.1 更新EasyAlign插件                                    ---> v2.8.0
     - link: http://www.vim.org/scripts/script.php?script_id=4520
+* 17.2 更新nextval插件                                      ---> v1.11
+    - link: http://www.vim.org/scripts/script.php?script_id=4536
+* 17.3 添加WakaTime插件                                     ---> git v1.2.3
+    - link: https://www.wakati.me/help/plugins/vim
+    - API-KEY: 67b700bc-56a4-435c-b5be-be0c80f1247a
+* 17.4 更新crunch插件                                       ---> v2.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4686
+* 17.5 更新viewdoc插件                                      ---> v1.7
+    - link: http://www.vim.org/scripts/script.php?script_id=3893
+* 17.6 更新DrawIt插件                                       ---> DrawIt v13
+    - link: http://www.vim.org/scripts/script.php?script_id=40
 
 ### 88 v1.16.9 2013-10-22 20:38:32 ###
 * 16.1 更新EasyAlign插件                                    ---> v2.7.0
