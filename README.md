@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 90 v1.17.1 2013-11-28 09:10:06 ###
+* 17.1 更新EasyAlign插件                                    ---> v2.8.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4520
+* 17.2 添加Replay插件                                       ---> Replay v5
+    - link: http://www.vim.org/scripts/script.php?script_id=3216
+* 17.3 更新ingo-library插件                                 ---> v1.015
+    - link: http://www.vim.org/scripts/script.php?script_id=4433
+
 ### 89 v1.17.0 2013-11-01 21:08:28 ###
 * 17.1 更新EasyAlign插件                                    ---> v2.8.0
     - link: http://www.vim.org/scripts/script.php?script_id=4520

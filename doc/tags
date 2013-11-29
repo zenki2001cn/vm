@@ -321,6 +321,7 @@ $VGDB_PORT	vgdb.txt	/*$VGDB_PORT*
 :RopeLuckyAssist	ropevim.txt	/*:RopeLuckyAssist*
 :RopevimAutoImport	ropevim.txt	/*:RopevimAutoImport*
 :SBSettings	selectbuf.txt	/*:SBSettings*
+:ScreenCapture	Replay.txt	/*:ScreenCapture*
 :Search	MultipleSearch.txt	/*:Search*
 :SearchBuffers	MultipleSearch.txt	/*:SearchBuffers*
 :StartRecord	Replay.txt	/*:StartRecord*
@@ -2215,6 +2216,7 @@ ingo-library-installation	ingo-library.txt	/*ingo-library-installation*
 ingo-library-known-problems	ingo-library.txt	/*ingo-library-known-problems*
 ingo-library-limitations	ingo-library.txt	/*ingo-library-limitations*
 ingo-library-todo	ingo-library.txt	/*ingo-library-todo*
+ingo-library-usage	ingo-library.txt	/*ingo-library-usage*
 ingo-library.txt	ingo-library.txt	/*ingo-library.txt*
 ingo-library.vim	ingo-library.txt	/*ingo-library.vim*
 installation	PreciseJump.txt	/*installation*
