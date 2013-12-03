@@ -12,7 +12,7 @@
 from __future__ import print_function
 
 __title__ = 'wakatime'
-__version__ = '0.4.9'
+__version__ = '0.4.10'
 __author__ = 'Alan Hamlett'
 __license__ = 'BSD'
 __copyright__ = 'Copyright 2013 Alan Hamlett'
@@ -62,6 +62,9 @@ def parseConfigFile(configFile):
         'ignore': [],
         'verbose': False,
     }
+
+    if not os.path.isfile(configFile):
+        return configs
 
     try:
         with open(configFile) as fh:

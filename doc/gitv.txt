@@ -188,6 +188,9 @@ modes.
                           regardless of any windows you may have opened as well
                           as the gitv windows.
 
+    normal      a         Switches the '--all' argument and updates the browser
+                          window.
+
     normal      u         Forces an update of the content of the browser window.
 
     normal      co        Performs a 'git checkout' of the commit the cursor is
@@ -265,6 +268,10 @@ around a repository history in the browser window.
                         history.
 
     normal      P       Jumps the cursor to the commit referenced by HEAD.
+
+    normal      p       Jumps the cursor to the commit which is the parent of
+                        current line.  When on a merge commit, a |count|
+                        may be used to choose a parent other than the first.
 
 3.5 Commands
 
@@ -373,11 +380,8 @@ content in all modes and settings.
 
 4.3 Git Executable
 
-This is the name of the git executable to use to run commands. This should be
-a string.
->
-    g:Gitv_GitExecutable = 'git'
-<
+Gitv uses the same executable as fugitive.
+
 4.4 Wipe All on Close
 
 This option should be set to either 0 (to disable) or 1 (to enable). If set to

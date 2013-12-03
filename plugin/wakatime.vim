@@ -4,7 +4,7 @@
 " Maintainer:  WakaTime <support@wakatime.com>
 " ============================================================================
 
-let s:VERSION = '1.2.3'
+let s:VERSION = '1.3.1'
 
 
 " Init {{{
@@ -47,7 +47,7 @@ let s:VERSION = '1.2.3'
 
     " Set default action frequency in minutes
     if !exists("g:wakatime_ActionFrequency")
-        let g:wakatime_ActionFrequency = 5
+        let g:wakatime_ActionFrequency = 2
     endif
 
     " Globals
@@ -79,9 +79,9 @@ let s:VERSION = '1.2.3'
             let targetFile = a:last[2]
         endif
         if targetFile != ''
-            let cmd = ['python', s:plugin_directory . 'packages/wakatime/wakatime-cli.py']
+            let cmd = ['python', '-W', 'ignore', s:plugin_directory . 'packages/wakatime/wakatime-cli.py']
             let cmd = cmd + ['--file', shellescape(targetFile)]
-            let cmd = cmd + ['--time', printf('%f', a:time)]
+            let cmd = cmd + ['--time', substitute(printf('%f', a:time), ',', '.', '')]
             let cmd = cmd + ['--plugin', printf('vim-wakatime/%s', s:VERSION)]
             if a:is_write
                 let cmd = cmd + ['--write']
@@ -105,7 +105,7 @@ let s:VERSION = '1.2.3'
     
     function! s:SetLastAction(time, last_update, targetFile)
         let s:fresh = 0
-        call writefile([printf('%f', a:time), printf('%f', a:last_update), a:targetFile], expand("$HOME/.wakatime.data"))
+        call writefile([substitute(printf('%f', a:time), ',', '.', ''), substitute(printf('%f', a:last_update), ',', '.', ''), a:targetFile], expand("$HOME/.wakatime.data"))
     endfunction
 
     function! s:GetChar()
