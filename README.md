@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 92 v1.17.3 2013-12-10 09:27:09 ###
+* 17.1 添加SwissCalc                                        ---> v1.0.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4791
+* 17.2 更新EasyAlign插件                                    ---> v2.9.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4520
+* 17.3 更新tagbar                                           ---> v2.6
+    - link: http://www.vim.org/scripts/script.php?script_id=3465
+
 ### 91 v1.17.2 2013-11-29 10:59:46 ###
 * 17.1 更新gitv                                             ---> gitv (from github)
 * 17.2 更新fugitive插件                                     ---> fugitive (from github)

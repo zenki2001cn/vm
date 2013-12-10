@@ -139,7 +139,7 @@ let g:mm_info_extra .= "Execute:    !, !!, <C-n>, <C-p>, <C-l>                  
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"
 let g:mm_info_extra .= "文本处理:   <C-x><C-n>(Narrow), <C-x><C-m>(多页同步显示), _/+(nextval)              QuickFixGrep:   \\g(匹配), \\r(恢复)            \n"
-let g:mm_info_extra .= "文本对齐:   <Enter>[|,=](V模式)                                                     计算器:         cl(V模式), :Crunch          \n"
+let g:mm_info_extra .= "文本对齐:   <Enter>[*][|,=](V模式)                                                     计算器:         cl(V模式), :Crunch, :ScalcVSplit, :Scalc     \n"
 let g:mm_info_extra .= "VCS:        \\ca(add), \\cc(commit), \\cD(delete), \\cd(diff), \\cl(log), \\cn(blame), \\cs(status), \\cv(vimdiff), \\cg(gitlog), \\cf(gitlog_flip)    \n"
 let g:mm_info_extra .= "Commander:  <Tab>(Goto), <F3>(查看), <F4>(编辑), <F5>(拷贝), <F6>(移动), <F7>(创建目录), <F8>(删除), <F10>(退出), INS(选择), +-(选择匹配), \\h(显示隐藏) \n"
 let g:mm_info_extra .= "冲突检测:   ]=,(向下), [=(向上) ,ll(锁定), ,ln(next), ,lr(释放), ,li(info)  锁定模式: o(our), t(their), a(all), e(unlock), q(quit), v(view)\n"
