@@ -66,6 +66,8 @@ Zenki's vim plugin Document                                        *zenki_doc*
    60. conflict-slides              |conflict_slides_zenki|
    61. EasyAlign                    |easy_align_zenki|
    62. Crunch                       |crunch_zenki|
+   63. WakaTime                     |wakatime_zenki|
+   64. SwissCalc                    |swisscalc_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -800,5 +802,47 @@ CRUNCH                                                          *crunch_zenki*
     1+10-20*20                              1+10-20*20 = -389
     0.25*2                                  0.25*2 = 0.5
     cos(30)                                 cos(30) = 0.154251
+
+==============================================================================
+WAKATIME                                                      *wakatime_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    email                                   zenki2001cn@163.com
+    password                                zenki007
+    API-KEY                                 67b700bc-56a4-435c-b5be-be0c80f1247a
+
+==============================================================================
+SWISSCALC                                                    *swisscalc_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    启动计算模式                            :Scalc
+                                            :ScalcSplit
+                                            :ScalcTab
+                                            :ScalcVSplit
+    支持类型：
+    二进制                                  0b101
+    八进制                                  0o10
+    十六进制                                0x101
+    浮点数                                  1.3e-1
+    字符串                                  'hello\n'
+
+    内置函数：
+    funcs()                                 打印内置函数~
+    help('md5')                             查看函数说明~
+
+    运算符:
+    优先级      运算符      结合性       描述~
+    0           =           right        赋值
+    0           += -=       right        相加/相减并赋值
+    0           *= /=       right        相乘/相除并赋值
+    0           %= **=      right        取模/乘方并赋值
+    0           <<= >>=     right        左移/右移并赋值
+    0           &= |= ^=    right        与/或/异或并赋值
+    1           & | ^       left         与/或/异或
+    2           << >>       left         左移/右移
+    3           + =         left         相加/相减
+    4           * / %       left         相乘/相除/取模
+    5           !           right        阶乘，一元运算，如:5!
+    6           **          left         乘方
 
 vim:tw=78:ts=8:ft=help:norl:
