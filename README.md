@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 93 v1.17.4 2013-12-17 10:35:27 ###
+* 17.1 更新Command-T插件                                    ---> v1.6
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+
 ### 92 v1.17.3 2013-12-10 09:27:09 ###
 * 17.1 添加SwissCalc                                        ---> v1.0.0
     - link: http://www.vim.org/scripts/script.php?script_id=4791
