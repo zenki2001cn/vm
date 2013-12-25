@@ -54,9 +54,11 @@
 " 				search string. Autocompletion using history also works by
 " 				<Ctrl-X><Ctrl-U>.
 "
-" Version:		1.4.1
+" Version:		1.4.2
 "
-" ChangeLog:	1.4.1:	Fixed issue with TabBar plugin.
+" ChangeLog:	1.4.2:	Fixed error when running YATEStationary. Thanks to Eoin
+" Mcloughlin.
+"				1.4.1:	Fixed issue with TabBar plugin.
 " 						Removed yate buffer from buffers list.
 "						Better work with history popup menu.
 "
@@ -198,7 +200,6 @@ fun <SID>GotoTag(open_command, stationary)
 
 	call <SID>GoToPrevWindow()
 
-	"exe ':wincmd p'
 	if !a:stationary
 		exe ':'.s:yate_winnr.'bd!'
 		let s:yate_winnr=-1
@@ -412,19 +413,14 @@ fun <SID>OnBufLeave()
 	endif
 endfun
 
-" modify zenki, disable insert mode when BufEnter
-fun <SID>OnBufEnter(first_time)
+fun <SID>OnBufEnter()
 	" Disable acp.vim plugin as cursor callbacks doesn't work if popup menu is
 	" shown.
 	if exists(':AcpLock')
 		exe 'AcpLock'
 	endif
 	let s:prev_mode = mode()
-
-    " modify zenki, disable insert mode when BufEnter
-    if !exists("a:first_time")
-	    startinsert
-    endif
+	startinsert
 
 	call <SID>PrintTagsList()
 endfun
@@ -502,7 +498,7 @@ fun! <SID>ToggleTagExplorerBuffer(stationary)
 	if !exists("s:yate_winnr") || s:yate_winnr==-1
 		let buffer_name = 'YATE'
 		if a:stationary
-			let buffer_name = 'YATE (stationary)'
+			let buffer_name = 'YATE\ (stationary)'
 		endif
 
 		exe "bo".g:YATE_window_height."sp ".buffer_name
@@ -561,12 +557,10 @@ fun! <SID>ToggleTagExplorerBuffer(stationary)
 			autocmd CursorMoved <buffer> call <SID>OnCursorMoved(0, 0)
 			autocmd CursorMovedI <buffer> call <SID>OnCursorMoved(1, 0)
 			autocmd VimResized <buffer> call <SID>PrintTagsList()
-            " modify zenki, disable insert mode when BufEnter
-			" autocmd BufEnter <buffer> call <SID>OnBufEnter()
+			autocmd BufEnter <buffer> call <SID>OnBufEnter()
 		endif
 		
-        " modify zenki, disable insert mode when BufEnter
-		cal <SID>OnBufEnter(s:first_time)
+		cal <SID>OnBufEnter()
 	else
 		exe ':wincmd p'
 		exe ':'.s:yate_winnr.'bd!'

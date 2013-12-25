@@ -5,6 +5,16 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 94 v1.17.5 2013-12-18 19:26:35 ###
+* 17.1 更新yate插件                                         ---> v1.4.2
+    - link: http://www.vim.org/scripts/script.php?script_id=2068
+* 17.2 添加simple_highlighting插件                          ---> v1.0.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4688
+* 17.3 更新MRU插件                                          ---> v3.7
+    - link: http://www.vim.org/scripts/script.php?script_id=521
+* 17.4 更新Command-T插件                                    ---> v1.6.1
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+
 ### 93 v1.17.4 2013-12-17 10:35:27 ###
 * 17.1 更新Command-T插件                                    ---> v1.6
     - link: http://www.vim.org/scripts/script.php?script_id=3025
