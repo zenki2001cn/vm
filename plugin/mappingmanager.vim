@@ -134,7 +134,7 @@ let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), 
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get), ]c(next), [c(prev), ]=(冲突) \n"
 let g:mm_info_extra .= "Surround:   ,cs)](替换), ,ds)(删除), ysiw)(插入), yssb(行插入), vS}(V模式插入)      Highlight:      gd|[*]\h|:Hs[*](标记), ge|:Hc[*](清除)  \n"
-let g:mm_info_extra .= "窗口布局:   \\tw, :sba(分割buffer), wo(调整窗口), ,w(最大宽度)                       窗口操作:       \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL \n"
+let g:mm_info_extra .= "窗口布局:   \\tw, :sba(分割buffer), wo(调整窗口), ,w(最大宽度), <S-w>(选择窗口)      窗口操作:       \\qq, \\qa, qq, wv, ws, wj, wk, wh, wl, wJ, wK, wH, wL \n"
 let g:mm_info_extra .= "Execute:    !, !!, <C-n>, <C-p>, <C-l>                                              HTML & XML:     <tag>, tag,,        \n"
 let g:mm_info_extra .= "CommandT:   \\ct, \\cb, <S-t>                                                         CtrlP:          <C-p>, <C-z>, <C-o>, <C-b>, :25, :diffthis, :/key \n"
 let g:mm_info_extra .= "CCTree:     <C-F7>, <C-F8>, zs, za, zr, <F7-=>, <F7-->, <F7-w>, <F7-l>, <F7-y>      FilePirate:     <C-x><C-f>, <F5>(refresh), <C-j>(down), <C-k>(up)\n"

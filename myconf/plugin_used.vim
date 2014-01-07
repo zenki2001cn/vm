@@ -1231,7 +1231,7 @@ let g:startify_empty_buffer_key = 'o'
 let g:startify_enable_special = 0
 let g:startify_files_number = 10
 let g:startify_lists = ['files', 'dir', 'bookmarks', 'sessions']
-let g:startify_custom_indices = ['a', 's', 'd', 'f']
+let g:startify_custom_indices = ['a', 'j', 'd', 'f', 'k', 'l']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  startify end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1306,4 +1306,40 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 vnoremap <silent> cl :CrunchLine<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Crunch end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow setting {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1        " 激活插件
+let g:rainbow_conf = {
+    \   'guifgs': ['white', 'darkorange3', 'seagreen3', 'firebrick', 'royalblue3'],
+    \   'ctermfgs': ['white', 'darkgray', 'darkmagenta', 'darkcyan', 'darkblue'],
+    \   'operators': '_,_',
+    \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+    \   'separately': {
+    \       '*': {},
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+    \       },
+    \       'html': {
+    \           'parentheses': [['(',')'], ['\[','\]'], ['{','}'], ['<\a[^>]*[^/]>\|<\a>','</[^>]*>']],
+    \       },
+    \       'tex': {
+    \           'operators': '',
+    \           'parentheses': [['(',')'], ['\[','\]']],
+    \       },
+    \   }
+    \}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ChooseWin start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap  <S-w>  <Plug>(choosewin)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ChooseWin end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

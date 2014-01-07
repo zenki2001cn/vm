@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 95 v1.17.6 2013-12-25 09:02:51 ###
+* 17.1 更新signature插件                                    ---> v3
+    - link: http://www.vim.org/scripts/script.php?script_id=4118
+* 17.2 添加rainbow插件（高亮括号）                          ---> from github
+    - link: https://github.com/luochen1990/rainbow/blob/master/README_zh.md
+* 17.3 添加ChooseWin插件（窗口选择）                        ---> from github
+    - link: https://github.com/t9md/vim-choosewin
+
 ### 94 v1.17.5 2013-12-18 19:26:35 ###
 * 17.1 更新yate插件                                         ---> v1.4.2
     - link: http://www.vim.org/scripts/script.php?script_id=2068
