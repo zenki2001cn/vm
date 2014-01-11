@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 96 v1.17.7 2014-01-09 08:59:35 ###
+* 17.1 更新ChooseWin插件（窗口选择）                        ---> v1.2
+    - link: http://www.vim.org/scripts/script.php?script_id=4815
+
 ### 95 v1.17.6 2013-12-25 09:02:51 ###
 * 17.1 更新signature插件                                    ---> v3
     - link: http://www.vim.org/scripts/script.php?script_id=4118
