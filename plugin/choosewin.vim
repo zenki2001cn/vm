@@ -10,27 +10,27 @@ let s:old_cpo = &cpo
 set cpo&vim
 
 " Main:
-let g:choosewin_active = 0
-
 let s:options = {
       \ 'g:choosewin_statusline_replace': 1,
       \ 'g:choosewin_tabline_replace': 1,
       \ 'g:choosewin_land_char': ';',
       \ 'g:choosewin_overlay_enable': 0,
       \ 'g:choosewin_overlay_shade': 0,
+      \ 'g:choosewin_overlay_shade_priority': 100,
+      \ 'g:choosewin_overlay_label_priority': 101,
       \ 'g:choosewin_overlay_clear_multibyte': 0,
       \ 'g:choosewin_label_align':   'center',
       \ 'g:choosewin_label_padding': 3,
-      \ 'g:choosewin_label_fill':    0,             
-      \ 'g:choosewin_color_label':                  
+      \ 'g:choosewin_label_fill':    0,
+      \ 'g:choosewin_color_label':
       \      { 'gui': ['DarkGreen', 'white', 'bold'], 'cterm': [ 22, 15,'bold'] },
-      \ 'g:choosewin_color_label_current':          
+      \ 'g:choosewin_color_label_current':
       \      { 'gui': ['LimeGreen', 'black', 'bold'], 'cterm': [ 40, 16, 'bold'] },
-      \ 'g:choosewin_color_overlay':                
+      \ 'g:choosewin_color_overlay':
       \      { 'gui': ['DarkGreen', 'DarkGreen' ], 'cterm': [ 22, 22 ] },
-      \ 'g:choosewin_color_overlay_current':                         
+      \ 'g:choosewin_color_overlay_current':
       \      { 'gui': ['LimeGreen', 'LimeGreen' ], 'cterm': [ 40, 40 ] },
-      \ 'g:choosewin_color_other':                  
+      \ 'g:choosewin_color_other':
       \      { 'gui': ['gray20', 'black'], 'cterm': [ 240, 0] },
       \ 'g:choosewin_color_land':
       \   { 'gui':[ 'LawnGreen', 'Black', 'bold,underline'], 'cterm': ['magenta', 'white'] },
@@ -42,6 +42,7 @@ let s:options = {
       \ 'g:choosewin_keymap': {},
       \ 'g:choosewin_tablabel': '123456789',
       \ }
+
 
 function! s:options_set(options)
   for [varname, value] in items(a:options)
@@ -64,14 +65,9 @@ nnoremap <silent> <Plug>(choosewin)
       \ :<C-u>call choosewin#start(range(1, winnr('$')))<CR>
 
 " Command:
-command! -bar ChooseWin
-      \ call choosewin#start(range(1, winnr('$')))
+command! -bar ChooseWin call choosewin#start(range(1, winnr('$')))
 
 " Finish:
 let &cpo = s:old_cpo
-if expand("%:p") !=# expand("<sfile>:p")
-  finish
-endif
-" let hlter = choosewin#highlighter#get()
-call choosewin#highlighter#refresh()
+
 " vim: foldmethod=marker

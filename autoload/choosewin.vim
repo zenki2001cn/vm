@@ -1,3 +1,8 @@
+" Constant:
+let s:NOT_FOUND       = -1
+let s:TYPE_DICTIONARY = type({})
+
+" Utility:
 function! s:msg(msg) "{{{1
   if !empty(a:msg)
     echohl Type
@@ -6,12 +11,6 @@ function! s:msg(msg) "{{{1
   endif
   echon a:msg
 endfunction
-"}}}
-
-" Constant:
-unlet! s:NOT_FOUND
-let s:NOT_FOUND = -1
-lockvar s:NOT_FOUND
 
 function! s:dict_invert(dict) "{{{1
   let R = {}
@@ -65,6 +64,7 @@ function! s:goto_tabwin(tabnum, winnum) "{{{1
 endfunction
 "}}}
 
+" Main:
 let s:cw = {}
 function! s:cw.get_env() "{{{1
   return {
@@ -91,12 +91,12 @@ function! s:cw.blink_cword() "{{{1
   if ! self.conf['blink_on_land']
     return
   endif
-  let pat = '\k*\%#\k*'
   for i in range(2)
-    let id = matchadd(self.color.Land, pat) | redraw | sleep 80m
-    call matchdelete(id)                    | redraw | sleep 80m
+    let id = matchadd(self.color.Land, s:cword_pattern) | redraw | sleep 80m
+    call matchdelete(id)                                | redraw | sleep 80m
   endfor
 endfunction
+let s:cword_pattern = '\k*\%#\k*'
 
 function! s:cw.statusline_replace(winnums) "{{{1
   call self.statusline_save(a:winnums)
@@ -114,7 +114,7 @@ function! s:cw.statusline_restore() "{{{1
 endfunction
 
 function! s:cw.prepare_label(win, align) "{{{1
-  let pad = repeat(' ', self.conf['label_padding'])
+  let pad   = repeat(' ', self.conf['label_padding'])
   let label = self.win2label[a:win]
   let win_s = pad . label . pad
   let color = winnr() ==# a:win
@@ -190,7 +190,9 @@ function! s:cw.init() "{{{1
   let self.win_dest        = ''
   let self.env             = self.get_env()
   let self.env_orig        = deepcopy(self.env)
-  let self.keymap          = extend(self.keymap_default(), self.conf['keymap'])
+  let self.keymap          = filter(
+        \ extend(self.keymap_default(), self.conf['keymap']),
+        \ "v:val !=# '<NOP>'")
 
   if self.conf['overlay_enable']
     let self.overlay = choosewin#overlay#get()
@@ -198,7 +200,7 @@ function! s:cw.init() "{{{1
   call self.tablabel_init(self.env.tab.all, self.tablabel)
 endfunction
 
-function! s:cw.keymap_default()
+function! s:cw.keymap_default() "{{{1
   return {
         \ '0':     'tab_first',
         \ '[':     'tab_prev',
@@ -225,6 +227,8 @@ function! s:cw.config() "{{{1
         \ 'tabline_replace':           g:choosewin_tabline_replace,
         \ 'overlay_enable':            g:choosewin_overlay_enable,
         \ 'overlay_shade':             g:choosewin_overlay_shade,
+        \ 'overlay_shade_priority':    g:choosewin_overlay_shade_priority,
+        \ 'overlay_label_priority':    g:choosewin_overlay_label_priority,
         \ 'overlay_clear_multibyte':   g:choosewin_overlay_clear_multibyte,
         \ 'label_align':               g:choosewin_label_align,
         \ 'label_padding':             g:choosewin_label_padding,
@@ -272,16 +276,12 @@ endfunction
 
 function! s:cw.get_action(input) "{{{1
   " [ kind, arg ] style
-
-  let tabn = s:get_ic(self.label2tab, a:input, 0)
-  if !empty(tabn)
-    return [ 'tab', tabn ]
-  endif
-
-  let winn = s:get_ic(self.label2win, a:input, 0)
-  if !empty(winn)
-    return [ 'win', winn ]
-  endif
+  for kind in [ 'tab', 'win']
+    let num = s:get_ic(self['label2'. kind], a:input, s:NOT_FOUND)
+    if num isnot s:NOT_FOUND
+      return [ kind, num ]
+    endif
+  endfor
 
   let action = get(self.keymap, a:input)
   if !empty(action)
@@ -291,9 +291,9 @@ function! s:cw.get_action(input) "{{{1
             \ action ==# 'tab_prev'  ? max([1, self.env.tab.cur - 1]) :
             \ action ==# 'tab_next'  ? min([tabpagenr('$'), self.env.tab.cur + 1]) :
             \ action ==# 'tab_last'  ? tabpagenr('$') :
-            \ -1
+            \ s:NOT_FOUND
 
-      if tabn ==# -1
+      if tabn is s:NOT_FOUND
         throw 'UNKNOWN_ACTION'
       endif
 
@@ -301,7 +301,7 @@ function! s:cw.get_action(input) "{{{1
     elseif action ==# 'win_land'
       return [ 'win', winnr() ]
     else
-        throw 'UNKNOWN_ACTION'
+      throw 'UNKNOWN_ACTION'
     endif
   endif
 
@@ -320,22 +320,28 @@ let s:vim_tab_options = {
       \ }
 
 function! s:cw.last_status() "{{{1
-  return [ tabpagenr(), winnr() ]
+  if !empty(self.exception)
+    if self.exception =~# 'CANCELED\|RETURN'
+      return []
+    else
+      return [ tabpagenr(), winnr() ]
+    endif
+  endif
 endfunction
 
-function! s:cw.valid_winnums(winnums)
+function! s:cw.valid_winnums(winnums) "{{{1
   return filter(copy(a:winnums), ' index(self.win_all(), v:val) != -1 ')
 endfunction
 
-function! s:cw.label_show(winnums, winlabel) "{{{1  
-  let winnums = self.valid_winnums(a:winnums)[ : len(a:winlabel) - 1 ]
-  call self.winlabel_init(winnums, a:winlabel)      
-                                                    
-  if self.conf['statusline_replace']                
-    call self.statusline_replace(winnums)           
-  endif                                             
-  if self.conf['overlay_enable']                    
-    call self.overlay.overlay(winnums, self.conf)   
+function! s:cw.label_show(winnums, winlabel) "{{{1
+  let winnums = a:winnums[ : len(a:winlabel) - 1 ]
+  call self.winlabel_init(winnums, a:winlabel)
+
+  if self.conf['statusline_replace']
+    call self.statusline_replace(winnums)
+  endif
+  if self.conf['overlay_enable']
+    call self.overlay.overlay(winnums, self.conf)
   endif
   redraw
 endfunction
@@ -363,54 +369,64 @@ function! s:cw.tab_restore() "{{{1
   call s:options_restore(self.tab_options)
 endfunction
 
+function! s:cw.first_path(winnums) "{{{1
+  if empty(a:winnums)
+    throw 'RETURN'
+  endif
+  if len(a:winnums) ==# 1
+    if self.conf['auto_choose']
+      let self.win_dest = a:winnums[0]
+      throw 'CHOOSED'
+    elseif self.conf['return_on_single_win']
+      throw 'RETURN'
+    endif
+  endif
+endfunction
+
 function! s:cw.start(winnums, ...) "{{{1
+  " care backward compatibility "{{{
   let arg_1st = get(a:000, 0, {})
   let arg_2nd = get(a:000, 1, '')
 
-  " care backward compatibility
-  if type(arg_1st) !=# type({})
+  if type(arg_1st) is s:TYPE_DICTIONARY
+    let config = arg_1st
+  else
+    " old api call
     let config = { 'auto_choose': arg_1st }
     if !empty(arg_2nd)
       let config.label = arg_2nd
     endif
     echoerr 'Choosewin: you use old api, help "choosein#start()" for new api-call'
-  else
-    let config = arg_1st
-  endif
+  endif "}}}
 
-  let self.conf   = extend(self.config(), config, 'force')
-  let self.hlter  = choosewin#highlighter#get()
-  let self.color  = self.hlter.color
-
-  if len(a:winnums) ==# 1
-    if self.conf['auto_choose']
-      call self.land_win(a:winnums[0])
-      return self.last_status()
-    elseif self.conf['return_on_single_win']
-      return []
-    endif
-  endif
+  let self.conf  = extend(self.config(), config, 'force')
+  let self.hlter = choosewin#highlighter#get()
+  let self.color = self.hlter.color
+  let winnums    = self.valid_winnums(a:winnums)
 
   try
     call self.init()
+    call self.first_path(winnums)
+
     call self.tab_replace()
-    call self.label_show(a:winnums, self.conf['label'])
-    try
-      while 1
-        call self.choose(self.win_all(), self.conf['label'])
-      endwhile
-    catch 'CHOOSED'
-    catch 'CANCELED'
-      let self.exception = v:exception
-      return []
-    catch
-      call self.label_clear()
-      let self.exception = v:exception
-    endtry
+    call self.label_show(winnums, self.conf['label'])
+    while 1
+      call self.choose(self.win_all(), self.conf['label'])
+    endwhile
+  catch
+    let self.exception = v:exception
   finally
+
     call self.finish()
-  endtry
     return self.last_status()
+  endtry
+endfunction
+
+function! s:cw.message() "{{{1
+  if self.exception =~# 'CHOOSED\|RETURN'
+    return
+  endif
+  call s:msg(self.exception)
 endfunction
 
 function! s:cw.finish() "{{{1
@@ -419,7 +435,7 @@ function! s:cw.finish() "{{{1
   if !empty(self.win_dest)
     call self.land_win(self.win_dest)
   endif
-  call s:msg(self.exception)
+  call self.message()
 endfunction
 
 function! choosewin#start(...) "{{{1

@@ -1232,6 +1232,7 @@ let g:startify_enable_special = 0
 let g:startify_files_number = 10
 let g:startify_lists = ['files', 'dir', 'bookmarks', 'sessions']
 let g:startify_custom_indices = ['a', 'j', 'd', 'f', 'k', 'l']
+let g:startify_restore_position = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  startify end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
