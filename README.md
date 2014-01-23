@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 98 v1.17.9 2014-01-20 22:36:17 ###
+* 17.1 更新tlib插件                                         ---> v1.0.7
+    - link: http://www.vim.org/scripts/script.php?script_id=1863
+* 17.2 更新EasyAlign插件                                    ---> v2.9.2
+    - link: http://www.vim.org/scripts/script.php?script_id=4520
+
 ### 97 v1.17.8 2014-01-13 22:56:46 ###
 * 17.1 更新ChooseWin插件（窗口选择）                        ---> v1.3
     - link: http://www.vim.org/scripts/script.php?script_id=4815
