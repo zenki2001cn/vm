@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 99 v1.17.10 2014-01-23 22:30:15 ###
+* 17.1 更新ingo-library插件                                 ---> v1.016
+    - link: http://www.vim.org/scripts/script.php?script_id=4433
+* 17.2 更新tagbar插件                                       ---> 2.6.1
+    - link: http://www.vim.org/scripts/script.php?script_id=3465
+
 ### 98 v1.17.9 2014-01-20 22:36:17 ###
 * 17.1 更新tlib插件                                         ---> v1.0.7
     - link: http://www.vim.org/scripts/script.php?script_id=1863
