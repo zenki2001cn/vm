@@ -5,6 +5,9 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 100 v1.18.0 2014-02-10 09:55:51 ###
+* 18.1 更新WakaTime插件                                     ---> v1.0 (from github)
+
 ### 99 v1.17.10 2014-01-23 22:30:15 ###
 * 17.1 更新ingo-library插件                                 ---> v1.016
     - link: http://www.vim.org/scripts/script.php?script_id=4433

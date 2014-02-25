@@ -3,6 +3,37 @@ History
 -------
 
 
+1.0.0 (2014-02-05)
+++++++++++++++++++
+
+- detect project name and branch name from mercurial revision control
+
+
+0.5.3 (2014-01-15)
+++++++++++++++++++
+
+- bug fix for unicode in Python3
+
+
+0.5.2 (2014-01-14)
+++++++++++++++++++
+
+- minor bug fix for Subversion on non-English systems
+
+
+0.5.1 (2013-12-13)
+++++++++++++++++++
+
+- second line in .wakatime-project file now sets branch name
+
+
+0.5.0 (2013-12-13)
+++++++++++++++++++
+
+- Convert ~/.wakatime.conf to ~/.wakatime.cfg and use configparser format
+- new [projectmap] section in cfg file for naming projects based on folders
+
+
 0.4.10 (2013-11-13)
 +++++++++++++++++++
 

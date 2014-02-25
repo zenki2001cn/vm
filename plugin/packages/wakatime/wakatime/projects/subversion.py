@@ -24,24 +24,31 @@ except ImportError:
 log = logging.getLogger(__name__)
 
 
+# str is unicode in Python3
+try:
+    unicode
+except NameError:
+    unicode = str
+
+
 class Subversion(BaseProject):
 
     def process(self):
         return self._find_project_base(self.path)
 
     def name(self):
-        return self.info['Repository Root'].split('/')[-1]
+        return unicode(self.info['Repository Root'].split('/')[-1])
 
     def branch(self):
-        branch = None
         if self.base:
-            branch = os.path.basename(self.base)
-        return branch
+            unicode(os.path.basename(self.base))
+        return None
 
     def _get_info(self, path):
         info = OrderedDict()
         stdout = None
         try:
+            os.environ['LANG'] = 'en_US'
             stdout, stderr = Popen([
                 'svn', 'info', os.path.realpath(path)
             ], stdout=PIPE, stderr=PIPE).communicate()
