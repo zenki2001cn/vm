@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 101 v1.18.1 2014-02-25 09:49:38 ###
+* 18.1 更新tlib插件                                         ---> v1.0.8
+    - link: http://www.vim.org/scripts/script.php?script_id=1863
+
 ### 100 v1.18.0 2014-02-10 09:55:51 ###
 * 18.1 更新WakaTime插件                                     ---> v1.0 (from github)
 
