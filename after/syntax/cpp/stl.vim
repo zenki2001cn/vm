@@ -12,6 +12,10 @@
 " This list is not complete yet. Your contribution is welcome!
 
 syntax keyword cppSTLconstant badbit
+syntax keyword cppSTLconstant cerr
+syntax keyword cppSTLconstant cin
+syntax keyword cppSTLconstant clog
+syntax keyword cppSTLconstant cout
 syntax keyword cppSTLconstant digits
 syntax keyword cppSTLconstant digits10
 syntax keyword cppSTLconstant eofbit
@@ -40,6 +44,10 @@ syntax keyword cppSTLconstant radix
 syntax keyword cppSTLconstant round_style
 syntax keyword cppSTLconstant tinyness_before
 syntax keyword cppSTLconstant traps
+syntax keyword cppSTLconstant wcerr
+syntax keyword cppSTLconstant wcin
+syntax keyword cppSTLconstant wclog
+syntax keyword cppSTLconstant wcout
 syntax keyword cppSTLexception bad_alloc
 syntax keyword cppSTLexception bad_array_new_length
 syntax keyword cppSTLexception bad_exception
@@ -115,12 +123,9 @@ syntax keyword cppSTLfunction bsearch
 syntax keyword cppSTLfunction calloc
 syntax keyword cppSTLfunction capacity
 syntax keyword cppSTLfunction ceil
-syntax keyword cppSTLfunction cerr
-syntax keyword cppSTLfunction cin
 syntax keyword cppSTLfunction clear
 syntax keyword cppSTLfunction clearerr
 syntax keyword cppSTLfunction clock
-syntax keyword cppSTLfunction clog
 syntax keyword cppSTLfunction close
 syntax keyword cppSTLfunction compare
 syntax keyword cppSTLfunction conj
@@ -131,7 +136,6 @@ syntax keyword cppSTLfunction cos
 syntax keyword cppSTLfunction cosh
 syntax keyword cppSTLfunction count
 syntax keyword cppSTLfunction count_if
-syntax keyword cppSTLfunction cout
 syntax keyword cppSTLfunction c_str
 syntax keyword cppSTLfunction ctime
 syntax keyword cppSTLfunction data
@@ -272,7 +276,7 @@ syntax keyword cppSTLfunction norm
 syntax keyword cppSTLfunction not1
 syntax keyword cppSTLfunction not2
 syntax keyword cppSTLfunction nth_element
-syntax keyword cppSTLfunction numeric_limits
+syntax keyword cppSTLtype numeric_limits
 syntax keyword cppSTLfunction open
 syntax keyword cppSTLfunction partial_sort
 syntax keyword cppSTLfunction partial_sort_copy
@@ -384,9 +388,9 @@ syntax keyword cppSTLfunction strspn
 syntax keyword cppSTLfunction strstr
 syntax keyword cppSTLfunction strtod
 syntax keyword cppSTLfunction strtof
-syntax keyword cppSTLfunction strtold
 syntax keyword cppSTLfunction strtok
 syntax keyword cppSTLfunction strtol
+syntax keyword cppSTLfunction strtold
 syntax keyword cppSTLfunction strtoll
 syntax keyword cppSTLfunction strtoul
 syntax keyword cppSTLfunction strxfrm
@@ -403,7 +407,6 @@ syntax keyword cppSTLfunction tellg
 syntax keyword cppSTLfunction tellp
 syntax keyword cppSTLfunction test
 syntax keyword cppSTLfunction time
-syntax keyword cppSTLfunction time_t
 syntax keyword cppSTLfunction tmpfile
 syntax keyword cppSTLfunction tmpnam
 syntax keyword cppSTLfunction tolower
@@ -424,7 +427,6 @@ syntax keyword cppSTLfunction unique
 syntax keyword cppSTLfunction unique_copy
 syntax keyword cppSTLfunction unsetf
 syntax keyword cppSTLfunction upper_bound
-syntax keyword cppSTLfunction va_arg
 syntax keyword cppSTLfunction va_arg
 syntax keyword cppSTLfunction va_copy
 syntax keyword cppSTLfunction va_end
@@ -502,12 +504,18 @@ syntax keyword cppSTLnamespace rel_ops
 syntax keyword cppSTLnamespace std
 syntax keyword cppSTLtype allocator
 syntax keyword cppSTLtype auto_ptr
+syntax keyword cppSTLtype basic_filebuf
 syntax keyword cppSTLtype basic_fstream
 syntax keyword cppSTLtype basic_ifstream
+syntax keyword cppSTLtype basic_iostream
+syntax keyword cppSTLtype basic_istream
 syntax keyword cppSTLtype basic_istringstream
 syntax keyword cppSTLtype basic_ofstream
+syntax keyword cppSTLtype basic_ostream
 syntax keyword cppSTLtype basic_ostringstream
+syntax keyword cppSTLtype basic_streambuf
 syntax keyword cppSTLtype basic_string
+syntax keyword cppSTLtype basic_stringbuf
 syntax keyword cppSTLtype basic_stringstream
 syntax keyword cppSTLtype binary_compose
 syntax keyword cppSTLtype binder1st
@@ -536,7 +544,11 @@ syntax keyword cppSTLtype ifstream
 syntax keyword cppSTLtype imaxdiv_t
 syntax keyword cppSTLtype indirect_array
 syntax keyword cppSTLtype int_type
+syntax keyword cppSTLtype ios_base
+syntax keyword cppSTLtype iostream
+syntax keyword cppSTLtype istream
 syntax keyword cppSTLtype istringstream
+syntax keyword cppSTLtype istrstream
 syntax keyword cppSTLtype iterator_traits
 syntax keyword cppSTLtype key_compare
 syntax keyword cppSTLtype key_type
@@ -557,6 +569,7 @@ syntax keyword cppSTLtype off_type
 syntax keyword cppSTLtype ofstream
 syntax keyword cppSTLtype ostream
 syntax keyword cppSTLtype ostringstream
+syntax keyword cppSTLtype ostrstream
 syntax keyword cppSTLtype pair
 syntax keyword cppSTLtype pointer
 syntax keyword cppSTLtype pointer_to_binary_function
@@ -573,11 +586,15 @@ syntax keyword cppSTLtype size_type
 syntax keyword cppSTLtype slice_array
 syntax keyword cppSTLtype stack
 syntax keyword cppSTLtype stream
+syntax keyword cppSTLtype streambuf
 syntax keyword cppSTLtype string
 syntax keyword cppSTLtype stringbuf
 syntax keyword cppSTLtype stringstream
+syntax keyword cppSTLtype strstream
+syntax keyword cppSTLtype strstreambuf
 syntax keyword cppSTLtype temporary_buffer
 syntax keyword cppSTLtype test_type
+syntax keyword cppSTLtype time_t
 syntax keyword cppSTLtype tm
 syntax keyword cppSTLtype traits_type
 syntax keyword cppSTLtype type_info
@@ -589,11 +606,16 @@ syntax keyword cppSTLtype valarray
 syntax keyword cppSTLtype value_compare
 syntax keyword cppSTLtype value_type
 syntax keyword cppSTLtype vector
+syntax keyword cppSTLtype wfilebuf
 syntax keyword cppSTLtype wfstream
 syntax keyword cppSTLtype wifstream
+syntax keyword cppSTLtype wiostream
+syntax keyword cppSTLtype wistream
 syntax keyword cppSTLtype wistringstream
 syntax keyword cppSTLtype wofstream
+syntax keyword cppSTLtype wostream
 syntax keyword cppSTLtype wostringstream
+syntax keyword cppSTLtype wstreambuf
 syntax keyword cppSTLtype wstring
 syntax keyword cppSTLtype wstringbuf
 syntax keyword cppSTLtype wstringstream
@@ -792,6 +814,12 @@ if !exists("cpp_no_cpp11")
     syntax keyword cppSTLtype pointer_traits
     syntax keyword cppSTLfunction addressof
     syntax keyword cppSTLfunction align
+    syntax keyword cppSTLfunction make_shared
+    syntax keyword cppSTLfunction allocate_shared
+    syntax keyword cppSTLcast static_pointer_cast
+    syntax keyword cppSTLcast dynamic_pointer_cast
+    syntax keyword cppSTLcast const_pointer_cast
+    syntax keyword cppSTLfunction get_deleter
 
     " function object
     syntax keyword cppSTLfunction bind
@@ -825,6 +853,8 @@ if !exists("cpp_no_cpp11")
     syntax keyword cppSTLtype steady_clock
     syntax keyword cppSTLtype high_resolution_clock
     syntax keyword cppSTLtype time_point
+    syntax keyword cppSTLcast duration_cast
+    syntax keyword cppSTLcast time_point_cast
 
     " tuple
     syntax keyword cppSTLtype tuple
@@ -1058,6 +1088,44 @@ if !exists("cpp_no_cpp11")
     syntax keyword cppSTLfunction atomic_flag_clear
     syntax keyword cppSTLfunction atomic_flag_clear_explicit
 
+    syntax keyword cppSTLtype atomic_bool
+    syntax keyword cppSTLtype atomic_char
+    syntax keyword cppSTLtype atomic_schar
+    syntax keyword cppSTLtype atomic_uchar
+    syntax keyword cppSTLtype atomic_short
+    syntax keyword cppSTLtype atomic_ushort
+    syntax keyword cppSTLtype atomic_int
+    syntax keyword cppSTLtype atomic_uint
+    syntax keyword cppSTLtype atomic_long
+    syntax keyword cppSTLtype atomic_ulong
+    syntax keyword cppSTLtype atomic_llong
+    syntax keyword cppSTLtype atomic_ullong
+    syntax keyword cppSTLtype atomic_char16_t
+    syntax keyword cppSTLtype atomic_char32_t
+    syntax keyword cppSTLtype atomic_wchar_t
+    syntax keyword cppSTLtype atomic_int_least8_t
+    syntax keyword cppSTLtype atomic_uint_least8_t
+    syntax keyword cppSTLtype atomic_int_least16_t
+    syntax keyword cppSTLtype atomic_uint_least16_t
+    syntax keyword cppSTLtype atomic_int_least32_t
+    syntax keyword cppSTLtype atomic_uint_least32_t
+    syntax keyword cppSTLtype atomic_int_least64_t
+    syntax keyword cppSTLtype atomic_uint_least64_t
+    syntax keyword cppSTLtype atomic_int_fast8_t
+    syntax keyword cppSTLtype atomic_uint_fast8_t
+    syntax keyword cppSTLtype atomic_int_fast16_t
+    syntax keyword cppSTLtype atomic_uint_fast16_t
+    syntax keyword cppSTLtype atomic_int_fast32_t
+    syntax keyword cppSTLtype atomic_uint_fast32_t
+    syntax keyword cppSTLtype atomic_int_fast64_t
+    syntax keyword cppSTLtype atomic_uint_fast64_t
+    syntax keyword cppSTLtype atomic_intptr_t
+    syntax keyword cppSTLtype atomic_uintptr_t
+    syntax keyword cppSTLtype atomic_size_t
+    syntax keyword cppSTLtype atomic_ptrdiff_t
+    syntax keyword cppSTLtype atomic_intmax_t
+    syntax keyword cppSTLtype atomic_uintmax_t
+
     syntax keyword cppSTLtype memory_order
     syntax keyword cppSTLfunction atomic_init
     syntax keyword cppSTLfunction ATOMIC_VAR_INIT
@@ -1169,23 +1237,37 @@ if !exists("cpp_no_cpp11")
     syntax keyword cppSTLfunction wcstoimax
     syntax keyword cppSTLfunction wcstoumax
 
+    syntax keyword cppSTLtype nanoseconds
+    syntax keyword cppSTLtype microseconds
+    syntax keyword cppSTLtype milliseconds
+    syntax keyword cppSTLtype seconds
+    syntax keyword cppSTLtype minutes
+    syntax keyword cppSTLtype hours
+
 endif " C++11
 
 if !exists("cpp_no_cpp14")
-
-    "optional
-    syntax keyword cppSTLtype optional
-    "syntax keyword cppSTLfunction value
-    syntax keyword cppSTLfunction value_or
-    syntax keyword cppSTLfunction make_optional
-
     "dynarray
     syntax keyword cppSTLtype dynarray
 
     "thread
     syntax keyword cppSTLtype shared_mutex
     syntax keyword cppSTLtype shared_lock
+
+    "memory
+    syntax keyword cppSTLfunction make_unique
 endif " C++14
+
+if !exists("cpp_no_boost")
+    "optional is not a part of C++14 anymore
+    syntax keyword cppSTLtype optional
+    "syntax keyword cppSTLfunction value
+    syntax keyword cppSTLfunction value_or
+    syntax keyword cppSTLfunction make_optional
+
+    syntax keyword cppSTLnamespace boost
+    syntax keyword cppSTLcast lexical_cast
+endif " Boost
 
 " Default highlighting
 if version >= 508 || !exists("did_cpp_syntax_inits")
@@ -1205,5 +1287,6 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   HiLink cppSTLiterator_tag Type
   HiLink cppSTLenum         Type
   HiLink cppSTLios          Function
+  HiLink cppSTLcast         Statement " be consistent with official syntax
   delcommand HiLink
 endif

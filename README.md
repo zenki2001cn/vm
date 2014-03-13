@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 103 v1.18.3 2014-03-13 11:00:25 ###
+* 18.1 更新stl插件                                          ---> 0.9
+    - link: http://www.vim.org/scripts/script.php?script_id=4293
+* 18.2 更新ingo-library插件                                 ---> v1.017
+    - link: http://www.vim.org/scripts/script.php?script_id=4433
+
 ### 102 v1.18.2 2014-02-25 10:03:12 ###
 * 18.1 更新quickfixsigns插件                                ---> v1.0.2
     - link: http://www.vim.org/scripts/script.php?script_id=2584
