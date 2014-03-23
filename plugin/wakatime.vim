@@ -2,9 +2,11 @@
 " File:        wakatime.vim
 " Description: Automatic time tracking for Vim.
 " Maintainer:  WakaTime <support@wakatime.com>
+" License:     BSD, see LICENSE.txt for more details.
+" Website:     https://wakatime.com/
 " ============================================================================
 
-let s:VERSION = '1.5.2'
+let s:VERSION = '1.5.4'
 
 
 " Init {{{
@@ -126,10 +128,6 @@ let s:VERSION = '1.5.2'
         let last = s:GetLastAction()
         if s:EnoughTimePassed(now, last) || targetFile != last[2]
             call s:Api(targetFile, now, 0, last)
-        else
-            if now - last[1] > 5
-                call s:SetLastAction(last[0], now, targetFile)
-            endif
         endif
     endfunction
 

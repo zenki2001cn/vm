@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 104 v1.18.4 2014-03-17 12:09:14 ###
+* 18.1 更新WakaTime插件                                     ---> v1.0.1(from github)
+* 18.2 添加move插件                                         ---> v1.3
+    - link: http://www.vim.org/scripts/script.php?script_id=4687
+
 ### 103 v1.18.3 2014-03-13 11:00:25 ###
 * 18.1 更新stl插件                                          ---> 0.9
     - link: http://www.vim.org/scripts/script.php?script_id=4293
