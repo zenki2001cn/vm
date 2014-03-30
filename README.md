@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 105 v1.18.5 2014-03-26 22:21:43 ###
+* 18.1 更新quickfixsigns插件                                ---> v1.04
+    - link: http://www.vim.org/scripts/script.php?script_id=2584
+* 18.2 更新bettersearch插件                                 ---> v0.0.7
+    - link: http://www.vim.org/scripts/script.php?script_id=4241
+
 ### 104 v1.18.4 2014-03-17 12:09:14 ###
 * 18.1 更新WakaTime插件                                     ---> v1.0.1(from github)
 * 18.2 添加move插件                                         ---> v1.3
