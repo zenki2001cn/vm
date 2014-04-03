@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 106 v1.18.6 2014-04-01 15:10:28 ###
+* 18.1 更新Command-T插件                                    ---> v1.8
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+* 18.2 更新Narrow插件                                       ---> v32
+    - link: http://www.vim.org/scripts/script.php?script_id=3075
+* 18.3 更新quickfixsigns插件                                ---> v1.05
+    - link: http://www.vim.org/scripts/script.php?script_id=2584
+
 ### 105 v1.18.5 2014-03-26 22:21:43 ###
 * 18.1 更新quickfixsigns插件                                ---> v1.04
     - link: http://www.vim.org/scripts/script.php?script_id=2584
@@ -826,3 +834,4 @@ Update: 2012-06-08 17:42:31
 - 当版本库中的文件过多时，加载`quickfixsigns`插件会产生一定的延迟，此时可通过`<leader>qs`禁用quickfixsigns插件。
 - 需要编译Clang库，以支持Clang特性的插件，参见Viki。
 - 需要安装ctags支持。
+- wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。

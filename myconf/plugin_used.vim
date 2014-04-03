@@ -1203,6 +1203,8 @@ vnoremap <silent> gL :call RocketJump#PerformJump(1) <CR>
 "  Narrow setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <silent> <C-x><C-n> :NR<CR>
+let g:nrrw_rgn_update_orig_win = 1
+let g:nrrw_rgn_write_on_sync = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Narrow end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
