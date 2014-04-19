@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 107 v1.18.7 2014-04-07 11:04:51 ###
+* 18.1 更新viki插件                                         ---> v4.0.7
+    - link: http://www.vim.org/scripts/script.php?script_id=861
+* 18.2 更新stl插件                                          ---> v0.91
+    - link: http://www.vim.org/scripts/script.php?script_id=4293
+
 ### 106 v1.18.6 2014-04-01 15:10:28 ###
 * 18.1 更新Command-T插件                                    ---> v1.8
     - link: http://www.vim.org/scripts/script.php?script_id=3025
@@ -835,3 +841,4 @@ Update: 2012-06-08 17:42:31
 - 需要编译Clang库，以支持Clang特性的插件，参见Viki。
 - 需要安装ctags支持。
 - wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。
+- pydiction插件需要生成模块缓存，适用命令：python $VIM/ftplugin/pydiction.py <module>

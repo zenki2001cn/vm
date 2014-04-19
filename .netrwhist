@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/zenki/下载/ModbusServer_Pack/ModbusServer'
 let g:netrw_dirhist_2='/home/zenki'
 let g:netrw_dirhist_3='/home/zenki/ruizhan/JoinDebug_FX01_ssy/zhajun'
+let g:netrw_dirhist_4='/home/zenki'
