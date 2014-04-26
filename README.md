@@ -5,6 +5,17 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 108 v1.18.8 2014-04-19 18:30:18 ###
+* 适用于vim 7.4版本。
+* 18.1 更新snipMate插件                                     ---> from github
+    - link: https://github.com/garbas/vim-snipmate
+* 18.2 添加mw-utils插件(配合最新版本的snipMate)             ---> from github
+    - link: https://github.com/MarcWeber/vim-addon-mw-utils.git
+* 18.3 更新SuperTab插件                                     ---> from github
+    - link: https://github.com/ervandew/supertab
+* 18.4 更新viewdoc插件                                      ---> v1.8
+    - link: http://www.vim.org/scripts/script.php?script_id=3893
+
 ### 107 v1.18.7 2014-04-07 11:04:51 ###
 * 18.1 更新viki插件                                         ---> v4.0.7
     - link: http://www.vim.org/scripts/script.php?script_id=861
