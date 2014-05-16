@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 109 v1.18.9 date ###
+* 18.1 更新bettersearch插件                                 ---> v0.0.9
+    - link: http://www.vim.org/scripts/script.php?script_id=4241
+* 18.2 更新EasyAlign插件                                    ---> v2.9.3
+    - link: http://www.vim.org/scripts/script.php?script_id=4520
+* 18.3 更新viewdoc插件                                      ---> v1.8.1
+    - link: http://www.vim.org/scripts/script.php?script_id=3893
+
 ### 108 v1.18.8 2014-04-19 18:30:18 ###
 * 适用于vim 7.4版本。
 * 18.1 更新snipMate插件                                     ---> from github
