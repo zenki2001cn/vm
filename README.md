@@ -5,7 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
-### 109 v1.18.9 date ###
+### 110 v1.19.0 2014-05-26 20:18:39 ###
+* 19.1 更新WakaTime插件                                     ---> v2.0.0 (from github)
+    - link: https://github.com/wakatime/vim-wakatime
+
+### 109 v1.18.9 2014-05-26 20:18:43 ###
 * 18.1 更新bettersearch插件                                 ---> v0.0.9
     - link: http://www.vim.org/scripts/script.php?script_id=4241
 * 18.2 更新EasyAlign插件                                    ---> v2.9.3
