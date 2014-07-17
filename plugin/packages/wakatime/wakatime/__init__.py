@@ -13,7 +13,7 @@
 from __future__ import print_function
 
 __title__ = 'wakatime'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 __author__ = 'Alan Hamlett'
 __license__ = 'BSD'
 __copyright__ = 'Copyright 2014 Alan Hamlett'
@@ -307,6 +307,11 @@ def send_action(project=None, branch=None, stats=None, key=None, targetFile=None
             queue.push(data, plugin)
             if log.isEnabledFor(logging.DEBUG):
                 log.warn({
+                    'response_code': response.getcode(),
+                    'response_content': response.read(),
+                })
+            else:
+                log.error({
                     'response_code': response.getcode(),
                     'response_content': response.read(),
                 })

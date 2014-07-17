@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 111 v1.19.1 2014-05-28 22:39:33 ###
+* 19.1 更新WakaTime插件                                     ---> v2.0.2 (from github)
+    - link: https://github.com/wakatime/vim-wakatime
+* 19.2 更新iptables插件                                     ---> 1.09
+    - link: http://www.vim.org/scripts/script.php?script_id=1425
+
 ### 110 v1.19.0 2014-05-26 20:18:39 ###
 * 19.1 更新WakaTime插件                                     ---> v2.0.0 (from github)
     - link: https://github.com/wakatime/vim-wakatime
