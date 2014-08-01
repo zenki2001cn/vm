@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 112 v1.19.2 2014-07-18 00:21:05 ###
+* 19.1 更新Command-T插件                                    ---> v1.10
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+* 19.2 更新rainbow插件                                      ---> v3.2.2
+    - link: http://www.vim.org/scripts/script.php?script_id=4176
+
 ### 111 v1.19.1 2014-05-28 22:39:33 ###
 * 19.1 更新WakaTime插件                                     ---> v2.0.2 (from github)
     - link: https://github.com/wakatime/vim-wakatime

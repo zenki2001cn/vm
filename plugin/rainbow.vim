@@ -1,8 +1,8 @@
 "==============================================================================
 "Script Title: rainbow parentheses improved
-"Script Version: 3.1.1
+"Script Version: 3.2.1
 "Author: luochen1990
-"Last Edited: 2014 Jan 3
+"Last Edited: 2014 April 30
 "Simple Configuration:
 "	first, put "rainbow.vim"(this file) to dir vimfiles/plugin or vim73/plugin
 "	second, add the follow sentences to your .vimrc or _vimrc :
@@ -17,7 +17,7 @@
 "	:RainbowToggle		--you can use it to toggle this plugin.
 "==============================================================================
 
-if exists('s:loaded') || !((exists('g:rainbow_active') && g:rainbow_active) || exists('g:rainbow_conf'))
+if exists('s:loaded') || !(exists('g:rainbow_active') || exists('g:rainbow_conf'))
 	finish
 endif
 let s:loaded = 1
@@ -29,21 +29,17 @@ let s:rainbow_conf = {
 \	'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
 \	'separately': {
 \		'*': {},
-\		'lisp': {
-\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-\			'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+\		'tex': {
+\			'parentheses': [['(',')'], ['\[','\]']],
 \		},
 \		'xml': {
-\			'parentheses': [['(',')'], ['\[','\]'], ['{','}'], ['<\a[^>]*[^/]>\|<\a>','</[^>]*>']],
+\			'parentheses': [['\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>','</\z1>']],
+\		},
+\		'xhtml': {
+\			'parentheses': [['\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>','</\z1>']],
 \		},
 \		'html': {
-\			'parentheses': [['(',')'], ['\[','\]'], ['{','}'], ['<\a[^>]*[^/]>\|<\a>','</[^>]*>']],
-\		},
-\		'vim': {
-\			'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
-\		},
-\		'tex': {
-\			'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+\			'parentheses': [['\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>','</\z1>']],
 \		},
 \	}
 \}
@@ -60,7 +56,7 @@ func rainbow#load()
 	for each in range(1, maxlvl)
 		let str .= ',lv'.each
 	endfor
-	let cmd = 'syn region %s matchgroup=%s start=+%s+ end=+%s+ containedin=%s contains=%s fold'
+	let cmd = 'syn region %s matchgroup=%s start=$%s$ end=$%s$ containedin=%s contains=%s fold'
 	let cmd2 = 'syn match %s %s containedin=%s contained'
 	call rainbow#clear()
 	let b:rainbow_loaded = maxlvl
@@ -116,7 +112,11 @@ func rainbow#toggle()
 	if exists('b:rainbow_loaded')
 		call rainbow#clear()
 	else
-		call rainbow#load()
+		if exists('b:rainbow_conf')
+			call rainbow#load()
+		else
+			call rainbow#hook()
+		endif
 	endif
 endfunc
 
@@ -124,11 +124,15 @@ func rainbow#hook()
 	let g_conf = extend(copy(s:rainbow_conf), exists('g:rainbow_conf')? g:rainbow_conf : {}) |unlet g_conf.separately
 	let separately = extend(copy(s:rainbow_conf.separately), exists('g:rainbow_conf.separately')? g:rainbow_conf.separately : {})
 	let b_conf = has_key(separately, &ft)? separately[&ft] : separately['*']
-	if type(b_conf)==type({})
+	if type(b_conf) == type({})
 		let b:rainbow_conf = extend(g_conf, b_conf)
 		call rainbow#load()
 	endif
 endfunc
 
-auto syntax * call rainbow#hook()
 command! RainbowToggle call rainbow#toggle()
+
+if (exists('g:rainbow_active') && g:rainbow_active)
+	auto syntax * call rainbow#hook()
+	auto colorscheme * call rainbow#show()
+endif
