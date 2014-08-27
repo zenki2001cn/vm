@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 113 v1.19.3 2014-08-09 22:56:43 ###
+* 19.1 更新rainbow插件                                      ---> v3.3.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4176
+
 ### 112 v1.19.2 2014-07-18 00:21:05 ###
 * 19.1 更新Command-T插件                                    ---> v1.10
     - link: http://www.vim.org/scripts/script.php?script_id=3025
