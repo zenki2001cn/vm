@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 114 v1.19.4 2014-09-01 12:48:01 ###
+* 19.1 添加bookmarks插件                                    ---> v1.3.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4893
+* 19.2 禁用showmarks插件
+
 ### 113 v1.19.3 2014-08-09 22:56:43 ###
 * 19.1 更新rainbow插件                                      ---> v3.3.0
     - link: http://www.vim.org/scripts/script.php?script_id=4176

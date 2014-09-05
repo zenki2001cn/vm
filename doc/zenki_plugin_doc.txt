@@ -68,6 +68,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    62. Crunch                       |crunch_zenki|
    63. WakaTime                     |wakatime_zenki|
    64. SwissCalc                    |swisscalc_zenki|
+   65. VimBookMarks                 |vimbookmarks_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -844,5 +845,19 @@ SWISSCALC                                                    *swisscalc_zenki*
     4           * / %       left         相乘/相除/取模
     5           !           right        阶乘，一元运算，如:5!
     6           **          left         乘方
+
+==============================================================================
+VIMBOOKMARKS                                              *vimbookmarks_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明~
+    Normal模式:
+    mm                                      :添加标记
+    mi                                      :添加注释
+    mn                                      :跳转下一个标记
+    mp                                      :跳转上一个标记
+    ma                                      :显示所有标记
+    mc                                      :清除当前buffer标记
+    mx                                      :清除所有标记
+
 
 vim:tw=78:ts=8:ft=help:norl:

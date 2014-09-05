@@ -78,8 +78,8 @@ if g:map_index == 1
     nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
 
     " 标记跳转
-    nnoremap <unique> <silent> <F6> ]`
-    nnoremap <unique> <silent> <F5> [`
+    nnoremap <unique> <silent> <F6> :BookmarkNext<CR>
+    nnoremap <unique> <silent> <F5> :BookmarkPrev<CR>
 
     " 加载CCTree数据库
     nnoremap <F7> :CCTreeLoadDB<CR>

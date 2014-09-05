@@ -333,7 +333,7 @@ nnoremap <S-M> :MRU<CR>
 " Configures for ShowMarks plugin
 let showmarks_include =  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 " Enable ShowMarks
-let showmarks_enable = 1
+let showmarks_enable = 0
 " Show which marks
 " Ignore help, quickfix, non-modifiable buffers
 let showmarks_ignore_type = "hqm"
@@ -1358,4 +1358,20 @@ noremap <silent> ,/ :BetterSearchPromptOn<cr>
 vnoremap <silent> ,/ :BetterSearchVisualSelect<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ChooseWin end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-bookmarks start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:bookmark_auto_close = 0
+" let g:bookmark_highlight_lines = 0
+" let g:bookmark_show_warning = 1
+" let g:bookmark_center = 0
+" let g:bookmark_auto_save = 0
+" let g:bookmark_sign = '>>'
+" let g:bookmark_annotation_sign = '##'
+" let g:bookmark_save_per_working_dir = 1
+" let g:bookmark_auto_save_file = '/bookmarks'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-bookmarks end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
