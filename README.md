@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 116 v1.19.6 2014-11-22 09:52:11 ###
+* 19.1 添加restore-view插件                                 ---> v1.3
+    - link: http://www.vim.org/scripts/script.php?script_id=4021
+* 19.2 更新rainbow插件                                      ---> v3.3.1
+    - link: http://www.vim.org/scripts/script.php?script_id=4176
+
 ### 115 v1.19.5 2014-09-05 11:50:36 ###
 * 19.1 更新Command-T插件                                    ---> v1.11.2
     - link: http://www.vim.org/scripts/script.php?script_id=3025

@@ -2,10 +2,10 @@
 " 通用 setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "让vim记忆上次编辑的位置
-autocmd BufReadPost * 
-    \ if line("'\"")>0&&line("'\"")<=line("$") |
-    \ exe "normal g'\"" |
-    \ endif
+" autocmd BufReadPost * 
+    " \ if line("'\"")>0&&line("'\"")<=line("$") |
+    " \ exe "normal g'\"" |
+"     \ endif
 ""让vim记忆上次编辑的位置
 
 set langmenu=none       " always use English menu

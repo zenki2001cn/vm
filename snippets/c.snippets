@@ -27,11 +27,9 @@ snippet main
 # #include <...>
 snippet inc
 	#include ${1}
-
 # #include "..."
 snippet INC
 	#include "${1:`expand('%:t:r')`.h}"${2}
-
 # #ifndef ... #define ... #endif
 snippet ifndef
 	#ifndef $1
