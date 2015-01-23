@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 117 v1.19.7 2015-01-23 12:40:46 ###
+* 19.1 更新fugitive插件                                     ---> 2.2
+    - link: http://www.vim.org/scripts/script.php?script_id=2975
+* 19.2 更新ChooseWin插件                                    ---> 1.5
+    - link: http://www.vim.org/scripts/script.php?script_id=4815
+
 ### 116 v1.19.6 2014-11-22 09:52:11 ###
 * 19.1 添加restore-view插件                                 ---> v1.3
     - link: http://www.vim.org/scripts/script.php?script_id=4021

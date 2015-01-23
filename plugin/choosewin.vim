@@ -13,7 +13,12 @@ set cpo&vim
 let s:options = {
       \ 'g:choosewin_statusline_replace': 1,
       \ 'g:choosewin_tabline_replace': 1,
+      \ 'g:choosewin_active': 0,
+      \ 'g:choosewin_hook_enable': 0,
+      \ 'g:choosewin_hook': {},
+      \ 'g:choosewin_hook_bypass': [],
       \ 'g:choosewin_land_char': ';',
+      \ 'g:choosewin_overlay_font_size': 'auto',
       \ 'g:choosewin_overlay_enable': 0,
       \ 'g:choosewin_overlay_shade': 0,
       \ 'g:choosewin_overlay_shade_priority': 100,
@@ -38,7 +43,7 @@ let s:options = {
       \   { 'gui':[ '', '#777777'], 'cterm': ['', 'grey'] },
       \ 'g:choosewin_blink_on_land': 1,
       \ 'g:choosewin_return_on_single_win': 0,
-      \ 'g:choosewin_label': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      \ 'g:choosewin_label': 'ABCDEFGHIJKLMNOPQRTUVWXYZ',
       \ 'g:choosewin_keymap': {},
       \ 'g:choosewin_tablabel': '123456789',
       \ }
@@ -64,8 +69,10 @@ augroup END
 nnoremap <silent> <Plug>(choosewin)
       \ :<C-u>call choosewin#start(range(1, winnr('$')))<CR>
 
+
 " Command:
 command! -bar ChooseWin call choosewin#start(range(1, winnr('$')))
+command! -bar ChooseWinSwap call choosewin#start(range(1, winnr('$')), {'swap': 1})
 
 " Finish:
 let &cpo = s:old_cpo
