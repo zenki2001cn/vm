@@ -679,7 +679,9 @@ GITLOG                                                          *gitlog_zenki*
 1. 快捷键使用说明
     KEY                                     说明~
     \cg                                     打开gitlog模式
+    \cf                                     打开文件浏览模式
     s(commit窗口)                           搜索关键字
+    <C-d>(commit窗口)                       关闭diff窗口
 
 ==============================================================================
 VIMCOMMANDER                                              *vimcommander_zenki* 

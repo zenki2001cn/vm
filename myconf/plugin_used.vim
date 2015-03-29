@@ -1144,6 +1144,7 @@ let g:filepirate_rescan="<F5>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  gitlog setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:GITLOG_default_mode = 2     " 1 为分支模式，2 为文件树
 nmap <silent> <leader>cg :call GITLOG_ToggleWindows()<cr>
 nmap <silent> <leader>cf :call GITLOG_FlipWindows()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

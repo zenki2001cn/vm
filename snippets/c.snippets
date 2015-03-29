@@ -135,6 +135,21 @@ snippet tde
 # dynamic `...`
 snippet pr
 	printf("${1:%s}\n"${2});${3}
+# 蓝色字体
+snippet prb
+	printf("\033[47;34m${1:%s}\33[5m\033[0m\n"${2});${3}
+# 红色字体
+snippet prr
+	printf("\033[47;31m${1:%s}\33[5m\033[0m\n"${2});${3}
+# 绿色字体
+snippet prg
+	printf("\033[47;32m${1:%s}\33[5m\033[0m\n"${2});${3}
+# 黄色字体
+snippet pry
+	printf("\033[47;33m${1:%s}\33[5m\033[0m\n"${2});${3}
+# 清屏
+snippet prc
+	printf("${1:%s}\033[2j\n"${2});${3}
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr
 	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}

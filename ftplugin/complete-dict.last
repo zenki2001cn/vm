@@ -93740,3 +93740,68 @@ pyjamas.__name__
 pyjamas.__path__
 
 --- from pyjamas import * ---
+
+--- import scrapy ---
+scrapy.__builtins__
+scrapy.__doc__
+scrapy.__file__
+scrapy.__name__
+scrapy.__path__
+scrapy.__version__
+scrapy.optional_features
+scrapy.os
+scrapy.sys
+scrapy.twisted_250_monkeypatches
+scrapy.version_info
+scrapy.xlib
+
+--- from scrapy import * ---
+optional_features
+twisted_250_monkeypatches
+xlib
+
+--- import scrapy.xlib ---
+scrapy.xlib.__builtins__
+scrapy.xlib.__doc__
+scrapy.xlib.__file__
+scrapy.xlib.__name__
+scrapy.xlib.__path__
+scrapy.xlib.twisted_250_monkeypatches
+
+--- from scrapy import xlib ---
+xlib.__builtins__
+xlib.__doc__
+xlib.__file__
+xlib.__name__
+xlib.__path__
+xlib.twisted_250_monkeypatches
+
+--- from scrapy.xlib import * ---
+
+--- import scrapy.xlib.twisted_250_monkeypatches ---
+scrapy.xlib.twisted_250_monkeypatches.__builtins__
+scrapy.xlib.twisted_250_monkeypatches.__doc__
+scrapy.xlib.twisted_250_monkeypatches.__file__
+scrapy.xlib.twisted_250_monkeypatches.__name__
+scrapy.xlib.twisted_250_monkeypatches.add_missing_blockingCallFromThread(
+scrapy.xlib.twisted_250_monkeypatches.twisted
+
+--- from scrapy.xlib import twisted_250_monkeypatches ---
+twisted_250_monkeypatches.__builtins__
+twisted_250_monkeypatches.__doc__
+twisted_250_monkeypatches.__file__
+twisted_250_monkeypatches.__name__
+twisted_250_monkeypatches.add_missing_blockingCallFromThread(
+twisted_250_monkeypatches.twisted
+
+--- from scrapy.xlib.twisted_250_monkeypatches import * ---
+add_missing_blockingCallFromThread(
+
+--- import lxml ---
+lxml.__builtins__
+lxml.__doc__
+lxml.__file__
+lxml.__name__
+lxml.__path__
+
+--- from lxml import * ---

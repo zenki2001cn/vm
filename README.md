@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 118 v1.19.8 2015-03-17 11:19:47 ###
+* 19.1 更新gitlog插件                                       ---> v4.0
+    - link: http://vim.wendal.net/scripts/script.php?script_id=4294
+* 19.2 添加sh.vim插件
+
 ### 117 v1.19.7 2015-01-23 12:40:46 ###
 * 19.1 更新fugitive插件                                     ---> 2.2
     - link: http://www.vim.org/scripts/script.php?script_id=2975
