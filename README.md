@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 119 v1.19.9 2015-03-29 17:53:43 ###
+* 19.1 添加ColumnTags插件（ctags跳转拆分窗口）              ---> v0.1
+    - link: http://www.vim.org/scripts/script.php?script_id=5135
+
 ### 118 v1.19.8 2015-03-17 11:19:47 ###
 * 19.1 更新gitlog插件                                       ---> v4.0
     - link: http://vim.wendal.net/scripts/script.php?script_id=4294
