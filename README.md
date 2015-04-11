@@ -5,6 +5,14 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 120 v1.20.0 2015-04-10 17:27:05 ###
+* 20.1 更新Command-T插件                                    ---> v1.12
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+* 20.2 添加isort插件                                        from github
+    - link: https://github.com/fisadev/vim-isort 
+* 20.3 更新pydiction                                        ---> v1.2.3
+    - link: https://github.com/rkulla/pydiction
+
 ### 119 v1.19.9 2015-03-29 17:53:43 ###
 * 19.1 添加ColumnTags插件（ctags跳转拆分窗口）              ---> v0.1
     - link: http://www.vim.org/scripts/script.php?script_id=5135
@@ -911,3 +919,4 @@ Update: 2012-06-08 17:42:31
 - 需要安装ctags支持。
 - wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。
 - pydiction插件需要生成模块缓存，适用命令：python $VIM/ftplugin/pydiction.py <module>
+- python isort需要安装isort模块：easyinstall isort

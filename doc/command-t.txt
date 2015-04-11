@@ -112,6 +112,11 @@ Or, for very old versions of Ruby which don't define `RUBY_PATCHLEVEL`:
 
   :ruby puts RUBY_VERSION
 
+Some Linux distributions package Ruby development tools separately from Ruby
+itself; if you're using such a system you may need to install the "ruby-dev",
+"ruby-devel" or similar package using your system's package manager in order
+to build Command-T.
+
 A suitable Ruby environment for Windows can be installed using the Ruby
 1.8.7-p299 RubyInstaller available at:
 
@@ -271,13 +276,34 @@ as follows:
   ruby extconf.rb
   make
 
-Note: If you are an RVM or rbenv user, you must perform the build using the
-same version of Ruby that Vim itself is linked against. This will often be the
-system Ruby, which can be selected before issuing the "make" command with one
-of the following commands:
+Note: If you are an RVM or rbenv user, you must build CommandT using the same
+version of Ruby that Vim itself is linked against. You can find out the
+version that Vim is linked against by issuing following command inside Vim:
 
-  rvm use system
-  rbenv local system
+  :ruby puts "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
+
+Or, for very old versions of Ruby which don't define `RUBY_PATCHLEVEL`:
+
+  :ruby puts RUBY_VERSION
+
+You can either set your version of Ruby to the output of the above command and
+then build Command-T, or re-build Vim with a version of Ruby you prefer.
+
+To set the version of Ruby, issue one of the following commands before
+the `make` command:
+
+  rvm use VERSION # where "VERSION" is the Ruby version Vim is linked against
+  rbenv local VERSION
+
+If you decide to re-build Vim, for OS X, you can simply use Homebrew to
+uninstall and re-install Vim with following commands:
+
+  brew uninstall vim
+  brew install vim
+
+For more information about Homebrew, see:
+
+  http://brew.sh
 
 Note: If you are on OS X Mavericks and compiling against MacVim, the default
 system Ruby is 2.0 but MacVim still links against the older 1.8.7 Ruby that is
@@ -365,11 +391,22 @@ Or, for very old versions of Ruby which don't define `RUBY_PATCHLEVEL`:
 
   :ruby puts RUBY_VERSION
 
-Finally, beware that if you change your installation method for Command-T (for
-example, switching from one plugin manager to another) you should verify that
-you remove all of the files installed by the previous installation method; if
-you fail to do this, Vim may end up executing the old code, invalidating all
-your attempts to get Vim and Command-T using the same version of Ruby.
+Additionally, beware that if you change your installation method for Command-T
+(for example, switching from one plugin manager to another) you should verify
+that you remove all of the files installed by the previous installation
+method; if you fail to do this, Vim may end up executing the old code,
+invalidating all your attempts to get Vim and Command-T using the same version
+of Ruby.
+
+Finally, if you end up changing Ruby versions or upgrading other parts of the
+system (the operating system itself, or Vim, for example), you may need to
+issue an additional "make clean" before re-building Command-T; this ensures
+that potentially incompatible build products are disposed of and re-created
+during the build:
+
+  make clean
+  ruby extconf.rb
+  make
 
 
 USAGE                                           *command-t-usage*
@@ -385,13 +422,12 @@ by issuing the command:
   :CommandT
 
 A prompt will appear at the bottom of the screen along with a file window
-showing all of the files in the current directory (as returned by the
-|:pwd| command).
+showing all of the files in the current project (the project directory is
+determined according to the value of the |g:CommandTTraverseSCM| setting,
+which defaults to the SCM root of the current file).
 
-For the most efficient file navigation within a project it's recommended that
-you |:cd| into the root directory of your project when starting to work on it.
-If you wish to open a file from outside of the project folder you can pass in
-an optional path argument (relative or absolute) to |:CommandT|:
+You can pass in an optional path argument to |:CommandT| (relative to the
+current working directory (|:pwd|) or absolute):
 
   :CommandT ../path/to/other/files
 
@@ -503,6 +539,13 @@ COMMANDS                                        *command-t-commands*
                 setting). In addition, all configuration settings are
                 re-evaluated, causing any changes made to settings via the
                 |:let| command to be picked up.
+
+                                                *:CommandTLoad*
+|:CommandTLoad|   Immediately loads the plug-in files, if they haven't been
+                loaded already (normally, the files are loaded lazily the
+                first time you run a Command-T command or use a Command-T
+                mapping). This command may be useful for people wishing to
+                extend Command-T by "monkey patching" its functionality.
 
 
 MAPPINGS                                        *command-t-mappings*
@@ -617,13 +660,13 @@ Following is a list of all available options:
                                                *g:CommandTTraverseSCM*
   |g:CommandTTraverseSCM|                        string (default: 'file')
 
-      Instructs Command-T how to chose a root path when opening a file finder
+      Instructs Command-T how to choose a root path when opening a file finder
       without an explicit path argument. Possible values are:
 
       - "file": starting from the file currently being edited, traverse
         upwards through the filesystem hierarchy until you find an SCM root
         (as indicated by the presence of a ".git", ".hg" or similar directory)
-        and use that as the base path. If no such root is found, fallback to
+        and use that as the base path. If no such root is found, fall back to
         using Vim's present working directory as a root. The list of SCM
         directories that Command-T uses to detect an SCM root can be
         customized with the |g:CommandTSCMDirectories| option.
@@ -634,6 +677,13 @@ Following is a list of all available options:
 
       - "pwd": use Vim's present working directory as a root (ie. attempt no
         traversal).
+
+                                               *g:CommandTGitScanSubmodules*
+  |g:CommandTGitScanSubmodules|                  boolean (default: 0)
+
+      If set to 1, Command-T will scan submodules (recursively) when using the
+      "git" file scanner (see |g:CommandTFileScanner|).
+
 
                                                *g:CommandTSCMDirectories*
   |g:CommandTSCMDirectories|    string (default: '.git,.hg,.svn,.bzr,_darcs')
@@ -805,6 +855,15 @@ Following is a list of all available options:
 
       For an example of how this can be used to apply arbitrarily complex
       logic, see the example in |g:CommandTAcceptSelectionTabCommand| above.
+
+                                              *g:CommandTEncoding*
+  |g:CommandTEncoding|                          string (default: none)
+
+      In most environments Command-T will work just fine using the character
+      encoding settings from your local environment. This setting can be used
+      to force Command-T to use a specific encoding, such as "UTF-8", if your
+      environment ends up defaulting to an undesired encoding, such as
+      "ASCII-8BIT".
 
 As well as the basic options listed above, there are a number of settings that
 can be used to override the default key mappings used by Command-T. For
@@ -1060,6 +1119,12 @@ anchored at the root level of your repository in any case.
 Command-T will internally cache up to 10 different directories, so even if you
 |cd| repeatedly, it should only need to scan each directory once.
 
+    let g:CommandTSmartCase = 1
+
+Makes Command-T perform case-sensitive matching whenever the search pattern
+includes an uppercase letter. This allows you to narrow the search results
+listing with fewer keystrokes. See also |g:CommandTIgnoreCase|.
+
 It's advisable to keep a long-running Vim instance in place and let it cache
 the directory listings rather than repeatedly closing and re-opening Vim in
 order to edit every file. On those occasions when you do need to flush the
@@ -1089,6 +1154,8 @@ kind of ongoing calibration will come quite naturally.
 Finally, it is important to be on a relatively recent version of Command-T to
 fully benefit from the available performance enhancements:
 
+- version 1.10 (July 2014) added the |g:CommandTIgnoreCase| and
+  |g:CommandTSmartCase| options
 - version 1.9 (May 2014) tweaked memoization algorithm for a 10% speed boost
 - version 1.8 (March 2014) sped up the Watchman file scanner by switching its
   communication from the JSON to the binary Watchman protocol
@@ -1107,21 +1174,31 @@ Command-T is written and maintained by Greg Hurrell <greg@hurrell.net>.
 Other contributors that have submitted patches include (in alphabetical
 order):
 
-  Abhinav Gupta           Lucas de Vries          Roland Puntaier
-  Aleksandrs Ļedovskis    Marcus Brito            Ross Lagerwall
-  Andy Waite              Marian Schubert         Scott Bronson
-  Anthony Panozzo         Matthew Todd            Seth Fowler
-  Artem Nezvigin          Mike Lundy              Shlomi Fish
-  Ben Osheroff            Nadav Samet             Steven Moazami
-  Daniel Hahler           Nate Kane               Sung Pae
-  David Szotten           Nicholas Alpi           Thomas Pelletier
-  Emily Strickland        Noon Silk               Ton van den Heuvel
-  Felix Tjandrawibawa     Ole Petter Bang         Victor Hugo Borja
-  Gary Bernhardt          Patrick Hayes           Vít Ondruch
-  Ivan Ukhov              Paul Jolly              Woody Peterson
-  Jacek Wysocki           Pavel Sergeev           Yan Pritzker
-  Jeff Kreeftmeijer       Rainux Luo              Yiding Jia
-  Kevin Webster           Richard Feldman         Zak Johnson
+  Abhinav Gupta                   Noon Silk
+  Aleksandrs Ļedovskis            Ole Petter Bang
+  Andy Waite                      Patrick Hayes
+  Anthony Panozzo                 Paul Jolly
+  Artem Nezvigin                  Pavel Sergeev
+  Ben Boeckel                     Rainux Luo
+  Ben Osheroff                    Richard Feldman
+  Daniel Hahler                   Roland Puntaier
+  David Szotten                   Ross Lagerwall
+  Emily Strickland                Scott Bronson
+  Felix Tjandrawibawa             Seth Fowler
+  Gary Bernhardt                  Sherzod Gapirov
+  Ivan Ukhov                      Shlomi Fish
+  Jacek Wysocki                   Steven Moazami
+  Jeff Kreeftmeijer               Sung Pae
+  Kevin Webster                   Thomas Pelletier
+  Lucas de Vries                  Ton van den Heuvel
+  Marcus Brito                    Victor Hugo Borja
+  Marian Schubert                 Vlad Seghete
+  Matthew Todd                    Vít Ondruch
+  Mike Lundy                      Woody Peterson
+  Nadav Samet                     Yan Pritzker
+  Nate Kane                       Yiding Jia
+  Nicholas Alpi                   Zak Johnson
+  Nikolai Aleksandrovich Pavlov
 
 As this was the first Vim plug-in I had ever written I was heavily influenced
 by the design of the LustyExplorer plug-in by Stephen Bach, which I understand
@@ -1149,11 +1226,10 @@ the clone URL for which is:
 
   git://git.wincent.com/command-t.git
 
-Mirrors exist on GitHub and Gitorious; these are automatically updated once
-per hour from the authoritative repository:
+A mirror exists on GitHub, which is automatically updated once per hour from
+the authoritative repository:
 
   https://github.com/wincent/command-t
-  https://gitorious.org/command-t/command-t
 
 Patches are welcome via the usual mechanisms (pull requests, email, posting to
 the project issue tracker etc).
@@ -1190,7 +1266,7 @@ Bug reports should be submitted to the issue tracker at:
 
 LICENSE                                         *command-t-license*
 
-Copyright 2010-2014 Greg Hurrell. All rights reserved.
+Copyright 2010-2015 Greg Hurrell. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -1214,6 +1290,38 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
 HISTORY                                         *command-t-history*
+
+1.12 (9 April 2015)
+
+- add |:CommandTLoad| command
+- fix rare failure to restore cursor color after closing Command-T (patch from
+  Vlad Seghete)
+- doc fixes and updates (patches from Daniel Hahler and Nicholas T.)
+- make it possible to force reloading of the plug-in (patch from Daniel
+  Hahler)
+- add |g:CommandTEncoding| option, to work around rare encoding compatibility
+  issues
+- fix error restoring cursor highlights involving some configurations (patch
+  from Daniel Hahler)
+- skip set-up of |<Esc>| key mapping on rxvt terminals (patch from Daniel
+  Hahler)
+- add |g:CommandTGitScanSubmodules| option, which can be used to recursively
+  scan submodules when the "git" file scanner is used (patch from Ben Boeckel)
+- fix for not falling back to "find"-based scanner when a Watchman-related
+  error occurs
+
+1.11.4 (4 November 2014)
+
+- fix infinite loop on Windows when |g:CommandTTraverseSCM| is set to a value
+  other than "pwd" (bug present since 1.11)
+- handle unwanted split edgecase when |'hidden'| is set, the current buffer is
+  modified, and it is visible in more than one window
+
+1.11.3 (10 October 2014)
+
+- ignore impromperly encoded filenames (patch from Sherzod Gapirov)
+- fix failure to update path when using |:cd| in conjunction with
+  |g:CommandTTraverseSCM| set to "pwd" (bug present since 1.11.2)
 
 1.11.2 (2 September 2014)
 

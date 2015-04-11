@@ -3,10 +3,13 @@
 " ============================================================================
 "
 " Author: Ryan Kulla (rkulla AT gmail DOT com)
-" Version: 1.2, for Vim 7
+" Version: 1.2.3, for Vim 7+
 " URL: http://www.vim.org/scripts/script.php?script_id=850
-" Last Modified: July 22th, 2009
-" Installation: On Linux, put this file in ~/.vim/after/ftplugin/
+" Installation: The easiest way is to use Pathogen and simply install
+"               everything to ~/.vim/bundle
+"               
+"               Otherwise:
+"               On Linux, put this file in ~/.vim/after/ftplugin/
 "               On Windows, put this file in C:\vim\vimfiles\ftplugin\
 "                        (assuming you installed vim in C:\vim\).
 "               You may install the other files anywhere. 
@@ -15,14 +18,14 @@
 "                   let g:pydiction_location = 'path/to/complete-dict'
 "               Optionally, you set the completion menu height like:
 "                   let g:pydiction_menu_height = 20
-"               The default menu height is 15
+"               The default menu height is 8
 "               To do case-sensitive searches, set noignorecase (:set noic).
 " Usage: Type part of a Python keyword, module name, attribute or method,
 "        then hit the TAB key and it will auto-complete (as long as it 
 "        exists in the complete-dict file.
 "        You can also use Shift-Tab to Tab backwards.
 " License: BSD
-" Copyright: Copyright (c) 2003-2009 Ryan Kulla
+" Copyright: Copyright (c) 2003-2014 Ryan Kulla
 "            All rights reserved.
 "
 "            Redistribution and use in source and binary forms, with or without
@@ -59,10 +62,10 @@ endif
 
 
 " Make the Tab key do python code completion:
-"inoremap <silent> <buffer> <Tab> 
-         "\<C-R>=<SID>SetVals()<CR>
-         "\<C-R>=<SID>TabComplete('down')<CR>
-"         \<C-R>=<SID>RestoreVals()<CR>
+inoremap <silent> <buffer> <Tab> 
+         \<C-R>=<SID>SetVals()<CR>
+         \<C-R>=<SID>TabComplete('down')<CR>
+         \<C-R>=<SID>RestoreVals()<CR>
 
 " Make Shift+Tab do python code completion in the reverse direction:
 inoremap <silent> <buffer> <S-Tab> 
@@ -121,7 +124,7 @@ if !exists("*s:SetVals")
         " Set the popup menu height:
         let s:pydiction_save_pumheight = &pumheight
         if !exists('g:pydiction_menu_height')
-            let g:pydiction_menu_height = 15
+            let g:pydiction_menu_height = 8
         endif
         let &pumheight = g:pydiction_menu_height
 
