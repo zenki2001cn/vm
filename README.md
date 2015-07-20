@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 123 v1.20.3 2015-07-15 19:51:18 ###
+* 20.1 更新viewdoc插件                                      ---> v1.10
+    - link: http://www.vim.org/scripts/script.php?script_id=3893
+
 ### 122 v1.20.2 2015-07-06 11:16:36 ###
 * 20.1 添加incsearch插件                                    ---> v2.0
     - link: https://github.com/haya14busa/incsearch.vim
