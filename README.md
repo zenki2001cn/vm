@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 124 v1.20.4 2015-07-22 09:57:50 ###
+* 20.2 添加YouCompleteMe插件                                from github
+    - link: https://github.com/Valloric/YouCompleteMe#options
+
 ### 123 v1.20.3 2015-07-15 19:51:18 ###
 * 20.1 更新viewdoc插件                                      ---> v1.10
     - link: http://www.vim.org/scripts/script.php?script_id=3893

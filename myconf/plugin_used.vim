@@ -470,12 +470,14 @@ let g:neocomplcache_min_keyword_length = 6
 let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " 是否在打开VIM时启用neocomplcache功能
-let g:neocomplcache_enable_at_startup = 1
+" YCM
+let g:neocomplcache_enable_at_startup = 0
 " snippets的目录设定
 let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 " 是否自动选择补全选项
 let g:neocomplcache_enable_auto_select = 0
 " 禁用自动补全
+" YCM
 let g:neocomplcache_disable_auto_complete = 1
 let g:neocomplcache_enable_cursor_hold_i = 0
 let g:neocomplcache_enable_insert_char_pre = 0
@@ -1408,4 +1410,79 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YCM start }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_auto_trigger = 1
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1
+      \}
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1
+      \}
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_error_symbol = '>e'
+let g:ycm_warning_symbol = '>w'
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_echo_current_diagnostic = 1
+let g:ycm_always_populate_location_list = 0
+let g:ycm_open_loclist_on_ycm_diags = 1
+let g:ycm_allow_changing_updatetime = 1
+let g:ycm_complete_in_comments = 0
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_extra_conf_vim_data = []
+let g:ycm_path_to_python_interpreter = ''
+let g:ycm_server_use_vim_stdout = 0
+let g:ycm_server_keep_logfiles = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_auto_start_csharp_server = 1
+let g:ycm_auto_stop_csharp_server = 1
+let g:ycm_csharp_server_port = 0
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_max_diagnostics_to_display = 30
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_key_invoke_completion = '<TAB>'
+
+let g:ycm_global_ycm_extra_conf = ''    " 默认配置文件路径
+let g:ycm_confirm_extra_conf = 0        " 是否弹出确认加载配置的提示
+let g:ycm_extra_conf_globlist = []      " 配置文件搜索目录
+let g:ycm_filepath_completion_use_working_dir = 0
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+let g:ycm_cache_omnifunc = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_goto_buffer_command = 'same-buffer'
+let g:ycm_disable_for_files_larger_than_kb = 80000
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YCM end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
