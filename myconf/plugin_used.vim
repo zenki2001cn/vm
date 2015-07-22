@@ -1036,6 +1036,7 @@ nmap <C-x>w :call ToggleTxtBrowserUseW3m()<CR>
 " SnipMate setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:snips_author = 'Zenki.J.Zha'
+let g:snippet_version = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SnipMate end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
