@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 126 v1.20.6 2015-08-10 13:41:18 ###
+* 20.1 添加webdevicons插件                                  ---> v0.5.2
+    - link: http://www.vim.org/scripts/script.php?script_id=5114
+* 20.2 更新若干插件配置
+
 ### 125 v1.20.5 2015-07-22 17:15:57###
 * 20.1 更新snipMate插件                                     from github
     - link: https://github.com/garbas/vim-snipmate
@@ -940,3 +945,4 @@ Update: 2012-06-08 17:42:31
 - wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。
 - pydiction插件需要生成模块缓存，适用命令：python $VIM/ftplugin/pydiction.py <module>
 - python isort需要安装isort模块：easyinstall isort
+- webdevicons需要安装字体文件：https://github.com/ryanoasis/nerd-fonts

@@ -1381,7 +1381,7 @@ vnoremap <silent> ,/ :BetterSearchVisualSelect<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" restore-view start }
+" restore-view start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\.vim']
@@ -1390,7 +1390,7 @@ set viewoptions=cursor,folds,slash,unix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" isort start }
+" isort start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:vim_isort_map = '<C-i>'
 nnoremap <C-i> :Isort <CR>
@@ -1399,7 +1399,7 @@ nnoremap <C-i> :Isort <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" incsearch start }
+" incsearch start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -1414,7 +1414,7 @@ map g# <Plug>(incsearch-nohl-g#)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YCM start }
+" YCM start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
@@ -1486,4 +1486,15 @@ let g:ycm_disable_for_files_larger_than_kb = 80000
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YCM end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" webdevicons end {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeSortHiddenFirst = 0
+let g:airline_powerline_fonts=1
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
+set encoding=utf-8
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" webdevicons end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

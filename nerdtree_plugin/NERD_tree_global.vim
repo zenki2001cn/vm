@@ -187,9 +187,11 @@ function! NERDTreeCtagsRun()
     let ctags_cmd = 'ctags' . " -o " . dir . "/tags " . " -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaKSz --fields=+lS --extra=+q --languages=c,c++,c#,java,python,vim,matlab,make,sh,ruby,perl,html,javascript,php,tex,lisp,lua, --langmap=c++:+.inl " . dir
 
     let src_file = $HOME . '/.vim/third_party/ycm_extra_conf.py'
-    echo src_file
+    " echo src_file
     let des_file = dir . '/.ycm_extra_conf.py'
-    python FileUtil.fileOrDirCp(vim.eval("src_file"), vim.eval("des_file"))
+    if findfile(des_file) == ''
+        python FileUtil.fileOrDirCp(vim.eval("src_file"), vim.eval("des_file"))
+    endif
     echomsg "ctags running..."
 
     "exec 'silent!' . ctags_cmd
