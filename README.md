@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 127 v1.20.7 2015-08-20 23:45:57 ###
+* 20.1 更新viewdoc插件                                      ---> v1.11
+    - link: http://www.vim.org/scripts/script.php?script_id=3893
+* 20.2 添加webdevicons插件                                  ---> v0.5.3
+    - link: http://www.vim.org/scripts/script.php?script_id=5114
+
 ### 126 v1.20.6 2015-08-10 13:41:18 ###
 * 20.1 添加webdevicons插件                                  ---> v0.5.2
     - link: http://www.vim.org/scripts/script.php?script_id=5114
