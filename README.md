@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 128 v1.20.8 2015-08-31 15:23:10 ###
+* 20.1 更新WakaTime插件                                     ---> v4.0.4 (from github)
+    - link: https://github.com/wakatime/vim-wakatime
+
 ### 127 v1.20.7 2015-08-20 23:45:57 ###
 * 20.1 更新viewdoc插件                                      ---> v1.11
     - link: http://www.vim.org/scripts/script.php?script_id=3893
