@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 129 v1.20.9 2015-09-07 10:15:08 ###
+* 20.1 更新startify插件                                     ---> startify v1.7
+    - link: http://www.vim.org/scripts/script.php?script_id=4544
+* 20.2 更新webdevicons插件                                  ---> v0.6.0
+    - link: http://www.vim.org/scripts/script.php?script_id=5114
+
 ### 128 v1.20.8 2015-08-31 15:23:10 ###
 * 20.1 更新WakaTime插件                                     ---> v4.0.4 (from github)
     - link: https://github.com/wakatime/vim-wakatime
@@ -12,7 +18,7 @@ ChangLog
 ### 127 v1.20.7 2015-08-20 23:45:57 ###
 * 20.1 更新viewdoc插件                                      ---> v1.11
     - link: http://www.vim.org/scripts/script.php?script_id=3893
-* 20.2 添加webdevicons插件                                  ---> v0.5.3
+* 20.2 更新webdevicons插件                                  ---> v0.5.3
     - link: http://www.vim.org/scripts/script.php?script_id=5114
 
 ### 126 v1.20.6 2015-08-10 13:41:18 ###

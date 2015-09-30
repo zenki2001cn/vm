@@ -1493,6 +1493,7 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeSortHiddenFirst = 0
 let g:airline_powerline_fonts=1
+let g:DevIconsEnableFoldersOpenClose=1
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
 set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
