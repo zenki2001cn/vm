@@ -526,6 +526,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType R setlocal omnifunc=rcomplete#CompleteR
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -1498,4 +1499,13 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 12
 set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " webdevicons end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" R end {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let vimrplugin_show_args = 1
+let vimrplugin_args_in_stline = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" R end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

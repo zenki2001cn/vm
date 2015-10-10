@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 130 v1.21.0 2015-10-10 13:17:13 ###
+* 21.1 添加R插件                                            ---> v1.2.6
+    - link:http://www.vim.org/scripts/script.php?script_id=2628
+
 ### 129 v1.20.9 2015-09-07 10:15:08 ###
 * 20.1 更新startify插件                                     ---> startify v1.7
     - link: http://www.vim.org/scripts/script.php?script_id=4544
