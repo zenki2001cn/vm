@@ -70,6 +70,7 @@ Zenki's vim plugin Document                                        *zenki_doc*
    64. SwissCalc                    |swisscalc_zenki|
    65. VimBookMarks                 |vimbookmarks_zenki|
    66. incsearch                    |incsearch_zenki|
+   67. Magit                        |magit_zenki|
 
 ------------------------------------------------------------------------------
 
@@ -868,5 +869,16 @@ INCSEARCH                                                    *incsearch_zenki*
     KEY                                     说明
     /                                       输入`\vkey1|key2|key3|...`查找多个
                                             关键字key1、key2、key3
+
+==============================================================================
+MAGIT                                                            *magit_zenki* 
+1. 快捷键使用说明
+    KEY                                     说明
+    <leader>M                               打开magit模式
+    :Magit                                  打开magit模式
+
+    Magit模式：
+    S                                       stage文件
+    CC                                      提交变更
 
 vim:tw=78:ts=8:ft=help:norl:

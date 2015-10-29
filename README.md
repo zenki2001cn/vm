@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 132 v1.21.2 2015-10-29 10:21:17 ###
+* 21.1 添加magit插件                                        ---> v1.4
+    - link: http://www.vim.org/scripts/script.php?script_id=5252
+
 ### 131 v1.21.1 2015-10-10 13:20:18 ###
 * 21.1 更新webdevicons插件                                  ---> v0.6.1
     - link: http://www.vim.org/scripts/script.php?script_id=5114
