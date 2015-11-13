@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 133 v1.21.3 2015-11-13 10:09:07 ###
+* 21.1 更新magit插件                                        ---> v1.4.2
+    - link: http://www.vim.org/scripts/script.php?script_id=5252
+* 21.2 更新若干配置文件
+
 ### 132 v1.21.2 2015-10-29 10:21:17 ###
 * 21.1 添加magit插件                                        ---> v1.4
     - link: http://www.vim.org/scripts/script.php?script_id=5252

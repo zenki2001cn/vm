@@ -130,7 +130,7 @@ let g:mm_info_extra .= "谷歌翻译:   \\t, \\tr, \\ta, \\tar, \\ts, \\tss, \\t
 let g:mm_info_extra .= "Refactor:   \\rc(变量), \\rf(文件名), \\rr(恢复)                                       BookMarks:      <mm>标记, <mi>注释, <ma>显示所有, <mc>清除, <mx>清除所有\n"  
 let g:mm_info_extra .= "Yate:       <C-y>(查找ctags关键字)                                                  Buffer:         ,bs(文本替换), ,yy(剪贴板显示), ys(剪贴板搜索)  \n"
 let g:mm_info_extra .= "Search:     ,f(过滤显示), ,F(查找), ,G(跳转), ,d(关闭), ,/[A|B](V模式)(多项查找)    Jump:           ,,[key](字跳转), gL/gv(行跳转), <C-o>, <C-i>    \n"
-let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), <S-s>(list)                        Vimwiki:        \\wt(table), \\wg(links), \\wdi(dairy), \\ww(Wiki)\n"
+let g:mm_info_extra .= "Gitv:       \\gv(显示), \\gt(Tab编辑), \\gb(Blame), <S-s>(list), \M(Magit)              Vimwiki:        \\wt(table), \\wg(links), \\wdi(dairy), \\ww(Wiki)\n"
 let g:mm_info_extra .= "NeoCache:   <C-x><C-Tab>(Auto模式切换)                                              SnipeComplete:  <C-k>(Auto补全), <C-l>(Snip模式), <C-x><C-l>(Other) \n"
 let g:mm_info_extra .= "W3m:        f(hint), s(syntax), c(cookie), =(url)                                   Diff:           dp(push), do(get), ]c(next), [c(prev), ]=(冲突) \n"
 let g:mm_info_extra .= "Surround:   ,cs)](替换), ,ds)(删除), ysiw)(插入), yssb(行插入), vS}(V模式插入)      Highlight:      gd|[*]\h|:Hs[*](标记), ge|:Hc[*](清除)  \n"

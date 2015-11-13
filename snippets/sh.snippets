@@ -8,6 +8,8 @@ snippet ===
 	# ============================================================================
 snippet #!
 	#!/usr/bin/env bash
+	set -o nounset
+	set -o errexit
 	
 snippet if
 	if [[ ${1:condition} ]]; then
