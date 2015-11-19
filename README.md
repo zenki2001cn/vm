@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 134 v1.21.4 2015-11-19 10:06:28 ###
+* 21.1 更新rainbow                                          ---> v3.4.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4176
+* 21.2 更新NERD_tree插件                                    ---> v5.0.0
+    - link: http://www.vim.org/scripts/script.php?script_id=1658
+
 ### 133 v1.21.3 2015-11-13 10:09:07 ###
 * 21.1 更新magit插件                                        ---> v1.4.2
     - link: http://www.vim.org/scripts/script.php?script_id=5252
