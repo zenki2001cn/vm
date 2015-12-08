@@ -5,6 +5,16 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 136 v1.21.6 2015-12-02 10:04:58 ###
+* 21.1 更新magit插件                                        ---> v1.5.1
+    - link: http://www.vim.org/scripts/script.php?script_id=5252
+* 21.2 更新R插件                                            ---> v1.2.7
+    - link:http://www.vim.org/scripts/script.php?script_id=2628
+
+### 135 v1.21.5 2015-11-19 10:17:58 ###
+* 21.1 添加ws插件（显示空格字符）                           ---> v1.1
+    - link: http://www.vim.org/scripts/script.php?script_id=5035
+
 ### 134 v1.21.4 2015-11-19 10:06:28 ###
 * 21.1 更新rainbow                                          ---> v3.4.0
     - link: http://www.vim.org/scripts/script.php?script_id=4176
