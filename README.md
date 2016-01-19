@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 137 v1.21.7 2016-01-19 10:26:26 ###
+* 21.1 更新webdevicons插件                                  ---> v0.7.1
+    - link: http://www.vim.org/scripts/script.php?script_id=5114
+* 21.2 更新Ctrlp                                            (from github)
+    - link: https://github.com/ctrlpvim/ctrlp.vim
+
 ### 136 v1.21.6 2015-12-02 10:04:58 ###
 * 21.1 更新magit插件                                        ---> v1.5.1
     - link: http://www.vim.org/scripts/script.php?script_id=5252
