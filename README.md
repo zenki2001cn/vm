@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 138 v1.21.8 2016-01-22 08:38:50 ###
+* 21.1 更新CommandT                                         ---> v3.0
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+
 ### 137 v1.21.7 2016-01-19 10:26:26 ###
 * 21.1 更新webdevicons插件                                  ---> v0.7.1
     - link: http://www.vim.org/scripts/script.php?script_id=5114

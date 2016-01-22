@@ -1,4 +1,4 @@
-# Copyright 2010-2015 Greg Hurrell. All rights reserved.
+# Copyright 2010-present Greg Hurrell. All rights reserved.
 # Licensed under the terms of the BSD 2-clause license.
 
 require 'ostruct'
@@ -20,14 +20,8 @@ module CommandT
       @prompt          = options[:prompt]
       @reverse_list    = options[:match_window_reverse]
 
-      # save existing window dimensions so we can restore them later
-      @windows = (0..(::VIM::Window.count - 1)).map do |i|
-        OpenStruct.new(
-          :index  => i,
-          :height => ::VIM::Window[i].height,
-          :width  => ::VIM::Window[i].width
-        )
-      end
+      quoted_name = VIM::escape_for_single_quotes(options[:name])
+      escaped_name = ::VIM::evaluate("fnameescape('#{quoted_name}')")
 
       set 'timeout', true        # ensure mappings timeout
       set 'hlsearch', false      # don't highlight search strings
@@ -41,28 +35,63 @@ module CommandT
       set 'sidescrolloff', 0     # don't sidescroll automatically
       set 'updatetime', options[:debounce_interval]
 
+      # Save existing window views so we can restore them later.
+      current_window = ::VIM::evaluate('winnr()')
+      @windows = (0..(::VIM::Window.count - 1)).map do |i|
+        focus_window(i + 1)
+        view = ::VIM::evaluate('winsaveview()')
+        window = OpenStruct.new(
+          :index    => i,
+          :height   => ::VIM::Window[i].height,
+          :width    => ::VIM::Window[i].width,
+          :lnum     => view['lnum'],
+          :col      => view['col'],
+          :coladd   => view['coladd'],
+          :curswant => view['curswant'],
+          :topline  => view['topline'],
+          :topfill  => view['topfill'],
+          :leftcol  => view['leftcol'],
+          :skipcol  => view['skipcol'],
+        )
+
+        # When creating a split for the match window, move the cursor to the
+        # opposite side of the window's viewport to prevent unwanted scrolling.
+        boundary_line = options[:match_window_at_top] ?
+          ::VIM::evaluate("line('w$')") :
+          view['topline']
+        ::VIM::evaluate("winrestview({'lnum': #{boundary_line}})")
+
+        window
+      end
+      focus_window(current_window)
+
       # show match window
       split_location = options[:match_window_at_top] ? 'topleft' : 'botright'
-      if @@buffer # still have buffer from last time
-        ::VIM::command "silent! #{split_location} #{@@buffer.number}sbuffer"
-        raise "Can't re-open GoToFile buffer" unless $curbuf.number == @@buffer.number
+      if ((number = buffer_number)) # still have buffer from last time
+        ::VIM::command "silent! #{split_location} #{number}sbuffer"
+        if $curbuf.number != number
+          raise "Can't re-open Command-T match listing buffer"
+        end
         $curwin.height = 1
+        ::VIM::command "0file"
+        ::VIM::command "keepalt file #{escaped_name}"
       else        # creating match window for first time and set it up
-        ::VIM::command "silent! #{split_location} 1split GoToFile"
-        set 'bufhidden', 'unload' # unload buf when no longer displayed
-        set 'buftype', 'nofile'   # buffer is not related to any file
-        set 'modifiable', false   # prevent manual edits
-        set 'readonly', false     # avoid W10 "Changing a readonly file"
-        set 'swapfile', false     # don't create a swapfile
-        set 'wrap', false         # don't soft-wrap
-        set 'number', false       # don't show line numbers
-        set 'list', false         # don't use List mode (visible tabs etc)
-        set 'foldcolumn', 0       # don't show a fold column at side
-        set 'foldlevel', 99       # don't fold anything
-        set 'cursorline', false   # don't highlight line cursor is on
-        set 'spell', false        # spell-checking off
-        set 'buflisted', false    # don't show up in the buffer list
-        set 'textwidth', 0        # don't hard-wrap (break long lines)
+        ::VIM::command "silent! keepalt #{split_location} 1split #{escaped_name}"
+        set 'bufhidden', 'unload'   # unload buf when no longer displayed
+        set 'buftype', 'nofile'     # buffer is not related to any file
+        set 'filetype', 'command-t' # provide for detectability/extensibility
+        set 'modifiable', false     # prevent manual edits
+        set 'readonly', false       # avoid W10 "Changing a readonly file"
+        set 'swapfile', false       # don't create a swapfile
+        set 'wrap', false           # don't soft-wrap
+        set 'number', false         # don't show line numbers
+        set 'list', false           # don't use List mode (visible tabs etc)
+        set 'foldcolumn', 0         # don't show a fold column at side
+        set 'foldlevel', 99         # don't fold anything
+        set 'cursorline', false     # don't highlight line cursor is on
+        set 'spell', false          # spell-checking off
+        set 'buflisted', false      # don't show up in the buffer list
+        set 'textwidth', 0          # don't hard-wrap (break long lines)
 
         # don't show the color column
         set 'colorcolumn', 0 if VIM::exists?('+colorcolumn')
@@ -71,7 +100,9 @@ module CommandT
         set 'relativenumber', false if VIM::exists?('+relativenumber')
 
         # sanity check: make sure the buffer really was created
-        raise "Can't find GoToFile buffer" unless $curbuf.name.match /GoToFile\z/
+        if File.basename($curbuf.name) != options[:name]
+          raise "Can't find Command-T match listing buffer"
+        end
         @@buffer = $curbuf
       end
 
@@ -117,6 +148,9 @@ module CommandT
 
     def buffer_number
       @@buffer && @@buffer.number
+    rescue Vim::DeletedBufferError
+      # Beware of people manually deleting Command-T's hidden, unlisted buffer.
+      @@buffer = nil
     end
 
     def close
@@ -140,7 +174,9 @@ module CommandT
       # For more details, see: https://wincent.com/issues/1617
       if $curbuf.number == 0
         # use bwipeout as bunload fails if passed the name of a hidden buffer
-        ::VIM::command 'silent! bwipeout! GoToFile'
+        base = File.basename($curbuf.name)
+        escaped_name = ::VIM::evaluate("fnameescape('#{base}')")
+        ::VIM::command "silent! bwipeout! #{escaped_name}"
         @@buffer = nil
       else
         ::VIM::command "silent! bunload! #{@@buffer.number}"
@@ -153,7 +189,7 @@ module CommandT
     end
 
     def unload
-      restore_window_dimensions
+      restore_window_views
       @settings.restore
       @prompt.dispose
       show_cursor
@@ -236,6 +272,10 @@ module CommandT
 
   private
 
+    def focus_window(number)
+      ::VIM::command("noautocmd #{number}wincmd w")
+    end
+
     def _next
       if @selection < [@window.height, @matches.length].min - 1
         @selection += 1
@@ -281,7 +321,7 @@ module CommandT
       lock
     end
 
-    def restore_window_dimensions
+    def restore_window_views
       # sort from tallest to shortest, tie-breaking on window width
       @windows.sort! do |a, b|
         order = b.height <=> a.height
@@ -295,13 +335,26 @@ module CommandT
       # starting with the tallest ensures that there are no constraints
       # preventing windows on the side of vertical splits from regaining
       # their original full size
+      current_window = ::VIM::evaluate('winnr()')
       @windows.each do |w|
         # beware: window may be nil
         if window = ::VIM::Window[w.index]
           window.height = w.height
           window.width  = w.width
+          focus_window(w.index + 1)
+          ::VIM::evaluate("winrestview({" +
+            "'lnum': #{w.lnum}," +
+            "'col': #{w.col}, " +
+            "'coladd': #{w.coladd}, " +
+            "'curswant': #{w.curswant}, " +
+            "'topline': #{w.topline}, " +
+            "'topfill': #{w.topfill}, " +
+            "'leftcol': #{w.leftcol}, " +
+            "'skipcol': #{w.skipcol}" +
+          "})")
         end
       end
+      focus_window(current_window)
     end
 
     def match_text_for_idx(idx)
