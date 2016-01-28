@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-09-03.
-" @Last Change: 2013-10-02.
-" @Revision:    0.0.210
+" @Last Change: 2015-12-11.
+" @Revision:    20.0.233
 
 
 if !exists('g:viki_viki#conceal_extended_link_markup')
@@ -24,7 +24,7 @@ endif
 " This also sets up the rx for the different viki name types.
 " viki_viki#SetupBuffer(state, ?dontSetup='')
 function! viki_viki#SetupBuffer(state, ...) "{{{3
-    " TLogDBG expand('%') .': '. (exists('b:vikiFamily') ? b:vikiFamily : 'default')
+    " TLogDBG 'viki_viki#SetupBuffer: '. expand('%') .': '. (exists('b:vikiFamily') ? b:vikiFamily : 'default')
 
     let dontSetup = a:0 > 0 ? a:1 : ""
     let noMatch = ""
@@ -77,7 +77,12 @@ function! viki_viki#SetupBuffer(state, ...) "{{{3
     endif
     " TLogVAR b:vikiAnchorNameRx
     
-    let interviki = '\<['. b:vikiUpperCharacters .']\+::'
+    let interviki_names = map(copy(viki#GetInterVikis()), 'substitute(v:val, ''::$'', "", "")')
+    if empty(interviki_names)
+        let interviki_rx = '\<['. b:vikiUpperCharacters .'0-9]\+::'
+    else
+        let interviki_rx = '\<\%('. join(interviki_names, '\|') .'\)::'
+    endif
 
     " if viki#IsSupportedType("sSc") && !(dontSetup =~? "s")
     if viki#IsSupportedType("s") && !(dontSetup =~? "s")
@@ -97,6 +102,7 @@ function! viki_viki#SetupBuffer(state, ...) "{{{3
             let simpleWikiName = '\(\)'
         endif
         let simpleHyperWords = ''
+        " TLogVAR viki#IsSupportedType('w'), viki#IsSupportedType('f'), dontSetup
         if v:version >= 700 && viki#IsSupportedType('w') && !(dontSetup =~# 'w')
             let b:vikiHyperWordTable = {}
             if viki#IsSupportedType('f') && !(dontSetup =~# 'f')
@@ -109,7 +115,7 @@ function! viki_viki#SetupBuffer(state, ...) "{{{3
                 let simpleHyperWords = substitute(simpleHyperWords, ' \+', '\\s\\+', 'g')
             endif
         endif
-        let b:vikiSimpleNameRx = '\C\(\('. interviki .'\)\?'.
+        let b:vikiSimpleNameRx = '\C\(\('. interviki_rx .'\)\?'.
                     \ '\('. simpleHyperWords . quotedVikiName . simpleWikiName .'\)\)'.
                     \ '\(#\('. b:vikiAnchorNameRx .'\)\>\)\?'
         let b:vikiSimpleNameSimpleRx = '\C\(\<['.b:vikiUpperCharacters.']\+::\)\?'.
@@ -223,6 +229,18 @@ function! viki_viki#SetupBuffer(state, ...) "{{{3
                 call hookcursormoved#Register(cond, function('viki#HookCheckPreviousPosition'))
             endfor
         endif
+
+        let idefs = viki#GetInterVikiDefs()
+        let udpaths = split(&path, ';', 1)
+        let paths = split(udpaths[0], ',')
+        let idirs = map(values(idefs), 'v:val.special ? "" : substitute(fnamemodify(v:val.prefix, ":p"), ''\\'', "/", "g")')
+        let idirs = filter(idirs, '!empty(v:val) && index(paths, v:val) == -1')
+        let idirs = map(idirs, 'escape(v:val, ", ")')
+        let lpath = udpaths[0] .','. join(idirs, ',')
+        if len(udpaths) > 1
+            let lpath .= ';'. udpaths[1]
+        endif
+        let &l:path = lpath
     endif
 endf
 
@@ -272,7 +290,7 @@ endf
 
 " Define viki-related key maps
 function! viki_viki#MapKeys(state) "{{{3
-    if exists('b:vikiDidMapKeys')
+    if exists('b:vikiDidMapKeys') && b:vikiDidMapKeys == a:state
         return
     endif
     if a:state == 1
@@ -286,6 +304,7 @@ function! viki_viki#MapKeys(state) "{{{3
     else
         let mf = g:vikiMapFunctionality
     endif
+    " TLogVAR a:state, mf
 
     " if !hasmapto('viki#MaybeFollowLink')
         if viki#MapFunctionality(mf, 'c')
@@ -374,6 +393,7 @@ function! viki_viki#MapKeys(state) "{{{3
         nnoremap <buffer> <silent> <c-tab>   :VikiFindNext<cr>
         nnoremap <buffer> <silent> <c-s-tab> :VikiFindPrev<cr>
     endif
+    " TLogVAR mf
     if viki#MapFunctionality(mf, 'Files') || viki#MapFunctionality(mf, 'Grep')
         exec 'nnoremap <buffer> <silent> '. g:vikiMapLeader .'u :call viki#RegionUpdate()<cr>'
         exec 'nnoremap <buffer> <silent> '. g:vikiMapLeader .'U :call viki#RegionUpdateAll()<cr>'
@@ -385,13 +405,14 @@ function! viki_viki#MapKeys(state) "{{{3
         "     exec 'nnoremap <buffer> <silent> '. g:vikiMapLeader .'G :VikiGrepUpdateAll<cr>'
         " endif
     endif
-    let b:vikiDidMapKeys = 1
+    let b:vikiDidMapKeys = a:state
 endf
 
 
 " Initialize viki as minor mode (add-on to some buffer filetype)
 "state ... no-op:0, minor:1, major:2
 function! viki_viki#MinorMode(state) "{{{3
+    " TLogVAR a:state, expand('%')
     if a:state == 0
         return 0
     endif

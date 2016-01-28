@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-03-25.
-" @Last Change: 2014-01-29.
-" @Revision:    1353
+" @Last Change: 2015-12-07.
+" @Revision:    1643
 
 
 exec 'runtime! autoload/viki/enc_'. substitute(&enc, '[\/<>*+&:?]', '_', 'g') .'.vim'
@@ -145,6 +145,12 @@ endif
 if !exists("g:vikiSpecialFilesExceptions")
     " Exceptions from g:vikiSpecialFiles
     let g:vikiSpecialFilesExceptions = "" "{{{2
+endif
+
+if !exists('g:viki#fileword_suffixes')
+    " Also search for files with theses suffixes in |viki#CollectFileWords()|.
+    " Can also be buffer-local as b:viki#fileword_suffixes.
+    let g:viki#fileword_suffixes = []   "{{{2
 endif
 
 if !exists('g:viki_highlight_hyperlink_light')
@@ -345,12 +351,22 @@ endif
 
 
 if v:version >= 700 && !exists("g:vikiHyperWordsFiles")
-    " A list of files that contain special viki names
+    " A list of files that contain special viki names.
+    " Can also be buffer-local.
+    " See also |g:vikiBaseDirs|.
     " :read: let g:vikiHyperWordsFiles = [...] "{{{2
     let g:vikiHyperWordsFiles = [
                 \ get(split(&rtp, ','), 0).'/vikiWords.txt',
                 \ './.vikiWords',
                 \ ]
+endif
+
+
+if !exists('g:vikiBaseDirs')
+    " Where |g:vikiHyperWordsFiles| are looked for.
+    " Can also be buffer-local.
+    " '.' will be expanded to the directory of the current buffer.
+    let g:vikiBaseDirs = ['.']   "{{{2
 endif
 
 
@@ -378,7 +394,38 @@ if !exists("g:vikiMapFunctionalityMinor")
     let g:vikiMapFunctionalityMinor = 'f b p mf mb tF c q e' "{{{2
 endif
 
-if !exists("g:vikiFoldMethodVersion")
+
+if !exists("g:viki#highlight_math")
+    " If "latex", use the texmathMath |syn-cluster| to highlight 
+    " mathematical formulas.
+    let g:viki#highlight_math = 'latex' "{{{2
+endif
+
+
+if !exists("g:viki#fancy_headings")
+    " If non-nil, display headings of different levels in different colors
+    let g:viki#fancy_headings = 0 "{{{2
+endif
+
+
+if !exists("g:vikiIndex")
+    " The default filename for an interviki's index name
+    let g:vikiIndex = 'index' "{{{2
+endif
+
+
+if !exists('g:viki#autoupdate_files')
+    " If true, automatically update all |viki-files| regions.
+    let g:viki#autoupdate_files = 0   "{{{2
+endif
+
+
+if !exists('g:viki#files_head_encs')
+    let g:viki#files_head_encs = ['utf-8', 'latin1']   "{{{2
+endif
+
+
+if !exists("g:viki#fold_method_version")
     " :nodoc:
     " Choose folding method version
     " Viki supports several methods (1..7) for defining folds. If you 
@@ -387,13 +434,21 @@ if !exists("g:vikiFoldMethodVersion")
     " ../ftplugin/viki.vim for alternative methods) or check out this 
     " vim tip:
     " http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
-    let g:vikiFoldMethodVersion = 8 "{{{2
+    let g:viki#fold_method_version = 8 "{{{2
 endif
+
+
+if !exists('g:viki#fold_level')
+    " If > 0, set the 'foldlevel' of viki files to this value. (This is 
+    " only useful if 'foldlevel' still has the default value of 0.)
+    let g:viki#fold_level = 5   "{{{2
+endif
+
 
 if !exists("g:vikiFoldBodyLevel")
     " Consider fold levels bigger that this as text body, levels smaller 
     " than this as headings
-    " This variable is only used if |g:vikiFoldMethodVersion| is 1.
+    " This variable is only used if |g:viki#fold_method_version| is 1.
     " If set to 0, the "b" mode in |vikiFolds| will set the body level 
     " depending on the headings used in the current buffer. Otherwise 
     " |b:vikiHeadingMaxLevel| + 1 will be used.
@@ -411,7 +466,7 @@ if !exists("g:vikiFolds")
     "       |vikiFoldBodyLevel| is set to 0.
     "     f :: Files regions.
     "     s :: ???
-    " This variable is only used if |g:vikiFoldMethodVersion| is 1.
+    " This variable is only used if |g:viki#fold_method_version| is 1.
     let g:vikiFolds = 'hf' "{{{2
 endif
 
@@ -451,10 +506,17 @@ if !exists('g:viki#code_syntax_map')
 endif
 
 
+if !exists('g:viki#find_intervikis_rx')
+    " |:Vikifind| will include only intervikis matching this |regexp|.
+    let g:viki#find_intervikis_rx = '.'   "{{{2
+endif
+
+
 let g:viki#quit = 0
 
 let s:positions = {}
-let s:InterVikiRx = '^\(['. g:vikiUpperCharacters .']\+\)::\(.*\)$'
+let s:InterVikiNameRx = '^\(['. g:vikiUpperCharacters .'0-9]\+\)'
+let s:InterVikiRx = s:InterVikiNameRx .'::\(.*\)$'
 let s:hookcursormoved_oldpos = []
 " let s:vikiSelfEsc = '\'
 " let s:vikiEnabledID = loaded_viki .'_'. strftime('%c')
@@ -585,21 +647,6 @@ if type(g:vikiSpecialFiles) != 3
 endif
 " TAssert IsList(g:vikiSpecialFiles)
 
-if !exists("g:vikiOpenFileWith_ANY")
-    if exists('g:netrw_browsex_viewer')
-        let g:vikiOpenFileWith_ANY = "exec 'silent !'. g:netrw_browsex_viewer .' '. shellescape('%{FILE}')" "{{{2
-    elseif has("win32") || has("win16") || has("win64")
-        let g:vikiOpenFileWith_ANY = "exec 'silent ! start \"\" '. shellescape('%{FILE}')"
-    elseif has("mac")
-        let g:vikiOpenFileWith_ANY = "exec 'silent !open '. shellescape('%{FILE}')"
-    elseif exists('$XDG_CURRENT_DESKTOP') && !empty($XDG_CURRENT_DESKTOP)
-        let g:vikiOpenFileWith_ANY = "exec 'silent !xdg-open '. shellescape('%{FILE}') .'&'"
-    elseif $GNOME_DESKTOP_SESSION_ID != "" || $DESKTOP_SESSION == 'gnome'
-        let g:vikiOpenFileWith_ANY = "exec 'silent !gnome-open '. shellescape('%{FILE}')"
-    elseif exists("$KDEDIR") && !empty($KDEDIR)
-        let g:vikiOpenFileWith_ANY = "exec 'silent !kfmclient exec '. shellescape('%{FILE}')"
-    endif
-endif
 
 if !exists('*VikiOpenSpecialFile')
     " Handles filenames that match |vikiSpecialFiles|.
@@ -609,28 +656,26 @@ if !exists('*VikiOpenSpecialFile')
     " 
     "     let g:vikiOpenFileWith_html = '!firefox %{FILE}'
     " 
-    " The contents of variable g:vikiOpenFileWith_ANY will be used as fallback
-    " command. Under Windows, g:vikiOpenFileWith_ANY defaults to "silent !cmd /c 
-    " start".
     " All suffixes are translated to lower case.
+    "
+    " |tlib#sys#Open()| will be used as fallback.
     function! VikiOpenSpecialFile(file) "{{{3
         " TLogVAR a:file
         let proto = tolower(fnamemodify(a:file, ':e'))
         if exists('g:vikiOpenFileWith_'. proto)
             let prot = g:vikiOpenFileWith_{proto}
-        elseif exists('g:vikiOpenFileWith_ANY')
-            let prot = g:vikiOpenFileWith_ANY
-        else
-            let prot = ''
-        endif
-        " TLogVAR prot
-        if prot != ''
-            " let openFile = viki#SubstituteArgs(prot, 'FILE', fnameescape(a:file))
             let openFile = viki#SubstituteArgs(prot, 'FILE', a:file)
-            " TLogVAR openFile
-            call viki#ExecExternal(openFile)
+            " TLogVAR prot
+            if !empty(prot)
+                " let openFile = viki#SubstituteArgs(prot, 'FILE', fnameescape(a:file))
+                let openFile = viki#SubstituteArgs(prot, 'FILE', a:file)
+                " TLogVAR openFile
+                call viki#ExecExternal(openFile)
+            else
+                throw 'Viki: Please define g:vikiOpenFileWith_'. proto .' or g:vikiOpenFileWith_ANY!'
+            endif
         else
-            throw 'Viki: Please define g:vikiOpenFileWith_'. proto .' or g:vikiOpenFileWith_ANY!'
+            call tlib#sys#Open(a:file)
         endif
     endf
 endif
@@ -692,7 +737,7 @@ if !exists("g:vikiOpenUrlWith_ANY")
     elseif has("mac")
         let g:vikiOpenUrlWith_ANY = "exec 'silent !open '. escape('%{URL}', ' &!%')"
     elseif exists('$XDG_CURRENT_DESKTOP') && !empty($XDG_CURRENT_DESKTOP)
-        let g:vikiOpenUrlWith_ANY = "exec 'silent !xdg-open '. shellescape('%{URL}')"
+        let g:vikiOpenUrlWith_ANY = "exec 'silent !xdg-open' shellescape('%{URL}') '&'" 
     elseif $GNOME_DESKTOP_SESSION_ID != ""
         let g:vikiOpenUrlWith_ANY = "exec 'silent !gnome-open '. shellescape('%{URL}')"
     elseif $KDEDIR != ""
@@ -713,7 +758,6 @@ if !exists("*VikiOpenSpecialProtocol")
     " !rundll32 url.dll ...".
     " All protocol names are translated to lower case.
     function! VikiOpenSpecialProtocol(url) "{{{3
-        " TLogVAR a:url
         " TLogVAR a:url
         let proto = tolower(matchstr(a:url, '\c^[a-z]\{-}\ze:'))
         let prot  = 'g:vikiOpenUrlWith_'. proto
@@ -751,6 +795,52 @@ endf
 
 function! viki#GetInterVikis() "{{{3
     return g:vikiInterVikiNames
+endf
+
+
+function! viki#GetInterVikiDef(iv, ...) abort "{{{3
+    let include_files = a:0 >= 1 ? a:1 : 0
+    let ivdef = {}
+    let ivdef.name = substitute(a:iv, '::$', '', '')
+    let ivdef.prefix = g:vikiInter{ivdef.name}
+    let ivdef.suffix = viki#InterVikiSuffix(a:iv)
+    let ivdef.special = viki#IsSpecial(ivdef.prefix, 0)
+    " TLogVAR ivdef.special
+    if !ivdef.special
+        let ivdef.filepattern = '*'. ivdef.suffix
+        let ivdef.glob = tlib#file#Join([fnamemodify(ivdef.prefix, ':p:h'), '**/'. ivdef.filepattern], 1)
+        " let ivdef.glob = tlib#file#Join([ivdef.prefix, '*'. ivdef.suffix])
+        " TLogVAR ivdef
+        if include_files
+            let ivdef.files = tlib#file#Glob(ivdef.glob)
+        endif
+    endif
+    return ivdef
+endf
+
+
+function! viki#GetInterVikiDefs(...) abort "{{{3
+    let include_files = a:0 >= 1 ? a:1 : 0
+    let iv_rx = a:0 >= 2 ? a:2 : '.'
+    let defs = {}
+    for iv in viki#GetInterVikis()
+        let iv_name = substitute(iv, '::$', '', '')
+        if iv_name =~ iv_rx
+            let def = viki#GetInterVikiDef(iv, include_files)
+            " TLogVAR type(def), def
+            let defs[def.name] = def
+        endif
+    endfor
+    return defs
+endf
+
+
+" Get a rx that matches a simple word
+function! viki#GetSimpleRx4SimpleWikiWord() "{{{3
+    let upper = s:UpperCharacters()
+    let lower = s:LowerCharacters()
+    let rx = '['.upper.lower.'0-9]\+'
+    return rx
 endf
 
 
@@ -1305,6 +1395,7 @@ endf
 " viki#DispatchOnFamily(fn, ?family='', *args)
 function! viki#DispatchOnFamily(fn, ...) "{{{3
     let fam = a:0 >= 1 && a:1 != '' ? a:1 : viki#Family()
+    " TLogVAR fam, expand('%')
     if !exists('*viki_'. fam .'#SetupBuffer')
         exec 'runtime autoload/viki_'. fam .'.vim'
     endif
@@ -1352,53 +1443,71 @@ function! viki#CollectFileWords(table, simpleWikiName) "{{{3
     if g:vikiNameSuffix != '' && index(patterns, g:vikiNameSuffix) == -1
         call add(patterns, g:vikiNameSuffix)
     end
+    let fileword_suffixes = tlib#var#Get('viki#fileword_suffixes', 'bg', [])
+    " TLogVAR fileword_suffixes
+    if !empty(fileword_suffixes)
+        let patterns += fileword_suffixes
+    endif
     let suffix = '.'. expand('%:e')
     if suffix != '.' && index(patterns, suffix) == -1
         call add(patterns, suffix)
     end
     for p in patterns
-        let files = glob(expand('%:p:h').'/*'. p)
-        if files != ''
-            let files_l = split(files, '\n')
-            call filter(files_l, '!isdirectory(v:val) && v:val != expand("%:p")')
-            if !empty(files_l)
-                for w in files_l
-                    let ww = s:CanonicHyperWord(fnamemodify(w, ":t:r"))
-                    if !has_key(a:table, ww) && 
-                                \ (a:simpleWikiName == '' || ww !~# a:simpleWikiName)
-                        let a:table[ww] = w
-                    endif
-                endfor
+        for base_dir in tlib#var#Get('vikiBaseDirs', 'bg')
+            if base_dir == '.'
+                let base_dir = expand('%:p:h')
             endif
-        endif
+            " TLogVAR p, base_dir, getcwd(), bufname('%')
+            let files = tlib#file#Glob(base_dir .'/*'. p)
+            " TLogVAR files
+            if !empty(files)
+                call filter(files, '!isdirectory(v:val) && v:val != expand("%:p")')
+                " TLogVAR files
+                if !empty(files)
+                    for w in files
+                        let ww = s:CanonicHyperWord(fnamemodify(w, ":t:r"))
+                        " TLogVAR w, ww
+                        if !has_key(a:table, ww) && 
+                                    \ (a:simpleWikiName == '' || ww !~# a:simpleWikiName)
+                            let a:table[ww] = w
+                        endif
+                    endfor
+                endif
+            endif
+        endfor
     endfor
 endf
 
 
 function! viki#CollectHyperWords(table) "{{{3
-    let vikiWordsBaseDir = expand('%:p:h')
-    for filename in g:vikiHyperWordsFiles
-        if filename =~ '^\./'
-            let bn  = fnamemodify(filename, ':t')
-            let filename = vikiWordsBaseDir . filename[1:-1]
-            let acc = []
-            for dir in tlib#file#Split(vikiWordsBaseDir)
-                call add(acc, dir)
-                let fn = tlib#file#Join(add(copy(acc), bn))
-                call s:CollectVikiWords(a:table, fn, vikiWordsBaseDir)
-            endfor
-        else
-            call s:CollectVikiWords(a:table, filename, vikiWordsBaseDir)
+    for base_dir in tlib#var#Get('vikiBaseDirs', 'bg')
+        if base_dir == '.'
+            let base_dir = expand('%:p:h')
         endif
+        for filename in tlib#var#Get('vikiHyperWordsFiles', 'bg')
+            if filename =~ '^\./'
+                let bn  = fnamemodify(filename, ':t')
+                let filename = base_dir . filename[1:-1]
+                let acc = []
+                for dir in tlib#file#Split(base_dir)
+                    call add(acc, dir)
+                    let fn = tlib#file#Join(add(copy(acc), bn))
+                    call s:CollectVikiWords(a:table, fn, base_dir)
+                endfor
+            else
+                call s:CollectVikiWords(a:table, filename, base_dir)
+            endif
+        endfor
     endfor
 endf
 
 
 function! s:CollectVikiWords(table, filename, basedir) "{{{3
-    " TLogVAR a:filename, a:basedir
+    " TLogVAR a:filename, a:basedir, filereadable(a:filename)
     if filereadable(a:filename)
         let dir = fnamemodify(a:filename, ':p:h')
-        " TLogVAR dir
+        let cwd = getcwd()
+        " TLogVAR dir, a:filename, a:basedir
         call tlib#dir#Push(dir, 1)
         try
             let hyperWords = readfile(a:filename)
@@ -1415,8 +1524,7 @@ function! s:CollectVikiWords(table, filename, basedir) "{{{3
                             call remove(a:table, mkey)
                         endif
                     elseif !has_key(a:table, mkey)
-                        " TLogVAR mval
-                        " call TLogDBG(viki#IsInterViki(mval))
+                        " TLogVAR mval, viki#IsInterViki(mval)
                         if viki#IsInterViki(mval)
                             let interviki = viki#InterVikiName(mval)
                             let suffix    = viki#InterVikiSuffix(mval, interviki)
@@ -1428,7 +1536,7 @@ function! s:CollectVikiWords(table, filename, basedir) "{{{3
                                         \ 'name':      name,
                                         \ }
                         else
-                            let a:table[mkey] = tlib#file#Relative(mval, a:basedir)
+                            let a:table[mkey] = tlib#file#Relative(mval, cwd)
                             " TLogVAR mkey, mval, a:basedir, a:table[mkey]
                         endif
                     endif
@@ -1554,7 +1662,7 @@ endf
 
 " Check if the key maps should support a specified functionality
 function! viki#MapFunctionality(mf, key)
-    return a:mf == 'ALL' || (a:mf =~# '\<'. a:key .'\>')
+    return a:mf ==# 'ALL' || (a:mf =~# '\<'. a:key .'\>')
 endf
 
 
@@ -1742,7 +1850,7 @@ if !exists('*VikiAnchor_rx')
     " Example: [[index#rx=foo]]
     function! VikiAnchor_rx(arg) "{{{3
         let arg = escape(s:StripBackslash(a:arg), '/')
-        exec 'keepjumps norm! gg/'. arg .''
+        exec 'keepjumps norm! gg/'. arg ."\n"
     endf
 endif
 
@@ -1858,7 +1966,9 @@ function! viki#OpenLink(filename, anchor, ...) "{{{3
     elseif exists('b:editVikiPage')
         call s:EditLocalFile(b:editVikiPage, filename, fi, li, co, g:vikiDefNil)
     elseif isdirectory(filename)
-        call s:EditLocalFile(g:vikiExplorer, tlib#dir#NativeName(tlib#dir#PlainName(filename)), fi, li, co, g:vikiDefNil)
+        let localfname = tlib#dir#PlainName(filename)
+        " let localfname = tlib#dir#NativeName(localfname)
+        call s:EditLocalFile(g:vikiExplorer, localfname, fi, li, co, g:vikiDefNil)
     else
         call s:EditLocalFile('edit', filename, fi, li, co, a:anchor)
     endif
@@ -1883,6 +1993,7 @@ function! s:EditLocalFile(cmd, fname, fi, li, co, anchor) "{{{3
     endif
     call s:SetBackRef(a:fi, a:li, a:co)
     if g:vikiPromote && (!exists('b:vikiEnabled') || !b:vikiEnable)
+        TLogVAR &filetype
         call viki#DispatchOnFamily('MinorMode', vf, 1)
     endif
     call viki#DispatchOnFamily('FindAnchor', vf, a:anchor)
@@ -1970,17 +2081,20 @@ endf
 
 " Check if dest uses a special protocol
 function! viki#IsSpecialProtocol(dest) "{{{3
-    return a:dest =~ '^\('.b:vikiSpecialProtocols.'\):' &&
-                \ (b:vikiSpecialProtocolsExceptions == "" ||
-                \ !(a:dest =~ b:vikiSpecialProtocolsExceptions))
+    let prots = tlib#var#Get('vikiSpecialProtocols', 'bg')
+    let excps = tlib#var#Get('vikiSpecialProtocolsExceptions', 'bg')
+    return a:dest =~ '^\('. prots .'\):' &&
+                \ (excps == "" ||
+                \ !(a:dest =~ excps))
 endf
 
 
 " Check if dest is somehow special
-function! viki#IsSpecial(dest) "{{{3
+function! viki#IsSpecial(dest, ...) "{{{3
+    let isdirectory = a:0 >= 1 ? a:1 : isdirectory(a:dest)
     return viki#IsSpecialProtocol(a:dest) || 
                 \ viki#IsSpecialFile(a:dest) ||
-                \ isdirectory(a:dest)
+                \ isdirectory
 endf
 
 
@@ -2033,6 +2147,10 @@ function! s:OpenLink(dest, anchor, winNr)
         " TLogVAR isdirectory(a:dest)
         " TLogVAR filereadable(a:dest)
         " TLogVAR bufexists(a:dest), buflisted(a:dest)
+        " let ndest = tlib#file#NativeFilename(a:dest)
+        " let localfname = ndest.fs
+        let localfilename = a:dest
+        " TLogVAR viki#IsSpecialProtocol(a:dest), viki#IsSpecialFile(a:dest)
         if viki#IsSpecialProtocol(a:dest)
             let url = viki#MakeUrl(a:dest, a:anchor)
             " TLogVAR url
@@ -2040,17 +2158,19 @@ function! s:OpenLink(dest, anchor, winNr)
         elseif viki#IsSpecialFile(a:dest)
             " TLogVAR viki#IsSpecialFile(a:dest)
             call VikiOpenSpecialFile(a:dest)
-        elseif isdirectory(a:dest)
+        elseif isdirectory(localfilename)
             " TLogVAR isdirectory(a:dest)
             " exec g:vikiExplorer .' '. a:dest
-            call viki#OpenLink(a:dest, a:anchor, 0, '', a:winNr)
-        elseif filereadable(a:dest) "reference to a local, already existing file
+            call viki#OpenLink(localfilename, a:anchor, 0, '', a:winNr)
+        elseif filereadable(localfilename) "reference to a local, already existing file
             " TLogVAR filereadable(a:dest)
-            call viki#OpenLink(a:dest, a:anchor, 0, '', a:winNr)
+            call viki#OpenLink(localfilename, a:anchor, 0, '', a:winNr)
         elseif bufexists(a:dest) && buflisted(a:dest)
             " TLogVAR bufexists(a:dest)
             call s:EditWrapper('buffer!', a:dest)
         else
+            " TLogVAR a:dest
+            " let @* = a:dest " DBG
             let ok = input("File doesn't exist. Create '".a:dest."'? (Y/n) ", "y")
             " TLogVAR ok
             if ok != "" && ok != "n"
@@ -2154,15 +2274,15 @@ endf
 " If txt matches a viki name typed as defined by compound return a 
 " structure defining this viki name.
 function! viki#LinkDefinition(txt, col, compound, ignoreSyntax, type) "{{{3
-    " TLogVAR a:txt, a:compound, a:col
+    " TLogVAR a:txt, a:col, a:compound, a:ignoreSyntax, a:type
     exe a:compound
     if erx != ''
         let ebeg = -1
         let cont = match(a:txt, erx, 0)
-        " TLogDBG 'cont='. cont .'('. a:col .')'
+        " TLogVAR cont
         while (ebeg >= 0 || (0 <= cont) && (cont <= a:col))
             let contn = matchend(a:txt, erx, cont)
-            " TLogDBG 'contn='. contn .'('. cont.')'
+            " TLogVAR ebeg, cont, elen, contn
             if (cont <= a:col) && (a:col < contn)
                 let ebeg = match(a:txt, erx, cont)
                 let elen = contn - ebeg
@@ -2171,7 +2291,7 @@ function! viki#LinkDefinition(txt, col, compound, ignoreSyntax, type) "{{{3
                 let cont = match(a:txt, erx, contn)
             endif
         endwh
-        " TLogDBG 'ebeg='. ebeg
+        " TLogVAR ebeg
         if ebeg >= 0
             let part   = strpart(a:txt, ebeg, elen)
             let match  = matchlist(part, '^\C'. erx .'$')
@@ -2299,13 +2419,18 @@ endf
 function! viki#InterVikiDest(vikiname, ...)
     TVarArg 'ow', ['rx', 0]
     " TLogVAR ow, rx
-    if empty(ow)
-        let ow     = viki#InterVikiName(a:vikiname)
-        let v_dest = viki#InterVikiPart(a:vikiname)
+    if a:vikiname =~ s:InterVikiNameRx .'$'
+        let vikiname = a:vikiname .'::'
     else
-        let v_dest = a:vikiname
+        let vikiname = a:vikiname
     endif
-    let vd = s:InterVikiDef(a:vikiname, ow)
+    if empty(ow)
+        let ow     = viki#InterVikiName(vikiname)
+        let v_dest = viki#InterVikiPart(vikiname)
+    else
+        let v_dest = vikiname
+    endif
+    let vd = s:InterVikiDef(vikiname, ow)
     " TLogVAR vd
     if vd != ''
         exec vd
@@ -2322,9 +2447,9 @@ function! viki#InterVikiDest(vikiname, ...)
             let i_dest = fnamemodify(i_dest, ':p')
             if empty(v_dest)
                 if !exists('i_index')
-                    let suffix = viki#InterVikiSuffix(a:vikiname)
+                    let suffix = viki#InterVikiSuffix(vikiname)
                     let findex = fnamemodify(i_dest .'/'. g:vikiIndex . suffix, ':p')
-                    " TLogVAR a:vikiname, suffix, g:vikiIndex, findex
+                    " TLogVAR vikiname, suffix, g:vikiIndex, findex
                     if filereadable(findex)
                         let i_index = g:vikiIndex
                     endif
@@ -2444,6 +2569,7 @@ endf
 function! viki#GetLink(ignoreSyntax, ...) "{{{3
     let col   = a:0 >= 2 ? a:2 : 0
     let types = a:0 >= 3 ? a:3 : b:vikiNameTypes
+    " TLogVAR a:ignoreSyntax, col, types
     if a:0 >= 1 && a:1 != ''
         let txt      = a:1
         let vikiType = a:ignoreSyntax
@@ -2471,11 +2597,9 @@ function! viki#GetLink(ignoreSyntax, ...) "{{{3
         let txt = getline('.')
         let col = col('.') - 1
     endif
-    " TLogDBG "txt=". txt
-    " TLogDBG "col=". col
-    " TLogDBG "tryAll=". tryAll
-    " TLogDBG "vikiType=". tryAll
+    " TLogVAR txt, col, tryAll, vikiType
     if (tryAll || vikiType == 2) && viki#IsSupportedType('e', types)
+        " TLogDBG 'vikiType 2'
         if exists('b:getExtVikiLink')
             exe 'let def = ' . b:getExtVikiLink.'()'
         else
@@ -2487,6 +2611,7 @@ function! viki#GetLink(ignoreSyntax, ...) "{{{3
         endif
     endif
     if (tryAll || vikiType == 3) && viki#IsSupportedType('u', types)
+        " TLogDBG 'vikiType 3'
         if exists('b:getURLViki')
             exe 'let def = ' . b:getURLViki . '()'
         else
@@ -2498,6 +2623,7 @@ function! viki#GetLink(ignoreSyntax, ...) "{{{3
         endif
     endif
     if (tryAll || vikiType == 4) && viki#IsSupportedType('x', types)
+        " TLogDBG 'vikiType 4'
         if exists('b:getCmdViki')
             exe 'let def = ' . b:getCmdViki . '()'
         else
@@ -2509,6 +2635,7 @@ function! viki#GetLink(ignoreSyntax, ...) "{{{3
         endif
     endif
     if (tryAll || vikiType == 1) && viki#IsSupportedType('s', types)
+        " TLogDBG 'vikiType 1'
         if exists('b:getVikiLink')
             exe 'let def = ' . b:getVikiLink.'()'
         else
@@ -2570,9 +2697,16 @@ function! viki#HomePage(...) "{{{3
         endif
         return 1
     else
+        call tlib#notify#Echo('VIKI: Please set g:vikiHomePage', 'WarningMsg')
         return 0
     endif
 endf
+
+
+function! viki#EnsureVikiBuffer() abort
+    return exists('b:vikiEnabled') || viki#HomePage()
+endf
+
 
 
 " :display: viki#Edit(name, ?ignoreSpecial=0, ?winNr=0)
@@ -2585,7 +2719,6 @@ function! viki#Edit(name, ...) "{{{3
     endif
     if exists('b:vikiEnabled') 
         if !viki#HomePage(winNr)
-            call tlib#notify#Echo('VIKI: Please set g:vikiHomePage', 'WarningMsg')
             call s:EditWrapper('buffer', 1)
         endif
     endif
@@ -2629,7 +2762,7 @@ function! viki#Browse(name) "{{{3
         if i_type == 'prefix'
             exec s:LetVar('sfx', 'vikiInter'. a:name .'_suffix')
             " TLogVAR i_dest, sfx
-            let files = split(globpath(i_dest, '**'), '\n')
+            let files = tlib#file#Globpath(i_dest, '**')
             if !empty(sfx)
                 call filter(files, 'v:val =~ '''. tlib#rx#Escape(sfx) .'$''')
             endif
@@ -2735,7 +2868,7 @@ function! viki#EditComplete(ArgLead, CmdLine, CursorPos) "{{{3
         let r  = '^'. viki#InterVikiDest('\(.\{-}\)', i, 1) .'$'
         " TLogVAR f,d,r
         let d  = substitute(d, '\', '/', 'g')
-        let rv = split(glob(d), '\n')
+        let rv = tlib#file#Glob(d)
         " TLogVAR d,rv
         if sfx != ''
             call filter(rv, 'isdirectory(v:val) || ".". fnamemodify(v:val, ":e") == sfx')
@@ -2747,7 +2880,7 @@ function! viki#EditComplete(ArgLead, CmdLine, CursorPos) "{{{3
         " TLogVAR rv
     else
         " TLogDBG 'B'
-        let rv = split(glob(arglead.'*'.sfx), '\n')
+        let rv = tlib#file#Glob(arglead.'*'.sfx)
         " TLogVAR rv
         call map(rv, 's:EditCompleteAgent('. string(i) .', v:val, v:val)')
         " TLogVAR rv
@@ -2932,6 +3065,7 @@ endf
 
 function! viki#ExecExternal(cmd) "{{{3
     " TLogVAR a:cmd
+    let @+ = a:cmd
     exec a:cmd
     if !has("gui_running")
         " Scrambled window with vim
@@ -3017,7 +3151,7 @@ endf
 
 
 function! s:CollectFileNames(lb, le, bang) "{{{3
-    let s:isdir = {}
+    call s:InitIsDir()
     let afile = viki#FilesGetFilename(getline('.'))
     let acc   = []
     for l in range(a:lb, a:le - 1)
@@ -3028,6 +3162,14 @@ function! s:CollectFileNames(lb, le, bang) "{{{3
         endif
     endfor
     return acc
+endf
+
+
+function! s:InitIsDir() "{{{3
+    let cd = getcwd()
+    if get(s:isdir, '.', '') != cd
+        let s:isdir = {'.': cd}
+    endif
 endf
 
 
@@ -3093,22 +3235,27 @@ endf
 "                      *.txt|*.viki).
 "     head=NUMBER .... Display the first N lines of the file's content
 "     list=detail .... Include additional file info
-"     list=flat ...... Display a flat list
-"     types=[fd] ..... Whether to display files (f) and directories (d)
-"     filter=REGEXP .. List only those files matching a |regexp|
+"     list=flat ...... Display a flat list (implies format=shorten)
+"     types=f, d ..... Whether to display files (f) and directories (d)
 "     exclude=REGEXP . Don't list files matching a |regexp|
-"     sort=name|time|head ... Sort the list on the files' names, times, 
+"     sort=name, time, head ... Sort the list on the files' names, times, 
 "                      or head lines. If the argument begins with "-", 
 "                      the list is displayed in reverse order.
-"     format=expr      Filename format string (see |expand()|)
+"     format=EXPR|shorten .. Filename format string (see |expand()|) or 
+"                      "shorten" to use |pathshorten()|
+"     filter=REGEXP .. List only those filenames matching a |regexp|
+"     +rx=REGEXP ..... Include only files whose text matches a |regexp|
+"     -rx=REGEXP ..... Exclude files whose text matches a |regexp|
 "
 " Comments (i.e. text after the file link) are maintained if possible 
 " and if list is not "detail".
 function! viki#DirListing(lhs, lhb, indent, region) "{{{3
+    call s:InitIsDir()
     let args = s:GetRegionArgs(a:lhs, a:lhb - 1)
     " TLogVAR args
     let patt = get(args, 'glob', '')
     " TLogVAR patt
+    Tlibtrace 'viki', args, patt
     if empty(patt)
         echoerr 'Viki: No glob pattern: '. string(args)
     else
@@ -3119,21 +3266,14 @@ function! viki#DirListing(lhs, lhb, indent, region) "{{{3
         elseif patt !~ '^\([%\\/]\|\w\+:\)' && !&autochdir && bufdir != getcwd()
             let patt = tlib#file#Join([bufdir, patt])
         endif
-        " TLogVAR patt
-        if patt =~ '^[^\\/*?]*[*?]'
-            let s:dirlisting_depth0 = 0
-        else
-            let patt_parts = split(patt, '[*?]')
-            " TLogVAR patt_parts
-            let s:dirlisting_depth0 = s:GetDepth(patt_parts[0])
-        endif
         let view = winsaveview()
         let t = @t
         try
             let ls = []
             for pattern in split(patt, '|')
-                let ls += split(glob(pattern), '\n')
+                let ls += tlib#file#Glob(pattern)
             endfor
+            Tlibtrace 'viki', len(ls)
             " TLogVAR ls
             let types = get(args, 'types', '')
             if empty(types)
@@ -3144,52 +3284,38 @@ function! viki#DirListing(lhs, lhb, indent, region) "{{{3
                 let show_files = stridx(types, 'f') != -1
             endif
             if show_files || show_dirs
-                " if empty(fnamemodify(patt, ':e'))
-                " TLogVAR patt
-                if stridx(patt, '**') == -1
-                    call filter(ls, '(show_files && !s:IsDir(v:val)) || (show_dirs && s:IsDir(v:val))')
-                else
-                    let ls1 = []
-                    let rootdir = ''
-                    for lsitem in ls
-                        let lsdir = s:IsDir(lsitem)
-                        if lsdir
-                            if show_dirs
-                                call add(ls1, lsitem)
-                            endif
-                        elseif show_files
-                            if show_dirs
-                                let lsdirname = fnamemodify(lsitem, ':p:h')
-                                " TLogVAR lsdirname, index(ls1,lsdirname)
-                                if empty(rootdir) || strwidth(lsdirname) < strwidth(rootdir)
-                                    let rootdir = lsdirname
-                                endif
-                                if index(ls1, lsdirname) == -1
-                                    call add(ls1, lsdirname)
-                                endif
-                            endif
-                            call add(ls1, lsitem)
-                        endif
-                    endfor
-                    if !empty(rootdir)
-                        call remove(ls1, index(ls1, rootdir))
-                    endif
-                    " TLogVAR rootdir
-                    let ls = ls1
-                endif
+                call filter(ls, 's:IsDir(v:val) ? show_dirs : show_files')
             else
                 let ls = []
             endif
+            " TLogVAR ls
+            let list = split(get(args, 'list', ''), ',\s*')
+            let flat = index(list, 'flat') != -1
             let filter = get(args, 'filter', '')
             if !empty(filter)
-                call filter(ls, 'v:val =~ filter')
+                call filter(ls, 's:IsDir(v:val) || v:val =~ filter')
             endif
             let exclude = get(args, 'exclude', '')
             if !empty(exclude)
                 call filter(ls, 'v:val !~ exclude')
             endif
+            let incl_rx = get(args, '+rx', '')
+            " TLogVAR incl_rx
+            if !empty(incl_rx)
+                " TLogVAR len(ls)
+                call filter(ls, 'isdirectory(v:val) || !empty(filter(readfile(v:val), ''v:val =~ incl_rx''))')
+            endif
+            let excl_rx = get(args, '-rx', '')
+            " TLogVAR excl_rx
+            if !empty(excl_rx)
+                " TLogVAR len(ls)
+                call filter(ls, 'isdirectory(v:val) || empty(filter(readfile(v:val), ''v:val =~ excl_rx''))')
+            endif
             if !empty(ls)
-                let list = split(get(args, 'list', ''), ',\s*')
+                " TLogVAR ls
+                let cd = expand('%:p:h')
+                let lsd = map(copy(ls), 's:GetFileDef(v:val, cd)')
+                let s:dirlisting_depth0 = sort(map(copy(lsd), 'v:val.indent'))[0]
                 let head = str2nr(get(args, 'head', '0'))
                 let s:files_options = {}
                 let sort = get(args, 'sort', '')
@@ -3212,8 +3338,7 @@ function! viki#DirListing(lhs, lhb, indent, region) "{{{3
                         throw "viki: #Files: sort must be either name, time, or head but was ". string(sort)
                     endif
                 endif
-                let s:getfileentry_deep = 0
-                let ls = map(ls, 's:GetFileEntry(v:val, a:region, deep, list, head, args)')
+                let ls = map(lsd, 's:GetFileEntry(v:val, a:region, deep, flat, list, head, args)')
                 if !empty(sort)
                     let ls = sort(ls, 's:SortFiles')
                 endif
@@ -3231,6 +3356,12 @@ function! viki#DirListing(lhs, lhb, indent, region) "{{{3
 endf
 
 
+
+" function! s:FileMatches(fname, rx) abort "{{{3
+"     return !empty(filter(readfile(a:fname), 'v:val =~ a:rx'))
+" endf
+
+
 function! s:SortFiles(i1, i2) "{{{3
     let sort_on = s:files_options.sort_on
     let i1 = get(a:i1, sort_on)
@@ -3240,77 +3371,79 @@ function! s:SortFiles(i1, i2) "{{{3
 endf
 
 
-function! s:GetFileEntry(file, region, deep, list, head, args) "{{{3
+function! s:GetFileEntry(filedef, region, deep, flat, list, head, args) "{{{3
+    " TLogVAR a:filedef
+    " TLogVAR a:deep, a:list, a:head, a:args
+    " TLogVAR a:region
+    let file = a:filedef.filename
+    let d = a:filedef.indent - s:dirlisting_depth0
     let f = []
     let props = {}
-    let d = s:GetDepth(a:file) - s:dirlisting_depth0
+    let is_dir = s:IsDir(file)
     let attr = []
-    let is_dir = 0
     if index(a:list, 'detail') != -1
-        let props.type = getftype(a:file)
+        let props.type = getftype(file)
         if props.type != 'file'
-            if props.type == 'dir'
-                let is_dir = 1
-            else
+            if props.type != 'dir'
                 call add(attr, props.type)
             endif
         endif
-        let props.ftime = strftime('%Y-%m-%d %H:%M:%S', getftime(a:file))
+        let props.ftime = strftime('%Y-%m-%d %H:%M:%S', getftime(file))
         call add(attr, props.ftime)
-        let props.fperm = getfperm(a:file)
+        let props.fperm = getfperm(file)
         call add(attr, props.fperm)
-    else
-        if s:IsDir(a:file)
-            let is_dir = 1
-        endif
     endif
-    if index(a:list, 'flat') == -1
-        let prefix  = repeat(' ', d)
-        if a:deep
-            if s:getfileentry_deep < d
-                let prefix .= is_dir ? '`+' : '`|'
-            else
-                let prefix .= is_dir ? ' +' : ' |'
-            endif
-            if is_dir
-                let s:getfileentry_deep = max([0, d - 1])
-            else
-                let s:getfileentry_deep = d
-            endif
+    let relname = a:filedef.relname
+    let format = get(a:args, 'format', '')
+    if a:flat
+        let file_t = relname
+        if empty(format)
+        elseif format == 'shorten'
         else
-            let prefix .= is_dir ? '+' : '|'
+            let file_t = fnamemodify(file_t, format)
         endif
-        let prefix .= ' '
-        call add(f, prefix)
-    endif
-    let format = get(a:args, 'format', ':t')
-    let file_t = fnamemodify(a:file, format)
-    if is_dir
-        let file_t .= '/'
-    endif
-    if a:file != file_t && g:viki_viki#conceal_extended_link_markup && has('conceal')
-        call add(f, '[['. a:file .']['. file_t .']!]')
+        let file_t = pathshorten(file_t)
     else
-        call add(f, '[['. a:file .']!]')
+        let prefix = repeat(' ', d)
+        if is_dir
+            let prefix .= '\ '
+        else
+            let prefix .= '| '
+        endif
+        call add(f, prefix)
+        if empty(format)
+            let file_t = a:filedef.basename
+        elseif format == 'shorten'
+            let file_t = pathshorten(relname)
+        else
+            let file_t = fnamemodify(file, format)
+        endif
+    endif
+    if is_dir
+        call add(f, relname .'/')
+    elseif relname != file_t && g:viki_viki#conceal_extended_link_markup && has('conceal')
+        call add(f, '[['. relname .']['. file_t .']!]')
+    else
+        call add(f, '[['. relname .']!]')
     endif
     if !empty(attr)
         call add(f, ' {'. join(attr, '|') .'}')
     endif
-    if a:head > 0 && !s:IsDir(a:file)
-        let props.head = s:GetHead(a:file, a:head)
+    if a:head > 0 && !is_dir
+        let props.head = s:GetHead(file, a:head)
         call add(f, ' -- '. props.head)
     else
         if get(s:files_options, 'head', 0)
-            let props.head = s:GetHead(a:file, s:files_options.head)
+            let props.head = s:GetHead(file, s:files_options.head)
         endif
-        let c = get(a:region.comments, a:file, '')
-        " TLogVAR a:file, c
+        let c = get(a:region.comments, file, '')
+        " TLogVAR file, c
         if !empty(c)
             call add(f, c)
         endif
     endif
     if get(s:files_options, 'ftime', 0) && !has_key(props, 'ftime')
-        let props.ftime = strftime('%Y-%m-%d %H:%M:%S', getftime(a:file))
+        let props.ftime = strftime('%Y-%m-%d %H:%M:%S', getftime(file))
     endif
     let props.filename = join(f, '')
     return props
@@ -3323,16 +3456,28 @@ function! s:GetHead(file, head) "{{{3
     let lines = map(lines, 'substitute(v:val, g:viki#files_head_rx, "", "g")')
     let head_text = join(lines, '|')
     let head_text = substitute(head_text, "[[:cntrl:]]", "", "g")
-    if &l:fenc != &l:enc && has('iconv')
-        let head_text = iconv(head_text, &l:fenc, &l:enc)
-        " TLogVAR head_text
-    endif
+    " if has('iconv')
+    "     for enc in g:viki#files_head_encs
+    "         if enc != &enc
+    "             let head_text1 = iconv(head_text, enc, &enc)
+    "             if head_text1 != head_text
+    "                 " TLogVAR enc, &enc, head_text, head_text1
+    "                 let head_text = head_text1
+    "                 break
+    "             endif
+    "         endif
+    "     endfor
+    " endif
     return head_text
 endf
 
 
-function! s:GetDepth(file) "{{{3
-    return len(substitute(a:file, '[^\/]', '', 'g'))
+function! s:GetFileDef(file, cd) "{{{3
+    let relname = tlib#file#Relative(a:file, a:cd)
+    let dir = matchstr(a:file, '^.*[\/]\ze[^\/]*$')
+    let prefix = substitute(dir, '[^\/]*[\/]', ' ', 'g')
+    let basename = matchstr(a:file, '[^\/]*$')
+    return {'dir': dir, 'indent': len(prefix), 'prefix': prefix, 'filename': a:file, 'relname': relname, 'basename': basename}
 endf
 
 
@@ -3523,8 +3668,7 @@ function! viki#Balloon() "{{{3
         if viki#IsSpecial(v_dest) 
             if isdirectory(v_dest)
                 let pattern = tlib#file#Join([v_dest, '*'])
-                let files = glob(pattern)
-                let list = split(files, '\n')
+                let list = tlib#file#Glob(pattern)
                 call map(list, 'fnamemodify(v:val, ":t")')
                 let lines = []
                 if !empty(list)
@@ -3558,142 +3702,6 @@ function! viki#Balloon() "{{{3
         return text
     endif
     return ''
-endf
-
-
-function! viki#MatchList(lnum) "{{{3
-    let rx = '^[[:blank:]]\+\ze\(#[A-Z]\d\?\|#\d[A-Z]\?\|[-+*#?@]\|[0-9#]\+\.\|[a-zA-Z?]\.\|.\{-1,}[[:blank:]]::\)[[:blank:]]'
-    return matchend(getline(a:lnum), rx)
-endf
-
-
-" "                                                     *viki-text-objects* *ii*
-" " Create a new text-object ii that works on a inner list item. Once the 
-" " maps are enabled, users may, e.g., visually select an item in a list 
-" " by typing vii. See |viki#SelectListItem()| for a definition of what is 
-" " considered a list item.
-" " 
-" " The maps are local to the current buffer. Add this line to your 
-" " |vimrc| file in order to enable the ii text-object for all viki 
-" " buffers:>
-" "   au FileType viki call viki#MapListItemTextObject()
-function! viki#ListItemTextObject() "{{{3
-    if indent('.') == 0
-        return "ip"
-    else
-        return ":\<c-u>silent! call viki#SelectListItem('.')\<cr>"
-    endif
-endf
-
-
-" Visually select the list item at line lnum.
-" A list item also contains all its child items. E.g. in a list like:>
-"
-"   1. Venenatis diam dignissim dui. Praesent risus.
-"   2. Tincidunt facilisis, est nisi pellentesque ligula.
-"       a. Adipiscing dui non quam.
-"       b. Duis posuere tortor.
-"   3. Massa lorem, dignissim at, vehicula et.
-"
-" If the cursor is placed on item #2, this function also selects the 
-" items a and b.
-function! viki#SelectListItem(lnum) "{{{3
-    let lnum = line(a:lnum)
-    if lnum == 0
-        let lnum = a:lnum
-    endif
-    let lbeg = lnum
-    let item_indent = -1
-    " TLogVAR lbeg, indent(lbeg)
-    while lbeg > 1 && indent(lbeg) > 0
-        " TLogVAR lbeg
-        let item_indent = viki#MatchList(lbeg)
-        if item_indent > 0
-            break
-        endif
-        let lbeg -= 1
-    endwh
-    " TLogVAR item_indent
-    if item_indent > 0
-        let lend = lnum
-        let lmax = line('$')
-        " TLogVAR lend, lmax
-        while lend < lmax && indent(lend + 1) > item_indent
-            " TLogVAR lend
-            let lend += 1
-        endwh
-        exec printf('norm! %dggV%dgg', lbeg, lend)
-        return item_indent
-    else
-        return -1
-    endif
-endf
-
-
-" :doc:
-" If the |tinykeymap| plugin is installed, a gl map is created to move 
-" around list items.
-"
-" If you use the tinymode plugin, add the following to lines to your 
-" |vimrc| file:
-"
-"   call tinymode#EnterMap("listitem_move", "gl")
-"   call tinymode#ModeMsg("listitem_move", "Move list item: h/j/k/l")
-"   call tinymode#Map("listitem_move", "h", "silent call viki#ShiftListItem('<')")
-"   call tinymode#Map("listitem_move", "l", "silent call viki#ShiftListItem('>')")
-"   call tinymode#Map("listitem_move", "j", "silent call viki#MoveListItem('down')")
-"   call tinymode#Map("listitem_move", "k", "silent call viki#MoveListItem('up')")
-
-
-function! viki#ShiftListItem(direction) "{{{3
-    call viki#SelectListItem('.')
-    exec 'norm!' a:direction
-endf
-
-
-function! viki#MoveListItem(direction) "{{{3
-    let t = @t
-    try
-        let item_indent = viki#SelectListItem('.')
-        if item_indent > 0
-            " TLogVAR 1, line('.')
-            norm! "td
-            let lnum = line('.')
-            if a:direction == 'up'
-                let lmove = -1
-                let lnum -= 1
-            else
-                let lmove = 1
-            endif
-            let lmax = line('$')
-            while lnum > 0 && lnum <= lmax && (indent(lnum) > item_indent || getline(lnum) !~ '\S')
-                let lnum += lmove
-            endwh
-            if lnum == 0 || lnum > lmax
-                norm! u
-            else
-                exec lnum
-                if viki#SelectListItem('.') > 0
-                    " TLogVAR 2, line('.')
-                    exec "norm! \<Esc>"
-                    if a:direction == 'up'
-                        exec line("'<")
-                        " TLogVAR 3, line('.')
-                        norm! "tP
-                    else
-                        exec line("'>")
-                        " TLogVAR 3, line('.')
-                        norm! "tp
-                    endif
-                    " TLogVAR 4, line('.')
-                else
-                    norm! u
-                endif
-            endif
-        endif
-    finally
-        let @t = t
-    endtry
 endf
 
 
@@ -3880,5 +3888,18 @@ function! viki#CollectSyntaxRegionsFiletypes() "{{{3
     endfor
     " echom "DBG" string(s:valid_filetypes)
     return keys(ftypes)
+endf
+
+
+function! viki#FileSources(opts) abort "{{{3
+    let globs = []
+    for def in values(viki#GetInterVikiDefs(0, g:viki#find_intervikis_rx))
+        " TLogVAR def
+        if has_key(def, 'glob')
+            call add(globs, def.glob)
+        endif
+    endfor
+    " TLogVAR globs
+    return globs
 endf
 

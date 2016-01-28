@@ -2,8 +2,8 @@
 " @Author:      Tom Link (micathom AT gmail com?subject=vim)
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     12-Jän-2004.
-" @Last Change: 2013-03-04.
-" @Revision: 527
+" @Last Change: 2015-11-03.
+" @Revision: 531
 
 if exists("b:did_ftplugin") "{{{2
     finish
@@ -46,8 +46,8 @@ setlocal iskeyword-=_
 let &l:include='\(^\s*#INC.\{-}\(\sfile=\|:\)\)'
 let &l:define='^\s*\(#Def.\{-}id=\|#\(Fn\|Footnote\).\{-}\(:\|id=\)\|#VAR.\{-}\s\)'
 
-if g:vikiFoldLevel > 0 && &l:foldlevel == 0
-    let &l:foldlevel = g:vikiFoldLevel
+if g:viki#fold_level > 0 && &l:foldlevel == 0
+    let &l:foldlevel = g:viki#fold_level
 endif
 
 if has('balloon_multiline')
@@ -59,8 +59,6 @@ map <buffer> <silent> [[ :call viki#FindPrevHeading()<cr>
 map <buffer> <silent> ][ :call viki#FindNextHeading()<cr>
 map <buffer> <silent> ]] ][
 map <buffer> <silent> [] [[
-vnoremap <buffer> <expr> ii viki#ListItemTextObject()
-omap <buffer> ii :normal Vii<cr>
 
 
 let b:undo_ftplugin = 'setlocal iskeyword< expandtab< foldtext< foldexpr< foldmethod< comments< commentstring< '
@@ -72,11 +70,11 @@ let b:undo_ftplugin = 'setlocal iskeyword< expandtab< foldtext< foldexpr< foldme
             \ .'| unmap <buffer> ]['
             \ .'| unmap <buffer> []'
 
-if g:vikiAutoupdateFiles
+if g:viki#autoupdate_files
     call viki#FilesRegionUpdateAll()
 endif
 
-if g:vikiFoldMethodVersion == 0 "{{{2
+if g:viki#fold_method_version == 0 "{{{2
     finish
 else
     setlocal foldmethod=expr

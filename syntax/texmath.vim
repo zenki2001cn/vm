@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-11-15.
-" @Last Change: 2010-11-15.
-" @Revision:    0.0.75
+" @Last Change: 2016-01-19.
+" @Revision:    10.0.76
 
 " Use only as embedded syntax to be included from other syntax files.
 
@@ -14,17 +14,6 @@ elseif exists("b:current_syntax")
     finish
 endif
 scriptencoding utf-8
-
-if exists(':HiLink')
-    let s:delhilink = 0
-else
-    let s:delhilink = 1
-    if version < 508
-        command! -nargs=+ HiLink hi link <args>
-    else
-        command! -nargs=+ HiLink hi def link <args>
-    endif
-endif
 
 
 " syn match texmathArgDelimiters /[{}\[\]]/ contained containedin=texmathMath
@@ -137,6 +126,7 @@ if has('conceal') && &enc == 'utf-8'
                         \ ['gtreqless'	, '⋛'],
                         \ ['gtrless'	, '≷'],
                         \ ['gtrsim'		, '≳'],
+                        \ ['hat'		, '^'],
                         \ ['hookleftarrow'	, '↩'],
                         \ ['hookrightarrow'	, '↪'],
                         \ ['iiint'		, '∭'],
@@ -290,9 +280,10 @@ if has('conceal') && &enc == 'utf-8'
                         \ ['vee'		, '∨'],
                         \ ['Vvdash'		, '⊪'],
                         \ ['wedge'		, '∧'],
+                        \ ['widehat'		, '^'],
                         \ ['wr'		, '≀']]
             for texmath in s:texMathList
-                exe "syn match texMathSymbol '\\\\".texmath[0]."\\>' contained containedin=texmath conceal cchar=".texmath[1]
+                exe "syn match texMathSymbol /\\\\". escape(texmath[0], "'") ."\\%(\\>\\|{}\\)\\?/ contained containedin=texmath conceal cchar=".texmath[1]
             endfor
             unlet texmath s:texMathList
 
@@ -420,6 +411,11 @@ if has('conceal') && &enc == 'utf-8'
             call s:SuperSub('texSuperscript','\^',')','⁾')
             call s:SuperSub('texSuperscript','\^','\.','˙')
             call s:SuperSub('texSuperscript','\^','=','˭')
+            call s:SuperSub('texSubscript','_','(','₍')
+            call s:SuperSub('texSubscript','_',')','₎')
+            call s:SuperSub('texSubscript','_','+','₊')
+            call s:SuperSub('texSubscript','_','-','₋')
+            call s:SuperSub('texSubscript','_','/','ˏ')
             call s:SuperSub('texSubscript','_','0','₀')
             call s:SuperSub('texSubscript','_','1','₁')
             call s:SuperSub('texSubscript','_','2','₂')
@@ -430,18 +426,22 @@ if has('conceal') && &enc == 'utf-8'
             call s:SuperSub('texSubscript','_','7','₇')
             call s:SuperSub('texSubscript','_','8','₈')
             call s:SuperSub('texSubscript','_','9','₉')
+            call s:SuperSub('texSubscript','_','\.','‸')
             call s:SuperSub('texSubscript','_','a','ₐ')
             call s:SuperSub('texSubscript','_','e','ₑ')
+            call s:SuperSub('texSubscript','_','h','ₕ')
             call s:SuperSub('texSubscript','_','i','ᵢ')
+            call s:SuperSub('texSubscript','_','j','ⱼ')
+            call s:SuperSub('texSubscript','_','k','ₖ')
+            call s:SuperSub('texSubscript','_','l','ₗ')
+            call s:SuperSub('texSubscript','_','m','ₘ')
+            call s:SuperSub('texSubscript','_','n','ₙ')
             call s:SuperSub('texSubscript','_','o','ₒ')
-            call s:SuperSub('texSubscript','_','u','ᵤ')
-            call s:SuperSub('texSubscript','_','+','₊')
-            call s:SuperSub('texSubscript','_','-','₋')
-            call s:SuperSub('texSubscript','_','/','ˏ')
-            call s:SuperSub('texSubscript','_','(','₍')
-            call s:SuperSub('texSubscript','_',')','₎')
-            call s:SuperSub('texSubscript','_','\.','‸')
+            call s:SuperSub('texSubscript','_','p','ₚ')
             call s:SuperSub('texSubscript','_','r','ᵣ')
+            call s:SuperSub('texSubscript','_','s','ₛ')
+            call s:SuperSub('texSubscript','_','t','ₜ')
+            call s:SuperSub('texSubscript','_','u','ᵤ')
             call s:SuperSub('texSubscript','_','v','ᵥ')
             call s:SuperSub('texSubscript','_','x','ₓ')
             call s:SuperSub('texSubscript','_','\\beta\>' ,'ᵦ')
@@ -466,19 +466,16 @@ endif
 syn cluster texmathMath contains=@texmath,texmathMathWord,texmathSup,texmathSub
 
 " Statement PreProc
-HiLink texmathSup Type
-HiLink texmathSub Type
-" HiLink texmathArgDelimiters Comment
-HiLink texmathCommand Statement
-HiLink texmathText Normal
-HiLink texmathMathFont Type
-HiLink texmathMathWord Identifier
-HiLink texmathUnword Constant
-HiLink texmathPairs PreProc
+hi def link texmathSup Type
+hi def link texmathSub Type
+" hi def link texmathArgDelimiters Comment
+hi def link texmathCommand Statement
+hi def link texmathText Normal
+hi def link texmathMathFont Type
+hi def link texmathMathWord Identifier
+hi def link texmathUnword Constant
+hi def link texmathPairs PreProc
 
 
-if s:delhilink
-    delcommand HiLink
-endif
 " let b:current_syntax = 'texmath'
 

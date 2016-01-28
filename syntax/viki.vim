@@ -1,9 +1,9 @@
-" viki.vim -- the viki syntax file
+" viki.vim -- the viki syntax fileviki_viki#SetupBuffer
 " @Author:      Tom Link (micathom AT gmail com?subject=vim)
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     30-Dez-2003.
-" @Last Change: 2013-10-17.
-" @Revision: 0.1102
+" @Last Change: 2016-01-19.
+" @Revision: 4.1113
 
 if version < 600
     syntax clear
@@ -57,6 +57,7 @@ if has('conceal') && &enc == 'utf-8'
                 \ ['ArrowTildeL', '<~\+', '↜'],
                 \ ['ArrowTildeR', '~\+>', '↝'],
                 \ ['Ellipsis', '...', '…'],
+                \ ['Circumflex', '\^\%({}\)\?', '^'],
                 \ ]
         
         exec 'syn match vikiSymbol'. s:name .' /\V'. s:chars .'/ conceal cchar='. s:cchar
@@ -108,7 +109,7 @@ syn match vikiComment /^[[:blank:]]*%.*$/ contains=@vikiHyperLinks,vikiMarkers,v
 syn region vikiString start=+^"\|\s"\|[({\[]\zs"\|[^[:alnum:]]\zs"\ze[[:alnum:]]+ end=+"+ contains=@vikiText
 
 let b:vikiHeadingStart = '*'
-if g:vikiFancyHeadings
+if g:viki#fancy_headings
     let hd=escape(b:vikiHeadingStart, '\/')
     exe 'syn region vikiHeading1 start=/\V\^'. hd .'\[[:blank:]]\+/ end=/\n/ contains=@vikiText'
     exe 'syn region vikiHeading2 start=/\V\^'. hd.hd .'\[[:blank:]]\+/ end=/\n/ contains=@vikiText'
@@ -183,7 +184,7 @@ syn region vikiFilesRegion matchgroup=vikiMacroDelim
             \ contains=vikiFiles
 
 
-if g:vikiHighlightMath == 'latex'
+if g:viki#highlight_math == 'latex'
     syn region vikiTexFormula matchgroup=Comment
                 \ start=/\z(\$\$\?\)/ end=/\z1/
                 \ contains=@texmathMath
@@ -251,14 +252,17 @@ else
     syn match vikiContact /\s\+\zs@[^[:punct:][:space:]]\+/ contained containedin=vikiPriorityListTodoGen
 endif
 
+" syn cluster vikiPriorityListTodoInline contains=@vikiPriorityListTodo,vikiTag,vikiContact
 
-let s:plquant = g:vikiIndentedPriorityLists ? '\+' : '*'
+let s:plquant = tlib#var#Get('vikiIndentedPriorityLists', 'wbg') ? '\+' : '*'
 
 exec 'syn match vikiPriorityListTodoGen /^[[:blank:]]'. s:plquant .'\zs#\(T: \+.\{-}\u.\{-}:\|\d*\u\d*\(\s\+'. s:progress .'\)\?\)\s.*$/ contains=vikiContact,vikiTag,@vikiPriorityListTodo,@vikiText'
 exec 'syn match vikiPriorityListDoneGen /^[[:blank:]]'. s:plquant .'\zs#\(T: \+x\([0-9%-]\+\)\?.\{-}\u.\{-}:\|\(T: \+\)\?\d*\u\d* \+x'. s:progress .'\?\):\? .*/'
-exec 'syn match vikiPriorityListDoneX /^[[:blank:]]'. s:plquant .'\zs#X\d\?\s.*/'
+exec 'syn match vikiPriorityListDoneX /^[[:blank:]]'. s:plquant .'\zs#[X-Z]\d\?\s.*/'
 
 unlet s:plquant
+
+syn cluster vikiPriorityListGen contains=vikiPriorityListTodoGen,vikiPriorityListDoneX,vikiPriorityListDoneGen
 
 
 syntax sync minlines=2
@@ -303,7 +307,7 @@ if version >= 508 || !exists("did_viki_syntax_inits")
   exe "hi vikiEscape ctermfg=". s:cm2 ."grey guifg=". s:cm2 ."grey"
   hi vikiList term=bold cterm=bold gui=italic,bold ctermfg=Cyan guifg=Cyan
   HiLink vikiDescription vikiList
-  if g:vikiFancyHeadings
+  if g:viki#fancy_headings
       if &background == "light"
           let hdhl="term=bold,underline cterm=bold gui=bold ctermfg=". s:cm1 ."Magenta guifg=".s:cm1."Magenta". s:hdfont
           exe "hi vikiHeading1 ". hdhl ." guibg=#ffff00"

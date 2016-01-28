@@ -2,8 +2,8 @@
 " @Author:      Tom Link (micathom AT gmail com?subject=vim)
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     08-Dec-2003.
-" @Last Change: 2014-01-28.
-" @Revision:    2759
+" @Last Change: 2015-11-05.
+" @Revision:    2785
 "
 " GetLatestVimScripts: 861 1 viki.vim
 "
@@ -21,17 +21,17 @@
 " - vikitasks.vim (vimscript #2894)
 " - kpsewhich (not a vim plugin :-) for vikiLaTeX
 
-if &cp || exists("loaded_viki")
+if &cp || exists("g:loaded_viki")
     finish
 endif
-if !exists('g:loaded_tlib') || g:loaded_tlib < 106
+if !exists('g:loaded_tlib') || g:loaded_tlib < 116
     runtime plugin/02tlib.vim
-    if !exists('g:loaded_tlib') || g:loaded_tlib < 106
-        echoerr 'tlib >= 1.06 is required'
+    if !exists('g:loaded_tlib') || g:loaded_tlib < 116
+        echoerr 'tlib >= 1.16 is required'
         finish
     endif
 endif
-let loaded_viki = 407
+let g:loaded_viki = 409
 
 
 if !exists("tlist_viki_settings")
@@ -50,32 +50,16 @@ if !exists('g:vikiMenuLevel')
     let g:vikiMenuLevel = 1 "{{{2
 endif
 
-if !exists("g:vikiFancyHeadings")
-    " If non-nil, display headings of different levels in different colors
-    let g:vikiFancyHeadings = 0 "{{{2
-endif
-
 if !exists("g:vikiMarkInexistent")
     " If non-zero, highligh links to existent or inexistent files in 
     " different colours.
     let g:vikiMarkInexistent = 1 "{{{2
 endif
 
-if !exists("g:vikiHighlightMath")
-    " If "latex", use the texmathMath |syn-cluster| to highlight 
-    " mathematical formulas.
-    let g:vikiHighlightMath = 'latex' "{{{2
-endif
-
 if !exists("g:vikiNameSuffix")
     " Default file suffix (including the optional period, e.g. '.viki').
     " Can also be buffer-local.
     let g:vikiNameSuffix = ".viki" "{{{2
-endif
-
-if !exists("g:vikiIndex")
-    " The default filename for an interviki's index name
-    let g:vikiIndex = 'index' "{{{2
 endif
 
 if !exists('g:viki_intervikis')
@@ -88,24 +72,6 @@ if !exists("g:vikiSaveHistory")
     " If non-nil, cache back-links information
     let g:vikiSaveHistory = index(split(&viminfo, ','), '!') != -1 "{{{2
 endif
-
-if !exists('g:vikiAutoupdateFiles')
-    " If true, automatically update all |viki-files| regions.
-    let g:vikiAutoupdateFiles = 0   "{{{2
-endif
-
-if !exists('g:vikiFoldLevel')
-    " If > 0, set the 'foldlevel' of viki files to this value. (This is 
-    " only useful if 'foldlevel' still has the default value of 0.)
-    let g:vikiFoldLevel = 5   "{{{2
-endif
-
-if !exists('g:vikiIndentedPriorityLists')
-    " If true, priority lists must be indented by at least one 
-    " whitespace character.
-    let g:vikiIndentedPriorityLists = 1   "{{{2
-endif
-
 
 " -1 ... open all links in a new windows
 " -2 ... open all links in a new windows but split vertically
@@ -149,7 +115,7 @@ endf
 " VikiDefine(name, prefix, ?suffix="*", ?index="Index.${suffix}")
 " suffix == "*" -> g:vikiNameSuffix
 function! VikiDefine(name, prefix, ...) "{{{3
-    if a:name =~ '[^A-Z]'
+    if a:name =~ '[^A-Z0-9]'
         throw 'Invalid interviki name: '. a:name
     endif
     call add(g:vikiInterVikiNames, a:name .'::')
@@ -157,15 +123,6 @@ function! VikiDefine(name, prefix, ...) "{{{3
     let g:vikiInter{a:name}          = a:prefix
     let g:vikiInter{a:name}_suffix   = a:0 >= 1 && a:1 != '*' ? a:1 : g:vikiNameSuffix
     let index = a:0 >= 2 && a:2 != '' ? a:2 : ''
-    " TLogVAR index
-    " if empty(index)
-    "     let index0 = g:vikiIndex . g:vikiInter{a:name}_suffix
-    "     let findex = fnamemodify(g:vikiInter{a:name} .'/'. index0, ':p')
-    "     if filereadable(findex)
-    "         let index = index0
-    "     endif
-    "     " TLogVAR index, index0, findex
-    " endif
     if !empty(index)
         let vname = VikiMakeName(a:name, index, 0)
         let g:vikiInter{a:name}_index = index
@@ -236,9 +193,18 @@ command! VikiHome :call viki#HomePage()
 command! VIKI :call viki#HomePage()
 
 
-if !empty('g:vikiNameSuffix')
-    exec 'autocmd filetypedetect BufRead,BufNewFile *'. g:vikiNameSuffix .' setf viki'
-    let g:ft_ignore_pat = '\('. g:ft_ignore_pat .'\|'. tlib#rx#Escape(g:vikiNameSuffix) .'$\)'
+" :display: :Vikifind[!] KIND PATTERN
+" Use |:Trag| to search the current directory or, with the optional [!] 
+" search all intervikis matching |g:viki#find_intervikis_rx|. See 
+" |:Trag| for the allowed values for KIND.
+"
+" NOTE: This command requires the trag plugin to be installed.
+command! -bar -bang -nargs=+ -complete=customlist,trag#CComplete Vikifind if exists(':Trag') == 2 | Trag<bang> --filenames --file_sources=*viki#FileSources <args> | else | echom ':Vikifind requires the trag_vim plugin to be installed!' | endif
+
+
+
+if !empty('g:vikiNameSuffix') && exists('#filetypedetect')
+    exec 'autocmd filetypedetect BufRead,BufNewFile *'. g:vikiNameSuffix .' if empty(&ft) | setf viki | endif'
 endif
 
 augroup viki
@@ -255,4 +221,9 @@ augroup viki
     " As viki uses its own styles, we have to reset &filetype.
     autocmd ColorScheme * if &filetype == 'viki' | set filetype=viki | endif
 augroup END
+
+
+if exists('g:loaded_setsyntax') && g:loaded_setsyntax > 0
+    let g:setsyntax_options['viki']['vikiPriorityListTodoGen'] = {'&l:tw': 0}
+endif
 
