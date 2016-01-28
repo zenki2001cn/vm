@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 140 v1.21.10 2016-01-28 09:38:24 ###
+* 21.1 更新tlib                                             ---> v1.20
+    - link: http://www.vim.org/scripts/script.php?script_id=1863
+
 ### 139 v1.21.9 2016-01-26 18:14:33 ###
 * 21.1 更新CommandT                                         ---> v3.1
     - link: http://www.vim.org/scripts/script.php?script_id=3025
