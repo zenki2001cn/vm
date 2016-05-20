@@ -3,19 +3,14 @@
 
 module CommandT
   class Finder
-    class TagFinder < Finder
+    class HelpFinder < Finder
       def initialize(options = {})
-        @scanner = Scanner::TagScanner.new options
+        @scanner = Scanner::HelpScanner.new
         @matcher = Matcher.new @scanner, :always_show_dot_files => true
       end
 
       def open_selection(command, selection, options = {})
-        if @scanner.include_filenames
-          selection = selection[0, selection.index(':')]
-        end
-
-        #  open the tag and center the screen on it
-        ::VIM::command "silent! tag #{selection} | :normal zz"
+        ::VIM::command "help #{selection}"
       end
 
       def flush
@@ -23,7 +18,7 @@ module CommandT
       end
 
       def name
-        'Tags'
+        'Help'
       end
     end
   end

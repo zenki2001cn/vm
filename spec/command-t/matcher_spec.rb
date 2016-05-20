@@ -3,7 +3,6 @@
 
 require 'spec_helper'
 require 'ostruct'
-require 'command-t/ext' # CommandT::Matcher
 
 describe CommandT::Matcher do
   def matcher(*paths)
@@ -66,6 +65,12 @@ describe CommandT::Matcher do
     it 'considers the empty string to match everything' do
       matches = matcher('foo').sorted_matches_for('')
       expect(matches.map { |m| m.to_s }).to eq(['foo'])
+    end
+
+    # Can't imagine this happening in practice, but want to handle it in case.
+    it 'gracefully handles empty haystacks' do
+      expect(matcher('', 'foo').sorted_matches_for('').map { |m| m.to_s }).to eq(['', 'foo'])
+      expect(matcher('', 'foo').sorted_matches_for('f').map { |m| m.to_s }).to eq(['foo'])
     end
 
     it 'does not consider mere substrings of the query string to be a match' do
@@ -197,6 +202,39 @@ describe CommandT::Matcher do
       ])
     end
 
+    it 'provides intuitive results for "matchh" search' do
+      # Regression introduced in 187bc18.
+      expect(ordered_matches(%w[
+        vendor/bundle/ruby/1.8/gems/rspec-expectations-2.14.5/spec/rspec/matchers/has_spec.rb
+        ruby/command-t/match.h
+      ], 'matchh')).to eq(%w[
+        ruby/command-t/match.h
+        vendor/bundle/ruby/1.8/gems/rspec-expectations-2.14.5/spec/rspec/matchers/has_spec.rb
+      ])
+    end
+
+    it 'provides intuitive results for "relqpath" search' do
+      # Another regression.
+      expect(ordered_matches(%w[
+        *l**/e*t*t*/atla*/patter**/E*tAtla***el****q*e*e***al**at***HelperTra*t.php
+        static_upstream/relay/query/RelayQueryPath.js
+      ], 'relqpath')).to eq(%w[
+        static_upstream/relay/query/RelayQueryPath.js
+        *l**/e*t*t*/atla*/patter**/E*tAtla***el****q*e*e***al**at***HelperTra*t.php
+      ])
+    end
+
+    it 'provides intuitive results for "controller" search' do
+      # Another regression.
+      expect(ordered_matches(%w[
+        spec/command-t/controller_spec.rb
+        ruby/command-t/controller.rb
+      ], 'controller')).to eq(%w[
+        ruby/command-t/controller.rb
+        spec/command-t/controller_spec.rb
+      ])
+    end
+
     it "doesn't incorrectly accept repeats of the last-matched character" do
       # https://github.com/wincent/Command-T/issues/82
       matcher = matcher(*%w[ash/system/user/config.h])
@@ -227,6 +265,38 @@ describe CommandT::Matcher do
 
       # counter-example
       expect(matcher.sorted_matches_for('.f.t')).to eq(%w[.foo.txt])
+    end
+
+    it "shows dotfiles when there is a non-leading dot that matches a leading dot within a path component" do
+      matcher = matcher(*%w[this/.secret/stuff.txt something.else])
+      expect(matcher.sorted_matches_for('t.sst')).to eq(%w[this/.secret/stuff.txt])
+    end
+
+    it "doesn't show a dotfile just because there was a match at index 0" do
+      pending 'fix'
+      matcher = matcher(*%w[src/.flowconfig])
+      expect(matcher.sorted_matches_for('s')).to eq([])
+    end
+
+    it 'correctly computes non-recursive match score' do
+      # Non-recursive match was incorrectly inflating some scores.
+      # Related: https://github.com/wincent/command-t/issues/209
+      matcher = matcher(*%w[
+        app/assets/components/App/index.jsx
+        app/assets/components/PrivacyPage/index.jsx
+        app/views/api/docs/pagination/_index.md
+      ])
+
+      # You might want the second match here to come first, but in the
+      # non-recursive case we greedily match the "app" in "app", the "a" in
+      # "assets", the "p" in "components", and the first "p" in "App". This
+      # doesn't score as favorably as matching the "app" in "app", the "ap" in
+      # "api", and the "p" in "pagination".
+      expect(matcher.sorted_matches_for('appappind')).to eq(%w[
+        app/views/api/docs/pagination/_index.md
+        app/assets/components/App/index.jsx
+        app/assets/components/PrivacyPage/index.jsx
+      ])
     end
   end
 end

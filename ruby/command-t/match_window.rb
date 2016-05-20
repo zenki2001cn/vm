@@ -15,6 +15,7 @@ module CommandT
     Highlight = Struct.new(:highlight, :bang)
 
     def initialize(options = {})
+      @encoding        = options[:encoding]
       @highlight_color = options[:highlight_color] || 'PmenuSel'
       @min_height      = options[:min_height]
       @prompt          = options[:prompt]
@@ -22,6 +23,8 @@ module CommandT
 
       quoted_name = VIM::escape_for_single_quotes(options[:name])
       escaped_name = ::VIM::evaluate("fnameescape('#{quoted_name}')")
+
+      run_will_show_autocmd
 
       set 'timeout', true        # ensure mappings timeout
       set 'hlsearch', false      # don't highlight search strings
@@ -33,7 +36,10 @@ module CommandT
       set 'scrolloff', 0         # don't scroll near buffer edges
       set 'sidescroll', 0        # don't sidescroll in jumps
       set 'sidescrolloff', 0     # don't sidescroll automatically
-      set 'updatetime', options[:debounce_interval]
+
+      if options[:debounce_interval] > 0
+        set 'updatetime', options[:debounce_interval]
+      end
 
       # Save existing window views so we can restore them later.
       current_window = ::VIM::evaluate('winnr()')
@@ -190,9 +196,10 @@ module CommandT
 
     def unload
       restore_window_views
-      @settings.restore
       @prompt.dispose
+      @settings.restore
       show_cursor
+      run_did_hide_autocmd
     end
 
     def add!(char)
@@ -357,6 +364,18 @@ module CommandT
       focus_window(current_window)
     end
 
+    def run_will_show_autocmd
+      run_autocmd('CommandTWillShowMatchListing')
+    end
+
+    def run_did_hide_autocmd
+      run_autocmd('CommandTDidHideMatchListing')
+    end
+
+    def run_autocmd(cmd)
+      ::VIM::command("call commandt#private#RunAutocmd('#{cmd}')")
+    end
+
     def match_text_for_idx(idx)
       match = truncated_match @matches[idx].to_s
       if idx == @selection
@@ -381,6 +400,11 @@ module CommandT
     #
     def match_with_syntax_highlight(match)
       highlight_chars = @prompt.abbrev.downcase.scan(/./mu)
+      if @encoding &&
+         match.respond_to?(:force_encoding) &&
+         match.encoding != @encoding
+        match = match.force_encoding(@encoding)
+      end
       match.scan(/./mu).inject([]) do |output, char|
         if char.downcase == highlight_chars.first
           highlight_chars.shift

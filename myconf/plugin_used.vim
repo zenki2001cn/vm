@@ -1076,7 +1076,8 @@ let g:w3m#search_engine =
 nnoremap <silent> <Leader>ct :CommandT<CR>
 nnoremap <silent> <Leader>cb :CommandTBuffer<CR>
 
-let g:CommandTMaxFiles = 100000
+let g:CommandTMaxFiles = 9000000
+let g:CommandTFileScanner = 'find'
 let g:CommandTMaxDepth = 100
 let g:CommandTMaxCachedDirectories = 10
 let g:CommandTCancelMap = ['<C-c>', '<ESC>']

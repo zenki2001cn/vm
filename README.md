@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 143 v1.22.2 2016-04-29 16:02:08 ###
+* 22.1 更新bufexplorer                                      ---> v7.4.9
+    - link: http://www.vim.org/scripts/script.php?script_id=42
+* 22.2 更新CommandT                                         ---> v4.0
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+
 ### 142 v1.22.1 2016-02-17 12:15:48 ###
 * 22.1 更新WakaTime插件                                     (from github)
     - link: https://github.com/wakatime/vim-wakatime
@@ -1021,3 +1027,4 @@ Update: 2012-06-08 17:42:31
 - pydiction插件需要生成模块缓存，适用命令：python $VIM/ftplugin/pydiction.py <module>
 - python isort需要安装isort模块：easyinstall isort
 - webdevicons需要安装字体文件：https://github.com/ryanoasis/nerd-fonts
+- CommandT插件需要使用ruby编译C扩展库。VIM的ruby版本必须和编译扩展库的ruby版本一致。

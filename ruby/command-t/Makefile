@@ -9,47 +9,47 @@ hdrdir = $(topdir)
 VPATH = $(srcdir):$(topdir):$(hdrdir)
 prefix = $(DESTDIR)/usr
 exec_prefix = $(prefix)
-infodir = $(prefix)/share/info
-htmldir = $(docdir)
-sitedir = $(DESTDIR)/usr/local/lib/site_ruby
-libexecdir = $(prefix)/lib/ruby1.8
-datadir = $(datarootdir)
 docdir = $(datarootdir)/doc/$(PACKAGE)
-localedir = $(datarootdir)/locale
-bindir = $(exec_prefix)/bin
-dvidir = $(docdir)
-psdir = $(docdir)
-includedir = $(prefix)/include
 pdfdir = $(docdir)
 oldincludedir = $(DESTDIR)/usr/include
-localstatedir = $(DESTDIR)/var
-mandir = $(prefix)/share/man
-rubylibdir = $(libdir)/ruby/$(ruby_version)
-sbindir = $(exec_prefix)/sbin
-vendordir = $(libdir)/ruby/vendor_ruby
-sharedstatedir = $(prefix)/com
-vendorarchdir = $(vendorlibdir)/$(sitearch)
-sitearchdir = $(sitelibdir)/$(sitearch)
-sysconfdir = $(DESTDIR)/etc
-sitelibdir = $(sitedir)/$(ruby_version)
-libdir = $(exec_prefix)/lib
+sitedir = $(DESTDIR)/usr/local/lib/site_ruby
 vendorlibdir = $(vendordir)/$(ruby_version)
 archdir = $(rubylibdir)/$(arch)
+infodir = $(prefix)/share/info
+sbindir = $(exec_prefix)/sbin
+sysconfdir = $(DESTDIR)/etc
+bindir = $(exec_prefix)/bin
 datarootdir = $(prefix)/share
+localedir = $(datarootdir)/locale
+htmldir = $(docdir)
+libexecdir = $(prefix)/lib/ruby1.8
+vendorarchdir = $(vendorlibdir)/$(sitearch)
+vendordir = $(libdir)/ruby/vendor_ruby
+includedir = $(prefix)/include
+mandir = $(prefix)/share/man
+sharedstatedir = $(prefix)/com
+sitelibdir = $(sitedir)/$(ruby_version)
+datadir = $(datarootdir)
+libdir = $(exec_prefix)/lib
+sitearchdir = $(sitelibdir)/$(sitearch)
+localstatedir = $(DESTDIR)/var
+psdir = $(docdir)
+rubylibdir = $(libdir)/ruby/$(ruby_version)
+dvidir = $(docdir)
 
-CC = gcc
+CC = gcc-4.6 
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
 LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
 LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
 
 RUBY_EXTCONF_H = 
-CFLAGS   =  -fPIC -fno-strict-aliasing -g -g -O2  -fPIC $(cflags) 
-INCFLAGS = -I. -I$(topdir) -I$(hdrdir) -I$(srcdir)
+CFLAGS   =  -fPIC -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security -Wall -fno-strict-aliasing -g -g -O2  -fPIC $(cflags) 
+INCFLAGS = $(PREINCFLAGS) -I. -I/opt/local/include -I$(topdir) -I$(hdrdir) -I$(srcdir)
 DEFS     = -D_FILE_OFFSET_BITS=64 -DWATCHMAN_BUILD
 CPPFLAGS = -DHAVE_FCNTL_H -DHAVE_STDINT_H -DHAVE_SYS_ERRNO_H -DHAVE_SYS_SOCKET_H -DHAVE_ST_H -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags)
 CXXFLAGS = $(CFLAGS) 
-ldflags  = -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -rdynamic -Wl,-export-dynamic
+ldflags  = -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -ltcmalloc_minimal -rdynamic -Wl,-export-dynamic
 dldflags = 
 archflag = 
 DLDFLAGS = $(ldflags) $(dldflags) $(archflag)
@@ -86,9 +86,9 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -lrt -ldl -lcrypt -lm   -lc
-SRCS = watchman.c ext.c matcher.c match.c
-OBJS = watchman.o ext.o matcher.o match.o
+LIBS = $(LIBRUBYARG_SHARED)  -L/opt/local/lib -lrt -ldl -lcrypt -lm   -lc
+SRCS = watchman.c ext.c matcher.c match.c heap.c
+OBJS = watchman.o ext.o matcher.o match.o heap.o
 TARGET = ext
 DLLIB = $(TARGET).so
 EXTSTATIC = 
@@ -159,3 +159,7 @@ $(DLLIB): $(OBJS) Makefile
 # Licensed under the terms of the BSD 2-clause license.
 
 CFLAGS += -Wall -Wextra -Wno-unused-parameter
+
+ifdef DEBUG
+CFLAGS += -DDEBUG
+endif

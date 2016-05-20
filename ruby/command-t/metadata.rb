@@ -2,7 +2,7 @@
 module CommandT
   module Metadata
     EXPECTED_RUBY_VERSION = "1.8.7"
-    EXPECTED_RUBY_PATCHLEVEL = 352
+    EXPECTED_RUBY_PATCHLEVEL = 375
     UNKNOWN = false
-  end # module Metadata
-end # module CommandT
+  end
+end

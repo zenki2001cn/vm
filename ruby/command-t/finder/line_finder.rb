@@ -3,27 +3,20 @@
 
 module CommandT
   class Finder
-    class TagFinder < Finder
+    class LineFinder < Finder
       def initialize(options = {})
-        @scanner = Scanner::TagScanner.new options
+        @scanner = Scanner::LineScanner.new
         @matcher = Matcher.new @scanner, :always_show_dot_files => true
       end
 
       def open_selection(command, selection, options = {})
-        if @scanner.include_filenames
-          selection = selection[0, selection.index(':')]
-        end
-
-        #  open the tag and center the screen on it
-        ::VIM::command "silent! tag #{selection} | :normal zz"
+        ::VIM::command "#{selection.sub(/.+:(\d+)$/, '\1')}"
       end
 
-      def flush
-        @scanner.flush
-      end
+      def flush; end
 
       def name
-        'Tags'
+        'Lines'
       end
     end
   end
