@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 144 v1.22.3 2016-06-15 17:02:16 ###
+* 22.1 添加高亮显示插件searchant                            ---> v1.0.4
+    - link: http://www.vim.org/scripts/script.php?script_id=5404
+
 ### 143 v1.22.2 2016-04-29 16:02:08 ###
 * 22.1 更新bufexplorer                                      ---> v7.4.9
     - link: http://www.vim.org/scripts/script.php?script_id=42
