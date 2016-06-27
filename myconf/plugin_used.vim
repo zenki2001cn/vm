@@ -1491,7 +1491,7 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" webdevicons end {
+" webdevicons start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeSortHiddenFirst = 0
 let g:airline_powerline_fonts=1
@@ -1503,10 +1503,38 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" R end {
+" R start {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vimrplugin_show_args = 1
 let vimrplugin_args_in_stline = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " R end }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pymatcher start {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has('python')
+    echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pymatcher end }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

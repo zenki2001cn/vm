@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 145 v1.22.4 2016-06-27 17:33:09 ###
+* 22.1 添加py-matcher                                       ---> v1.1.0
+  - http://www.vim.org/scripts/script.php?script_id=4884
+
 ### 144 v1.22.3 2016-06-15 17:02:16 ###
 * 22.1 添加高亮显示插件searchant                            ---> v1.0.4
     - link: http://www.vim.org/scripts/script.php?script_id=5404
