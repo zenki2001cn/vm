@@ -1036,3 +1036,4 @@ Update: 2012-06-08 17:42:31
 - python isort需要安装isort模块：easyinstall isort
 - webdevicons需要安装字体文件：https://github.com/ryanoasis/nerd-fonts
 - CommandT插件需要使用ruby编译C扩展库。VIM的ruby版本必须和编译扩展库的ruby版本一致。
+- YouCompleteMe插件从github下载源码编译后，将third_party链接到.vim目录。同时拷贝autoload、plugin、python文件夹。

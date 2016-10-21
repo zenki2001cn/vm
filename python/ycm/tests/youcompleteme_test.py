@@ -1,4 +1,4 @@
-# Copyright (C) 2013  Google Inc.
+# Copyright (C) 2016 YouCompleteMe contributors
 #
 # This file is part of YouCompleteMe.
 #
@@ -23,32 +23,15 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import *  # noqa
 
-import time
-from threading import Thread
-from ycm.client.base_request import BaseRequest
+from ycm.tests.test_utils import MockVimModule
+MockVimModule()
+
+import sys
+from hamcrest import assert_that, is_in, is_not
+
+from ycm.tests import YouCompleteMeInstance
 
 
-# This class can be used to keep the ycmd server alive for the duration of the
-# life of the client. By default, ycmd shuts down if it doesn't see a request in
-# a while.
-class YcmdKeepalive( object ):
-  def __init__( self, ping_interval_seconds = 60 * 10 ):
-    self._keepalive_thread = Thread( target = self._ThreadMain )
-    self._keepalive_thread.daemon = True
-    self._ping_interval_seconds = ping_interval_seconds
-
-
-  def Start( self ):
-    self._keepalive_thread.start()
-
-
-  def _ThreadMain( self ):
-    while True:
-      time.sleep( self._ping_interval_seconds )
-
-      # We don't care if there's an intermittent problem in contacting the
-      # server; it's fine to just skip this ping.
-      try:
-        BaseRequest.GetDataFromHandler( 'healthy' )
-      except:
-        pass
+@YouCompleteMeInstance()
+def YouCompleteMe_YcmCoreNotImported_test( ycm ):
+  assert_that( 'ycm_core', is_not( is_in( sys.modules ) ) )
