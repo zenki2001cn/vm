@@ -5,6 +5,11 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 146 v1.30 2016-10-22 10:57:42 ###
+* 30.1 适配ubuntu 16.04
+* 30.2 更新CommandT，重新编译                               ---> v4.0
+    - link: http://www.vim.org/scripts/script.php?script_id=3025
+
 ### 145 v1.22.4 2016-06-27 17:33:09 ###
 * 22.1 添加py-matcher                                       ---> v1.1.0
   - http://www.vim.org/scripts/script.php?script_id=4884
@@ -1031,7 +1036,7 @@ Update: 2012-06-08 17:42:31
 - 当版本库中的文件过多时，加载`quickfixsigns`插件会产生一定的延迟，此时可通过`<leader>qs`禁用quickfixsigns插件。
 - 需要编译Clang库，以支持Clang特性的插件，参见Viki。
 - 需要安装ctags支持。
-- wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。
+- wakatime插件初始化时需要输入API-KEY，进入Wakatime主页可设置KEY。当前KEY: 67b700bc-56a4-435c-b5be-be0c80f1247a
 - pydiction插件需要生成模块缓存，适用命令：python $VIM/ftplugin/pydiction.py <module>
 - python isort需要安装isort模块：easyinstall isort
 - webdevicons需要安装字体文件：https://github.com/ryanoasis/nerd-fonts
