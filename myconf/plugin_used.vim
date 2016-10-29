@@ -1446,8 +1446,8 @@ let g:ycm_allow_changing_updatetime = 1
 let g:ycm_complete_in_comments = 0
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1                      " 语义不全
 let g:ycm_extra_conf_vim_data = []
 let g:ycm_path_to_python_interpreter = ''
 let g:ycm_server_use_vim_stdout = 0
@@ -1464,7 +1464,7 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:ycm_key_invoke_completion = '<TAB>'
 
-let g:ycm_global_ycm_extra_conf = ''    " 默认配置文件路径
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'    " 默认配置文件路径
 let g:ycm_confirm_extra_conf = 0        " 是否弹出确认加载配置的提示
 let g:ycm_extra_conf_globlist = []      " 配置文件搜索目录
 let g:ycm_filepath_completion_use_working_dir = 0
@@ -1481,8 +1481,8 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
-let g:ycm_cache_omnifunc = 1
-let g:ycm_use_ultisnips_completer = 1
+let g:ycm_cache_omnifunc = 0
+let g:ycm_use_ultisnips_completer = 0
 let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_disable_for_files_larger_than_kb = 80000
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>

@@ -5,6 +5,9 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 147 v1.30.1 2016-10-29 19:47:02 ###
+* 30.1 重新编译YouCompleteMe插件，完善说明和配置文件。
+
 ### 146 v1.30 2016-10-22 10:57:42 ###
 * 30.1 适配ubuntu 16.04
 * 30.2 更新CommandT，重新编译                               ---> v4.0
@@ -1042,3 +1045,5 @@ Update: 2012-06-08 17:42:31
 - webdevicons需要安装字体文件：https://github.com/ryanoasis/nerd-fonts
 - CommandT插件需要使用ruby编译C扩展库。VIM的ruby版本必须和编译扩展库的ruby版本一致。
 - YouCompleteMe插件从github下载源码编译后，将third_party链接到.vim目录。同时拷贝autoload、plugin、python文件夹。
+    * 在插件的根目录执行./install.sh --clang-completer。
+    * 配置~/.vim/.ycm_extra_conf.py,或每个项目目录下放置该文件。flags变量中加入头文件目录。
