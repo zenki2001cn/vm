@@ -25,6 +25,16 @@ endif "}}}
 "}}}
 " Functions {{{
 
+function! s:ResizeClamWindow() "{{{
+    " Assumes we're already in the window
+    if exists('g:clam_winheight') "{{{
+        silent! execute 'resize ' . g:clam_winheight
+    endif "}}}
+    if exists('g:clam_winwidth') "{{{
+        silent! execute 'vertical resize ' . g:clam_winwidth
+    endif "}}}
+endfunction " }}}
+
 function! s:GoToClamBuffer(command) " {{{
     let buffer_name = fnameescape(a:command)
 
@@ -34,8 +44,15 @@ function! s:GoToClamBuffer(command) " {{{
     " Open the new window (or move to an existing one).
     if winnr < 0
         silent! execute g:clam_winpos . ' new ' . buffer_name
+        call s:ResizeClamWindow()
+
+        " Highlight ANSI color codes if the AnsiEsc plugin is present.
+        if exists("g:loaded_AnsiEscPlugin")
+            silent! execute 'AnsiEsc'
+        endif
     else
         silent! execute winnr . 'wincmd w'
+        call s:ResizeClamWindow()
     endif
 endfunction " }}}
 function! s:ExtractBareCommanName(fullCommand) " {{{
@@ -64,11 +81,6 @@ function! s:ConfigureCurrentClamBuffer(command) " {{{
 
     " Map <localleader>p to "pipe" the buffer into a new command.
     silent! execute 'nnoremap <buffer> <LocalLeader>p ggVG!'
-
-    " Highlight ANSI color codes if the AnsiEsc plugin is present.
-    if exists("g:loaded_AnsiEscPlugin")
-        silent! execute 'AnsiEsc'
-    endif
 endfunction " }}}
 function! s:ReplaceCurrentBuffer(contents) " {{{
     normal! ggdG

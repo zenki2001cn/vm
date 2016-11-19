@@ -5,6 +5,12 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 148 v1.30.2 2016-11-20 01:37:05  ###
+* 30.1 更新Clam插件                                         ---> v1.4.0
+    - link: http://www.vim.org/scripts/script.php?script_id=4000
+* 30.2 更新 bufexplorer                                     ---> v7.4.12
+    - link: http://www.vim.org/scripts/script.php?script_id=42
+
 ### 147 v1.30.1 2016-10-29 19:47:02 ###
 * 30.1 重新编译YouCompleteMe插件，完善说明和配置文件。
 
