@@ -10,6 +10,8 @@ ChangLog
     - link: http://www.vim.org/scripts/script.php?script_id=4000
 * 30.2 更新 bufexplorer                                     ---> v7.4.12
     - link: http://www.vim.org/scripts/script.php?script_id=42
+* 30.3 新增awk插件                                          ---> v1.7.2
+    - link: http://www.vim.org/scripts/script.php?script_id=4372
 
 ### 147 v1.30.1 2016-10-29 19:47:02 ###
 * 30.1 重新编译YouCompleteMe插件，完善说明和配置文件。
