@@ -839,16 +839,16 @@ nnoremap <Leader>qs :QuickfixsignsToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " google-translator setting {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
-let g:goog_switch_mode = 1
-nmap <leader>ts :call SwitchTranslatorLanguage()<CR>
-nmap <leader>tss :call SelectTranslatorLanguage()<CR>
-nmap T VT
-nmap <leader>t :call TranslateSingle(0)<CR>
-nmap <leader>tr :call TranslateSingle(1)<CR>
-nmap <leader>ta :call TranslateAll(0)<CR>
-nmap <leader>tar :call TranslateAll(1)<CR>
-nmap <leader>tf :call TranslateFormatter()<CR>
+" let g:goog_user_conf = {'langpair':'en|zh', 'v_key':'T'}
+" let g:goog_switch_mode = 0
+" nmap <leader>ts :call SwitchTranslatorLanguage()<CR>
+" nmap <leader>tss :call SelectTranslatorLanguage()<CR>
+" nmap T VT
+" nmap <leader>t :call TranslateSingle(0)<CR>
+" nmap <leader>tr :call TranslateSingle(1)<CR>
+" nmap <leader>ta :call TranslateAll(0)<CR>
+" nmap <leader>tar :call TranslateAll(1)<CR>
+" nmap <leader>tf :call TranslateFormatter()<CR>
 
 function TranslateSingle(remove_org)
     exec "normal V,GTS"
