@@ -3,14 +3,12 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-11-15.
-" @Last Change: 2016-01-19.
-" @Revision:    10.0.76
+" @Last Change: 2017-04-02.
+" @Revision:    25.0.76
 
 " Use only as embedded syntax to be included from other syntax files.
 
-if version < 600
-    syntax clear
-elseif exists("b:current_syntax")
+if exists('b:current_syntax')
     finish
 endif
 scriptencoding utf-8
@@ -33,7 +31,7 @@ syn region texmathArgDelimiters matchgroup=Delimiter
             \ contained contains=@texmathMath containedin=texmath
 
 
-if has('conceal') && &enc == 'utf-8'
+if has('conceal') && &enc ==# 'utf-8'
     if &conceallevel == 0
         setlocal conceallevel=2
     endif
@@ -42,9 +40,9 @@ if has('conceal') && &enc == 'utf-8'
     endif
 
     if !exists('g:did_tex_syntax_inits')
-        let s:tex_conceal = exists("g:tex_conceal") ? g:tex_conceal : 'admgs'
+        let s:tex_conceal = exists('g:tex_conceal') ? g:tex_conceal : 'admgs'
 
-        if s:tex_conceal =~ 'm'
+        if s:tex_conceal =~# 'm'
             " Copied from $VIMRUNTIME/syntax/tex.vim
             " Math Symbols {{{2
             " (many of these symbols were contributed by Björn Winckler)
@@ -53,8 +51,9 @@ if has('conceal') && &enc == 'utf-8'
                         \ ['approx'		, '≈'],
                         \ ['ast'		, '∗'],
                         \ ['asymp'		, '≍'],
-                        \ ['backepsilon'	, '∍'],
+                        \ ['backepsilon', '∍'],
                         \ ['backsimeq'	, '≃'],
+                        \ ['bar'	    , '‾'],
                         \ ['barwedge'	, '⊼'],
                         \ ['because'	, '∵'],
                         \ ['between'	, '≬'],
@@ -230,6 +229,7 @@ if has('conceal') && &enc == 'utf-8'
                         \ ['sphericalangle'	, '∢'],
                         \ ['sqcap'		, '⊓'],
                         \ ['sqcup'		, '⊔'],
+                        \ ['sqrt'		, '√'],
                         \ ['sqsubset'	, '⊏'],
                         \ ['sqsubseteq'	, '⊑'],
                         \ ['sqsupset'	, '⊐'],
@@ -288,7 +288,7 @@ if has('conceal') && &enc == 'utf-8'
             unlet texmath s:texMathList
 
             " Copied from $VIMRUNTIME/syntax/tex.vim
-            if &ambw == "double"
+            if &ambw ==# 'double'
                 syn match texMathSymbol '\\gg\>'			contained containedin=texmath conceal cchar=≫
                 syn match texMathSymbol '\\ll\>'			contained containedin=texmath conceal cchar=≪
             else
@@ -297,50 +297,50 @@ if has('conceal') && &enc == 'utf-8'
             endif
         endif
 
-        if s:tex_conceal =~ 'g'
+        if s:tex_conceal =~# 'g'
             " Copied from $VIMRUNTIME/syntax/tex.vim
             fun! s:Greek(group,pat,cchar)
-                exe 'syn match '.a:group." '".a:pat."' contained containedin=texmath conceal cchar=".a:cchar
+                exe 'syn match' a:group '/'. escape(a:pat, '/') .'\%({}\|\s\|$\)\?/ contained containedin=texmath conceal cchar='.a:cchar
             endfun
-            call s:Greek('texGreek','\\alpha\>'		,'α')
-            call s:Greek('texGreek','\\beta\>'		,'β')
-            call s:Greek('texGreek','\\gamma\>'		,'γ')
-            call s:Greek('texGreek','\\delta\>'		,'δ')
-            call s:Greek('texGreek','\\epsilon\>'		,'ϵ')
-            call s:Greek('texGreek','\\varepsilon\>'	,'ε')
-            call s:Greek('texGreek','\\zeta\>'		,'ζ')
-            call s:Greek('texGreek','\\eta\>'		,'η')
-            call s:Greek('texGreek','\\theta\>'		,'θ')
-            call s:Greek('texGreek','\\vartheta\>'		,'ϑ')
-            call s:Greek('texGreek','\\kappa\>'		,'κ')
-            call s:Greek('texGreek','\\lambda\>'		,'λ')
-            call s:Greek('texGreek','\\mu\>'		,'μ')
-            call s:Greek('texGreek','\\nu\>'		,'ν')
-            call s:Greek('texGreek','\\xi\>'		,'ξ')
-            call s:Greek('texGreek','\\pi\>'		,'π')
-            call s:Greek('texGreek','\\varpi\>'		,'ϖ')
-            call s:Greek('texGreek','\\rho\>'		,'ρ')
-            call s:Greek('texGreek','\\varrho\>'		,'ϱ')
-            call s:Greek('texGreek','\\sigma\>'		,'σ')
-            call s:Greek('texGreek','\\varsigma\>'		,'ς')
-            call s:Greek('texGreek','\\tau\>'		,'τ')
-            call s:Greek('texGreek','\\upsilon\>'		,'υ')
-            call s:Greek('texGreek','\\phi\>'		,'φ')
-            call s:Greek('texGreek','\\varphi\>'		,'ϕ')
-            call s:Greek('texGreek','\\chi\>'		,'χ')
-            call s:Greek('texGreek','\\psi\>'		,'ψ')
-            call s:Greek('texGreek','\\omega\>'		,'ω')
-            call s:Greek('texGreek','\\Gamma\>'		,'Γ')
-            call s:Greek('texGreek','\\Delta\>'		,'Δ')
-            call s:Greek('texGreek','\\Theta\>'		,'Θ')
-            call s:Greek('texGreek','\\Lambda\>'		,'Λ')
-            call s:Greek('texGreek','\\Xi\>'		,'Χ')
-            call s:Greek('texGreek','\\Pi\>'		,'Π')
-            call s:Greek('texGreek','\\Sigma\>'		,'Σ')
-            call s:Greek('texGreek','\\Upsilon\>'		,'Υ')
-            call s:Greek('texGreek','\\Phi\>'		,'Φ')
-            call s:Greek('texGreek','\\Psi\>'		,'Ψ')
-            call s:Greek('texGreek','\\Omega\>'		,'Ω')
+            call s:Greek('texGreek','\\alpha'		,'α')
+            call s:Greek('texGreek','\\beta'		,'β')
+            call s:Greek('texGreek','\\gamma'		,'γ')
+            call s:Greek('texGreek','\\delta'		,'δ')
+            call s:Greek('texGreek','\\epsilon'		,'ϵ')
+            call s:Greek('texGreek','\\varepsilon'	,'ε')
+            call s:Greek('texGreek','\\zeta'		,'ζ')
+            call s:Greek('texGreek','\\eta' 		,'η')
+            call s:Greek('texGreek','\\theta'		,'θ')
+            call s:Greek('texGreek','\\vartheta'    ,'ϑ')
+            call s:Greek('texGreek','\\kappa'		,'κ')
+            call s:Greek('texGreek','\\lambda'		,'λ')
+            call s:Greek('texGreek','\\mu'  		,'μ')
+            call s:Greek('texGreek','\\nu'	    	,'ν')
+            call s:Greek('texGreek','\\xi'		    ,'ξ')
+            call s:Greek('texGreek','\\pi'	    	,'π')
+            call s:Greek('texGreek','\\varpi'		,'ϖ')
+            call s:Greek('texGreek','\\rho'		    ,'ρ')
+            call s:Greek('texGreek','\\varrho'		,'ϱ')
+            call s:Greek('texGreek','\\sigma'		,'σ')
+            call s:Greek('texGreek','\\varsigma'	,'ς')
+            call s:Greek('texGreek','\\tau'		    ,'τ')
+            call s:Greek('texGreek','\\upsilon'		,'υ')
+            call s:Greek('texGreek','\\phi'		    ,'φ')
+            call s:Greek('texGreek','\\varphi'		,'ϕ')
+            call s:Greek('texGreek','\\chi'		    ,'χ')
+            call s:Greek('texGreek','\\psi'		    ,'ψ')
+            call s:Greek('texGreek','\\omega'		,'ω')
+            call s:Greek('texGreek','\\Gamma'		,'Γ')
+            call s:Greek('texGreek','\\Delta'		,'Δ')
+            call s:Greek('texGreek','\\Theta'		,'Θ')
+            call s:Greek('texGreek','\\Lambda'		,'Λ')
+            call s:Greek('texGreek','\\Xi'		    ,'Χ')
+            call s:Greek('texGreek','\\Pi'		    ,'Π')
+            call s:Greek('texGreek','\\Sigma'		,'Σ')
+            call s:Greek('texGreek','\\Upsilon'		,'Υ')
+            call s:Greek('texGreek','\\Phi'		    ,'Φ')
+            call s:Greek('texGreek','\\Psi'		    ,'Ψ')
+            call s:Greek('texGreek','\\Omega'		,'Ω')
             delfun s:Greek
         endif
 

@@ -5,6 +5,10 @@ ChangLog
 1. 整合publish插件
 
 ## HISTORY ##
+### 149 v1.30.3 2017-05-07 00:26:59 ###
+* 30.1 更新viki                                             ---> v5.0.1
+    - link: http://www.vim.org/scripts/script.php?script_id=861
+
 ### 148 v1.30.2 2016-11-20 01:37:05  ###
 * 30.1 更新Clam插件                                         ---> v1.4.0
     - link: http://www.vim.org/scripts/script.php?script_id=4000

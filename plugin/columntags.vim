@@ -10,7 +10,7 @@ endif
 let g:loaded_columntags = 1
 
 " Globals
-let g:max_columns = 3
+let g:max_columns = 2
 
 " Stash
 " camelCase for staticmethods, underscore for instance methods

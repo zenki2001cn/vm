@@ -2,8 +2,8 @@
 " @Author:      Tom Link (micathom AT gmail com?subject=vim)
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     25-Apr-2004.
-" @Last Change: 2011-01-12.
-" @Revision:    0.46
+" @Last Change: 2017-04-01.
+" @Revision:    47
 " 
 " Description:
 " Use deplate as the "compiler" for viki files.
